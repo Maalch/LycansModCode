@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using Fusion;
 using Helpers.Collections;
 using LycansNewRoles.Sabotages;
-using LycansNewRoles.Stats;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -538,19 +537,18 @@ public class DraftManager : NetworkBehaviour
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0193: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0263: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0268: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0192: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0258: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
 		DraftTimer = TickTimer.None;
 		Active = NetworkBool.op_Implicit(false);
-		SessionStats.Stats.NewGame();
 		GameManagerCustom.Instance.EventsManager.RollEvent();
 		GameManager.Instance.ClearSpawnedItems();
 		GameManager.Instance.UpdatePotions();

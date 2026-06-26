@@ -39,20 +39,22 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 	private void Update()
 	{
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_049e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0249: Unknown result type (might be due to invalid IL or missing references)
-		//IL_050e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_051f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0524: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0529: Unknown result type (might be due to invalid IL or missing references)
-		//IL_052d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0532: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0540: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0545: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0520: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0531: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0536: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0544: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0552: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0557: Unknown result type (might be due to invalid IL or missing references)
+		//IL_056c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0578: Unknown result type (might be due to invalid IL or missing references)
 		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0359: Unknown result type (might be due to invalid IL or missing references)
 		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
@@ -118,7 +120,7 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 					PlayerCustom player = PlayerCustomRegistry.GetPlayer(item5);
 					player.UpdateVisibility();
 				}
-				if (((int)povPlayerCustom.PlayerController.Role == 1 || povPlayerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Traitor) && Plugin.CustomConfig.MoleChance > 0 && !povPlayerCustom.MoleWarningIssued && GameManagerCustom.Instance.CurrentDay == 1 && GameManager.LightingManager.TimeOfDay >= 10f)
+				if (((int)povPlayerCustom.PlayerController.Role == 1 || povPlayerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Traitor) && povPlayerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Lover && Plugin.CustomConfig.MoleChance > 0 && !povPlayerCustom.MoleWarningIssued && GameManagerCustom.Instance.CurrentDay == 1 && GameManager.LightingManager.TimeOfDay >= 10f)
 				{
 					if (PlayerCustomRegistry.Any((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Mole))
 					{
@@ -147,9 +149,11 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 				Vector3 val = ((Component)associatedRune).transform.position - ((Component)player2.PlayerController).transform.position;
 				Vector3 normalized = ((Vector3)(ref val)).normalized;
 				float num2 = Vector3.Dot(((Component)player2.PlayerController).transform.forward, normalized);
-				if (num2 > num)
+				float num3 = Vector3.Distance(((Component)player2.PlayerController).transform.position, ((Component)associatedRune).transform.position);
+				float num4 = num2 / (1000f + num3);
+				if (num4 > num)
 				{
-					num = num2;
+					num = num4;
 					runemasterRune = associatedRune;
 				}
 			}

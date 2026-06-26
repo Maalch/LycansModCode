@@ -115,7 +115,7 @@ internal class RpcCollectPatch
 				}
 				if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Mercenary)
 				{
-					player.SoloRoleObjectiveCount += num3;
+					player.AddSoloRoleProgress(num3, player.SoloRoleObjectiveTarget);
 				}
 				if (player.Stats != null)
 				{

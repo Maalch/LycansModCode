@@ -9,7 +9,7 @@ public class SessionStats
 {
 	public static SessionStats Stats = new SessionStats
 	{
-		ModVersion = "0.312",
+		ModVersion = "0.318",
 		Filename = ((object)PlayerController.Local.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "-" + LycansUtility.GetCurrentDateTimeUtcForId,
 		Key = "N8W0_QJ7Z5"
 	};
@@ -27,11 +27,12 @@ public class SessionStats
 
 	public void NewGame()
 	{
-		//IL_0148: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0158: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
+			LycansUtility.AddLogOnlyForMe("Stats: New game now");
 			string mapName = "???";
 			switch (MapManager.FindMapNameById(GameManager.Instance.MapID))
 			{

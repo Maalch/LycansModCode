@@ -140,8 +140,10 @@ public class RunemasterRune : NetworkBehaviour
 				{
 					((Component)item).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 3000f * num3 * num9, 2000f);
 				}
-				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, 12f * num4 * num8);
-				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)this).Runner, 1f, 8f * num4 * num8);
+				float num10 = 12f * num4 * num8;
+				num10 = Mathf.Min(num10, 10f);
+				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, num10);
+				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)this).Runner, 1f, num10);
 			}
 		}
 		((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
@@ -274,6 +276,8 @@ public class RunemasterRune : NetworkBehaviour
 		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002f: Invalid comparison between Unknown and I4
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
 		if (((SimulationBehaviour)this).HasStateAuthority && (Object)(object)_creatorCustom != (Object)null)
 		{
 			bool flag = false;
@@ -283,7 +287,7 @@ public class RunemasterRune : NetworkBehaviour
 			{
 				flag = true;
 			}
-			if (!PlayerRegistry.HasPlayer(CreatorRef))
+			if (!PlayerRegistry.HasPlayer(CreatorRef) || NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(CreatorRef).IsDead))
 			{
 				flag = true;
 			}

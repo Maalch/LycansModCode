@@ -166,41 +166,39 @@ public static class BalancingValues
 
 	public const float SpyMaximumDistanceForBestTarget = 80f;
 
-	public const float SpySpyingPerSecondWithoutBonus = 10f;
+	public const float SpySpyingDefaultRange = 25f;
 
-	public const float SpySpyingPerSecondWithTargetVisible = 32f;
+	public const float SpySpyingPerSecondWithoutBonus = 15f;
 
-	public const float SpySpyingPerSecondWithSpyImmobile = 18f;
+	public const float SpySpyingPerSecondWithTargetVisible = 48f;
 
-	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 63f;
+	public const float SpySpyingPerSecondWithSpyImmobile = 25f;
 
-	public const float ScientistAnalysisPowerAtMinDistance = 70f;
+	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 90f;
 
-	public const float ScientistAnalysisPowerAtMaxDistance = 20f;
+	public const float SpySpyingDiminishingReturnsValue = 7f;
+
+	public const float ScientistAnalysisPowerAtMinDistance = 80f;
+
+	public const float ScientistAnalysisPowerAtMaxDistance = 25f;
 
 	public const float ScientistAnalysisMultiplierIfNotRealWolf = 0.2f;
 
-	public const float ScientistAnalysisMultiplierForTransform = 8f;
+	public const float ScientistAnalysisMultiplierForTransform = 5f;
 
-	public const float ScientistAnalysisMultiplierForKill = 8f;
+	public const float ScientistAnalysisMultiplierForKill = 5f;
 
 	public const float ScientistAnalysisMultiplierIfWolfVisible = 4f;
 
 	public const float ScientistAnalysisMultiplierIfWolfVisibleButWounded = 0.4f;
-
-	public const float ScientistAnalysisMultiplierIfScientistCrouched = 0.8f;
-
-	public const float ScientistAnalysisMultiplierIfScientistInvisible = 0.4f;
-
-	public const float ScientistAnalysisMultiplierIfScientistFast = 0.3f;
-
-	public const float ScientistAnalysisMultiplierIfScientistFeigningDeath = 0.5f;
 
 	public const float ScientistAnalysisRangePeriodic = 40f;
 
 	public const float ScientistAnalysisRangeTransform = 40f;
 
 	public const float ScientistAnalysisRangeKill = 30f;
+
+	public const float ScientistAnalysisDiminishingReturnsValue = 7f;
 
 	public const float ScientistCreateGadgetCooldown = 60f;
 
@@ -278,21 +276,23 @@ public static class BalancingValues
 
 	public const float KidnapperAbductTimer = 3f;
 
-	public const float KidnapperCooldownAfterGameStart = 75f;
+	public const float KidnapperCooldownAfterGameStart = 30f;
 
 	public const float KidnapperCooldownAfterDayStart = 15f;
 
-	public const float KidnapperKidnapBlindRadius = 10f;
-
-	public const float KidnapperKidnapBlindDuration = 3f;
+	public const float KidnapperKidnapSoundRange = 7f;
 
 	public const float KidnapperSilenceHealthAdditionalHungerOutsideMeetings = 0.25f;
 
-	public const float KidnapperSilenceHealthAdditionalHungerDuringMeetings = 0.1f;
+	public const float KidnapperSilenceHealthAdditionalHungerDuringMeetings = 0.15f;
+
+	public const float KidnapperKidnappedPlayersVolumeWithoutSilence = 0.4f;
+
+	public const float KidnapperKidnappedPlayersVolumeWithSilence = 0.2f;
 
 	public const float CultistSkullCreationCastTime = 1f;
 
-	public const float CultistGoal = 10000f;
+	public const int CultistGoal = 10000;
 
 	public const float CultistChargeGainPerSecondPerSkull = 15f;
 
@@ -317,6 +317,8 @@ public static class BalancingValues
 	public static Color CultistActiveFogColor = new Color(0f, 0.6f, 0.6f, 1f);
 
 	public const float CultistPortalOnPlayerChance = 0.25f;
+
+	public const float CultistSkullDestructionCooldownMultiplication = 0.5f;
 
 	public const float WarlockWolfCurseRange = 10f;
 
@@ -976,6 +978,8 @@ public static class BalancingValues
 
 	public const float RunemasterRuneExplosionConfusionDurationWithOneWolf = 12f;
 
+	public const float RunemasterRuneExplosionMaximumConfusionDuration = 10f;
+
 	public const float RunemasterRuneExplosionEffectsPowerMultiplierAtMaximumRange = 0.35f;
 
 	public const float RunemasterRuneExplosionMinimumPowerMultiplierForForcedRotation = 0.5f;
@@ -1266,6 +1270,8 @@ public static class BalancingValues
 
 	public static Color LoverFogColor = new Color(1f, 0.4f, 1f, 1f);
 
+	public static float LoverWolfHealMultiplierForLootByVillager = 0.4f;
+
 	public const float MercenaryHuntSneakyDuration = 10f;
 
 	public const float EscapingSpeedMultiplier = 1.1f;
@@ -1439,7 +1445,7 @@ public static class BalancingValues
 
 	public const int MagnifierVillagerFootstepsDuration = 10;
 
-	public const float CrystalBallWolfDetectionRange = 25f;
+	public const float CrystalBallWolfDetectionRange = 20f;
 
 	public const float SpellbookCooldown = 30f;
 
@@ -1799,6 +1805,10 @@ public static class BalancingValues
 
 	public const float EventRageDelayToAutomaticTransform = 20f;
 
+	public static Color EventVengeanceFogColor = new Color(0.75f, 0f, 0f, 0.1f);
+
+	public const float EventVengeanceFogMaximumDistance = 70f;
+
 	public const float PlayerRaycastRange = 10f;
 
 	public const float PlayerRaycastRangeWhenInvisible = 3.5f;
@@ -1931,17 +1941,17 @@ public static class BalancingValues
 	{
 		return livingPlayers switch
 		{
-			6 => 0.4f, 
-			7 => 0.45f, 
-			8 => 0.5f, 
-			9 => 0.55f, 
-			10 => 0.6f, 
-			11 => 0.68f, 
-			12 => 0.76f, 
-			13 => 0.84f, 
-			14 => 0.92f, 
+			6 => 0.5f, 
+			7 => 0.55f, 
+			8 => 0.6f, 
+			9 => 0.65f, 
+			10 => 0.7f, 
+			11 => 0.76f, 
+			12 => 0.82f, 
+			13 => 0.88f, 
+			14 => 0.94f, 
 			15 => 1f, 
-			_ => 0.4f, 
+			_ => 0.5f, 
 		};
 	}
 
@@ -2532,6 +2542,11 @@ public static class BalancingValues
 		};
 	}
 
+	public static float SoloRoleDiminishingReturnsMultiplier(float halfDayProgress, float diminishingReturnsValue)
+	{
+		return 1f / (1f + diminishingReturnsValue * halfDayProgress);
+	}
+
 	public static int AgentMaxSurvivorsToWin(int totalPlayers)
 	{
 		switch (totalPlayers)
@@ -2562,11 +2577,6 @@ public static class BalancingValues
 	public static int SpyGoal(int totalPlayers)
 	{
 		return 10000;
-	}
-
-	public static float SpyMaximumRange(int mapId)
-	{
-		return 25f * DistanceMultiplierByMap(mapId);
 	}
 
 	public static int BeastTargetAmount(int survivingPlayers)

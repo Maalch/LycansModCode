@@ -1915,7 +1915,7 @@ public class GameConfig : NetworkBehaviour
 		DraftMode = NetworkBool.op_Implicit(false);
 		ShowLastGameSummaryToggle.SetIsOnWithoutNotify(true);
 		PlayerPrefs.SetInt("GAME_SETTINGS_SHOW_LAST_GAME_SUMMARY", 1);
-		DraftMode = NetworkBool.op_Implicit(true);
+		ShowLastGameSummary = NetworkBool.op_Implicit(true);
 		foreach (KeyValuePair<string, Toggle> item4 in PotionsConfig)
 		{
 			item4.Value.isOn = true;

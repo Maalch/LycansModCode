@@ -13,7 +13,7 @@ public static class ScientistUtility
 		{
 			return 0f;
 		}
-		float num = 20f + 50f * (1f - distance / maxDistance);
+		float num = 25f + 55f * (1f - distance / maxDistance);
 		num *= BalancingValues.ScientistPowerMultiplierByMap(GameManager.Instance.MapID);
 		if ((int)wolf.Role != 1)
 		{

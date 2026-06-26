@@ -27,43 +27,46 @@ public class FogChangesPatch
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0012: Invalid comparison between Unknown and I4
 		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0212: Unknown result type (might be due to invalid IL or missing references)
-		//IL_023b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_024d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_027a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_032b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_040b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03f9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0367: Unknown result type (might be due to invalid IL or missing references)
-		//IL_044a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0438: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0643: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0489: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0477: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0666: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0684: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0677: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0507: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0691: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0546: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0534: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0585: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0573: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0228: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0251: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0275: Invalid comparison between Unknown and I4
+		//IL_0328: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0439: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_046e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0519: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_056a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0558: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0597: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05d6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0604: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0631: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0639: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0667: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0658: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0694: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			EGameState localGameState = GameManager.LocalGameState;
@@ -120,6 +123,14 @@ public class FogChangesPatch
 					num2 = 65f * BalancingValues.NightFogEndDistanceMultiplierByMap(GameManager.Instance.MapID);
 					num = 0f;
 					RenderSettings.fogColor = BalancingValues.EventPlagueFogColor;
+					break;
+				case EventsManager.EventType.Vengeance:
+					if (GameManagerCustom.Instance.EventsManager.CurrentEventUniqueBool && (int)GameManager.LocalGameState == 4)
+					{
+						num2 = 70f * BalancingValues.NightFogEndDistanceMultiplierByMap(GameManager.Instance.MapID);
+						num = 0.25f;
+						RenderSettings.fogColor = BalancingValues.EventVengeanceFogColor;
+					}
 					break;
 				}
 				if (NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))

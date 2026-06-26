@@ -32,30 +32,30 @@ internal class GiveNewRolesPatch
 			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 			//IL_002a: Invalid comparison between Unknown and I4
 			//IL_10f1: Unknown result type (might be due to invalid IL or missing references)
-			//IL_11b4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_11b6: Invalid comparison between Unknown and I4
-			//IL_11cf: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
-			//IL_13d7: Unknown result type (might be due to invalid IL or missing references)
-			//IL_13ef: Unknown result type (might be due to invalid IL or missing references)
-			//IL_13f4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_140b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1410: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1440: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0270: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0459: Unknown result type (might be due to invalid IL or missing references)
-			//IL_02c1: Unknown result type (might be due to invalid IL or missing references)
-			//IL_02ff: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0395: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0338: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0519: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0531: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0662: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0d3d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0d4b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0c39: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0cb3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11a9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11ab: Invalid comparison between Unknown and I4
+			//IL_11c4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+			//IL_13cc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_13e4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_13e9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1400: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1405: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1435: Unknown result type (might be due to invalid IL or missing references)
+			//IL_027b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0464: Unknown result type (might be due to invalid IL or missing references)
+			//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_030a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03a0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0343: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0524: Unknown result type (might be due to invalid IL or missing references)
+			//IL_053c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_066d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0d48: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0d56: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0c44: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0cbe: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0f8b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0f90: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0f95: Unknown result type (might be due to invalid IL or missing references)
@@ -73,6 +73,7 @@ internal class GiveNewRolesPatch
 			{
 				try
 				{
+					SessionStats.Stats.NewGame();
 					Plugin.Logger.LogInfo((object)"Game start: init");
 					List<PlayerCustom> list = (from t in PlayerCustomRegistry.Where(delegate(PlayerCustom p)
 						{
@@ -82,17 +83,17 @@ internal class GiveNewRolesPatch
 							return ((PlayerRef)(ref val5)).IsValid;
 						})
 						select (t)).ToList();
-					foreach (PlayerCustom item2 in list)
+					foreach (PlayerCustom item in list)
 					{
-						item2.Reset();
+						item.Reset();
 					}
 					if (!NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale) && !NetworkBool.op_Implicit(Plugin.CustomConfig.DraftMode))
 					{
 						Plugin.Logger.LogInfo((object)"Game start: remove hunter and alchemist");
 						IEnumerable<PlayerController> enumerable = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => (int)o.Role == 2 || (int)o.Role == 3));
-						foreach (PlayerController item3 in enumerable)
+						foreach (PlayerController item2 in enumerable)
 						{
-							item3.Role = (PlayerRole)0;
+							item2.Role = (PlayerRole)0;
 						}
 						Plugin.Logger.LogInfo((object)"Game start: solo roles");
 						List<PlayerCustom.PlayerNewPrimaryRole> list2 = (from o in Plugin.CustomConfig.SoloRoleActive
@@ -215,12 +216,12 @@ internal class GiveNewRolesPatch
 							where o.Value && PlayerCustom.IsPrimaryRolePowerForNormalVillagers(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key)
 							select o.Key).ToList();
 						List<PlayerCustom.PlayerPrimaryRolePower> list12 = new List<PlayerCustom.PlayerPrimaryRolePower>();
-						foreach (PlayerCustom.PlayerPrimaryRolePower item4 in list11)
+						foreach (PlayerCustom.PlayerPrimaryRolePower item3 in list11)
 						{
-							int villagerJobChancePonderation = BalancingValues.GetVillagerJobChancePonderation(item4);
+							int villagerJobChancePonderation = BalancingValues.GetVillagerJobChancePonderation(item3);
 							for (int num6 = 0; num6 < villagerJobChancePonderation; num6++)
 							{
-								list12.Add(item4);
+								list12.Add(item3);
 							}
 						}
 						foreach (PlayerCustom villagerCustom in list9)
@@ -263,19 +264,19 @@ internal class GiveNewRolesPatch
 								if (list14.Count >= 2 && Random.value < 0.33f)
 								{
 									List<PlayerCustom> list16 = CollectionsUtil.Grab<PlayerCustom>(list14, 2).ToList();
-									foreach (PlayerCustom item5 in list16)
+									foreach (PlayerCustom item4 in list16)
 									{
-										PlayerCustomRegistry.GetPlayer(item5.Ref).GiveSecondaryRole(PlayerCustom.PlayerSecondaryRole.BothTelepath);
-										list13.Remove(item5.PlayerController);
+										PlayerCustomRegistry.GetPlayer(item4.Ref).GiveSecondaryRole(PlayerCustom.PlayerSecondaryRole.BothTelepath);
+										list13.Remove(item4.PlayerController);
 									}
 								}
 								else if (list15.Count >= 2)
 								{
 									List<PlayerCustom> list17 = CollectionsUtil.Grab<PlayerCustom>(list15, 2).ToList();
-									foreach (PlayerCustom item6 in list17)
+									foreach (PlayerCustom item5 in list17)
 									{
-										PlayerCustomRegistry.GetPlayer(item6.Ref).GiveSecondaryRole(PlayerCustom.PlayerSecondaryRole.BothTelepath);
-										list13.Remove(item6.PlayerController);
+										PlayerCustomRegistry.GetPlayer(item5.Ref).GiveSecondaryRole(PlayerCustom.PlayerSecondaryRole.BothTelepath);
+										list13.Remove(item5.PlayerController);
 									}
 								}
 							}
@@ -305,13 +306,13 @@ internal class GiveNewRolesPatch
 								}
 							}
 						}
-						foreach (PlayerCustom item7 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.None))
+						foreach (PlayerCustom item6 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.None))
 						{
-							item7.GivePrimaryRolePower(PlayerCustom.PlayerPrimaryRolePower.None);
+							item6.GivePrimaryRolePower(PlayerCustom.PlayerPrimaryRolePower.None);
 						}
-						foreach (PlayerCustom item8 in PlayerCustomRegistry.Where((PlayerCustom o) => o.SecondaryRole == PlayerCustom.PlayerSecondaryRole.None))
+						foreach (PlayerCustom item7 in PlayerCustomRegistry.Where((PlayerCustom o) => o.SecondaryRole == PlayerCustom.PlayerSecondaryRole.None))
 						{
-							item8.GiveSecondaryRole(PlayerCustom.PlayerSecondaryRole.None);
+							item7.GiveSecondaryRole(PlayerCustom.PlayerSecondaryRole.None);
 						}
 						SabotageManager.Instance.Init();
 						BeastManager.Instance.Reset();
@@ -322,7 +323,6 @@ internal class GiveNewRolesPatch
 						Plugin.Logger.LogInfo((object)"Game start: stats and others");
 						try
 						{
-							SessionStats.Stats.NewGame();
 							foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
 							{
 								PlayerController playerController = allPlayer.PlayerController;
@@ -360,7 +360,6 @@ internal class GiveNewRolesPatch
 					}
 					if (NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
 					{
-						SessionStats.Stats.NewGame();
 						foreach (PlayerCustom allPlayer2 in PlayerCustomRegistry.AllPlayers)
 						{
 							allPlayer2.PrimaryRolePower = PlayerCustom.PlayerPrimaryRolePower.Hunter;
@@ -404,10 +403,10 @@ internal class GiveNewRolesPatch
 						allPlayer3.PlacedSleepingGas = null;
 					}
 					Dictionary<PlayerRef, PlayerDisplay> value2 = Traverse.Create((object)GameManager.Instance.gameUI).Field<Dictionary<PlayerRef, PlayerDisplay>>("_playerDisplays").Value;
-					foreach (KeyValuePair<PlayerRef, PlayerDisplay> item9 in value2)
+					foreach (KeyValuePair<PlayerRef, PlayerDisplay> item8 in value2)
 					{
-						TextMeshProUGUI value3 = Traverse.Create((object)item9.Value).Field<TextMeshProUGUI>("username").Value;
-						PlayerController player8 = PlayerRegistry.GetPlayer(item9.Key);
+						TextMeshProUGUI value3 = Traverse.Create((object)item8.Value).Field<TextMeshProUGUI>("username").Value;
+						PlayerController player8 = PlayerRegistry.GetPlayer(item8.Key);
 						if ((Object)(object)player8 != (Object)null)
 						{
 							NetworkPlayerData playerData = player8.PlayerData;
@@ -423,9 +422,9 @@ internal class GiveNewRolesPatch
 						select ((Component)o).gameObject).ToList();
 					list18.AddRange(from o in Object.FindObjectsOfType<MinimapDetectivePositionComponent>(true)
 						select ((Component)o).gameObject);
-					foreach (GameObject item10 in list18)
+					foreach (GameObject item9 in list18)
 					{
-						Object.Destroy((Object)(object)item10);
+						Object.Destroy((Object)(object)item9);
 					}
 					UIManager.LastGameSummaryPanel.Clear();
 					Plugin.CreatePlayerIllusionIfNeeded();
@@ -433,6 +432,7 @@ internal class GiveNewRolesPatch
 			}
 			if (((SimulationBehaviour)__instance).Runner.IsServer)
 			{
+				LycansUtility.AddLogOnlyForMe("Stats: NewPhase, timing: " + GameStats.GetCurrentTiming());
 				SessionStats.Stats.CurrentGame.AddEvent(GameEvent.GameEventType.NewPhase, GameStats.GetCurrentTiming());
 			}
 		});
@@ -440,34 +440,33 @@ internal class GiveNewRolesPatch
 		obj2.onEnter = (Action<EGameState>)Delegate.Combine(obj2.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0463: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04f0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04ce: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0461: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04cc: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0077: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0089: Unknown result type (might be due to invalid IL or missing references)
-			//IL_008e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00da: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00df: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0107: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03bf: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0130: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0406: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0410: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03d0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03d5: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03e6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03f5: Unknown result type (might be due to invalid IL or missing references)
-			//IL_013e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0293: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01e9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_018e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01db: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+			//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0404: Unknown result type (might be due to invalid IL or missing references)
+			//IL_040e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03ce: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03d3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03e4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03f3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0291: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01e7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01c7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01d9: Unknown result type (might be due to invalid IL or missing references)
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
 			{
 				try
@@ -556,12 +555,6 @@ internal class GiveNewRolesPatch
 				UIManager.MayorPanelForOthers.UpdateDestitutionCount(0, required);
 				UIManager.MayorPanelForOthers.UpdateDifferentCount(0, required, PlayerRef.None);
 			}
-			PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
-			if ((Object)(object)specificNewPrimaryRole != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole.PlayerController.IsDead) && specificNewPrimaryRole.SoloRoleObjectiveCount < BalancingValues.SpyGoal(PlayerRegistry.Count))
-			{
-				string item = Mathf.FloorToInt((float)(specificNewPrimaryRole.SoloRoleObjectiveCount * 100 / BalancingValues.SpyGoal(PlayerRegistry.Count))).ToString();
-				UIManager.ShowRedCenterMessage("NALES_UI_SPY_PROGRESS_NOTIFICATION", 0.4f, 6f, new List<object> { item });
-			}
 			LycansUtility.AddLogOnlyForMe("Player stuff");
 			foreach (PlayerCustom allPlayer5 in PlayerCustomRegistry.AllPlayers)
 			{
@@ -574,6 +567,7 @@ internal class GiveNewRolesPatch
 			}
 			if (((SimulationBehaviour)__instance).Runner.IsServer)
 			{
+				LycansUtility.AddLogOnlyForMe("Stats: NewPhase, timing: " + GameStats.GetCurrentTiming());
 				SessionStats.Stats.CurrentGame.AddEvent(GameEvent.GameEventType.NewPhase, GameStats.GetCurrentTiming());
 			}
 		});
@@ -845,9 +839,9 @@ internal class GiveNewRolesPatch
 				{
 					List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.None).ToList();
 					{
-						foreach (PlayerCustom item11 in list)
+						foreach (PlayerCustom item10 in list)
 						{
-							item11.PrimaryRoleTargetRef = PlayerRef.None;
+							item10.PrimaryRoleTargetRef = PlayerRef.None;
 						}
 						return;
 					}
@@ -889,37 +883,37 @@ internal class GiveNewRolesPatch
 		obj6.onEnter = (Action<EGameState>)Delegate.Combine(obj6.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
-			//IL_006c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0103: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0118: Unknown result type (might be due to invalid IL or missing references)
-			//IL_011d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_012d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0137: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0153: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0169: Expected O, but got Unknown
-			//IL_017a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0082: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00df: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0133: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0143: Unknown result type (might be due to invalid IL or missing references)
+			//IL_014d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0169: Unknown result type (might be due to invalid IL or missing references)
+			//IL_017f: Expected O, but got Unknown
 			//IL_0190: Unknown result type (might be due to invalid IL or missing references)
-			//IL_038c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01a6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03a2: Unknown result type (might be due to invalid IL or missing references)
 			LycansUtility.AddLogOnlyForMe("Transition Enter");
 			UIManager.HideAllExtraUI();
-			if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Tournament)
+			if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Tournament && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Vengeance)
 			{
 				GameManagerCustom.Instance.EventsManager.ClearEvent();
 			}
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 			{
 				List<PlayerCustom> specificSecondaryRoles = PlayerCustomRegistry.GetSpecificSecondaryRoles(PlayerCustom.PlayerSecondaryRole.BothPolitician);
-				foreach (PlayerCustom item12 in specificSecondaryRoles)
+				foreach (PlayerCustom item11 in specificSecondaryRoles)
 				{
-					if (item12.SecondaryRoleTargetRef != PlayerRef.None)
+					if (item11.SecondaryRoleTargetRef != PlayerRef.None)
 					{
-						PlayerCustom politicianTargetCustom = PlayerCustomRegistry.GetPlayer(item12.SecondaryRoleTargetRef);
+						PlayerCustom politicianTargetCustom = PlayerCustomRegistry.GetPlayer(item11.SecondaryRoleTargetRef);
 						if (!NetworkBool.op_Implicit(politicianTargetCustom.PlayerController.IsDead))
 						{
 							politicianTargetCustom.PoliticianVictimAlltime = NetworkBool.op_Implicit(true);
@@ -930,24 +924,24 @@ internal class GiveNewRolesPatch
 							}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)gameState).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)politicianTargetCustom.PlayerController).transform.position, 30f, 1f);
 						}
-						item12.SecondaryRoleTargetRef = PlayerRef.None;
+						item11.SecondaryRoleTargetRef = PlayerRef.None;
 					}
 				}
-				foreach (PlayerCustom item13 in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.DeceiverTrickThisMeeting) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
+				foreach (PlayerCustom item12 in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.DeceiverTrickThisMeeting) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
 				{
 					List<string> list = new List<string> { "LycansNewRoles.EffectConfused", "Paranoia", "Mute" };
 					string text = CollectionsUtil.Grab<string>(list, 1).First();
 					switch (text)
 					{
 					case "LycansNewRoles.EffectConfused":
-						PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, text, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+						PlayerCustom.ApplyEffectToPlayer(item12.PlayerController, text, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						break;
 					case "Paranoia":
 					{
 						Effect val2 = EffectManager.GetEffects().FirstOrDefault((Effect o) => o is ParanoiaEffect);
 						if ((Object)(object)val2 != (Object)null)
 						{
-							PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, val2, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+							PlayerCustom.ApplyEffectToPlayer(item12.PlayerController, val2, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
 						break;
 					}
@@ -956,7 +950,7 @@ internal class GiveNewRolesPatch
 						Effect val = EffectManager.GetEffects().FirstOrDefault((Effect o) => o is MuteEffect);
 						if ((Object)(object)val != (Object)null)
 						{
-							PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, val, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+							PlayerCustom.ApplyEffectToPlayer(item12.PlayerController, val, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
 						break;
 					}
@@ -966,7 +960,7 @@ internal class GiveNewRolesPatch
 						Effect val3 = EffectManager.GetEffects().FirstOrDefault((Effect o) => o is FlatulenceEffect);
 						if ((Object)(object)val3 != (Object)null)
 						{
-							PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, val3, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+							PlayerCustom.ApplyEffectToPlayer(item12.PlayerController, val3, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
 					}
 				}
@@ -1016,9 +1010,9 @@ internal class GiveNewRolesPatch
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole.Index);
 						return;
 					}
-					foreach (PlayerController item14 in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).ToList())
+					foreach (PlayerController item13 in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).ToList())
 					{
-						PlayerCustom player = PlayerCustomRegistry.GetPlayer(item14.Ref);
+						PlayerCustom player = PlayerCustomRegistry.GetPlayer(item13.Ref);
 						LycansUtility.AddLogOnlyForMe("Starvation effect");
 						if (player.StarvationDormant)
 						{
@@ -1062,12 +1056,12 @@ internal class GiveNewRolesPatch
 					PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
 					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead))
 					{
-						foreach (PlayerCustom item15 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
+						foreach (PlayerCustom item14 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
 						{
-							item15.PlayerController.IsDead = NetworkBool.op_Implicit(false);
-							item15.PlayerController.IsAiming = NetworkBool.op_Implicit(false);
-							item15.PlayerController.IsDeadChannel = NetworkBool.op_Implicit(false);
-							item15.PlayerController.Hunger = GameManager.Instance.MaxHunger;
+							item14.PlayerController.IsDead = NetworkBool.op_Implicit(false);
+							item14.PlayerController.IsAiming = NetworkBool.op_Implicit(false);
+							item14.PlayerController.IsDeadChannel = NetworkBool.op_Implicit(false);
+							item14.PlayerController.Hunger = GameManager.Instance.MaxHunger;
 						}
 					}
 					LycansUtility.AddLogOnlyForMe("Deceiver illusion timer");
@@ -1102,9 +1096,9 @@ internal class GiveNewRolesPatch
 					else
 					{
 						List<SabotageSingle> list2 = SabotageManager.Instance.Sabotages.Values.Where((SabotageSingle o) => NetworkBool.op_Implicit(o.Active)).ToList();
-						foreach (SabotageSingle item16 in list2)
+						foreach (SabotageSingle item15 in list2)
 						{
-							item16.Active = NetworkBool.op_Implicit(false);
+							item15.Active = NetworkBool.op_Implicit(false);
 						}
 					}
 				}
@@ -1115,9 +1109,10 @@ internal class GiveNewRolesPatch
 					specificNewPrimaryRole3.PrimaryRoleTargetRef = PlayerRef.None;
 				}
 			}
-			foreach (PlayerCustom item17 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
+			foreach (PlayerCustom item16 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
 			{
-				item17.UpdateVisibility();
+				item16.UpdateVisibility();
+				item16.SoloRoleHalfDayProgress = 0f;
 			}
 		});
 	}
@@ -1127,22 +1122,22 @@ internal class GiveNewRolesPatch
 		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
 		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0202: Unknown result type (might be due to invalid IL or missing references)
-		//IL_020d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0211: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
-		//IL_024d: Expected O, but got Unknown
-		//IL_0258: Unknown result type (might be due to invalid IL or missing references)
-		//IL_026b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0201: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0236: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024c: Expected O, but got Unknown
+		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Mercenary);
 		if ((Object)(object)specificNewPrimaryRole != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole.PlayerController.IsDead))
@@ -1157,7 +1152,7 @@ internal class GiveNewRolesPatch
 			specificNewPrimaryRole.SoloRoleObjectiveTarget = BalancingValues.MercenaryTotalObjective(GameManager.Instance.LootSpawnRate, (float)Plugin.CustomConfig.MercenaryPercentage * 0.01f, GameManager.Instance.DayDuration + GameManager.Instance.NightDuration, GameManagerCustom.Instance.SoloRoleDifficulty);
 		}
 		PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Cultist);
-		if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && (float)specificNewPrimaryRole2.SoloRoleObjectiveCount >= 10000f)
+		if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && specificNewPrimaryRole2.SoloRoleObjectiveCount >= 10000)
 		{
 			specificNewPrimaryRole2.SoloRoleObjectiveCount = 0;
 			CultistManager.Instance.ActivateCultist();

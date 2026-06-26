@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fusion;
 using LycansNewRoles.NewItems;
@@ -490,36 +491,46 @@ public class MinimapComponent : MonoBehaviour
 
 	public void AddDeathPositionIcon(Vector3 position)
 	{
-		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
-		CustomMap customMap = MapManager.NewMapsByIdInfo[GameManager.Instance.MapID];
-		((Vector3)(ref position))._002Ector(position.x - customMap.MinimapCameraOffset.x, position.y, position.z - customMap.MinimapCameraOffset.z);
-		Vector2 val = default(Vector2);
-		((Vector2)(ref val))._002Ector(0f - position.z, position.x);
-		float minimapRotation = customMap.MinimapRotation;
-		float num = minimapRotation;
-		if (num == 270f)
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		try
 		{
-			((Vector2)(ref val))._002Ector(position.x, position.z);
+			CustomMap customMap = MapManager.NewMapsByIdInfo[GameManager.Instance.MapID];
+			position = new Vector3(position.x - customMap.MinimapCameraOffset.x, position.y, position.z - customMap.MinimapCameraOffset.z);
+			Vector2 val = default(Vector2);
+			((Vector2)(ref val))._002Ector(0f - position.z, position.x);
+			float minimapRotation = customMap.MinimapRotation;
+			float num = minimapRotation;
+			if (num == 270f)
+			{
+				((Vector2)(ref val))._002Ector(position.x, position.z);
+			}
+			val *= customMap.MinimapOffsetMultiplier;
+			LycansUtility.AddLogOnlyForMe("MinimapDeathPositionComponent.MinimapDeathPositionPrefab: " + (object)MinimapDeathPositionComponent.MinimapDeathPositionPrefab);
+			GameObject val2 = Object.Instantiate<GameObject>(MinimapDeathPositionComponent.MinimapDeathPositionPrefab);
+			val2.gameObject.SetActive(true);
+			val2.transform.SetParent(_panel.transform);
+			val2.transform.localPosition = Vector2.op_Implicit(val);
+			val2.transform.SetAsLastSibling();
+			val2.GetComponent<MinimapDeathPositionComponent>().Init(position);
 		}
-		val *= customMap.MinimapOffsetMultiplier;
-		GameObject val2 = Object.Instantiate<GameObject>(MinimapDeathPositionComponent.MinimapDeathPositionPrefab);
-		val2.gameObject.SetActive(true);
-		val2.transform.SetParent(_panel.transform);
-		val2.transform.localPosition = Vector2.op_Implicit(val);
-		val2.transform.SetAsLastSibling();
-		val2.GetComponent<MinimapDeathPositionComponent>().Init(position);
+		catch (Exception ex)
+		{
+			Plugin.Logger.LogInfo((object)("AddDeathPositionIcon exception: " + ex));
+		}
 	}
 
 	public void AddSleepingGasIcon(SleepingGasPlaced sleepingGasPlaced)

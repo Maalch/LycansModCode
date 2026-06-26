@@ -59,7 +59,7 @@ public class PlayerCustomAudioComponent : MonoBehaviour
 			volume = 0.4f;
 			if (NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool))
 			{
-				volume = 0.15f;
+				volume = 0.2f;
 			}
 		}
 		_audioSource.volume = volume;

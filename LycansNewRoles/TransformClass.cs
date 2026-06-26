@@ -132,19 +132,17 @@ public class TransformClass
 		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0358: Unknown result type (might be due to invalid IL or missing references)
+		//IL_030b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0219: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0382: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0387: Unknown result type (might be due to invalid IL or missing references)
-		//IL_038c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0335: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0385: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0242: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0188: Invalid comparison between Unknown and I4
-		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02f3: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((Object)(object)__instance == (Object)(object)PlayerController.Local && ((SimulationBehaviour)__instance).Object.HasInputAuthority)
@@ -202,25 +200,13 @@ public class TransformClass
 					float num2 = 40f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
 					if (num <= 40f)
 					{
-						float num3 = ScientistUtility.GetBasePower(specificNewPrimaryRole, __instance, num, num2) * 8f;
+						float num3 = ScientistUtility.GetBasePower(specificNewPrimaryRole, __instance, num, num2) * 5f;
 						if (LycansUtility.CanPlayerSeeOtherPlayer(specificNewPrimaryRole, player, num2))
 						{
 							num3 *= 4f;
 						}
-						if (playerController.MovementAction == 1)
-						{
-							num3 *= 0.8f;
-						}
-						if (NetworkBool.op_Implicit(playerController.PlayerEffectManager.Invisible))
-						{
-							num3 *= 0.4f;
-						}
-						else if (NetworkBool.op_Implicit(playerController.PlayerEffectManager.BonusSpeed))
-						{
-							num3 *= 0.3f;
-						}
-						int num4 = Mathf.RoundToInt(num3);
-						specificNewPrimaryRole.SoloRoleObjectiveCount += num4;
+						int amount = Mathf.RoundToInt(num3 * BalancingValues.SoloRoleDiminishingReturnsMultiplier(specificNewPrimaryRole.SoloRoleHalfDayProgress, 7f));
+						specificNewPrimaryRole.AddSoloRoleProgress(amount, BalancingValues.ScientistGoal(PlayerRegistry.Count));
 					}
 				}
 			}

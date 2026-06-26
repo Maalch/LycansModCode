@@ -45,7 +45,7 @@ internal class StartGameCheckVersionsPatch
 						}
 						return false;
 					}
-					if (item.ModVersion.Value != float.Parse("0.312", CultureInfo.InvariantCulture.NumberFormat))
+					if (item.ModVersion.Value != float.Parse("0.318", CultureInfo.InvariantCulture.NumberFormat))
 					{
 						UIManager.ShowRedCenterMessage("NALES_UI_VERSION_CHECK_WRONG_VERSION", 0.5f, 5f, new List<object> { item.PlayerController.PlayerData.Username });
 						return false;

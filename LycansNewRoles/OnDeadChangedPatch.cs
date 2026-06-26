@@ -27,38 +27,38 @@ internal class OnDeadChangedPatch
 		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0601: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
 		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0120: Invalid comparison between Unknown and I4
 		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0195: Unknown result type (might be due to invalid IL or missing references)
-		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0234: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01c1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
-		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0283: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0294: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c8: Invalid comparison between Unknown and I4
-		//IL_02cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_055e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_042a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_049e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0521: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0288: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0299: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cd: Invalid comparison between Unknown and I4
+		//IL_02d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0563: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_042f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0344: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0526: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController deadPlayerController = changed.Behaviour;
@@ -90,7 +90,7 @@ internal class OnDeadChangedPatch
 				{
 					if (specificNewPrimaryRole.Ref == deadPlayerController.Killer)
 					{
-						specificNewPrimaryRole.SoloRoleObjectiveCount += 200;
+						specificNewPrimaryRole.AddSoloRoleProgress(200, specificNewPrimaryRole.SoloRoleObjectiveTarget);
 						specificNewPrimaryRole.PrimaryRoleTargetRef = PlayerRef.None;
 						specificNewPrimaryRole.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)deadPlayerController).Runner, 90f);
 					}

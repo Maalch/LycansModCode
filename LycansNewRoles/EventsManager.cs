@@ -20,7 +20,8 @@ public class EventsManager
 		Plague,
 		Tournament,
 		FullMoon,
-		Rage
+		Rage,
+		Vengeance
 	}
 
 	public EventType CurrentEvent = EventType.None;

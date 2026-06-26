@@ -250,7 +250,7 @@ public class MinimapPlayerComponent : MonoBehaviour
 		{
 			flag = true;
 		}
-		else if (povPlayerCustom.Accessory is AccessoryCrystalBall && NetworkBool.op_Implicit(AssociatedPlayerCustom.PlayerController.IsWolf) && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)AssociatedPlayerCustom.PlayerController).transform.position) <= 25f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))
+		else if (povPlayerCustom.Accessory is AccessoryCrystalBall && NetworkBool.op_Implicit(AssociatedPlayerCustom.PlayerController.IsWolf) && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)AssociatedPlayerCustom.PlayerController).transform.position) <= 20f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))
 		{
 			flag = true;
 		}

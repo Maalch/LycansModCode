@@ -93,6 +93,8 @@ public static class UIManager
 
 	public static UILastGameSummaryPanel LastGameSummaryPanel;
 
+	public static UISoloRolesProgressPanel SoloRolesProgressPanel;
+
 	public static UISecondItemPanel SecondItemPanel;
 
 	public static Sprite DefaultDeadPlayerIcon;

@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using BepInEx.Logging;
 using Fusion;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -166,9 +167,14 @@ public class PlayerPetComponent : NetworkBehaviour
 	{
 		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)changed.Behaviour._object == (Object)null)
 		{
 			Plugin.Logger.LogError((object)("Pet has no object!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString()));
@@ -176,6 +182,13 @@ public class PlayerPetComponent : NetworkBehaviour
 		else if ((Object)(object)changed.Behaviour._object.GetComponent<Animator>() == (Object)null)
 		{
 			Plugin.Logger.LogError((object)("Pet has no animator!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString()));
+			if (PlayerCustomRegistry.HasPlayer(changed.Behaviour.Ref))
+			{
+				PlayerCustom player = PlayerCustomRegistry.GetPlayer(changed.Behaviour.Ref);
+				ManualLogSource logger = Plugin.Logger;
+				NetworkString<_32> username = player.PlayerController.PlayerData.Username;
+				logger.LogError((object)("Player name: " + ((object)username/*cast due to constrained. prefix*/).ToString() + ", pet index: " + player.PetIndex));
+			}
 		}
 		else
 		{

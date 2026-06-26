@@ -110,12 +110,17 @@ public class CultistSkull : NetworkBehaviour
 	[Rpc]
 	public unsafe static void Rpc_Destroy_Skull(NetworkRunner runner, int playerIndex, NetworkId skullId)
 	{
-		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003d: Invalid comparison between Unknown and I4
-		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003f: Invalid comparison between Unknown and I4
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -149,6 +154,17 @@ public class CultistSkull : NetworkBehaviour
 			}
 			CultistSkull component = ((Component)runner.FindObject(skullId)).GetComponent<CultistSkull>();
 			((SimulationBehaviour)component).Runner.Despawn(((Component)component).GetComponent<NetworkObject>(), false);
+			PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Cultist);
+			if ((Object)(object)specificNewPrimaryRole != (Object)null)
+			{
+				TickTimer primaryRolePowerCooldownTimer = specificNewPrimaryRole.PrimaryRolePowerCooldownTimer;
+				if (((TickTimer)(ref primaryRolePowerCooldownTimer)).IsRunning)
+				{
+					primaryRolePowerCooldownTimer = specificNewPrimaryRole.PrimaryRolePowerCooldownTimer;
+					float value = ((TickTimer)(ref primaryRolePowerCooldownTimer)).RemainingTime(runner).Value;
+					specificNewPrimaryRole.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(runner, Mathf.Max(1f, value * 0.5f));
+				}
+			}
 		}
 		catch (Exception ex)
 		{

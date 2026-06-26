@@ -25,12 +25,19 @@ internal class SecondaryRolePoliticianVillagerPatch
 		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02c1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0408: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0537: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0541: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0566: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0577: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0593: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b4: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -100,6 +107,27 @@ internal class SecondaryRolePoliticianVillagerPatch
 				PlayerCustomRegistry.GetPlayer(playerCustom.PlayerController.Ref).Stats.UpdateDeathType("MOLE");
 				playerCustom.PlayerController.Rpc_Kill(playerCustom.PlayerController.Killer);
 				GameManager.Rpc_DisplayDeadPlayers(((SimulationBehaviour)__instance).Runner);
+			}
+			LycansUtility.AddLogOnlyForMe("EndVote event: " + GameManagerCustom.Instance.EventsManager.CurrentEvent);
+			if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Vengeance)
+			{
+				LycansUtility.AddLogOnlyForMe("EndVote mostVotedPlayerId: " + mostVotedPlayerId + ", UniqueBool: " + GameManagerCustom.Instance.EventsManager.CurrentEventUniqueBool);
+				if (mostVotedPlayerId < 0 && GameManagerCustom.Instance.EventsManager.CurrentEventUniqueBool)
+				{
+					List<PlayerCustom> list2 = PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (int)o.PlayerController.Role != 1 && o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.None && !o.IsOutOfTheWorld).ToList();
+					LycansUtility.AddLogOnlyForMe("Valid villagers count: " + list2.Count);
+					if (list2.Any())
+					{
+						PlayerCustom playerCustom2 = CollectionsUtil.Grab<PlayerCustom>(list2, 1).First();
+						NetworkString<_32> username = playerCustom2.PlayerController.PlayerData.Username;
+						LycansUtility.AddLogOnlyForMe("Victim: " + ((object)username/*cast due to constrained. prefix*/).ToString());
+						GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)__instance).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerCustom2.PlayerController).transform.position, 50f, 0.8f);
+						PlayerCustomRegistry.GetPlayer(playerCustom2.PlayerController.Ref).Stats.UpdateDeathType("VENGEANCE");
+						playerCustom2.PlayerController.Rpc_Kill(PlayerRef.None);
+						GameManager.Rpc_DisplayDeadPlayers(((SimulationBehaviour)__instance).Runner);
+					}
+				}
+				GameManagerCustom.Instance.EventsManager.ClearEvent();
 			}
 			if (!NetworkBool.op_Implicit(__instance.IsFinished))
 			{

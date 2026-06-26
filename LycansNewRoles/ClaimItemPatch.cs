@@ -24,16 +24,16 @@ internal class ClaimItemPatch
 		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0337: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0304: Unknown result type (might be due to invalid IL or missing references)
-		//IL_031f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_034c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0319: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0334: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
 		//IL_019f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01fa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0220: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0238: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0297: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ac: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!((NetworkBehaviour)__instance).InvokeRpc)
@@ -96,6 +96,7 @@ internal class ClaimItemPatch
 						player2.Accessory = accessory;
 						if (player2.Stats != null)
 						{
+							LycansUtility.AddLogOnlyForMe("Stats: TakeAccessory, timing: " + GameStats.GetCurrentTiming());
 							player2.Stats.AddAction(new PlayerStats.PlayerAction
 							{
 								ActionType = "TakeAccessory",

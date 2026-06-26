@@ -125,6 +125,8 @@ public class PlayerStats
 
 	public const string DeathTypeMole = "MOLE";
 
+	public const string DeathTypeVengeance = "VENGEANCE";
+
 	public string ID;
 
 	public string Username;
@@ -216,6 +218,7 @@ public class PlayerStats
 			"INQUISITOR_GUESS" => 22, 
 			"CULTIST_FAILED" => 23, 
 			"MOLE" => 24, 
+			"VENGEANCE" => 25, 
 			_ => 0, 
 		};
 	}
@@ -248,6 +251,7 @@ public class PlayerStats
 			22 => "INQUISITOR_GUESS", 
 			23 => "CULTIST_FAILED", 
 			24 => "MOLE", 
+			25 => "VENGEANCE", 
 			_ => "", 
 		};
 	}
@@ -362,19 +366,24 @@ public class PlayerStats
 
 	public void AddAction(PlayerAction action, Vector3 position)
 	{
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0013: Invalid comparison between Unknown and I4
-		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0019: Invalid comparison between Unknown and I4
-		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0059: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Invalid comparison between Unknown and I4
+		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Invalid comparison between Unknown and I4
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		if (GameManagerCustom.Instance.CurrentDay == 0)
+		{
+			LycansUtility.DebugLog("Trying to add player action with day 0: " + new StackTrace()?.ToString() + ", for current game: " + SessionStats.Stats.CurrentGame.Id);
+			return;
+		}
 		string text = "";
 		EGameState localGameState = GameManager.LocalGameState;
 		EGameState val = localGameState;

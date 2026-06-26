@@ -1,4 +1,3 @@
-using Fusion;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,13 +26,12 @@ public class MinimapDeathPositionComponent : MonoBehaviour
 
 	private void Update()
 	{
-		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0018: Invalid comparison between Unknown and I4
-		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
-		if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) && (int)GameManager.LocalGameState == 2)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Invalid comparison between Unknown and I4
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		if (!LycansUtility.WolvesCanTransform && (int)GameManager.LocalGameState == 2)
 		{
 			Object.Destroy((Object)(object)((Component)this).gameObject);
 		}

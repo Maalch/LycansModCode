@@ -16,20 +16,21 @@ public class PotionWithCustomEffectPatch
 	{
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0194: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0301: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01fb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0154: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0200: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0311: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0202: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0204: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0206: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0208: Unknown result type (might be due to invalid IL or missing references)
-		//IL_020a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021d: Expected I4, but got Unknown
+		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0212: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0214: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0216: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0218: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022d: Expected I4, but got Unknown
+		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(((Item)__instance).Owner);
@@ -44,7 +45,7 @@ public class PotionWithCustomEffectPatch
 			Color[] value = Traverse.Create(typeof(Potion)).Field<Color[]>("PotionColors").Value;
 			if (__instance.ColorIndex == value.Length - 1)
 			{
-				if (((SimulationBehaviour)__instance).Runner.IsServer && !NetworkBool.op_Implicit(playerController.IsDead))
+				if (((SimulationBehaviour)__instance).Runner.IsServer && !NetworkBool.op_Implicit(playerController.IsDead) && !NetworkBool.op_Implicit(player.Dying))
 				{
 					playerController.Feed((int)(0.2f * (float)GameManager.Instance.MaxHunger));
 					PlayerCustom.ApplyEffectToPlayer(playerController, val, ((SimulationBehaviour)__instance).Runner, 0.6f);

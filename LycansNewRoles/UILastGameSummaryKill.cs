@@ -1,3 +1,4 @@
+using Fusion;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,8 +64,9 @@ public class UILastGameSummaryKill : MonoBehaviour
 
 	public void UpdateData(LastGameSummaryKill data)
 	{
-		//IL_0548: Unknown result type (might be due to invalid IL or missing references)
-		//IL_056c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0589: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ad: Unknown result type (might be due to invalid IL or missing references)
+		((Component)_timingIcon).gameObject.SetActive(true);
 		switch (data.Timing)
 		{
 		case LastGameSummaryKill.LastGameSummaryKillTiming.Day:
@@ -128,6 +130,7 @@ public class UILastGameSummaryKill : MonoBehaviour
 			break;
 		case "OTHER_AGENT":
 		case "ASSASSIN":
+		case "VENGEANCE":
 			_deathTypeIcon.sprite = DeathTypeSpriteAssassin;
 			break;
 		}
@@ -135,6 +138,43 @@ public class UILastGameSummaryKill : MonoBehaviour
 		((Graphic)_killerText).color = data.KillerColor;
 		((TMP_Text)_victimText).text = data.Victim;
 		((Graphic)_victimText).color = data.VictimColor;
+	}
+
+	public void UpdateWithWinner(UILastGameSummaryPanel.WinnerType winnerType, PlayerRef winnerRef)
+	{
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		_deathTypeIcon.sprite = WinnerSprite;
+		((TMP_Text)_killerText).text = "";
+		((Component)_timingIcon).gameObject.SetActive(false);
+		((TMP_Text)_timingText).text = "";
+		switch (winnerType)
+		{
+		case UILastGameSummaryPanel.WinnerType.Villagers:
+			((TMP_Text)_victimText).text = TranslationManager.Instance.GetTranslation("NALES_DRAFT_MAIN_ROLE_NAME_VILLAGER");
+			((Graphic)_victimText).color = GameUI.VillagerColor;
+			break;
+		case UILastGameSummaryPanel.WinnerType.Wolves:
+			((TMP_Text)_victimText).text = TranslationManager.Instance.GetTranslation("NALES_OPTIONS_DISPLAY_WOLVES");
+			((Graphic)_victimText).color = GameUI.WolfColor;
+			break;
+		case UILastGameSummaryPanel.WinnerType.Lovers:
+			((TMP_Text)_victimText).text = TranslationManager.Instance.GetTranslation("NALES_ROLE_LOVER");
+			((Graphic)_victimText).color = PlayerCustom.NewPrimaryRoleLoverColor;
+			break;
+		case UILastGameSummaryPanel.WinnerType.OtherSoloRole:
+		{
+			PlayerCustom player = PlayerCustomRegistry.GetPlayer(winnerRef);
+			((TMP_Text)_victimText).text = ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString();
+			((Graphic)_victimText).color = PlayerCustom.PlayerColorInListForGenericSoloRole;
+			break;
+		}
+		}
 	}
 
 	public static Color GetColorForPlayer(PlayerCustom playerCustom)
@@ -170,6 +210,6 @@ public class UILastGameSummaryKill : MonoBehaviour
 		{
 			return GameUI.WolfColor;
 		}
-		return Color.cyan;
+		return GameUI.VillagerColor;
 	}
 }

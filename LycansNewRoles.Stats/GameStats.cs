@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Fusion;
 
@@ -36,6 +37,11 @@ public class GameStats
 
 	public void AddEvent(GameEvent.GameEventType type, string name)
 	{
+		if (GameManagerCustom.Instance.CurrentDay == 0)
+		{
+			LycansUtility.DebugLog("Trying to add game event with day 0: " + new StackTrace()?.ToString() + ", for current game: " + SessionStats.Stats.CurrentGame.Id);
+			return;
+		}
 		GameEvents.Add(new GameEvent
 		{
 			Date = LycansUtility.GetFormattedCurrentDateTimeUtc,

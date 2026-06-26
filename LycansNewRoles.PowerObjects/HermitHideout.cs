@@ -185,19 +185,23 @@ public class HermitHideout : NetworkBehaviour
 
 	public override void FixedUpdateNetwork()
 	{
-		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0029: Invalid comparison between Unknown and I4
-		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009d: Invalid comparison between Unknown and I4
-		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0031: Invalid comparison between Unknown and I4
+		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004b: Invalid comparison between Unknown and I4
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Invalid comparison between Unknown and I4
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Invalid comparison between Unknown and I4
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)((SimulationBehaviour)this).Runner == (Object)null)
+		{
+			LycansUtility.AddLogOnlyForMe("HermitHideout: this.Runner is null");
+		}
 		if (((SimulationBehaviour)this).HasStateAuthority && (Object)(object)_creatorCustom != (Object)null)
 		{
 			bool flag = false;
@@ -206,6 +210,10 @@ public class HermitHideout : NetworkBehaviour
 			if ((int)val <= 1 || val - 4 <= 1)
 			{
 				flag = true;
+			}
+			if ((Object)(object)_creatorCustom.PlayerController == (Object)null)
+			{
+				LycansUtility.AddLogOnlyForMe("HermitHideout: _creatorCustom.PlayerController is null");
 			}
 			if (!PlayerRegistry.HasPlayer(CreatorRef) || NetworkBool.op_Implicit(_creatorCustom.PlayerController.IsDead))
 			{

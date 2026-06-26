@@ -12,8 +12,14 @@ internal class ClearEffectsPatch
 {
 	private static void Prefix(PlayerEffectsManager __instance, out List<string> __state)
 	{
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Invalid comparison between Unknown and I4
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Invalid comparison between Unknown and I4
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004a: Invalid comparison between Unknown and I4
 		__state = new List<string>();
-		if (__instance.GetActiveEffects().Any((Effect o) => o is MoleClockEffect))
+		if (__instance.GetActiveEffects().Any((Effect o) => o is MoleClockEffect) && ((int)GameManager.LocalGameState == 2 || (int)GameManager.LocalGameState == 4 || (int)GameManager.LocalGameState == 3))
 		{
 			__state.Add("LycansNewRoles.EffectMoleClock");
 		}

@@ -360,7 +360,7 @@ public static class InteractionsManager
 						}
 						if (targetPlayerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Mole)
 						{
-							return new SingleInteraction(SingleInteraction.SingleInteractionType.NormalInteraction, 1.75f, Color.white, "", Array.Empty<object>());
+							return new SingleInteraction(SingleInteraction.SingleInteractionType.NormalInteraction, 1.75f, Color.white, "NALES_UI_ACTION_ATTACK_MOLE", Array.Empty<object>());
 						}
 						return new SingleInteraction(SingleInteraction.SingleInteractionType.NormalInteraction, 1.75f, Color.white, "UI_KILL", Array.Empty<object>());
 					}

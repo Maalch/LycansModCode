@@ -86,7 +86,7 @@ internal class CheckHungerPatch
 				PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
 				if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Kidnapper && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool) && !__instance.IsStarving())
 				{
-					float num = (((int)GameManager.LocalGameState == 4) ? 0.1f : 0.25f);
+					float num = (((int)GameManager.LocalGameState == 4) ? 0.15f : 0.25f);
 					__instance.Hunger -= num * ((SimulationBehaviour)__instance).Runner.DeltaTime;
 				}
 				if ((int)GameManager.State.Current != 2)

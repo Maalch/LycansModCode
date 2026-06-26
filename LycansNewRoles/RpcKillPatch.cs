@@ -46,28 +46,28 @@ internal class RpcKillPatch
 		//IL_030a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0310: Invalid comparison between Unknown and I4
 		//IL_0681: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_095d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_069b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06a1: Invalid comparison between Unknown and I4
 		//IL_06aa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0518: Unknown result type (might be due to invalid IL or missing references)
 		//IL_051e: Invalid comparison between Unknown and I4
-		//IL_0a43: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a2c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0977: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0988: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09b5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a5a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a60: Invalid comparison between Unknown and I4
-		//IL_082e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0834: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e9: Invalid comparison between Unknown and I4
+		//IL_07b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07bd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06da: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a9b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a89: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0853: Unknown result type (might be due to invalid IL or missing references)
-		//IL_085e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0897: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a24: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a12: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0820: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06fe: Unknown result type (might be due to invalid IL or missing references)
 		//IL_070a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05a9: Unknown result type (might be due to invalid IL or missing references)
@@ -82,19 +82,17 @@ internal class RpcKillPatch
 		//IL_063d: Expected O, but got Unknown
 		//IL_0648: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0660: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08bf: Invalid comparison between Unknown and I4
-		//IL_08c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0842: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0848: Invalid comparison between Unknown and I4
+		//IL_084f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0415: Unknown result type (might be due to invalid IL or missing references)
 		//IL_041b: Invalid comparison between Unknown and I4
-		//IL_0ae8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0acf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ada: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0795: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a71: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a58: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a63: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0875: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0435: Unknown result type (might be due to invalid IL or missing references)
-		//IL_093f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08c8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0461: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0466: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0490: Unknown result type (might be due to invalid IL or missing references)
@@ -106,13 +104,12 @@ internal class RpcKillPatch
 		//IL_04e0: Expected O, but got Unknown
 		//IL_04eb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0503: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0952: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0958: Invalid comparison between Unknown and I4
-		//IL_0994: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0987: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07e5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08e1: Invalid comparison between Unknown and I4
+		//IL_091d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0929: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0910: Unknown result type (might be due to invalid IL or missing references)
+		//IL_093d: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NetworkString<_32> username = __instance.PlayerData.Username;
@@ -240,29 +237,13 @@ internal class RpcKillPatch
 							float num2 = 30f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
 							if (num <= num2)
 							{
-								float num3 = ScientistUtility.GetBasePower(specificNewPrimaryRole, val, num, num2) * 8f;
+								float num3 = ScientistUtility.GetBasePower(specificNewPrimaryRole, val, num, num2) * 5f;
 								if (LycansUtility.CanPlayerSeeOtherPlayer(specificNewPrimaryRole, player2, num2))
 								{
 									num3 *= 4f;
 								}
-								if (playerController2.MovementAction == 1)
-								{
-									num3 *= 0.8f;
-								}
-								if (NetworkBool.op_Implicit(playerController2.PlayerEffectManager.Invisible))
-								{
-									num3 *= 0.4f;
-								}
-								else if (NetworkBool.op_Implicit(playerController2.PlayerEffectManager.BonusSpeed))
-								{
-									num3 *= 0.3f;
-								}
-								else if (specificNewPrimaryRole.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(specificNewPrimaryRole.SecondaryRolePowerActive))
-								{
-									num3 *= 0.5f;
-								}
-								int num4 = Mathf.RoundToInt(num3);
-								specificNewPrimaryRole.SoloRoleObjectiveCount += num4;
+								int amount = Mathf.RoundToInt(num3 * BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 7f));
+								specificNewPrimaryRole.AddSoloRoleProgress(amount, BalancingValues.ScientistGoal(PlayerRegistry.Count));
 							}
 						}
 					}
