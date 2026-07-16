@@ -192,11 +192,6 @@ public class UIGenericChoicePanel : MonoBehaviour
 		{
 			list.Add(GetRitualistEffectButton(val5, 25f));
 		}
-		Effect val6 = value2.FirstOrDefault((Effect o) => o is ConfusedEffect);
-		if ((Object)(object)val6 != (Object)null)
-		{
-			list.Add(GetRitualistEffectButton(val6, 15f));
-		}
 		return list;
 	}
 

@@ -16,7 +16,7 @@ public class PlayerResurrectedComponent : MonoBehaviour
 
 	private Stopwatch _stopwatch = new Stopwatch();
 
-	private float IntervalMilliseconds = 5000f;
+	private float IntervalMilliseconds = 4500f;
 
 	private void Awake()
 	{
@@ -55,7 +55,7 @@ public class PlayerResurrectedComponent : MonoBehaviour
 	{
 		if ((float)_stopwatch.ElapsedMilliseconds >= IntervalMilliseconds && _active)
 		{
-			AudioManager.PlayAndFollow("Zombie", ((Component)_playerController).transform, (MixerTarget)2, 20f, 0.2f);
+			AudioManager.PlayAndFollow("Zombie", ((Component)_playerController).transform, (MixerTarget)2, 22f, 0.2f);
 			_stopwatch.Restart();
 		}
 	}

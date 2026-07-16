@@ -168,13 +168,13 @@ public static class BalancingValues
 
 	public const float SpySpyingDefaultRange = 25f;
 
-	public const float SpySpyingPerSecondWithoutBonus = 15f;
+	public const float SpySpyingPerSecondWithoutBonus = 18f;
 
-	public const float SpySpyingPerSecondWithTargetVisible = 48f;
+	public const float SpySpyingPerSecondWithTargetVisible = 54f;
 
-	public const float SpySpyingPerSecondWithSpyImmobile = 25f;
+	public const float SpySpyingPerSecondWithSpyImmobile = 31f;
 
-	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 90f;
+	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 100f;
 
 	public const float SpySpyingDiminishingReturnsValue = 7f;
 
@@ -264,7 +264,7 @@ public static class BalancingValues
 
 	public const float ZombieKillVoodooCooldownMultiplication = 0.3f;
 
-	public const float ZombieMoaningRange = 20f;
+	public const float ZombieMoaningRange = 22f;
 
 	public const float ZombieHealthLossPerSecondWhenRunning = 25f;
 
@@ -276,7 +276,7 @@ public static class BalancingValues
 
 	public const float KidnapperAbductTimer = 3f;
 
-	public const float KidnapperCooldownAfterGameStart = 30f;
+	public const float KidnapperCooldownAfterGameStart = 45f;
 
 	public const float KidnapperCooldownAfterDayStart = 15f;
 
@@ -288,7 +288,7 @@ public static class BalancingValues
 
 	public const float KidnapperKidnappedPlayersVolumeWithoutSilence = 0.4f;
 
-	public const float KidnapperKidnappedPlayersVolumeWithSilence = 0.2f;
+	public const float KidnapperKidnappedPlayersVolumeWithSilence = 0.18f;
 
 	public const float CultistSkullCreationCastTime = 1f;
 
@@ -296,7 +296,7 @@ public static class BalancingValues
 
 	public const float CultistChargeGainPerSecondPerSkull = 15f;
 
-	public const float CultistSpiritMoveSpeed = 1.4f;
+	public const float CultistSpiritMoveSpeed = 1.5f;
 
 	public const float CultistSpiritCaptureCooldown = 5f;
 
@@ -306,9 +306,9 @@ public static class BalancingValues
 
 	public const float CultistInvokedSkullLifetime = 45f;
 
-	public const float CultistInvokedSkullMoveSpeed = 2.75f;
+	public const float CultistInvokedSkullMoveSpeed = 3.5f;
 
-	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 0.8f;
+	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1.25f;
 
 	public const float CultistInvokedSkullSlowDuration = 2f;
 
@@ -401,8 +401,6 @@ public static class BalancingValues
 	public const float RitualistFlatulenceDuration = 20f;
 
 	public const float RitualistNearsightedDuration = 25f;
-
-	public const float RitualistConfusedDuration = 15f;
 
 	public const float RitualistStunnedDuration = 10f;
 
@@ -1533,7 +1531,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Burning,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 12f,
+				Duration = 9f,
 				Ponderation = 2
 			}
 		},
@@ -2950,6 +2948,13 @@ public static class BalancingValues
 	public static int LivingPlayers()
 	{
 		return PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.Resurrected));
+	}
+
+	public static float AdaptMeetingTimerMultiplier(int playersInMeeting, int totalPlayers)
+	{
+		float num = Mathf.InverseLerp(0f, (float)totalPlayers, (float)playersInMeeting);
+		float num2 = Mathf.Lerp(0.3f, 1.2f, num);
+		return Mathf.Min(num2, 1f);
 	}
 
 	public static float DistanceMultiplierByMap(int mapId)

@@ -248,6 +248,10 @@ public class HermitHideout : NetworkBehaviour
 			}
 			_nextCheckWatch.Restart();
 		}
+		if ((Object)(object)_infoGreen == (Object)null || (Object)(object)_infoYellow == (Object)null || (Object)(object)_infoRed == (Object)null)
+		{
+			LycansUtility.AddLogOnlyForMe("HermitHideout: a color object is null");
+		}
 		if (_creatorCustom.IsCurrentlyPlayedOrObserved)
 		{
 			if (RemainingDuration < 30)

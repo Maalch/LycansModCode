@@ -8,7 +8,7 @@ using System.Security.Permissions;
 [assembly: AssemblyCompany("LycansNewRoles")]
 [assembly: AssemblyConfiguration("Debug")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("1.0.0+873787dc0a72914d54cf5989a1dfcfb802641566")]
+[assembly: AssemblyInformationalVersion("1.0.0+d9909bbd0bb919cbc01ea1649b703ffbc2b32629")]
 [assembly: AssemblyProduct("My first plugin")]
 [assembly: AssemblyTitle("LycansNewRoles")]
 [assembly: AssemblyVersion("1.0.0.0")]

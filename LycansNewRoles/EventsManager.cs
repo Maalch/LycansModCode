@@ -32,6 +32,8 @@ public class EventsManager
 
 	private int _currentEventUniqueInt = 0;
 
+	public List<EventType> GameEventsHistory = new List<EventType>();
+
 	public void NewEvent(EventType eventType)
 	{
 		LycansUtility.AddLogOnlyForMe("NewEvent: " + eventType);
@@ -43,6 +45,7 @@ public class EventsManager
 			_currentEventStopwatch.Restart();
 			_currentEventUniqueInt = Mathf.RoundToInt(Random.Range(50f, 90f) / 2f);
 		}
+		GameEventsHistory.Add(eventType);
 	}
 
 	public static bool IsEventDisabled(EventType eventType)
@@ -73,14 +76,17 @@ public class EventsManager
 		if (CanGenerateEvent() && Random.value * 100f < (float)Plugin.CustomConfig.EventChance && Plugin.CustomConfig.EventsActive.Any((KeyValuePair<EventType, bool> o) => o.Value))
 		{
 			List<EventType> list = (from o in Plugin.CustomConfig.EventsActive
-				where o.Value && o.Key != EventType.None && !IsEventDisabled(o.Key)
+				where o.Value && o.Key != EventType.None && !GameEventsHistory.Contains(o.Key) && !IsEventDisabled(o.Key)
 				select o.Key).ToList();
 			if (GameManagerCustom.Instance.CurrentDay == 0)
 			{
 				list.Remove(EventType.Eclipse);
 			}
-			EventType eventIndex = CollectionsUtil.Grab<EventType>(list, 1).First();
-			GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)GameManagerCustom.Instance).Runner, (int)eventIndex);
+			if (list.Any())
+			{
+				EventType eventIndex = CollectionsUtil.Grab<EventType>(list, 1).First();
+				GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)GameManagerCustom.Instance).Runner, (int)eventIndex);
+			}
 		}
 	}
 

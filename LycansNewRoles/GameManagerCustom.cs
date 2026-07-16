@@ -156,12 +156,13 @@ public class GameManagerCustom : NetworkBehaviour
 	{
 		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
 		LycansUtility.AddLogOnlyForMe("Stats: New Game");
 		CurrentDay = 0;
 		SoloRoleDifficulty = 1f;
 		CurrentMayor = PlayerRef.None;
 		MayorActionCooldownTimer = TickTimer.None;
+		EventsManager.GameEventsHistory.Clear();
 		CollectedLoot = 0;
 		EachSecondGlobalTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 1f);
 		TransformationsAmountByDay.Clear();
@@ -531,18 +532,18 @@ public class GameManagerCustom : NetworkBehaviour
 						playerCustom.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(true);
 						bool flag = LycansUtility.CanPlayerSeeOtherPlayer(playerCustom, player2, num10);
 						bool flag2 = !NetworkBool.op_Implicit(player.IsMoving);
-						float num11 = 15f;
+						float num11 = 18f;
 						if (flag && flag2)
 						{
-							num11 = 90f;
+							num11 = 100f;
 						}
 						else if (flag)
 						{
-							num11 = 48f;
+							num11 = 54f;
 						}
 						else if (flag2)
 						{
-							num11 = 25f;
+							num11 = 31f;
 						}
 						num11 *= (float)Plugin.CustomConfig.SpyPercentage * 0.01f;
 						num11 /= Instance.SoloRoleDifficulty;
@@ -1135,7 +1136,7 @@ public class GameManagerCustom : NetworkBehaviour
 		Rpc_Mayor_Action(runner, playerIndex, targetPlayerIndex, actionIndex);
 	}
 
-	[Rpc]
+	[Rpc(/*Could not decode attribute arguments.*/)]
 	public unsafe static void Rpc_New_Event(NetworkRunner runner, int eventIndex)
 	{
 		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
@@ -1169,6 +1170,11 @@ public class GameManagerCustom : NetworkBehaviour
 			}
 		}
 		EventsManager.EventType eventType = (EventsManager.EventType)eventIndex;
+		if (eventType == EventsManager.EventType.None)
+		{
+			Instance.EventsManager.ClearEvent();
+			return;
+		}
 		Instance.EventsManager.NewEvent(eventType);
 		UIManager.ShowRedCenterMessage("NALES_EVENT_ANNOUNCEMENT", 0.5f, 4f, new List<object> { TranslationManager.Instance.GetTranslation("NALES_EVENT_" + eventType.ToString().ToUpper()) });
 		switch (eventType)

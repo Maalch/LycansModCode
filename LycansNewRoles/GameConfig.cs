@@ -160,6 +160,8 @@ public class GameConfig : NetworkBehaviour
 
 	public static Toggle ShowLastGameSummaryToggle;
 
+	public static Toggle AdaptMeetingTimerToggle;
+
 	public static Button ButtonConfigBaseGame;
 
 	public static Button ButtonConfigMod;
@@ -682,6 +684,33 @@ public class GameConfig : NetworkBehaviour
 		}
 	}
 
+	[Networked]
+	[NetworkedWeaved(20, 1)]
+	public unsafe NetworkBool AdaptMeetingTimer
+	{
+		get
+		{
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+			if (base.Ptr == null)
+			{
+				throw new InvalidOperationException("Error when accessing GameConfig.AdaptMeetingTimer. Networked properties can only be accessed when Spawned() has been called.");
+			}
+			return (NetworkBool)base.Ptr[20];
+		}
+		private set
+		{
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+			if (base.Ptr == null)
+			{
+				throw new InvalidOperationException("Error when accessing GameConfig.AdaptMeetingTimer. Networked properties can only be accessed when Spawned() has been called.");
+			}
+			Unsafe.Write(base.Ptr + 20, value);
+		}
+	}
+
 	private void Start()
 	{
 		FillTrapsModifiedToggle();
@@ -692,6 +721,7 @@ public class GameConfig : NetworkBehaviour
 		FillWolvesCanUseItemsToggle();
 		FillDraftModeToggle();
 		FillShowLastGameSummaryToggle();
+		FillAdaptMeetingTimerToggle();
 		FillDeceiverHasFlatulenceChanceToggle();
 		FillLoverWolfReplacesVillagerToggle();
 		FillAllowMayorToggle();
@@ -1516,6 +1546,38 @@ public class GameConfig : NetworkBehaviour
 		}
 	}
 
+	public void FillAdaptMeetingTimerToggle()
+	{
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		if (!PlayerPrefs.HasKey("GAME_SETTINGS_ADAPT_MEETING_TIMER"))
+		{
+			PlayerPrefs.SetInt("GAME_SETTINGS_ADAPT_MEETING_TIMER", 1);
+		}
+		if (PlayerPrefs.HasKey("GAME_SETTINGS_ADAPT_MEETING_TIMER") && PlayerPrefs.GetInt("GAME_SETTINGS_ADAPT_MEETING_TIMER") == 1)
+		{
+			AdaptMeetingTimer = NetworkBool.op_Implicit(true);
+			AdaptMeetingTimerToggle.SetIsOnWithoutNotify(true);
+		}
+	}
+
+	public static void UpdateAdaptMeetingTimer(bool value)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		Plugin.CustomConfig.AdaptMeetingTimer = NetworkBool.op_Implicit(value);
+		PlayerPrefs.SetInt("GAME_SETTINGS_ADAPT_MEETING_TIMER", value ? 1 : 0);
+	}
+
+	public void UpdateAdaptMeetingTimerSetting(bool value)
+	{
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Invalid comparison between Unknown and I4
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		if (((SimulationBehaviour)this).Runner.IsServer && (int)GameManager.State.Current == 1)
+		{
+			AdaptMeetingTimer = NetworkBool.op_Implicit(value);
+		}
+	}
+
 	public static void FillSpyPercentageDropdown(TMP_Dropdown dropdown)
 	{
 		if (!PlayerPrefs.HasKey("GAME_SETTINGS_SPY_PERCENTAGE"))
@@ -1828,6 +1890,7 @@ public class GameConfig : NetworkBehaviour
 		//IL_045f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0484: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ce: Unknown result type (might be due to invalid IL or missing references)
 		SoloRolesCountConfig.value = 2;
 		TraitorsCountConfig.value = 0;
 		WolfPupsCountConfig.value = 0;
@@ -1916,6 +1979,9 @@ public class GameConfig : NetworkBehaviour
 		ShowLastGameSummaryToggle.SetIsOnWithoutNotify(true);
 		PlayerPrefs.SetInt("GAME_SETTINGS_SHOW_LAST_GAME_SUMMARY", 1);
 		ShowLastGameSummary = NetworkBool.op_Implicit(true);
+		AdaptMeetingTimerToggle.SetIsOnWithoutNotify(true);
+		PlayerPrefs.SetInt("GAME_SETTINGS_ADAPT_MEETING_TIMER", 1);
+		AdaptMeetingTimer = NetworkBool.op_Implicit(true);
 		foreach (KeyValuePair<string, Toggle> item4 in PotionsConfig)
 		{
 			item4.Value.isOn = true;

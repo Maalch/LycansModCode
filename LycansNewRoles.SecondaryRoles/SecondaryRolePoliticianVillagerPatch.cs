@@ -25,7 +25,7 @@ internal class SecondaryRolePoliticianVillagerPatch
 		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02c1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05dc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
@@ -127,7 +127,7 @@ internal class SecondaryRolePoliticianVillagerPatch
 						GameManager.Rpc_DisplayDeadPlayers(((SimulationBehaviour)__instance).Runner);
 					}
 				}
-				GameManagerCustom.Instance.EventsManager.ClearEvent();
+				GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)__instance).Runner, 0);
 			}
 			if (!NetworkBool.op_Implicit(__instance.IsFinished))
 			{

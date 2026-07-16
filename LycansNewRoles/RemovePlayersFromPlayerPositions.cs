@@ -112,7 +112,7 @@ internal class RemovePlayersFromPlayerPositions
 				}
 				else
 				{
-					IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => o.Ref != ownPlayerController.Ref && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.PlayerController.IsClimbing) && !NetworkBool.op_Implicit(o.Possessed) && !NetworkBool.op_Implicit(o.Kidnapped) && Vector3.Distance(((Component)ownPlayerController).transform.position, ((Component)o.PlayerController).transform.position) >= 35f);
+					IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => o.Ref != ownPlayerController.Ref && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.PlayerController.IsClimbing) && !o.IsOutOfTheWorld && Vector3.Distance(((Component)ownPlayerController).transform.position, ((Component)o.PlayerController).transform.position) >= 35f);
 					foreach (PlayerCustom item in enumerable)
 					{
 						__instance.PlayerPositions.Add(item.Ref, ((Component)item.PlayerController).transform.position);

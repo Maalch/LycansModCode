@@ -144,11 +144,13 @@ public class UILastGameSummaryKill : MonoBehaviour
 	{
 		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0161: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
 		_deathTypeIcon.sprite = WinnerSprite;
 		((TMP_Text)_killerText).text = "";
 		((Component)_timingIcon).gameObject.SetActive(false);
@@ -168,12 +170,18 @@ public class UILastGameSummaryKill : MonoBehaviour
 			((Graphic)_victimText).color = PlayerCustom.NewPrimaryRoleLoverColor;
 			break;
 		case UILastGameSummaryPanel.WinnerType.OtherSoloRole:
-		{
-			PlayerCustom player = PlayerCustomRegistry.GetPlayer(winnerRef);
-			((TMP_Text)_victimText).text = ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString();
-			((Graphic)_victimText).color = PlayerCustom.PlayerColorInListForGenericSoloRole;
+			if (!PlayerCustomRegistry.HasPlayer(winnerRef))
+			{
+				((TMP_Text)_victimText).text = "???";
+				((Graphic)_victimText).color = PlayerCustom.PlayerColorInListForGenericSoloRole;
+			}
+			else
+			{
+				PlayerCustom player = PlayerCustomRegistry.GetPlayer(winnerRef);
+				((TMP_Text)_victimText).text = ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString();
+				((Graphic)_victimText).color = PlayerCustom.PlayerColorInListForGenericSoloRole;
+			}
 			break;
-		}
 		}
 	}
 

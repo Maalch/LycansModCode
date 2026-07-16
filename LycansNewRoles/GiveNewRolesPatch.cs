@@ -440,8 +440,8 @@ internal class GiveNewRolesPatch
 		obj2.onEnter = (Action<EGameState>)Delegate.Combine(obj2.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0461: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04cc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0463: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04ce: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0077: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
@@ -452,14 +452,14 @@ internal class GiveNewRolesPatch
 			//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03bf: Unknown result type (might be due to invalid IL or missing references)
 			//IL_012e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0404: Unknown result type (might be due to invalid IL or missing references)
-			//IL_040e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03ce: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03d3: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03e4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03f3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0406: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0410: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03d0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03d5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03e6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03f5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_013c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0291: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01e7: Unknown result type (might be due to invalid IL or missing references)
@@ -535,7 +535,7 @@ internal class GiveNewRolesPatch
 							PlayerCustom.ApplyEffectToPlayer(playerCustom3.PlayerController, "LycansNewRoles.EffectTournamentLoser", ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 							PlayerCustom.ApplyEffectToPlayer(playerCustom3.PlayerController, EffectManager.GetEffects().First((Effect o) => o is GlowingEffect), ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
-						GameManagerCustom.Instance.EventsManager.ClearEvent();
+						GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)__instance).Runner, 0);
 					}
 					else if ((NetworkBool.op_Implicit(Plugin.CustomConfig.AllowMayor) && (GameManagerCustom.Instance.CurrentMayor == PlayerRef.None || NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(GameManagerCustom.Instance.CurrentMayor).PlayerController.IsDead))) || NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(GameManagerCustom.Instance.CurrentMayor).Kidnapped))
 					{
@@ -883,28 +883,28 @@ internal class GiveNewRolesPatch
 		obj6.onEnter = (Action<EGameState>)Delegate.Combine(obj6.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0082: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00df: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01be: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0119: Unknown result type (might be due to invalid IL or missing references)
-			//IL_012e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0133: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01c0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0135: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0143: Unknown result type (might be due to invalid IL or missing references)
-			//IL_014d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0169: Unknown result type (might be due to invalid IL or missing references)
-			//IL_017f: Expected O, but got Unknown
-			//IL_0190: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01a6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03a2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+			//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_016b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0181: Expected O, but got Unknown
+			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03a4: Unknown result type (might be due to invalid IL or missing references)
 			LycansUtility.AddLogOnlyForMe("Transition Enter");
 			UIManager.HideAllExtraUI();
 			if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Tournament && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Vengeance)
 			{
-				GameManagerCustom.Instance.EventsManager.ClearEvent();
+				GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)gameState).Runner, 0);
 			}
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 			{
