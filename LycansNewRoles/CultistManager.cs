@@ -20,24 +20,32 @@ public class CultistManager : NetworkBehaviour
 	{
 		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		public static OnBeforeSpawned _003C_003E9__17_0;
+		public static Predicate<PlayerCustom> _003C_003E9__17_0;
 
-		public static Func<Teleporter, bool> _003C_003E9__17_1;
+		public static OnBeforeSpawned _003C_003E9__17_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__17_2;
+		public static Func<Teleporter, bool> _003C_003E9__17_2;
+
+		public static Predicate<PlayerCustom> _003C_003E9__17_3;
 
 		public static Predicate<PlayerController> _003C_003E9__19_0;
 
-		internal void _003CFixedUpdateNetwork_003Eb__17_0(NetworkRunner _, NetworkObject no)
+		internal bool _003CFixedUpdateNetwork_003Eb__17_0(PlayerCustom o)
+		{
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld;
+		}
+
+		internal void _003CFixedUpdateNetwork_003Eb__17_1(NetworkRunner _, NetworkObject no)
 		{
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__17_1(Teleporter o)
+		internal bool _003CFixedUpdateNetwork_003Eb__17_2(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__17_2(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__17_3(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0025: Unknown result type (might be due to invalid IL or missing references)
@@ -149,37 +157,44 @@ public class CultistManager : NetworkBehaviour
 	public override void FixedUpdateNetwork()
 	{
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009c: Expected O, but got Unknown
-		//IL_016c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0179: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
-		if (!((SimulationBehaviour)this).Runner.IsServer || !NetworkBool.op_Implicit(CultistActive) || !((float)_skullCreationStopwatch.ElapsedMilliseconds >= 6000f) || !LycansUtility.GameActuallyInPlay)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Expected O, but got Unknown
+		//IL_01d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0180: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f8: Unknown result type (might be due to invalid IL or missing references)
+		if (!((SimulationBehaviour)this).Runner.IsServer || !NetworkBool.op_Implicit(CultistActive) || !LycansUtility.GameActuallyInPlay)
 		{
 			return;
 		}
+		float num = 8f - 0.4f * (float)PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld);
+		num = Mathf.Max(2f, num);
+		if (!((float)_skullCreationStopwatch.ElapsedMilliseconds >= num * 1000f))
+		{
+			return;
+		}
+		LycansUtility.AddLogOnlyForMe("Cultist skull creation interval: " + num);
 		NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.GameObjectCultistSkullSpirit");
 		NetworkRunner runner = ((SimulationBehaviour)GameManager.Instance).Runner;
 		Vector3? val = ((Component)this).transform.position;
 		Quaternion? val2 = Quaternion.identity;
-		object obj = _003C_003Ec._003C_003E9__17_0;
+		object obj = _003C_003Ec._003C_003E9__17_1;
 		if (obj == null)
 		{
 			OnBeforeSpawned val3 = delegate
 			{
 			};
-			_003C_003Ec._003C_003E9__17_0 = val3;
+			_003C_003Ec._003C_003E9__17_1 = val3;
 			obj = (object)val3;
 		}
 		NetworkObject val4 = runner.Spawn(networkObject, val, val2, (PlayerRef?)null, (OnBeforeSpawned)obj, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);

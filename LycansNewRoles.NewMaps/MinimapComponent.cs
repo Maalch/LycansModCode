@@ -715,6 +715,42 @@ public class MinimapComponent : MonoBehaviour
 		val2.GetComponent<MinimapRunemasterRuneComponent>().Init(rune);
 	}
 
+	public void AddAcrobatSpotIcon(AcrobatSpot spot)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 position = ((Component)spot).transform.position;
+		CustomMap customMap = MapManager.NewMapsByIdInfo[GameManager.Instance.MapID];
+		((Vector3)(ref position))._002Ector(position.x - customMap.MinimapCameraOffset.x, position.y, position.z - customMap.MinimapCameraOffset.z);
+		Vector2 val = default(Vector2);
+		((Vector2)(ref val))._002Ector(0f - position.z, position.x);
+		float minimapRotation = customMap.MinimapRotation;
+		float num = minimapRotation;
+		if (num == 270f)
+		{
+			((Vector2)(ref val))._002Ector(position.x, position.z);
+		}
+		val *= customMap.MinimapOffsetMultiplier;
+		GameObject val2 = Object.Instantiate<GameObject>(MinimapAcrobatSpotComponent.MinimapAcrobatSpotPrefab);
+		val2.gameObject.SetActive(true);
+		val2.transform.SetParent(_panel.transform);
+		val2.transform.localPosition = Vector2.op_Implicit(val);
+		val2.transform.SetAsLastSibling();
+		val2.GetComponent<MinimapAcrobatSpotComponent>().Init(spot);
+	}
+
 	private void UpdateAllTextLocalizations(GameObject parentObject)
 	{
 		for (int num = parentObject.transform.childCount - 1; num >= 0; num--)

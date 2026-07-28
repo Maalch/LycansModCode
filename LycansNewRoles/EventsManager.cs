@@ -38,12 +38,18 @@ public class EventsManager
 	{
 		LycansUtility.AddLogOnlyForMe("NewEvent: " + eventType);
 		CurrentEvent = eventType;
-		EventType currentEvent = CurrentEvent;
-		EventType eventType2 = currentEvent;
-		if (eventType2 == EventType.Fog)
+		switch (CurrentEvent)
 		{
+		case EventType.Fog:
 			_currentEventStopwatch.Restart();
 			_currentEventUniqueInt = Mathf.RoundToInt(Random.Range(50f, 90f) / 2f);
+			break;
+		case EventType.Spellstorm:
+			foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
+			{
+				allPlayer.SpellstormSecondsWithoutEffect = 0;
+			}
+			break;
 		}
 		GameEventsHistory.Add(eventType);
 	}
@@ -78,7 +84,7 @@ public class EventsManager
 			List<EventType> list = (from o in Plugin.CustomConfig.EventsActive
 				where o.Value && o.Key != EventType.None && !GameEventsHistory.Contains(o.Key) && !IsEventDisabled(o.Key)
 				select o.Key).ToList();
-			if (GameManagerCustom.Instance.CurrentDay == 0)
+			if (GameManagerCustom.Instance.CurrentDay <= 1)
 			{
 				list.Remove(EventType.Eclipse);
 			}

@@ -14,6 +14,8 @@ public static class GlobalManager
 
 	public const string CultistManagerName = "LycansNewRoles.CultistManager";
 
+	public const string VoodooManagerName = "LycansNewRoles.VoodooManager";
+
 	public const string DraftManagerName = "LycansNewRoles.DraftManager";
 
 	public const string GameManagerCustomName = "LycansNewRoles.GameManagerCustom";
@@ -174,6 +176,10 @@ public static class GlobalManager
 
 	public const string MoleClockEffectName = "LycansNewRoles.EffectMoleClock";
 
+	public const string JumpEffectName = "LycansNewRoles.EffectJump";
+
+	public const string StrengthenedEffectName = "LycansNewRoles.EffectStrengthened";
+
 	public const string DeceiverIllusionName = "LycansNewRoles.GameObjectDeceiverIllusion";
 
 	public const string AstralSpiritName = "LycansNewRoles.GameObjectAstralSpirit";
@@ -215,6 +221,12 @@ public static class GlobalManager
 	public const string HostParasiteName = "LycansNewRoles.GameObjectHostParasite";
 
 	public const string RunemasterRuneName = "LycansNewRoles.GameObjectRunemasterRune";
+
+	public const string AcrobatSpotName = "LycansNewRoles.GameObjectAcrobatSpot";
+
+	public const string InventorSmokeName = "LycansNewRoles.GameObjectInventorSmoke";
+
+	public const string InventorScrapName = "LycansNewRoles.GameObjectInventorScrap";
 
 	public const string ItemMagicScrollName = "LycansNewRoles.ItemMagicScroll";
 

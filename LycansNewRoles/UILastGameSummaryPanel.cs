@@ -13,7 +13,8 @@ public class UILastGameSummaryPanel : MonoBehaviour
 		Villagers,
 		Wolves,
 		Lovers,
-		OtherSoloRole
+		OtherSoloRole,
+		Survivors
 	}
 
 	public static GameObject PlayerKillPrefab;

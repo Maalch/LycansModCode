@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -44,22 +45,18 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		//IL_04d0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06fd: Invalid comparison between Unknown and I4
 		//IL_0249: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0520: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0531: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0536: Unknown result type (might be due to invalid IL or missing references)
-		//IL_053b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_053f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0544: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0552: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0557: Unknown result type (might be due to invalid IL or missing references)
-		//IL_056c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0578: Unknown result type (might be due to invalid IL or missing references)
 		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0359: Unknown result type (might be due to invalid IL or missing references)
 		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0361: Unknown result type (might be due to invalid IL or missing references)
 		//IL_029b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0597: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05bb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0399: Unknown result type (might be due to invalid IL or missing references)
 		//IL_039f: Invalid comparison between Unknown and I4
 		//IL_0318: Unknown result type (might be due to invalid IL or missing references)
@@ -140,24 +137,25 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 			return;
 		}
 		PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Runemaster && player2.Ref == PlayerController.Local.Ref && RunemasterRune.AssociatedRunes.Any())
+		if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Runemaster && player2.Ref == PlayerController.Local.Ref && player2.AssociatedRunes.Any() && PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf))))
 		{
 			RunemasterRune runemasterRune = null;
-			float num = -1f;
-			foreach (RunemasterRune associatedRune in RunemasterRune.AssociatedRunes)
+			float num = 1000f;
+			List<PlayerController> list2 = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && !NetworkBool.op_Implicit(o.IsDead))).ToList();
+			foreach (RunemasterRune associatedRune in player2.AssociatedRunes)
 			{
-				Vector3 val = ((Component)associatedRune).transform.position - ((Component)player2.PlayerController).transform.position;
-				Vector3 normalized = ((Vector3)(ref val)).normalized;
-				float num2 = Vector3.Dot(((Component)player2.PlayerController).transform.forward, normalized);
-				float num3 = Vector3.Distance(((Component)player2.PlayerController).transform.position, ((Component)associatedRune).transform.position);
-				float num4 = num2 / (1000f + num3);
-				if (num4 > num)
+				foreach (PlayerController item6 in list2)
 				{
-					num = num4;
-					runemasterRune = associatedRune;
+					float num2 = Vector3.Distance(((Component)associatedRune).transform.position, ((Component)item6).transform.position);
+					float num3 = Vector3.Distance(((Component)associatedRune).transform.position, ((Component)player2.PlayerController).transform.position);
+					if (num2 <= 10f && num3 < num)
+					{
+						runemasterRune = associatedRune;
+						num = num3;
+					}
 				}
 			}
-			foreach (RunemasterRune associatedRune2 in RunemasterRune.AssociatedRunes)
+			foreach (RunemasterRune associatedRune2 in player2.AssociatedRunes)
 			{
 				bool flag = (Object)(object)associatedRune2 == (Object)(object)runemasterRune;
 				if (associatedRune2.IsSelected != flag)
@@ -165,11 +163,15 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 					associatedRune2.SetSelected(flag);
 				}
 			}
-			List<PlayerCustom> list2 = PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)).ToList();
-			foreach (PlayerCustom item6 in list2)
+			List<PlayerCustom> list3 = PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)).ToList();
+			foreach (PlayerCustom item7 in list3)
 			{
-				item6.UpdateVisibility();
+				item7.UpdateVisibility();
 			}
+		}
+		if (_playerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Inventor && (int)GameManager.LocalGameState == 2)
+		{
+			_playerCustom.InventorDeviceInfo.CheckAlert();
 		}
 		_fiveTimesPerSecondWatch.Restart();
 	}

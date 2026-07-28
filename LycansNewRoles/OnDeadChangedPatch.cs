@@ -27,7 +27,7 @@ internal class OnDeadChangedPatch
 		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0601: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0612: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
 		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0120: Invalid comparison between Unknown and I4
@@ -41,24 +41,25 @@ internal class OnDeadChangedPatch
 		//IL_01f8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
 		//IL_024f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0288: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0299: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02aa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02cd: Invalid comparison between Unknown and I4
-		//IL_02d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0563: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_042f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0344: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04a3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0526: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02de: Invalid comparison between Unknown and I4
+		//IL_0271: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0574: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0440: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0355: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0537: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController deadPlayerController = changed.Behaviour;
@@ -99,11 +100,11 @@ internal class OnDeadChangedPatch
 						specificNewPrimaryRole.MercenaryGiveNewTarget();
 					}
 				}
-				if (NetworkBool.op_Implicit(deadPlayerController.IsDead) && player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Avatar && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
+				if (NetworkBool.op_Implicit(deadPlayerController.IsDead) && player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Avatar && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive) && !NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
 				{
 					GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)changed.Behaviour).Runner, NetworkString<_16>.op_Implicit("WOLF"), ((Component)changed.Behaviour).transform.position, 500f, 0.6f);
 				}
-				if (NetworkBool.op_Implicit(deadPlayerController.IsDead) && (int)deadPlayerController.Role == 1 && !NetworkBool.op_Implicit(player.Resurrected) && !PlayerCustomRegistry.Any((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Necromancer && o.PrimaryRoleTargetRef == deadPlayerController.Ref))
+				if (NetworkBool.op_Implicit(deadPlayerController.IsDead) && (int)deadPlayerController.Role == 1 && !NetworkBool.op_Implicit(player.ResurrectedByNecromancer) && !PlayerCustomRegistry.Any((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Necromancer && o.PrimaryRoleTargetRef == deadPlayerController.Ref))
 				{
 					foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.IsWolfPup)))
 					{

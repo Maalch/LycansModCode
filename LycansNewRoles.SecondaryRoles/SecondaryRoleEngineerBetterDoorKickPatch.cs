@@ -3,6 +3,7 @@ using System.Linq;
 using Fusion;
 using HarmonyLib;
 using LycansNewRoles.NewEffects;
+using LycansNewRoles.PowerObjects;
 using UnityEngine;
 
 namespace LycansNewRoles.SecondaryRoles;
@@ -10,7 +11,13 @@ namespace LycansNewRoles.SecondaryRoles;
 [HarmonyPatch(typeof(Door), "Rpc_Interact")]
 internal class SecondaryRoleEngineerBetterDoorKickPatch
 {
-	private static void Postfix(PlayerRef actor, Door __instance)
+	private static void Prefix(Door __instance, out bool __state)
+	{
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		__state = NetworkBool.op_Implicit(__instance.IsLocked);
+	}
+
+	private static void Postfix(PlayerRef actor, Door __instance, bool __state)
 	{
 		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
@@ -29,11 +36,13 @@ internal class SecondaryRoleEngineerBetterDoorKickPatch
 		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b0: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!NetworkBehaviourUtils.InvokeRpc && (int)((SimulationBehaviour)__instance).Runner.Stage == 4)
@@ -80,6 +89,10 @@ internal class SecondaryRoleEngineerBetterDoorKickPatch
 				player.PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
 			}
 			player.WolfRecuperateStopwatch.Restart();
+			if (__state && !NetworkBool.op_Implicit(__instance.IsLocked))
+			{
+				InventorScrap.CreateNewScrapForRandomInventor(((SimulationBehaviour)__instance).Runner, ((Component)__instance).transform.position);
+			}
 		}
 		catch (Exception ex)
 		{

@@ -122,6 +122,7 @@ public class MagicianIllusion : NetworkBehaviour
 			.Find("spine.006")
 			.Find("HatsContainer")
 			.Find("Hats");
+		UpdateVisible(visible: false);
 	}
 
 	private void Update()
@@ -279,9 +280,16 @@ public class MagicianIllusion : NetworkBehaviour
 
 	private void UpdateVisibility()
 	{
-		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
-		((Renderer)_villagerMeshRenderer).enabled = _creatorCustom.IsCurrentlyPlayedOrObserved || (NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.IsWolf) && !NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.PlayerEffectManager.NightVision));
+		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		bool visible = _creatorCustom.IsCurrentlyPlayedOrObserved || (NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.IsWolf) && !NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.PlayerEffectManager.NightVision));
+		UpdateVisible(visible);
+	}
+
+	private void UpdateVisible(bool visible)
+	{
+		((Renderer)_villagerMeshRenderer).enabled = visible;
+		((Component)_hats).gameObject.SetActive(visible);
 	}
 
 	public static void UpdateVisibilityForAllMagicianIllusions()

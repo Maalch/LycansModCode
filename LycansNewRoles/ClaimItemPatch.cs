@@ -122,6 +122,7 @@ internal class ClaimItemPatch
 			}
 			if ((Object)(object)player.PlayerController.Item != (Object)null && player.PlayerController.Item is BulletItem)
 			{
+				ItemCustom.DisableInventorScrap(player.PlayerController.Item);
 				player.PlayerController.Item.DestroyItem();
 			}
 			return true;

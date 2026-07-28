@@ -33,8 +33,8 @@ public class GravityComponent : MonoBehaviour
 		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
 		//IL_009a: Invalid comparison between Unknown and I4
-		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0138: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014c: Unknown result type (might be due to invalid IL or missing references)
 		bool isGrounded = _networkCharacterControllerPrototypeCustom.IsGrounded;
 		if (!isGrounded && !_initialY.HasValue)
 		{
@@ -48,12 +48,16 @@ public class GravityComponent : MonoBehaviour
 		num *= BalancingValues.FallingHeightMultiplierForDamage(GameManager.Instance.MapID);
 		if ((int)GameManager.LocalGameState == 2 && num > 3f)
 		{
-			float num2 = (float)GameManager.Instance.MaxHunger * (num * 0.05f);
 			PlayerController value = Traverse.Create((object)_characterMovementHandler).Field<PlayerController>("_playerController").Value;
+			PlayerCustom player = PlayerCustomRegistry.GetPlayer(value.Ref);
+			if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Acrobat)
+			{
+				return;
+			}
+			float num2 = (float)GameManager.Instance.MaxHunger * (num * 0.05f);
 			value.Hunger = Math.Max(value.Hunger - num2, 0f);
 			if (value.Hunger <= 0f)
 			{
-				PlayerCustom player = PlayerCustomRegistry.GetPlayer(value.Ref);
 				player.Stats.UpdateDeathType("FALL");
 				value.Rpc_Kill(PlayerRef.None);
 			}

@@ -88,7 +88,7 @@ public class UISpiritPanel : MonoBehaviour
 			PlayerCustom.PlayerNewPrimaryRole playerNewPrimaryRole = newPrimaryRole;
 			if (playerNewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Cultist)
 			{
-				num = 5f;
+				num = 2f;
 			}
 			((Graphic)_attackFill).color = ColorCooldown;
 			Image attackFill = _attackFill;

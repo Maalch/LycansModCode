@@ -112,26 +112,27 @@ internal class VoiceEffectPatch
 		//IL_0387: Unknown result type (might be due to invalid IL or missing references)
 		//IL_033d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0345: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0394: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0464: Unknown result type (might be due to invalid IL or missing references)
-		//IL_041b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0402: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0428: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0499: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0506: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04fb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0518: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0526: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0588: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0562: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0617: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0407: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0414: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
+		//IL_042e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0454: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0461: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0521: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0511: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0534: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0551: Unknown result type (might be due to invalid IL or missing references)
+		//IL_055f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_059b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0650: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05fc: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((int)GameManager.LocalGameState == 0)
@@ -236,7 +237,13 @@ internal class VoiceEffectPatch
 				}
 				return;
 			}
-			if (NetworkBool.op_Implicit(player.Resurrected) || NetworkBool.op_Implicit(player.Dying) || NetworkBool.op_Implicit(player.Asleep) || NetworkBool.op_Implicit(player.Downed) || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie)
+			if (NetworkBool.op_Implicit(player.ResurrectedByNecromancer) || NetworkBool.op_Implicit(player.Dying) || NetworkBool.op_Implicit(player.Asleep) || NetworkBool.op_Implicit(player.Downed))
+			{
+				value2.maxDistance = 0f;
+				value2.mute = true;
+				return;
+			}
+			if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie && !NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
 			{
 				value2.maxDistance = 0f;
 				value2.mute = true;

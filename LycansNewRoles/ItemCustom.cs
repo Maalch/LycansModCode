@@ -15,6 +15,8 @@ public class ItemCustom : NetworkBehaviour
 
 	private Item _item = null;
 
+	private bool _dropsInventorScrap = true;
+
 	[Networked(OnChanged = "SabotagedChanged")]
 	[NetworkedWeaved(0, 1)]
 	public unsafe NetworkBool Sabotaged
@@ -68,6 +70,8 @@ public class ItemCustom : NetworkBehaviour
 			Unsafe.Write(base.Ptr + 1, value);
 		}
 	}
+
+	public bool DropsInventorScrap => _dropsInventorScrap;
 
 	[Preserve]
 	public static void ItemNetworkIdChanged(Changed<ItemCustom> changed)
@@ -165,6 +169,24 @@ public class ItemCustom : NetworkBehaviour
 			}
 		}
 		((Behaviour)_light).enabled = false;
+	}
+
+	public void DisableInventorScrap()
+	{
+		_dropsInventorScrap = false;
+	}
+
+	public static void DisableInventorScrap(Item item)
+	{
+		ItemCustom componentInChildren = ((Component)item).GetComponentInChildren<ItemCustom>();
+		if ((Object)(object)componentInChildren == (Object)null)
+		{
+			Plugin.Logger.LogError((object)"Item has no ItemCustom to disable inventor scrap!");
+		}
+		else
+		{
+			componentInChildren.DisableInventorScrap();
+		}
 	}
 
 	public static void UpdateAllItems()

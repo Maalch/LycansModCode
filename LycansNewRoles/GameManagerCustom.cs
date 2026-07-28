@@ -152,6 +152,12 @@ public class GameManagerCustom : NetworkBehaviour
 		Instance = null;
 	}
 
+	public void Reset()
+	{
+		CurrentDay = 0;
+		SoloRoleDifficulty = 1f;
+	}
+
 	public void NewGame()
 	{
 		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
@@ -189,12 +195,17 @@ public class GameManagerCustom : NetworkBehaviour
 			{
 				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHideout).GetComponent<NetworkObject>(), false);
 			}
+			foreach (InventorScrap allScrap in InventorScrap.AllScraps)
+			{
+				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allScrap).GetComponent<NetworkObject>(), false);
+			}
 		}
 		DeceiverIllusionComponent.Illusions.Clear();
 		MerchantCoin.AllCoins.Clear();
 		InvestigatorHint.AllHints.Clear();
 		SurvivalistHint.AllHints.Clear();
 		HermitHideout.AllHideouts.Clear();
+		InventorScrap.AllScraps.Clear();
 	}
 
 	public void NewDay()
@@ -353,25 +364,25 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1525: Unknown result type (might be due to invalid IL or missing references)
+		//IL_156c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1855: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1791: Unknown result type (might be due to invalid IL or missing references)
+		//IL_18a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17e0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1815: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17ee: Invalid comparison between Unknown and I4
+		//IL_1837: Unknown result type (might be due to invalid IL or missing references)
+		//IL_183d: Invalid comparison between Unknown and I4
 		//IL_05b0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05f0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1608: Unknown result type (might be due to invalid IL or missing references)
+		//IL_160d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cd3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0e1a: Unknown result type (might be due to invalid IL or missing references)
@@ -382,8 +393,8 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1623: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1628: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cea: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cf4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
@@ -391,9 +402,9 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_09c2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0770: Unknown result type (might be due to invalid IL or missing references)
 		//IL_077c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1633: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1638: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1655: Unknown result type (might be due to invalid IL or missing references)
+		//IL_167a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_167f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_169c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0434: Unknown result type (might be due to invalid IL or missing references)
@@ -418,13 +429,13 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_04b6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a2c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a3d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_123b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1241: Invalid comparison between Unknown and I4
-		//IL_1276: Unknown result type (might be due to invalid IL or missing references)
-		//IL_143b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14a3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12e3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1282: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1288: Invalid comparison between Unknown and I4
+		//IL_12bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1482: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_132a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_133b: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)this).Runner.IsServer)
 		{
 			return;
@@ -532,22 +543,22 @@ public class GameManagerCustom : NetworkBehaviour
 						playerCustom.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(true);
 						bool flag = LycansUtility.CanPlayerSeeOtherPlayer(playerCustom, player2, num10);
 						bool flag2 = !NetworkBool.op_Implicit(player.IsMoving);
-						float num11 = 18f;
+						float num11 = 20f;
 						if (flag && flag2)
 						{
-							num11 = 100f;
+							num11 = 110f;
 						}
 						else if (flag)
 						{
-							num11 = 54f;
+							num11 = 58f;
 						}
 						else if (flag2)
 						{
-							num11 = 31f;
+							num11 = 34f;
 						}
 						num11 *= (float)Plugin.CustomConfig.SpyPercentage * 0.01f;
 						num11 /= Instance.SoloRoleDifficulty;
-						num11 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 7f);
+						num11 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 12f);
 						playerCustom.AddSoloRoleProgress(Mathf.RoundToInt(num11), BalancingValues.SpyGoal(PlayerRegistry.Count));
 					}
 					else
@@ -657,10 +668,10 @@ public class GameManagerCustom : NetworkBehaviour
 				}
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
 				{
-					float num25 = 35f;
+					float num25 = 45f;
 					if (PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && o.Ref != player.Ref && NetworkBool.op_Implicit(o.IsWolf) && Vector3.Distance(((Component)player).transform.position, ((Component)o).transform.position) <= 30f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))))
 					{
-						num25 += 215f;
+						num25 += 225f;
 					}
 					playerCustom.AddMaterials(Mathf.RoundToInt(num25));
 					break;
@@ -749,9 +760,17 @@ public class GameManagerCustom : NetworkBehaviour
 				{
 					playerCustom.SecondsTransformedOrNearTransformedWolfToday++;
 				}
-				if (Instance.EventsManager.CurrentEvent == EventsManager.EventType.Spellstorm && Random.value < 0.01f)
+				if (Instance.EventsManager.CurrentEvent == EventsManager.EventType.Spellstorm)
 				{
-					AccessorySpellbook.CastEffectOnPlayer(playerCustom, playerCustom.PlayerController, ((SimulationBehaviour)this).Runner);
+					if (Random.value < 0.001f * (float)(1 + playerCustom.SpellstormSecondsWithoutEffect))
+					{
+						AccessorySpellbook.CastEffectOnPlayer(playerCustom, playerCustom.PlayerController, ((SimulationBehaviour)this).Runner);
+						playerCustom.SpellstormSecondsWithoutEffect = 0;
+					}
+					else
+					{
+						playerCustom.SpellstormSecondsWithoutEffect++;
+					}
 				}
 				if (Instance.EventsManager.CurrentEvent == EventsManager.EventType.Plague && (int)playerCustom.PlayerController.Role != 1 && playerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Lover && !playerCustom.IsOutOfTheWorld && !NetworkBool.op_Implicit(playerCustom.Dying))
 				{
@@ -854,6 +873,7 @@ public class GameManagerCustom : NetworkBehaviour
 					case PlayerCustom.PlayerPrimaryRolePower.Shadow:
 					case PlayerCustom.PlayerPrimaryRolePower.Hermit:
 					case PlayerCustom.PlayerPrimaryRolePower.Runemaster:
+					case PlayerCustom.PlayerPrimaryRolePower.Inventor:
 					case PlayerCustom.PlayerPrimaryRolePower.Alchemist:
 					case PlayerCustom.PlayerPrimaryRolePower.Spotter:
 					case PlayerCustom.PlayerPrimaryRolePower.Purifier:

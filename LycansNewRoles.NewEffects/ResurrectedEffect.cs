@@ -30,7 +30,7 @@ public class ResurrectedEffect : CustomEffect
 			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
 			if ((Object)(object)player != (Object)null)
 			{
-				PlayerCustomRegistry.GetPlayer(targetPlayer).Resurrected = NetworkBool.op_Implicit(true);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).ResurrectedByNecromancer = NetworkBool.op_Implicit(true);
 			}
 		}
 	}
@@ -45,7 +45,7 @@ public class ResurrectedEffect : CustomEffect
 			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
 			if ((Object)(object)player != (Object)null)
 			{
-				PlayerCustomRegistry.GetPlayer(targetPlayer).Resurrected = NetworkBool.op_Implicit(false);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
 			}
 		}
 	}

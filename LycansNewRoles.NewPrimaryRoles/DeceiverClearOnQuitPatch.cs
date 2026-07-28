@@ -16,6 +16,7 @@ internal class DeceiverClearOnQuitPatch
 			InvestigatorHint.AllHints.Clear();
 			SurvivalistHint.AllHints.Clear();
 			HermitHideout.AllHideouts.Clear();
+			InventorScrap.AllScraps.Clear();
 		}
 		catch (Exception ex)
 		{

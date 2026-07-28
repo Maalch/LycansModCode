@@ -17,6 +17,8 @@ public class PlayerCustomAudioComponent : MonoBehaviour
 
 	public const AudioReverbPreset ReverbTelepathy = (AudioReverbPreset)23;
 
+	public const AudioReverbPreset ReverbPsychotic = (AudioReverbPreset)26;
+
 	private void Start()
 	{
 		_audioSource = ((Component)this).GetComponent<AudioSource>();
@@ -48,18 +50,28 @@ public class PlayerCustomAudioComponent : MonoBehaviour
 		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
 		string text = "SETTINGS_CUSTOM_VOLUME_PLAYER_SAVED_";
 		NetworkString<_64> iD = _playerCustom.PlayerController.PlayerData.ID;
 		string text2 = text + ((object)iD/*cast due to constrained. prefix*/).ToString();
 		float volume = (PlayerPrefs.HasKey(text2) ? PlayerPrefs.GetFloat(text2) : 0.75f);
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if (NetworkBool.op_Implicit(_playerCustom.Kidnapped) && player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Kidnapper)
+		if (NetworkBool.op_Implicit(_playerCustom.Kidnapped))
 		{
-			volume = 0.4f;
-			if (NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool))
+			if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Kidnapper)
 			{
-				volume = 0.18f;
+				volume = 0.4f;
+				if (NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool))
+				{
+					volume = 0.18f;
+				}
+			}
+			else if (NetworkBool.op_Implicit(player.Kidnapped) && player.Ref != _playerCustom.Ref)
+			{
+				volume = 0.35f;
 			}
 		}
 		_audioSource.volume = volume;

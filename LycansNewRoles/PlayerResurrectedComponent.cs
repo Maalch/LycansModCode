@@ -39,7 +39,7 @@ public class PlayerResurrectedComponent : MonoBehaviour
 		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(_playerController.Ref);
 		player.UpdateSkinColor();
-		_active = !NetworkBool.op_Implicit(_playerController.IsDead) && (NetworkBool.op_Implicit(player.Resurrected) || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);
+		_active = !NetworkBool.op_Implicit(_playerController.IsDead) && (NetworkBool.op_Implicit(player.ResurrectedByNecromancer) || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);
 		_resurrectedObject.SetActive(_active);
 		if (_active && player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie)
 		{

@@ -24,6 +24,10 @@ internal class NewPrimaryRoleNecromancerKillAtDawnPatch
 		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0204: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0245: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0256: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer != (Object)null)
@@ -37,7 +41,7 @@ internal class NewPrimaryRoleNecromancerKillAtDawnPatch
 			foreach (PlayerController item in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).ToList())
 			{
 				PlayerCustom player = PlayerCustomRegistry.GetPlayer(item.Ref);
-				if (NetworkBool.op_Implicit(player.Resurrected) || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie)
+				if (NetworkBool.op_Implicit(player.ResurrectedByNecromancer) || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie)
 				{
 					item.IsDead = NetworkBool.op_Implicit(true);
 				}
@@ -51,10 +55,16 @@ internal class NewPrimaryRoleNecromancerKillAtDawnPatch
 				}
 				if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Cultist && NetworkBool.op_Implicit(CultistManager.Instance.CultistActive) && !NetworkBool.op_Implicit(GameManager.Instance.IsFinished))
 				{
-					player.Stats.UpdateDeathType("CULTIST_FAILED");
+					player.Stats.UpdateDeathType("HUNT_FAILED");
 					player.PlayerController.Rpc_Kill(PlayerRef.None);
 					CultistManager.Instance.CultistActive = NetworkBool.op_Implicit(false);
 					runner.Despawn(((Component)player.SummonedSpirit).GetComponent<NetworkObject>(), false);
+				}
+				if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Voodoo && NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive) && !NetworkBool.op_Implicit(GameManager.Instance.IsFinished))
+				{
+					player.Stats.UpdateDeathType("HUNT_FAILED");
+					player.PlayerController.Rpc_Kill(PlayerRef.None);
+					VoodooManager.Instance.VoodooActive = NetworkBool.op_Implicit(false);
 				}
 			}
 		}

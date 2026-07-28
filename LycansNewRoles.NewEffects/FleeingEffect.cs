@@ -14,7 +14,7 @@ public class FleeingEffect : CustomEffect
 
 	public override EffectType CustomEffectType => (EffectType)0;
 
-	public override bool CanBeDispelled => true;
+	public override bool CanBeDispelled => false;
 
 	protected override void ApplyEffectToPlayerSpecific(PlayerRef targetPlayer)
 	{

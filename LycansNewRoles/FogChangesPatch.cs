@@ -36,37 +36,39 @@ public class FogChangesPatch
 		//IL_02dd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_026f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0275: Invalid comparison between Unknown and I4
-		//IL_0328: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_031b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0366: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0359: Unknown result type (might be due to invalid IL or missing references)
 		//IL_029d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0439: Unknown result type (might be due to invalid IL or missing references)
-		//IL_038e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_046e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_045c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_049b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06c9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_052b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0519: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_056a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0558: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0597: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05d6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0639: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0667: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0658: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0694: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0477: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0408: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0518: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0707: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0569: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0557: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0725: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0718: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0596: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0732: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0626: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0614: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0677: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0696: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06d2: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			EGameState localGameState = GameManager.LocalGameState;
@@ -144,6 +146,12 @@ public class FogChangesPatch
 					num2 = 65f * BalancingValues.NightFogEndDistanceMultiplierByMap(GameManager.Instance.MapID);
 					num = 0.25f;
 					RenderSettings.fogColor = BalancingValues.CultistActiveFogColor;
+				}
+				if (NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
+				{
+					num2 = 65f * BalancingValues.NightFogEndDistanceMultiplierByMap(GameManager.Instance.MapID);
+					num = 0.25f;
+					RenderSettings.fogColor = BalancingValues.VoodooActiveFogColor;
 				}
 				if (NetworkBool.op_Implicit(povPlayer.IsWolf))
 				{

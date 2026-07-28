@@ -111,7 +111,7 @@ public class PurifierFire : NetworkBehaviour
 						PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectPurifierBurn", ((SimulationBehaviour)this).Runner, 1f, _burnDuration);
 						if (NetworkBool.op_Implicit(item.PlayerController.IsWolf))
 						{
-							PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, 5f);
+							PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, 2f);
 						}
 					}
 				}

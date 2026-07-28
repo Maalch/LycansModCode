@@ -229,6 +229,14 @@ public class HermitHideout : NetworkBehaviour
 		{
 			return;
 		}
+		if (_nextCheckWatch == null)
+		{
+			LycansUtility.AddLogOnlyForMe("HermitHideout: _nextCheckWatch is null");
+		}
+		if (_hideWatch == null)
+		{
+			LycansUtility.AddLogOnlyForMe("HermitHideout: _hideWatch is null");
+		}
 		if (_nextCheckWatch.ElapsedMilliseconds >= 1000)
 		{
 			if (((SimulationBehaviour)this).Runner.IsServer && LycansUtility.GameActuallyInPlay)

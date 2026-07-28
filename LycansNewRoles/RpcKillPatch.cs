@@ -284,7 +284,7 @@ internal class RpcKillPatch
 				{
 					playerCustom.PlayerController.IsWolf = NetworkBool.op_Implicit(false);
 				}
-				if (!NetworkBool.op_Implicit(playerCustom.Resurrected) && playerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie)
+				if (!NetworkBool.op_Implicit(playerCustom.ResurrectedByNecromancer) && playerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie)
 				{
 					playerCustom.Stats.OnKilled(__instance.Killer, ((Component)__instance).transform.position);
 				}

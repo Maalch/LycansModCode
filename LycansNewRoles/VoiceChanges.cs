@@ -11,9 +11,10 @@ public static class VoiceChanges
 		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
 		if (((SimulationBehaviour)playerController).HasInputAuthority || NetworkBool.op_Implicit(playerController.IsDead))
 		{
 			return 1f;
@@ -34,6 +35,10 @@ public static class VoiceChanges
 		if (NetworkBool.op_Implicit(playerCustom.Tiny))
 		{
 			return 1.2f;
+		}
+		if (playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie && NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
+		{
+			return 0.9f;
 		}
 		return 1f;
 	}

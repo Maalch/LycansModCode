@@ -11,38 +11,44 @@ public class KnockbackComponent : MonoBehaviour
 
 	public Vector3? Knockback => _knockback;
 
-	public void Init(Vector3 direction, float power, float reductionPerSecond)
+	public void Init(Vector3 direction, float power, float reductionPerSecond, int animationIndex = 9)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		Init(direction, power, new Vector3(reductionPerSecond, reductionPerSecond, reductionPerSecond));
+	}
+
+	public void Init(Vector3 direction, float power, Vector3 reductionPerSecond, int animationIndex = 9)
 	{
 		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		Vector3 val = new Vector3(direction.x, direction.y, direction.z) * power;
+		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 val = direction * power;
 		_knockback = val;
 		float num = Mathf.Abs(val.x) + Mathf.Abs(val.y) + Mathf.Abs(val.z);
 		float num2 = Mathf.Abs(val.x) / num;
 		float num3 = Mathf.Abs(val.y) / num;
 		float num4 = Mathf.Abs(val.z) / num;
-		_knockbackReductionPerSecond = new Vector3(reductionPerSecond * num2, reductionPerSecond * num3, reductionPerSecond * num4);
+		_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
 		PlayerController component = ((Component)this).GetComponent<PlayerController>();
-		PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)component).Runner, component.Index, 9);
+		PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)component).Runner, component.Index, animationIndex);
 	}
 
-	public void Stop()
+	public void StopKnockback()
 	{
-		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		_knockback = Vector3.zero;
+		_knockback = null;
 	}
 
 	public void Update()
@@ -57,7 +63,7 @@ public class KnockbackComponent : MonoBehaviour
 		//IL_0191: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_020d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
 		if (!_knockback.HasValue)
 		{
 			return;
@@ -90,9 +96,9 @@ public class KnockbackComponent : MonoBehaviour
 		{
 			num3 = Mathf.Min(0f, _knockback.Value.z + _knockbackReductionPerSecond.z * Time.deltaTime);
 		}
-		if (num == 0f && num2 == 0f && num3 == 0f)
+		if (Mathf.Abs(num) <= 0.1f && Mathf.Abs(num2) <= 0.1f && Mathf.Abs(num3) <= 0.1f)
 		{
-			_knockback = null;
+			StopKnockback();
 		}
 		else
 		{

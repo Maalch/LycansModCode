@@ -53,6 +53,8 @@ public class PlayerNewAnimationsComponent : MonoBehaviour
 
 	public const string AnimationKnockback = "Unarmed-Knockback-Back1";
 
+	public const string AnimationJump = "HumanM@Jump01 - Begin";
+
 	public const string AnimationSpellcastLoop = "CastingLoop";
 
 	public const string AnimationSabotage = "HumanM@Gathering01";

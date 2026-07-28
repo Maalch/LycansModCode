@@ -25,7 +25,7 @@ internal class TransformChangesPatch
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
-			if (NetworkBool.op_Implicit(player.Resurrected))
+			if (NetworkBool.op_Implicit(player.ResurrectedByNecromancer))
 			{
 				return false;
 			}

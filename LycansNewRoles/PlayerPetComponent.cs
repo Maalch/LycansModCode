@@ -167,21 +167,21 @@ public class PlayerPetComponent : NetworkBehaviour
 	{
 		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
 		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)changed.Behaviour._object == (Object)null)
 		{
 			Plugin.Logger.LogError((object)("Pet has no object!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString()));
 		}
 		else if ((Object)(object)changed.Behaviour._object.GetComponent<Animator>() == (Object)null)
 		{
-			Plugin.Logger.LogError((object)("Pet has no animator!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString()));
+			Plugin.Logger.LogError((object)("Pet has no animator!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString() + ", object: " + (object)changed.Behaviour._object));
 			if (PlayerCustomRegistry.HasPlayer(changed.Behaviour.Ref))
 			{
 				PlayerCustom player = PlayerCustomRegistry.GetPlayer(changed.Behaviour.Ref);
@@ -189,6 +189,7 @@ public class PlayerPetComponent : NetworkBehaviour
 				NetworkString<_32> username = player.PlayerController.PlayerData.Username;
 				logger.LogError((object)("Player name: " + ((object)username/*cast due to constrained. prefix*/).ToString() + ", pet index: " + player.PetIndex));
 			}
+			changed.Behaviour.PetIndex = 0;
 		}
 		else
 		{

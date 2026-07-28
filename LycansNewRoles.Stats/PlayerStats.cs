@@ -121,7 +121,7 @@ public class PlayerStats
 
 	public const string DeathTypeInquisitorBurn = "INQUISITOR_GUESS";
 
-	public const string DeathTypeCultistFailed = "CULTIST_FAILED";
+	public const string DeathTypeHuntFailed = "HUNT_FAILED";
 
 	public const string DeathTypeMole = "MOLE";
 
@@ -216,7 +216,7 @@ public class PlayerStats
 			"KILLED_VILLAGE_IDIOT" => 20, 
 			"MERCENARY_HUNT_KILL" => 21, 
 			"INQUISITOR_GUESS" => 22, 
-			"CULTIST_FAILED" => 23, 
+			"HUNT_FAILED" => 23, 
 			"MOLE" => 24, 
 			"VENGEANCE" => 25, 
 			_ => 0, 
@@ -249,7 +249,7 @@ public class PlayerStats
 			20 => "KILLED_VILLAGE_IDIOT", 
 			21 => "MERCENARY_HUNT_KILL", 
 			22 => "INQUISITOR_GUESS", 
-			23 => "CULTIST_FAILED", 
+			23 => "HUNT_FAILED", 
 			24 => "MOLE", 
 			25 => "VENGEANCE", 
 			_ => "", 

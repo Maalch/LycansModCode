@@ -47,10 +47,10 @@ public class UIRoleDescription : MonoBehaviour
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c73: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c78: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ce7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d2d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d32: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0da1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0da6: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -138,6 +138,13 @@ public class UIRoleDescription : MonoBehaviour
 						LycansUtility.GetInputDisplayCustom((InputActionName)4).Replace(" -", "")
 					};
 					break;
+				case PlayerCustom.PlayerPrimaryRolePower.Acrobat:
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
+						2f.ToString()
+					};
+					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Peasant:
 					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
 					break;
@@ -183,7 +190,11 @@ public class UIRoleDescription : MonoBehaviour
 					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
-					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
+						1f.ToString()
+					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Hermit:
 					list = new List<string>
@@ -197,7 +208,14 @@ public class UIRoleDescription : MonoBehaviour
 					list = new List<string>
 					{
 						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
-						8.ToString(),
+						6.ToString(),
+						LycansUtility.GetInputDisplayCustom((InputActionName)6).Replace(" -", "")
+					};
+					break;
+				case PlayerCustom.PlayerPrimaryRolePower.Inventor:
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", ""),
 						LycansUtility.GetInputDisplayCustom((InputActionName)6).Replace(" -", "")
 					};
 					break;
@@ -263,7 +281,11 @@ public class UIRoleDescription : MonoBehaviour
 					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
 					break;
 				case PlayerCustom.PlayerNewPrimaryRole.Voodoo:
-					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", "") };
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", ""),
+						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", "")
+					};
 					break;
 				case PlayerCustom.PlayerNewPrimaryRole.Kidnapper:
 					list = new List<string>

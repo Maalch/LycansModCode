@@ -136,13 +136,13 @@ public class DraftManager : NetworkBehaviour
 		}
 		int num = Plugin.CustomConfig.WolfPowersCount;
 		List<PlayerCustom.PlayerPrimaryRolePower> list2 = (from o in Plugin.CustomConfig.PrimaryRolePowerActive
-			where o.Value && PlayerCustom.IsPrimaryRolePowerForWolves(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key)
+			where o.Value && PlayerCustom.IsPrimaryRolePowerForWolves(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key) && PlayerCustom.IsPrimaryRolePowerAvailableForCurrentMap(o.Key)
 			select o.Key).ToList();
 		List<PlayerCustom.PlayerPrimaryRolePower> list3 = (from o in Plugin.CustomConfig.PrimaryRolePowerActive
-			where o.Value && PlayerCustom.IsPrimaryRolePowerForEliteVillagers(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key)
+			where o.Value && PlayerCustom.IsPrimaryRolePowerForEliteVillagers(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key) && PlayerCustom.IsPrimaryRolePowerAvailableForCurrentMap(o.Key)
 			select o.Key).ToList();
 		List<PlayerCustom.PlayerPrimaryRolePower> list4 = (from o in Plugin.CustomConfig.PrimaryRolePowerActive
-			where o.Value && PlayerCustom.IsPrimaryRolePowerForNormalVillagers(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key)
+			where o.Value && PlayerCustom.IsPrimaryRolePowerForNormalVillagers(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key) && PlayerCustom.IsPrimaryRolePowerAvailableForCurrentMap(o.Key)
 			select o.Key).ToList();
 		List<PlayerCustom.PlayerPrimaryRolePower> list5 = new List<PlayerCustom.PlayerPrimaryRolePower>();
 		foreach (PlayerCustom.PlayerPrimaryRolePower item2 in list4)
@@ -537,19 +537,18 @@ public class DraftManager : NetworkBehaviour
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0192: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0258: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0193: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0263: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0268: Unknown result type (might be due to invalid IL or missing references)
 		DraftTimer = TickTimer.None;
 		Active = NetworkBool.op_Implicit(false);
-		GameManagerCustom.Instance.EventsManager.RollEvent();
 		GameManager.Instance.ClearSpawnedItems();
 		GameManager.Instance.UpdatePotions();
 		GameManager.Instance.SpawnRandomItems();
@@ -574,9 +573,11 @@ public class DraftManager : NetworkBehaviour
 		SabotageManager.Instance.Init();
 		BeastManager.Instance.Reset();
 		CultistManager.Instance.Reset();
+		VoodooManager.Instance.Reset();
 		GameManager.Instance.UpdateLoot(true);
 		GameManager.Instance.GiveAlchemistPotions();
 		GameManagerCustom.Instance.NewDay();
+		GameManagerCustom.Instance.EventsManager.RollEvent();
 		Plugin.CreatePlayerIllusionIfNeeded();
 		foreach (PlayerCustom allPlayer2 in PlayerCustomRegistry.AllPlayers)
 		{

@@ -33,7 +33,7 @@ public class AccessorySpellbook : Accessory
 		Regeneration,
 		Satiated,
 		Camouflage,
-		ForcedRotation
+		TransformWolf
 	}
 
 	public class SpellbookEffectDetails
@@ -192,11 +192,11 @@ public class AccessorySpellbook : Accessory
 	public static void CastEffectOnPlayer(PlayerCustom targetPlayerCustom, PlayerController targetPlayer, NetworkRunner runner)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_047c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0487: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ba: Unknown result type (might be due to invalid IL or missing references)
 		Dictionary<PossibleEffects, SpellbookEffectDetails> dictionary = (NetworkBool.op_Implicit(targetPlayer.IsWolf) ? BalancingValues.SpellbookPossibleEffectsAndDurationsOnWolves : BalancingValues.SpellbookPossibleEffectsAndDurationsOnHumans);
 		List<PossibleEffects> list = new List<PossibleEffects>();
 		foreach (KeyValuePair<PossibleEffects, SpellbookEffectDetails> item in dictionary)
@@ -278,6 +278,10 @@ public class AccessorySpellbook : Accessory
 			break;
 		case PossibleEffects.Camouflage:
 			PlayerCustom.ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectStealthing", runner, 1f, spellbookEffectDetails.Duration);
+			break;
+		case PossibleEffects.TransformWolf:
+			PlayerCustom.Rpc_Forced_Transform(runner, targetPlayerCustom.Index, 1);
+			PlayerCustom.ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectWeakened", runner, 1f, 3600f);
 			break;
 		}
 		PlayerCustom.Rpc_Effect_On_Player(runner, targetPlayerCustom.Index, 1);

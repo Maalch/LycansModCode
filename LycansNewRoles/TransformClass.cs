@@ -17,31 +17,32 @@ public class TransformClass
 		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
-		//IL_027a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_020e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0220: Unknown result type (might be due to invalid IL or missing references)
-		//IL_022e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0302: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_035b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0368: Unknown result type (might be due to invalid IL or missing references)
-		//IL_037d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_038a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0138: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0207: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0213: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0219: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0233: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0254: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0266: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0274: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0348: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0312: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f2: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
 		if ((Object)(object)player != (Object)null && NetworkBool.op_Implicit(player.IsWolfPup))
 		{
@@ -67,6 +68,14 @@ public class TransformClass
 			}
 			return false;
 		}
+		if (NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
+		{
+			if (((SimulationBehaviour)__instance).Object.HasInputAuthority)
+			{
+				UIManager.ShowRedCenterMessage("NALES_UI_ACTION_CANNOT_TRANSFORM_VOODOO", 0.5f, 4f);
+			}
+			return false;
+		}
 		if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = player.PrimaryRoleTargetRef;
@@ -86,7 +95,7 @@ public class TransformClass
 				player2.IsClimbing = NetworkBool.op_Implicit(false);
 				player2.PlayerEffectManager.ClearEffects();
 				PlayerCustom.ApplyEffectToPlayer(player2, "LycansNewRoles.EffectPossessed", ((SimulationBehaviour)__instance).Runner);
-				goto IL_033e;
+				goto IL_0384;
 			}
 		}
 		bool flag = player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Sneak && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool);
@@ -105,8 +114,8 @@ public class TransformClass
 		{
 			AudioManager.PlayAndFollow("WOLF_TRANSFORM", ((Component)__instance).transform, (MixerTarget)2, 30f, 1f);
 		}
-		goto IL_033e;
-		IL_033e:
+		goto IL_0384;
+		IL_0384:
 		Traverse.Create((object)__instance).Field<ParticleSystem>("smokeParticleSystem").Value.Play();
 		__instance.TransformedNight = NetworkBool.op_Implicit(true);
 		__instance.IsWolf = NetworkBool.op_Implicit(true);

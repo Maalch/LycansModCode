@@ -81,7 +81,7 @@ internal class TrapTriggerPatch
 			}
 			goto IL_0145;
 			IL_0145:
-			player.Knockback.Stop();
+			player.Knockback.StopKnockback();
 		}
 		catch (Exception ex)
 		{

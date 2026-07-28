@@ -84,6 +84,8 @@ internal class LocalCameraHandlerSwitchPoVPatch
 			MysticRepulsor.UpdateVisibilityForAllRepulsors();
 			HermitHideout.UpdateVisibilityForAllHideouts();
 			RunemasterRune.UpdateVisibilityForAllRunes();
+			AcrobatSpot.UpdateVisibilityForAllSpots();
+			InventorScrap.UpdateVisibilityForAllScrap();
 			if (UIManager.DetectivePanel.Active)
 			{
 				UIManager.DetectivePanel.Hide();

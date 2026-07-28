@@ -22,7 +22,17 @@ internal class EffectDespawnedPatch
 			{
 				if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
 				{
-					if (__instance is SpotterEffect && player.IsCurrentlyPlayedOrObserved)
+					if (!(__instance is SpotterEffect))
+					{
+						if (__instance is JumpEffect)
+						{
+							((Component)player.PlayerController).gameObject.layer = 3;
+							player.ResetGravity();
+							((Component)player.PlayerController).GetComponent<KnockbackComponent>().StopKnockback();
+							player.UpdateCanMoveAnimation();
+						}
+					}
+					else if (player.IsCurrentlyPlayedOrObserved)
 					{
 						foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
 						{
@@ -51,7 +61,7 @@ internal class EffectDespawnedPatch
 		{
 			player.UpdateVisibility();
 		}
-		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is RepulsionEffect))
+		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is RepulsionEffect) && !(__instance is StrenghtenedEffect))
 		{
 			if (__instance is BurningEffect || __instance is PurifierBurnEffect)
 			{

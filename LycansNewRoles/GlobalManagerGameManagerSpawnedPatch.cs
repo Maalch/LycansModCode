@@ -32,8 +32,11 @@ internal class GlobalManagerGameManagerSpawnedPatch
 		//IL_0206: Unknown result type (might be due to invalid IL or missing references)
 		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0213: Unknown result type (might be due to invalid IL or missing references)
-		//IL_026f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0298: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0255: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e2: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!((SimulationBehaviour)__instance).Runner.SessionInfo.IsOpen)
@@ -54,6 +57,8 @@ internal class GlobalManagerGameManagerSpawnedPatch
 			networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.BeastManager");
 			((SimulationBehaviour)__instance).Runner.Spawn(networkObject, (Vector3?)null, (Quaternion?)null, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 			networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.CultistManager");
+			((SimulationBehaviour)__instance).Runner.Spawn(networkObject, (Vector3?)null, (Quaternion?)null, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+			networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.VoodooManager");
 			((SimulationBehaviour)__instance).Runner.Spawn(networkObject, (Vector3?)null, (Quaternion?)null, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 			networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.DraftManager");
 			((SimulationBehaviour)__instance).Runner.Spawn(networkObject, (Vector3?)null, (Quaternion?)null, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);

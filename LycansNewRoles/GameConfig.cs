@@ -1992,10 +1992,15 @@ public class GameConfig : NetworkBehaviour
 			item5.Value.isOn = true;
 			PlayerPrefs.SetInt("GAME_SETTINGS_" + item5.Key, 1);
 		}
-		foreach (KeyValuePair<string, Toggle> item6 in AccessoriesConfig)
+		foreach (KeyValuePair<EventsManager.EventType, Toggle> item6 in EventsConfig)
 		{
 			item6.Value.isOn = true;
 			PlayerPrefs.SetInt("GAME_SETTINGS_" + item6.Key, 1);
+		}
+		foreach (KeyValuePair<string, Toggle> item7 in AccessoriesConfig)
+		{
+			item7.Value.isOn = true;
+			PlayerPrefs.SetInt("GAME_SETTINGS_" + item7.Key, 1);
 		}
 		UIOptionsDisplayPanel.SendRefreshToClients();
 	}

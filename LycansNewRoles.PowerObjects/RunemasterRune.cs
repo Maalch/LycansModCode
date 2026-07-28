@@ -24,8 +24,6 @@ public class RunemasterRune : NetworkBehaviour
 
 	private Stopwatch _explosionWatch = new Stopwatch();
 
-	public static List<RunemasterRune> AssociatedRunes = new List<RunemasterRune>();
-
 	private int _runeIndex;
 
 	private bool _isSelected = false;
@@ -140,7 +138,7 @@ public class RunemasterRune : NetworkBehaviour
 				{
 					((Component)item).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 3000f * num3 * num9, 2000f);
 				}
-				float num10 = 12f * num4 * num8;
+				float num10 = 8f * num4 * num8;
 				num10 = Mathf.Min(num10, 10f);
 				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, num10);
 				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)this).Runner, 1f, num10);
@@ -167,6 +165,8 @@ public class RunemasterRune : NetworkBehaviour
 		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013a: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (((SimulationBehaviour)changed.Behaviour).Runner.IsServer)
@@ -175,7 +175,7 @@ public class RunemasterRune : NetworkBehaviour
 					where o.CreatorRef == changed.Behaviour.CreatorRef
 					select o).ToList();
 				changed.Behaviour._runeIndex = ((!list.Any()) ? 1 : (list.Max((RunemasterRune o) => o._runeIndex) + 1));
-				if (list.Count > 8)
+				if (list.Count > 6)
 				{
 					int minRuneIndex = list.Min((RunemasterRune o) => o._runeIndex);
 					RunemasterRune runemasterRune = list.First((RunemasterRune o) => o._runeIndex == minRuneIndex);
@@ -183,16 +183,12 @@ public class RunemasterRune : NetworkBehaviour
 				}
 			}
 			changed.Behaviour._creatorCustom = PlayerCustomRegistry.GetPlayer(changed.Behaviour.CreatorRef);
-			if (changed.Behaviour._creatorCustom.IsCurrentlyPlayedOrObserved)
+			if (changed.Behaviour.CreatorRef == PlayerController.Local.Ref)
 			{
 				Plugin.Minimap.AddRunemasterRuneIcon(changed.Behaviour);
-				if (!AssociatedRunes.Any())
-				{
-					changed.Behaviour.SetSelected(selected: true);
-				}
-				AssociatedRunes.Add(changed.Behaviour);
-				changed.Behaviour._creatorCustom.UpdateDescriptionStatusIfNeeded();
 			}
+			changed.Behaviour._creatorCustom.AssociatedRunes.Add(changed.Behaviour);
+			changed.Behaviour._creatorCustom.UpdateDescriptionStatusIfNeeded();
 			changed.Behaviour._nextCheckWatch.Restart();
 			changed.Behaviour.UpdateVisibility();
 		}
@@ -300,10 +296,13 @@ public class RunemasterRune : NetworkBehaviour
 
 	public override void Despawned(NetworkRunner runner, bool hasState)
 	{
-		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
 		((NetworkBehaviour)this).Despawned(runner, hasState);
-		AssociatedRunes.Remove(this);
+		if ((Object)(object)_creatorCustom != (Object)null)
+		{
+			_creatorCustom.AssociatedRunes.Remove(this);
+		}
 		if ((Object)(object)_creatorCustom != (Object)null && _creatorCustom.Ref == PlayerController.Local.Ref)
 		{
 			PlayerCustom.Local.UpdateDescriptionStatusIfNeeded();

@@ -30,6 +30,8 @@ public class CultistSkullSpirit : NetworkBehaviour
 
 	private GameObject _visual;
 
+	private GameObject _light;
+
 	private bool _slowedByWall = false;
 
 	private Stopwatch _slowStopwatch = new Stopwatch();
@@ -120,8 +122,10 @@ public class CultistSkullSpirit : NetworkBehaviour
 		_boxCollider = ((Component)this).GetComponent<BoxCollider>();
 		_portal = ((Component)((Component)this).transform.Find("Portal")).gameObject;
 		_visual = ((Component)((Component)this).transform.Find("Visual")).gameObject;
-		_portal.SetActive(true);
+		_light = ((Component)((Component)this).transform.Find("Light")).gameObject;
+		_portal.SetActive(false);
 		_visual.SetActive(false);
+		_light.SetActive(false);
 		_slowStopwatch.Reset();
 	}
 
@@ -146,6 +150,7 @@ public class CultistSkullSpirit : NetworkBehaviour
 	[Preserve]
 	public static void CreatorRefChanged(Changed<CultistSkullSpirit> changed)
 	{
+		changed.Behaviour.UpdateVisibility();
 	}
 
 	[Preserve]
@@ -154,8 +159,34 @@ public class CultistSkullSpirit : NetworkBehaviour
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 		if (NetworkBool.op_Implicit(changed.Behaviour.Appeared))
 		{
-			changed.Behaviour._portal.SetActive(false);
-			changed.Behaviour._visual.SetActive(true);
+			changed.Behaviour.UpdateVisibility();
+		}
+	}
+
+	private void UpdateVisibility()
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		if (CreatorRef == PlayerRef.None || CreatorRef == PlayerController.Local.LocalCameraHandler.PovPlayer.Ref)
+		{
+			_portal.SetActive(false);
+			_visual.SetActive(false);
+			_light.SetActive(false);
+		}
+		else if (NetworkBool.op_Implicit(Appeared))
+		{
+			_portal.SetActive(false);
+			_visual.SetActive(true);
+			_light.SetActive(true);
+		}
+		else
+		{
+			_portal.SetActive(true);
+			_visual.SetActive(false);
+			_light.SetActive(true);
 		}
 	}
 
@@ -241,13 +272,13 @@ public class CultistSkullSpirit : NetworkBehaviour
 			if (_changeTargetPlayerStopwatch.ElapsedMilliseconds >= 1000)
 			{
 				TargetPlayerRef = (from o in PlayerCustomRegistry
-					where !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Cultist && !NetworkBool.op_Implicit(o.CapturedByCultist) && !NetworkBool.op_Implicit(o.Resurrected) && !o.IsOutOfTheWorld
+					where !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Cultist && !NetworkBool.op_Implicit(o.CapturedByCultist) && !NetworkBool.op_Implicit(o.ResurrectedByNecromancer) && !o.IsOutOfTheWorld
 					orderby Vector3.Distance(((Component)o.PlayerController).transform.position, ((Component)this).transform.position)
 					select o).FirstOrDefault().Ref;
 			}
 			if (_checkCollisionsStopwatch.ElapsedMilliseconds >= 250)
 			{
-				IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.CapturedByCultist) && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Cultist && !NetworkBool.op_Implicit(o.Resurrected) && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
+				IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.CapturedByCultist) && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Cultist && !NetworkBool.op_Implicit(o.ResurrectedByNecromancer) && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
 				foreach (PlayerCustom item in enumerable)
 				{
 					if (Vector3.Distance(((Component)this).transform.position, ((Component)item.PlayerController).transform.position) <= 1f)
@@ -290,7 +321,7 @@ public class CultistSkullSpirit : NetworkBehaviour
 		}
 		if (((SimulationBehaviour)this).Runner.IsServer)
 		{
-			float num = (_slowedByWall ? 1.25f : 3.5f);
+			float num = (_slowedByWall ? 1.4f : 3.8f);
 			((Component)this).transform.position = Vector3.MoveTowards(((Component)this).transform.position, ((Component)player.PlayerController).transform.position, num * ((SimulationBehaviour)this).Runner.DeltaTime);
 		}
 		((Component)this).transform.LookAt(((Component)player.PlayerController).transform.position);

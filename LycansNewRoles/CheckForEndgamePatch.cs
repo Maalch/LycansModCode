@@ -16,60 +16,88 @@ internal class CheckForEndgamePatch
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c1: Invalid comparison between Unknown and I4
-		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0200: Invalid comparison between Unknown and I4
-		//IL_0284: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028a: Invalid comparison between Unknown and I4
-		//IL_0347: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0351: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0242: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
-		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0441: Invalid comparison between Unknown and I4
-		//IL_02da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0559: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0466: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e5: Invalid comparison between Unknown and I4
-		//IL_01c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0474: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0573: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0579: Invalid comparison between Unknown and I4
-		//IL_0667: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06b8: Invalid comparison between Unknown and I4
-		//IL_07c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07c7: Invalid comparison between Unknown and I4
-		//IL_0857: Unknown result type (might be due to invalid IL or missing references)
-		//IL_085d: Invalid comparison between Unknown and I4
-		//IL_070f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0715: Invalid comparison between Unknown and I4
-		//IL_07e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0809: Unknown result type (might be due to invalid IL or missing references)
-		//IL_080f: Invalid comparison between Unknown and I4
-		//IL_07f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ab: Invalid comparison between Unknown and I4
+		//IL_0169: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0176: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0312: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0339: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033f: Invalid comparison between Unknown and I4
+		//IL_0320: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0390: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0248: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03bd: Invalid comparison between Unknown and I4
+		//IL_039e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0408: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0532: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0462: Invalid comparison between Unknown and I4
+		//IL_0540: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0635: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0647: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04cd: Invalid comparison between Unknown and I4
+		//IL_068f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_069d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ea: Invalid comparison between Unknown and I4
+		//IL_06e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0757: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0761: Unknown result type (might be due to invalid IL or missing references)
+		//IL_087a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07f7: Invalid comparison between Unknown and I4
+		//IL_08c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08cb: Invalid comparison between Unknown and I4
+		//IL_09da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e0: Invalid comparison between Unknown and I4
+		//IL_0922: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0928: Invalid comparison between Unknown and I4
+		//IL_0a70: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a76: Invalid comparison between Unknown and I4
+		//IL_0a01: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a22: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a28: Invalid comparison between Unknown and I4
+		//IL_0a0f: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBool.op_Implicit(__instance.IsStarted) && !NetworkBool.op_Implicit(__instance.IsFinished))
 			{
-				if (NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) || NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
+				if (NetworkBool.op_Implicit(VoodooManager.Instance.VoodooTriggered))
+				{
+					PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
+					if ((Object)(object)specificNewPrimaryRole != (Object)null)
+					{
+						if (PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Voodoo && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie) == 0)
+						{
+							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole.Index);
+							return false;
+						}
+						if (!NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
+						{
+							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Voodoo && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie).First().Index);
+						}
+						return false;
+					}
+				}
+				if (NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) || NetworkBool.op_Implicit(CultistManager.Instance.CultistActive) || NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
 				{
 					return false;
 				}
-				PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.VillageIdiot);
-				if ((Object)(object)specificNewPrimaryRole != (Object)null)
+				PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.VillageIdiot);
+				if ((Object)(object)specificNewPrimaryRole2 != (Object)null)
 				{
-					PlayerController playerController = specificNewPrimaryRole.PlayerController;
-					if (NetworkBool.op_Implicit(playerController.IsDead) && NetworkBool.op_Implicit(specificNewPrimaryRole.RoleDeathUniqueBool))
+					PlayerController playerController = specificNewPrimaryRole2.PlayerController;
+					if (NetworkBool.op_Implicit(playerController.IsDead) && NetworkBool.op_Implicit(specificNewPrimaryRole2.RoleDeathUniqueBool))
 					{
-						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole.Index);
+						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole2.Index);
 						return false;
 					}
 				}
@@ -98,23 +126,80 @@ internal class CheckForEndgamePatch
 						}
 					}
 				}
-				if ((int)GameManager.LocalGameState == 4)
+				bool flag = false;
+				PlayerCustom specificNewPrimaryRole3 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
+				if ((Object)(object)specificNewPrimaryRole3 != (Object)null && specificNewPrimaryRole3.SoloRoleObjectiveCount >= BalancingValues.SpyGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.Kidnapped))
 				{
-					PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
-					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && specificNewPrimaryRole2.SoloRoleObjectiveCount >= BalancingValues.SpyGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole2.Kidnapped))
-					{
-						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole2.Index);
-						return false;
-					}
-				}
-				if ((int)GameManager.LocalGameState == 4)
-				{
-					PlayerCustom specificNewPrimaryRole3 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Scientist);
-					if ((Object)(object)specificNewPrimaryRole3 != (Object)null && specificNewPrimaryRole3.SoloRoleObjectiveCount >= BalancingValues.ScientistGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.Kidnapped))
+					flag = true;
+					if ((int)GameManager.LocalGameState == 4)
 					{
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole3.Index);
 						return false;
 					}
+				}
+				PlayerCustom specificNewPrimaryRole4 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Scientist);
+				if ((Object)(object)specificNewPrimaryRole4 != (Object)null && specificNewPrimaryRole4.SoloRoleObjectiveCount >= BalancingValues.ScientistGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.Kidnapped))
+				{
+					flag = true;
+					if ((int)GameManager.LocalGameState == 4)
+					{
+						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole4.Index);
+						return false;
+					}
+				}
+				PlayerCustom kidnapper = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Kidnapper);
+				if ((Object)(object)kidnapper != (Object)null && !NetworkBool.op_Implicit(kidnapper.PlayerController.IsDead))
+				{
+					if (PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.Ref != kidnapper.Ref && !NetworkBool.op_Implicit(o.Kidnapped) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)) == 0)
+					{
+						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
+						return false;
+					}
+					if ((int)GameManager.LocalGameState == 4 && PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.Ref != kidnapper.Ref && !NetworkBool.op_Implicit(o.Kidnapped) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)) <= 1)
+					{
+						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
+						return false;
+					}
+					if (kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerRegistry.Count))
+					{
+						flag = true;
+						if ((int)GameManager.LocalGameState == 4 && kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerRegistry.Count))
+						{
+							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
+							return false;
+						}
+					}
+				}
+				PlayerCustom specificNewPrimaryRole5 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
+				if ((Object)(object)specificNewPrimaryRole5 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole5.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole5.Kidnapped))
+				{
+					int num2 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Voodoo || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);
+					int num3 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Voodoo && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
+					int num4 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => ((int)o.PlayerController.Role == 1 || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Traitor) && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
+					if (num2 >= num3 && num2 > num4)
+					{
+						flag = true;
+						if ((int)GameManager.LocalGameState == 4)
+						{
+							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole5.Index);
+							return false;
+						}
+					}
+				}
+				PlayerCustom beast = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Beast);
+				if ((Object)(object)beast != (Object)null && !NetworkBool.op_Implicit(beast.PlayerController.IsDead) && !NetworkBool.op_Implicit(beast.Kidnapped) && PlayerCustomRegistry.AllPlayers.All((PlayerCustom o) => o.Ref == beast.Ref || NetworkBool.op_Implicit(o.PlayerController.IsDead) || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie || NetworkBool.op_Implicit(o.BeastMark) || NetworkBool.op_Implicit(o.Kidnapped) || NetworkBool.op_Implicit(o.ResurrectedByNecromancer)))
+				{
+					flag = true;
+				}
+				PlayerCustom specificNewPrimaryRole6 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Mercenary);
+				if ((Object)(object)specificNewPrimaryRole6 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole6.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole6.Kidnapped) && specificNewPrimaryRole6.SoloRoleObjectiveCount >= specificNewPrimaryRole6.SoloRoleObjectiveTarget)
+				{
+					flag = true;
+				}
+				PlayerCustom specificNewPrimaryRole7 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Cultist);
+				if ((Object)(object)specificNewPrimaryRole7 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole7.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole7.Kidnapped) && specificNewPrimaryRole7.SoloRoleObjectiveCount >= 10000)
+				{
+					flag = true;
 				}
 				List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Lover).ToList();
 				if (list.Count == 2 && !NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(list.First().Ref).IsDead) && !list.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.Kidnapped)))
@@ -127,43 +212,6 @@ internal class CheckForEndgamePatch
 					if ((int)GameManager.LocalGameState == 4 && PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) <= 4)
 					{
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, list.First().Index);
-						return false;
-					}
-				}
-				if ((int)GameManager.LocalGameState == 4)
-				{
-					PlayerCustom specificNewPrimaryRole4 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
-					if ((Object)(object)specificNewPrimaryRole4 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole4.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.Kidnapped))
-					{
-						int num2 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Voodoo || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);
-						int num3 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Voodoo && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
-						int num4 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => ((int)o.PlayerController.Role == 1 || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Traitor) && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
-						if (num2 >= num3 && num2 > num4)
-						{
-							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole4.Index);
-							return false;
-						}
-					}
-				}
-				PlayerCustom kidnapper = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Kidnapper);
-				if ((Object)(object)kidnapper != (Object)null && !NetworkBool.op_Implicit(kidnapper.PlayerController.IsDead))
-				{
-					if ((int)GameManager.LocalGameState == 4)
-					{
-						if (kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerRegistry.Count))
-						{
-							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
-							return false;
-						}
-						if (PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.Ref != kidnapper.Ref && !NetworkBool.op_Implicit(o.Kidnapped) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)) <= 1)
-						{
-							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
-							return false;
-						}
-					}
-					if (PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.Ref != kidnapper.Ref && !NetworkBool.op_Implicit(o.Kidnapped) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)) == 0)
-					{
-						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
 						return false;
 					}
 				}
@@ -187,7 +235,7 @@ internal class CheckForEndgamePatch
 							}
 						}
 					}
-					if (num5 == 0)
+					if (num5 == 0 && !flag)
 					{
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, PlayerCustomRegistry.GetAnyVillager().Index);
 						return false;

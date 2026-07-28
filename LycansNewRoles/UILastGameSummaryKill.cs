@@ -106,7 +106,7 @@ public class UILastGameSummaryKill : MonoBehaviour
 			_deathTypeIcon.sprite = DeathTypeSpriteLover;
 			break;
 		case "SEER":
-		case "CULTIST_FAILED":
+		case "HUNT_FAILED":
 			_deathTypeIcon.sprite = DeathTypeSpriteCrystalBallGuess;
 			break;
 		case "STARVATION":
@@ -142,15 +142,16 @@ public class UILastGameSummaryKill : MonoBehaviour
 
 	public void UpdateWithWinner(UILastGameSummaryPanel.WinnerType winnerType, PlayerRef winnerRef)
 	{
-		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
-		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0161: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0143: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0148: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
 		_deathTypeIcon.sprite = WinnerSprite;
 		((TMP_Text)_killerText).text = "";
 		((Component)_timingIcon).gameObject.SetActive(false);
@@ -181,6 +182,10 @@ public class UILastGameSummaryKill : MonoBehaviour
 				((TMP_Text)_victimText).text = ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString();
 				((Graphic)_victimText).color = PlayerCustom.PlayerColorInListForGenericSoloRole;
 			}
+			break;
+		case UILastGameSummaryPanel.WinnerType.Survivors:
+			((TMP_Text)_victimText).text = TranslationManager.Instance.GetTranslation("NALES_UI_SURVIVORS");
+			((Graphic)_victimText).color = GameUI.VillagerColor;
 			break;
 		}
 	}

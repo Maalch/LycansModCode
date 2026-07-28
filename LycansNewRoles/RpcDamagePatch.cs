@@ -88,7 +88,7 @@ internal class RpcDamagePatch
 					playerController.Hunger -= 0.1f * (float)GameManager.Instance.MaxHunger;
 					PlayerCustom.ApplyEffectToPlayer(player.PlayerController, "LycansNewRoles.EffectWounded", ((SimulationBehaviour)__instance).Runner);
 				}
-				else if (NetworkBool.op_Implicit(player.Resurrected))
+				else if (NetworkBool.op_Implicit(player.ResurrectedByNecromancer))
 				{
 					__instance.Rpc_Kill(attacker);
 				}

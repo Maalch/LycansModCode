@@ -9,6 +9,21 @@ namespace LycansNewRoles;
 
 public static class BalancingValues
 {
+	public struct AcrobatSpotData
+	{
+		public Vector3 Position;
+
+		public Vector3 Rotation;
+
+		public float KnockbackPower;
+
+		public float GravityDuringJump;
+
+		public float JumpDuration;
+
+		public float FallSpeedDuringJump;
+	}
+
 	public struct ModifiedEffectData(int realIndex, int blueMageCooldownSeconds, float? durationOnTransformedWolf, float? durationOnZombie)
 	{
 		public int RealIndex = realIndex;
@@ -104,6 +119,14 @@ public static class BalancingValues
 
 	public const float EffectDurationPotionImmune = 80f;
 
+	public const float EffectModifiedDurationFlatulence = 75f;
+
+	public const float EffectModifiedDurationGlowing = 90f;
+
+	public const float EffectModifiedDurationParanoia = 90f;
+
+	public const float EffectModifiedDurationTeleportation = 75f;
+
 	public const float AgentEliminationRange = 2.5f;
 
 	public const float AgentEliminationSneakyDuration = 8f;
@@ -168,15 +191,15 @@ public static class BalancingValues
 
 	public const float SpySpyingDefaultRange = 25f;
 
-	public const float SpySpyingPerSecondWithoutBonus = 18f;
+	public const float SpySpyingPerSecondWithoutBonus = 20f;
 
-	public const float SpySpyingPerSecondWithTargetVisible = 54f;
+	public const float SpySpyingPerSecondWithTargetVisible = 58f;
 
-	public const float SpySpyingPerSecondWithSpyImmobile = 31f;
+	public const float SpySpyingPerSecondWithSpyImmobile = 34f;
 
-	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 100f;
+	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 110f;
 
-	public const float SpySpyingDiminishingReturnsValue = 7f;
+	public const float SpySpyingDiminishingReturnsValue = 12f;
 
 	public const float ScientistAnalysisPowerAtMinDistance = 80f;
 
@@ -250,9 +273,21 @@ public static class BalancingValues
 
 	public const float VoodooReanimateCastTime = 2f;
 
-	public const float VoodooHealthLossPerZombiePerPlayerCount = 0.015f;
+	public const float VoodooStrengthenRange = 2.5f;
 
-	public const float ZombieMovementSpeed = 1.1f;
+	public const float VoodooStrengthenedEffectDuration = 40f;
+
+	public const float VoodooHuntTimeSpeedMultiplier = 0.5f;
+
+	public const int VoodooActiveFogEndDistance = 65;
+
+	public static Color VoodooActiveFogColor = new Color(0.5f, 0f, 0.5f, 1f);
+
+	public const float ZombieMovementSpeedOutsideHunt = 1.05f;
+
+	public const float ZombieMovementSpeedDuringHunt = 1.2f;
+
+	public const float ZombieExtraMovementSpeedWithStrengthened = 1.15f;
 
 	public const float ZombieKillRange = 2.5f;
 
@@ -266,7 +301,9 @@ public static class BalancingValues
 
 	public const float ZombieMoaningRange = 22f;
 
-	public const float ZombieHealthLossPerSecondWhenRunning = 25f;
+	public const float ZombieHealthLossPerSecondWhenRunningWithoutStrengthened = 25f;
+
+	public const float ZombieHealthLossPerSecondWhenRunningWithStrengthened = 12f;
 
 	public const float ZombieHealthRegenPerSecondWhenNotRunning = 4f;
 
@@ -290,25 +327,31 @@ public static class BalancingValues
 
 	public const float KidnapperKidnappedPlayersVolumeWithSilence = 0.18f;
 
+	public const float KidnapperKidnappedPlayersVolumeForOtherKidnappedPlayers = 0.35f;
+
 	public const float CultistSkullCreationCastTime = 1f;
 
 	public const int CultistGoal = 10000;
 
 	public const float CultistChargeGainPerSecondPerSkull = 15f;
 
-	public const float CultistSpiritMoveSpeed = 1.5f;
+	public const float CultistSpiritMoveSpeed = 2f;
 
-	public const float CultistSpiritCaptureCooldown = 5f;
+	public const float CultistSpiritCaptureCooldown = 2f;
 
-	public const float CultistInvokedSkullCreationInterval = 6f;
+	public const float CultistSpiritInitialParalysisDuration = 8f;
+
+	public const float CultistInvokedSkullCreationIntervalBase = 8f;
+
+	public const float CultistInvokedSkullCreationIntervalReductionPerPlayer = 0.4f;
 
 	public const float CultistInvokedSkullCreationTimer = 4f;
 
 	public const float CultistInvokedSkullLifetime = 45f;
 
-	public const float CultistInvokedSkullMoveSpeed = 3.5f;
+	public const float CultistInvokedSkullMoveSpeed = 3.8f;
 
-	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1.25f;
+	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1.4f;
 
 	public const float CultistInvokedSkullSlowDuration = 2f;
 
@@ -319,6 +362,29 @@ public static class BalancingValues
 	public const float CultistPortalOnPlayerChance = 0.25f;
 
 	public const float CultistSkullDestructionCooldownMultiplication = 0.5f;
+
+	public const float CultistFreeCastTime = 3f;
+
+	public const float CultistSkullForbiddenAreaRadius = 10f;
+
+	public static Dictionary<int, List<Vector3>> CultistSkullForbiddenAreasByMapId = new Dictionary<int, List<Vector3>> { 
+	{
+		1,
+		new List<Vector3>
+		{
+			new Vector3(111.98f, 22.08f, 153.42f),
+			new Vector3(135.76f, 22.08f, 153.86f),
+			new Vector3(104.75f, 22.17f, 217.89f),
+			new Vector3(148.08f, 22.28f, 254.41f),
+			new Vector3(176.49f, 22.7f, 222.09f),
+			new Vector3(184.45f, 22.58f, 228.51f),
+			new Vector3(196.93f, 22.28f, 242.07f)
+		}
+	} };
+
+	public const float CultistSkullMinimumDistanceFromCorpses = 3f;
+
+	public const float CultistSkullMinimumDistanceFromOtherSkulls = 10f;
 
 	public const float WarlockWolfCurseRange = 10f;
 
@@ -445,6 +511,136 @@ public static class BalancingValues
 	public const float HostParasiteNearbyPlayerMaximumDamagePercentage = 0.2f;
 
 	public const float HostParasiteNearbyPlayerMaximumPoisonDuration = 15f;
+
+	public const float AcrobatCastTime = 2f;
+
+	public const float AcrobatMaximumRangeToSpot = 1f;
+
+	public const bool AcrobatCanJumpInHumanForm = false;
+
+	public static Dictionary<int, List<AcrobatSpotData>> AcrobatSpotsByMapId = new Dictionary<int, List<AcrobatSpotData>>
+	{
+		{
+			1,
+			new List<AcrobatSpotData>
+			{
+				new AcrobatSpotData
+				{
+					Position = new Vector3(162.86f, 21.86f, 146.53f),
+					Rotation = new Vector3(0.15f, 0.9f, 0.5f),
+					KnockbackPower = 25f,
+					GravityDuringJump = -10f,
+					JumpDuration = 1.4f,
+					FallSpeedDuringJump = 25f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(162.99f, 25.38f, 162.19f),
+					Rotation = new Vector3(-0.5f, 0.85f, -0.5f),
+					KnockbackPower = 23f,
+					GravityDuringJump = -15f,
+					JumpDuration = 1.4f,
+					FallSpeedDuringJump = 25f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(139.03f, 22.05f, 207.66f),
+					Rotation = new Vector3(0.4f, 0.9f, 0.5f),
+					KnockbackPower = 25f,
+					GravityDuringJump = -15f,
+					JumpDuration = 1.6f,
+					FallSpeedDuringJump = 20f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(147.79f, 21.92f, 232.08f),
+					Rotation = new Vector3(-0.4f, 0.9f, -0.65f),
+					KnockbackPower = 23.5f,
+					GravityDuringJump = -15f,
+					JumpDuration = 1.6f,
+					FallSpeedDuringJump = 20f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(111.03f, 22.08f, 157.51f),
+					Rotation = new Vector3(0f, 1f, 1f),
+					KnockbackPower = 25f,
+					GravityDuringJump = -10f,
+					JumpDuration = 2.75f,
+					FallSpeedDuringJump = 22f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(104.28f, 22.17f, 220.2f),
+					Rotation = new Vector3(0f, 1f, -1f),
+					KnockbackPower = 25f,
+					GravityDuringJump = -10f,
+					JumpDuration = 2.75f,
+					FallSpeedDuringJump = 22f
+				}
+			}
+		},
+		{
+			2,
+			new List<AcrobatSpotData>
+			{
+				new AcrobatSpotData
+				{
+					Position = new Vector3(403.32f, 23.06f, -127.96f),
+					Rotation = new Vector3(0f, 0.975f, -0.25f),
+					KnockbackPower = 30f,
+					GravityDuringJump = -5f,
+					JumpDuration = 1.75f,
+					FallSpeedDuringJump = 28f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(403.25f, 33.34f, -139.63f),
+					Rotation = new Vector3(0f, 1f, 0.2f),
+					KnockbackPower = 45f,
+					GravityDuringJump = -20f,
+					JumpDuration = 1.25f,
+					FallSpeedDuringJump = 80f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(386.76f, 22.98f, -144.22f),
+					Rotation = new Vector3(0.3f, 1f, -0.1f),
+					KnockbackPower = 30f,
+					GravityDuringJump = -10f,
+					JumpDuration = 1.25f,
+					FallSpeedDuringJump = 36f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(394.12f, 28.91f, -147.14f),
+					Rotation = new Vector3(-0.3f, 1f, 0.1f),
+					KnockbackPower = 30f,
+					GravityDuringJump = -15f,
+					JumpDuration = 1.25f,
+					FallSpeedDuringJump = 60f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(424.14f, 23.06f, -112.31f),
+					Rotation = new Vector3(0f, 1f, -0.5f),
+					KnockbackPower = 41f,
+					GravityDuringJump = -10f,
+					JumpDuration = 2f,
+					FallSpeedDuringJump = 60f
+				},
+				new AcrobatSpotData
+				{
+					Position = new Vector3(423.58f, 22.98f, -151.55f),
+					Rotation = new Vector3(0f, 1f, 0.5f),
+					KnockbackPower = 41f,
+					GravityDuringJump = -10f,
+					JumpDuration = 2f,
+					FallSpeedDuringJump = 60f
+				}
+			}
+		}
+	};
 
 	public static Dictionary<PlayerCustom.PlayerSecondaryRole, int> SecondaryRoleMaxAmountInDraft = new Dictionary<PlayerCustom.PlayerSecondaryRole, int>
 	{
@@ -918,13 +1114,15 @@ public static class BalancingValues
 
 	public const float MysticRepulsorMovementSpeedAtMaxStacks = 0.25f;
 
+	public const float ShadowCastTime = 1f;
+
 	public const float ShadowRadiusForChargeBonus = 30f;
 
 	public const float ShadowAuraRadius = 20f;
 
-	public const float ShadowChargePerSecondDefault = 35f;
+	public const float ShadowChargePerSecondDefault = 45f;
 
-	public const float ShadowChargePerSecondBonusIfNearbyWolf = 215f;
+	public const float ShadowChargePerSecondBonusIfNearbyWolf = 225f;
 
 	public const int ShadowChargeIncreaseOnNearbyWolfKill = 10000;
 
@@ -958,13 +1156,11 @@ public static class BalancingValues
 
 	public const int HermitHideoutMinimumPlaceDistanceFromEachOther = 30;
 
-	public const int RunemasterMaximumRunes = 8;
+	public const int RunemasterMaximumRunes = 6;
 
 	public const float RunemasterCastTime = 2f;
 
 	public const float RunemasterTriggerTime = 2.5f;
-
-	public const int RunemasterRuneDuration = 150;
 
 	public const float RunemasterRuneExplosionVisualAreaMultiplier = 4.5f;
 
@@ -974,7 +1170,7 @@ public static class BalancingValues
 
 	public const float RunemasterRuneExplosionForcedRotationReductionPerSecond = 2000f;
 
-	public const float RunemasterRuneExplosionConfusionDurationWithOneWolf = 12f;
+	public const float RunemasterRuneExplosionConfusionDurationWithOneWolf = 8f;
 
 	public const float RunemasterRuneExplosionMaximumConfusionDuration = 10f;
 
@@ -990,7 +1186,23 @@ public static class BalancingValues
 
 	public const float RunemasterRuneExplosionBaseResilienceDuration = 8f;
 
-	public const float RunemasterSelectedRuneWolfDetectionRange = 10f;
+	public const float RunemasterWolfDetectionRange = 10f;
+
+	public const float InventorPlaceDeviceRange = 2f;
+
+	public const float InventorDeviceDuration = 11f;
+
+	public const float InventorDeviceSmokeFrequency = 1f;
+
+	public const float InventorDeviceSmokeDuration = 4f;
+
+	public const float InventorDeviceRangeToWolfForActivation = 12f;
+
+	public const int InventorScrapLifetimeSeconds = 180;
+
+	public const int InventorScrapChargePerLivingInventor = 30;
+
+	public const int InventorScrapChargeForSelfItemUsage = 30;
 
 	public const float AvatarWolfOnMinimapRadius = 40f;
 
@@ -1044,7 +1256,7 @@ public static class BalancingValues
 
 	public const float PurifierBurnHealthDecreaseWolfForm = 0.8f;
 
-	public const float PurifierConfusionDurationOnWolf = 5f;
+	public const float PurifierConfusionDurationOnWolf = 2f;
 
 	public static Color PurifierBurnFogColor = Color.green;
 
@@ -1156,7 +1368,7 @@ public static class BalancingValues
 
 	public const float MidasDurationOnHuman = 30f;
 
-	public const float MidasDurationOnWolf = 8f;
+	public const float MidasDurationOnWolf = 7f;
 
 	public static Color PetrifiedFogColor = new Color(0.75f, 0.75f, 0f, 1f);
 
@@ -1268,7 +1480,7 @@ public static class BalancingValues
 
 	public static Color LoverFogColor = new Color(1f, 0.4f, 1f, 1f);
 
-	public static float LoverWolfHealMultiplierForLootByVillager = 0.4f;
+	public static float LoverWolfHealMultiplierForLootByVillager = 0.5f;
 
 	public const float MercenaryHuntSneakyDuration = 10f;
 
@@ -1277,27 +1489,6 @@ public static class BalancingValues
 	public const float WolfKillRange = 1.75f;
 
 	public const float LootCorpseCastTime = 3f;
-
-	public const float CultistSkullForbiddenAreaRadius = 10f;
-
-	public static Dictionary<int, List<Vector3>> CultistSkullForbiddenAreasByMapId = new Dictionary<int, List<Vector3>> { 
-	{
-		1,
-		new List<Vector3>
-		{
-			new Vector3(111.98f, 22.08f, 153.42f),
-			new Vector3(135.76f, 22.08f, 153.86f),
-			new Vector3(104.75f, 22.17f, 217.89f),
-			new Vector3(148.08f, 22.28f, 254.41f),
-			new Vector3(176.49f, 22.7f, 222.09f),
-			new Vector3(184.45f, 22.58f, 228.51f),
-			new Vector3(196.93f, 22.28f, 242.07f)
-		}
-	} };
-
-	public const float CultistSkullMinimumDistanceFromCorpses = 3f;
-
-	public const float CultistSkullMinimumDistanceFromOtherSkulls = 10f;
 
 	public const float MagicScrollDurationMultiplier = 0.75f;
 
@@ -1499,7 +1690,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Blind,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 12f,
+				Duration = 8f,
 				Ponderation = 2
 			}
 		},
@@ -1555,7 +1746,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.ConfusionAndForcedRotation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 20f,
+				Duration = 10f,
 				Ponderation = 2
 			}
 		},
@@ -1573,6 +1764,14 @@ public static class BalancingValues
 			{
 				Duration = 60f,
 				Ponderation = 3
+			}
+		},
+		{
+			AccessorySpellbook.PossibleEffects.TransformWolf,
+			new AccessorySpellbook.SpellbookEffectDetails
+			{
+				Duration = 600f,
+				Ponderation = 1
 			}
 		}
 	};
@@ -1695,7 +1894,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.ConfusionAndForcedRotation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 8f,
+				Duration = 5f,
 				Ponderation = 2
 			}
 		}
@@ -1759,7 +1958,7 @@ public static class BalancingValues
 
 	public const float EventFogFogMaximumDistance = 40f;
 
-	public const float EventSpellstormChanceEachSecondForEachPlayer = 0.01f;
+	public const float EventSpellstormChanceEachSecondForEachPlayerPerSecondWithoutEffect = 0.001f;
 
 	public static Color EventSpellstormFogColor = new Color(0.5f, 0f, 0.5f, 0.1f);
 
@@ -1921,6 +2120,37 @@ public static class BalancingValues
 
 	public static float CurrentLootProgress => (float)GameManager.Instance.Score / (float)GameManager.Instance.MaxScore;
 
+	public static int VoodooRequiredZombiesForHunt(int totalPlayers, int livingPlayersWithoutVoodoo)
+	{
+		LycansUtility.AddLogOnlyForMe("VoodooRequiredZombiesForHunt, total players " + totalPlayers + ", living players without voodoo " + livingPlayersWithoutVoodoo);
+		int num;
+		switch (totalPlayers)
+		{
+		case 5:
+		case 6:
+			num = 2;
+			break;
+		case 7:
+		case 8:
+		case 9:
+			num = 3;
+			break;
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			num = 4;
+			break;
+		default:
+			num = 2;
+			break;
+		}
+		int num2 = Mathf.Max(2, Mathf.CeilToInt((float)livingPlayersWithoutVoodoo * 0.5f));
+		return Mathf.Min(num, num2);
+	}
+
 	public static float CultistSkullCreationCooldown(int currentSkulls)
 	{
 		return currentSkulls switch
@@ -1951,6 +2181,11 @@ public static class BalancingValues
 			15 => 1f, 
 			_ => 0.5f, 
 		};
+	}
+
+	public static int CultistTargetAmount(int survivingPlayers)
+	{
+		return Mathf.CeilToInt((float)survivingPlayers * 0.8f);
 	}
 
 	public static float PossessorMaximumRangeByMap(int mapId)
@@ -2284,6 +2519,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => 3, 
+			PlayerCustom.PlayerPrimaryRolePower.Inventor => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Avatar => 0, 
 			PlayerCustom.PlayerPrimaryRolePower.Mole => 0, 
 			_ => 0, 
@@ -2366,6 +2602,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => new PowerMaterialsInfo(10000, 3f, 1.056f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => new PowerMaterialsInfo(200, 2f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => new PowerMaterialsInfo(80, 2.5f, 1.556f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Inventor => new PowerMaterialsInfo(100, 2.5f, 1.556f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Alchemist => new PowerMaterialsInfo(40, 5f, 2.006f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Spotter => new PowerMaterialsInfo(100, 3f, 1.5f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Purifier => new PowerMaterialsInfo(100, 3f, 1.5f, gainsMaterialsOnCollect: false, 0f), 
@@ -2503,7 +2740,7 @@ public static class BalancingValues
 		}
 		if (effect is ConfusedEffect)
 		{
-			return new ModifiedEffectData(23, 75, 15f, null);
+			return new ModifiedEffectData(23, 75, 12f, null);
 		}
 		if (effect is ImmuneEffect)
 		{
@@ -2530,6 +2767,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => 200, 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => 2, 
+			PlayerCustom.PlayerPrimaryRolePower.Inventor => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Spotter => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Purifier => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => 100, 
@@ -2590,7 +2828,7 @@ public static class BalancingValues
 	public static int VoodooReanimationCooldown(int zombiesCount, int totalPlayers)
 	{
 		float num = Mathf.Lerp(1f, 0.5f, CurrentLootProgress);
-		return Mathf.RoundToInt((float)VoodooBaseCooldown(totalPlayers) * num * (1f + (float)zombiesCount * 0.5f));
+		return Mathf.RoundToInt((float)VoodooBaseCooldown(totalPlayers) * num * (1f + (float)zombiesCount * 0.5f) * 0.85f);
 	}
 
 	public static int VoodooBaseCooldown(int totalPlayers)
@@ -2697,11 +2935,6 @@ public static class BalancingValues
 		default:
 			return 70;
 		}
-	}
-
-	public static int CultistTargetAmount(int survivingPlayers)
-	{
-		return Mathf.CeilToInt((float)survivingPlayers * 0.75f);
 	}
 
 	public static int ScrollsEffectPonderation(Effect effect)
@@ -2942,18 +3175,18 @@ public static class BalancingValues
 
 	public static int LivingWolves()
 	{
-		return PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (int)o.PlayerController.Role == 1 && !NetworkBool.op_Implicit(o.Resurrected));
+		return PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (int)o.PlayerController.Role == 1 && !NetworkBool.op_Implicit(o.ResurrectedByNecromancer));
 	}
 
 	public static int LivingPlayers()
 	{
-		return PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.Resurrected));
+		return PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie && !NetworkBool.op_Implicit(o.ResurrectedByNecromancer));
 	}
 
 	public static float AdaptMeetingTimerMultiplier(int playersInMeeting, int totalPlayers)
 	{
 		float num = Mathf.InverseLerp(0f, (float)totalPlayers, (float)playersInMeeting);
-		float num2 = Mathf.Lerp(0.3f, 1.2f, num);
+		float num2 = Mathf.Lerp(0.5f, 1.2f, num);
 		return Mathf.Min(num2, 1f);
 	}
 
