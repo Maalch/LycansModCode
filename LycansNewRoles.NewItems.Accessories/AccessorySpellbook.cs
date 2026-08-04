@@ -192,11 +192,12 @@ public class AccessorySpellbook : Accessory
 	public static void CastEffectOnPlayer(PlayerCustom targetPlayerCustom, PlayerController targetPlayer, NetworkRunner runner)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04db: Unknown result type (might be due to invalid IL or missing references)
 		Dictionary<PossibleEffects, SpellbookEffectDetails> dictionary = (NetworkBool.op_Implicit(targetPlayer.IsWolf) ? BalancingValues.SpellbookPossibleEffectsAndDurationsOnWolves : BalancingValues.SpellbookPossibleEffectsAndDurationsOnHumans);
 		List<PossibleEffects> list = new List<PossibleEffects>();
 		foreach (KeyValuePair<PossibleEffects, SpellbookEffectDetails> item in dictionary)
@@ -205,6 +206,10 @@ public class AccessorySpellbook : Accessory
 			{
 				list.Add(item.Key);
 			}
+		}
+		if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
+		{
+			list.RemoveAll((PossibleEffects o) => o == PossibleEffects.TransformWolf);
 		}
 		PossibleEffects possibleEffects = CollectionsUtil.Grab<PossibleEffects>(list, 1).FirstOrDefault();
 		SpellbookEffectDetails spellbookEffectDetails = dictionary[possibleEffects];
@@ -281,7 +286,6 @@ public class AccessorySpellbook : Accessory
 			break;
 		case PossibleEffects.TransformWolf:
 			PlayerCustom.Rpc_Forced_Transform(runner, targetPlayerCustom.Index, 1);
-			PlayerCustom.ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectWeakened", runner, 1f, 3600f);
 			break;
 		}
 		PlayerCustom.Rpc_Effect_On_Player(runner, targetPlayerCustom.Index, 1);

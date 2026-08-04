@@ -134,12 +134,12 @@ public class InventorSmoke : NetworkBehaviour
 		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0096: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0115: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
 		if (NetworkBool.op_Implicit(Disappearing))
 		{
 			_visual.Stop();
@@ -154,13 +154,11 @@ public class InventorSmoke : NetworkBehaviour
 			ColorOverLifetimeModule colorOverLifetime2;
 			if (player.Ref == CreatorRef)
 			{
-				Plugin.Logger.LogInfo((object)"LSD set to inventor color");
 				colorOverLifetime2 = ((Component)InventorSmokeForInventorPrefab.transform.Find("Visual")).GetComponent<ParticleSystem>().colorOverLifetime;
 				((ColorOverLifetimeModule)(ref colorOverLifetime)).color = ((ColorOverLifetimeModule)(ref colorOverLifetime2)).color;
 			}
 			else
 			{
-				Plugin.Logger.LogInfo((object)"LSD set to others color");
 				colorOverLifetime2 = ((Component)InventorSmokeForOthersPrefab.transform.Find("Visual")).GetComponent<ParticleSystem>().colorOverLifetime;
 				((ColorOverLifetimeModule)(ref colorOverLifetime)).color = ((ColorOverLifetimeModule)(ref colorOverLifetime2)).color;
 			}

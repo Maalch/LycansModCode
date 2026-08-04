@@ -91,6 +91,7 @@ public class TrackerRadar : NetworkBehaviour
 			if (RemainingDuration <= 0)
 			{
 				((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
+				return;
 			}
 		}
 		_nextCheckWatch.Restart();

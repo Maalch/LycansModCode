@@ -126,7 +126,10 @@ public class MysticRepulsor : NetworkBehaviour
 		{
 			((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
 		}
-		_nextCheckWatch.Restart();
+		else
+		{
+			_nextCheckWatch.Restart();
+		}
 	}
 
 	private void PlaySoundIfNeeded()

@@ -185,22 +185,20 @@ public class HermitHideout : NetworkBehaviour
 
 	public override void FixedUpdateNetwork()
 	{
+		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004b: Invalid comparison between Unknown and I4
-		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e3: Invalid comparison between Unknown and I4
-		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0053: Invalid comparison between Unknown and I4
-		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
-		if ((Object)(object)((SimulationBehaviour)this).Runner == (Object)null)
+		//IL_0041: Invalid comparison between Unknown and I4
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Invalid comparison between Unknown and I4
+		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)_creatorCustom == (Object)null)
 		{
-			LycansUtility.AddLogOnlyForMe("HermitHideout: this.Runner is null");
+			return;
 		}
 		if (((SimulationBehaviour)this).HasStateAuthority && (Object)(object)_creatorCustom != (Object)null)
 		{
@@ -211,10 +209,6 @@ public class HermitHideout : NetworkBehaviour
 			{
 				flag = true;
 			}
-			if ((Object)(object)_creatorCustom.PlayerController == (Object)null)
-			{
-				LycansUtility.AddLogOnlyForMe("HermitHideout: _creatorCustom.PlayerController is null");
-			}
 			if (!PlayerRegistry.HasPlayer(CreatorRef) || NetworkBool.op_Implicit(_creatorCustom.PlayerController.IsDead))
 			{
 				flag = true;
@@ -224,18 +218,6 @@ public class HermitHideout : NetworkBehaviour
 				((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
 				return;
 			}
-		}
-		if ((Object)(object)_creatorCustom == (Object)null || (int)GameManager.LocalGameState != 2)
-		{
-			return;
-		}
-		if (_nextCheckWatch == null)
-		{
-			LycansUtility.AddLogOnlyForMe("HermitHideout: _nextCheckWatch is null");
-		}
-		if (_hideWatch == null)
-		{
-			LycansUtility.AddLogOnlyForMe("HermitHideout: _hideWatch is null");
 		}
 		if (_nextCheckWatch.ElapsedMilliseconds >= 1000)
 		{
@@ -252,13 +234,10 @@ public class HermitHideout : NetworkBehaviour
 				if (RemainingDuration <= 0)
 				{
 					((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
+					return;
 				}
 			}
 			_nextCheckWatch.Restart();
-		}
-		if ((Object)(object)_infoGreen == (Object)null || (Object)(object)_infoYellow == (Object)null || (Object)(object)_infoRed == (Object)null)
-		{
-			LycansUtility.AddLogOnlyForMe("HermitHideout: a color object is null");
 		}
 		if (_creatorCustom.IsCurrentlyPlayedOrObserved)
 		{

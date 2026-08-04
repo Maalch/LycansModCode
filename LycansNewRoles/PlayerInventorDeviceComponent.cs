@@ -9,6 +9,10 @@ namespace LycansNewRoles;
 
 public class PlayerInventorDeviceComponent : MonoBehaviour
 {
+	private bool _gaveError = false;
+
+	private string _username;
+
 	private PlayerCustom _playerCustom;
 
 	private Stopwatch _destructionWatch = new Stopwatch();
@@ -28,8 +32,11 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 
 	public void Init(PlayerCustom playerCustom)
 	{
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
 		_playerCustom = playerCustom;
 		Remove();
+		_username = ((object)_playerCustom.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString();
 	}
 
 	public void PlaceDevice(PlayerRef inventorRef)
@@ -50,14 +57,25 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 		_destructionWatch.Start();
 		_nextSmokeWatch.Start();
 		AddSmoke();
+		PlayerCustom.ApplyEffectToPlayer(wolf.PlayerController, "LycansNewRoles.EffectDisoriented", ((SimulationBehaviour)wolf).Runner, 1f, 1.5f);
+		PlayerCustom.Rpc_Effect_On_Player(((SimulationBehaviour)wolf).Runner, wolf.Index, 18);
 	}
 
 	private void Update()
 	{
-		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
-		if (((SimulationBehaviour)_playerCustom).Runner.IsServer && _playerCustom.InventorDeviceRef != PlayerRef.None && _playerCustom.InventorDeviceInfo.CanActivate() && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && (!_nextDeviceCheckWatch.IsRunning || _nextDeviceCheckWatch.ElapsedMilliseconds >= 200))
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)_playerCustom == (Object)null)
+		{
+			if (!_gaveError)
+			{
+				LycansUtility.AddLogOnlyForMe("InventorDevice: _playerCustom is null, player: " + _username);
+				_gaveError = true;
+			}
+			return;
+		}
+		if (((SimulationBehaviour)_playerCustom).Runner.IsServer && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && _playerCustom.InventorDeviceRef != PlayerRef.None && _playerCustom.InventorDeviceInfo.CanActivate() && (!_nextDeviceCheckWatch.IsRunning || _nextDeviceCheckWatch.ElapsedMilliseconds >= 200))
 		{
 			_nextDeviceCheckWatch.Restart();
 			PlayerCustom playerCustom = PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != _playerCustom.Ref && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)o.PlayerController).transform.position) <= 12f && LycansUtility.CanPlayerSeeOtherPlayer(o, _playerCustom, 12f)).FirstOrDefault();

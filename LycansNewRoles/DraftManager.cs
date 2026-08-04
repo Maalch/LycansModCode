@@ -404,17 +404,12 @@ public class DraftManager : NetworkBehaviour
 		//IL_0243: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d3: Invalid comparison between Unknown and I4
-		//IL_02e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0343: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0348: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a04: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a09: Unknown result type (might be due to invalid IL or missing references)
-		//IL_076e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a15: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a1a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a66: Unknown result type (might be due to invalid IL or missing references)
+		//IL_090d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0912: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0677: Unknown result type (might be due to invalid IL or missing references)
+		//IL_091e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0923: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0964: Unknown result type (might be due to invalid IL or missing references)
 		PlayerDraftData playerDraftData = PlayersDraftDataByPlayerIndex[playerIndex];
 		playerDraftData.SelectionDone = true;
 		PlayerCustom playerCustom = PlayerCustomRegistry.GetPlayer(playerIndex);
@@ -476,16 +471,8 @@ public class DraftManager : NetworkBehaviour
 			}
 		}
 		playerCustom.GiveSecondaryRole(playerDraftData.SelectedSecondaryRole);
-		NetworkString<_32> username = playerCustom.PlayerController.PlayerData.Username;
-		LycansUtility.AddLogOnlyForMe("--- Player " + ((object)username/*cast due to constrained. prefix*/).ToString() + " --- finished choice");
-		LycansUtility.AddLogOnlyForMe("Main role: " + playerDraftData.MainRole);
-		LycansUtility.AddLogOnlyForMe("Player role: " + ((object)playerCustom.PlayerController.Role/*cast due to constrained. prefix*/).ToString());
-		LycansUtility.AddLogOnlyForMe("Selected solo roles: " + playerDraftData.SelectedSoloRole);
-		LycansUtility.AddLogOnlyForMe("Selected power: " + playerDraftData.SelectedPower);
-		LycansUtility.AddLogOnlyForMe("Selected secondary role: " + playerDraftData.SelectedSecondaryRole);
 		if (playerDraftData.MainRole == DraftPlayerMainRole.Solo && ((playerDraftData.SelectedSoloRole == PlayerCustom.PlayerNewPrimaryRole.Agent && PlayersDraftDataByPlayerIndex.Count((KeyValuePair<int, PlayerDraftData> o) => o.Value.SelectedSoloRole == PlayerCustom.PlayerNewPrimaryRole.Agent) == 1) || (playerDraftData.SelectedSoloRole == PlayerCustom.PlayerNewPrimaryRole.Lover && PlayersDraftDataByPlayerIndex.Count((KeyValuePair<int, PlayerDraftData> o) => o.Value.SelectedSoloRole == PlayerCustom.PlayerNewPrimaryRole.Lover) == 1)))
 		{
-			LycansUtility.AddLogOnlyForMe("-> Add second agent or lover");
 			if (playerDraftData.SelectedSoloRole == PlayerCustom.PlayerNewPrimaryRole.Agent)
 			{
 				KeyValuePair<int, PlayerDraftData> keyValuePair = (PlayersDraftDataByPlayerIndex.Any((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent && !o.Value.SelectionDone) ? PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent && !o.Value.SelectionDone) : ((!PlayersDraftDataByPlayerIndex.Any((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent)) ? PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager) : PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent)));
@@ -524,7 +511,6 @@ public class DraftManager : NetworkBehaviour
 					return;
 				}
 			}
-			LycansUtility.AddLogOnlyForMe("-> Change draft timer");
 			DraftTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 2f);
 		}
 		else if (PlayersDraftDataByPlayerIndex.All((KeyValuePair<int, PlayerDraftData> o) => o.Value.SelectionDone))
@@ -692,9 +678,6 @@ public class DraftManager : NetworkBehaviour
 		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
 		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b3: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -738,13 +721,10 @@ public class DraftManager : NetworkBehaviour
 					runner.SendRpc(ptr);
 				}
 			}
-			DraftPlayerMainRole draftPlayerMainRole = (DraftPlayerMainRole)mainRoleIndex;
 			List<PlayerCustom.PlayerNewPrimaryRole> list = new List<PlayerCustom.PlayerNewPrimaryRole>();
 			List<PlayerCustom.PlayerPrimaryRolePower> list2 = new List<PlayerCustom.PlayerPrimaryRolePower>();
 			List<PlayerCustom.PlayerSecondaryRole> list3 = new List<PlayerCustom.PlayerSecondaryRole>();
-			DraftPlayerMainRole draftPlayerMainRole2 = draftPlayerMainRole;
-			DraftPlayerMainRole draftPlayerMainRole3 = draftPlayerMainRole2;
-			if (draftPlayerMainRole3 == DraftPlayerMainRole.Solo)
+			if (mainRoleIndex == 2)
 			{
 				if (powerOrSoloRoleIndex1 != -1)
 				{
@@ -790,29 +770,11 @@ public class DraftManager : NetworkBehaviour
 			if (player.Ref == PlayerController.Local.Ref)
 			{
 				Instance.MyData.Reset();
-				Instance.MyData.MainRole = draftPlayerMainRole;
+				Instance.MyData.MainRole = (DraftPlayerMainRole)mainRoleIndex;
 				Instance.MyData.OfferedSoloRoles = list;
 				Instance.MyData.OfferedPowers = list2;
 				Instance.MyData.OfferedSecondaryRoles = list3;
 				UIManager.DraftPanel.UpdateInfo();
-			}
-			NetworkString<_32> username = player.PlayerController.PlayerData.Username;
-			LycansUtility.AddLogOnlyForMe("--- Player " + ((object)username/*cast due to constrained. prefix*/).ToString() + " ---");
-			LycansUtility.AddLogOnlyForMe("Main role: " + draftPlayerMainRole);
-			LycansUtility.AddLogOnlyForMe("Offered solo roles: ");
-			foreach (PlayerCustom.PlayerNewPrimaryRole item in list)
-			{
-				LycansUtility.AddLogOnlyForMe(item.ToString());
-			}
-			LycansUtility.AddLogOnlyForMe("Offered powers: ");
-			foreach (PlayerCustom.PlayerPrimaryRolePower item2 in list2)
-			{
-				LycansUtility.AddLogOnlyForMe(item2.ToString());
-			}
-			LycansUtility.AddLogOnlyForMe("Offered secondary roles:");
-			foreach (PlayerCustom.PlayerSecondaryRole item3 in list3)
-			{
-				LycansUtility.AddLogOnlyForMe(item3.ToString());
 			}
 		}
 		catch (Exception ex)

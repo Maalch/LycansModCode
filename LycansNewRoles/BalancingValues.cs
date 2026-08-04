@@ -113,7 +113,7 @@ public static class BalancingValues
 
 	public const float EffectDurationPotionEnergized = 60f;
 
-	public const float EffectDurationPotionConfused = 30f;
+	public const float EffectDurationPotionConfused = 45f;
 
 	public const float EffectDurationPotionCamouflage = 90f;
 
@@ -504,13 +504,13 @@ public static class BalancingValues
 
 	public const float HostParasiteTargetDamagePercentage = 0.2f;
 
-	public const float HostParasiteTargetPoisonDuration = 15f;
+	public const float HostParasiteTargetPoisonDuration = 20f;
 
-	public const float HostParasiteNearbyPlayerRange = 12f;
+	public const float HostParasiteNearbyPlayerRange = 15f;
 
 	public const float HostParasiteNearbyPlayerMaximumDamagePercentage = 0.2f;
 
-	public const float HostParasiteNearbyPlayerMaximumPoisonDuration = 15f;
+	public const float HostParasiteNearbyPlayerMaximumPoisonDuration = 20f;
 
 	public const float AcrobatCastTime = 2f;
 
@@ -1170,7 +1170,7 @@ public static class BalancingValues
 
 	public const float RunemasterRuneExplosionForcedRotationReductionPerSecond = 2000f;
 
-	public const float RunemasterRuneExplosionConfusionDurationWithOneWolf = 8f;
+	public const float RunemasterRuneExplosionConfusionDurationWithOneWolf = 10f;
 
 	public const float RunemasterRuneExplosionMaximumConfusionDuration = 10f;
 
@@ -1197,6 +1197,8 @@ public static class BalancingValues
 	public const float InventorDeviceSmokeDuration = 4f;
 
 	public const float InventorDeviceRangeToWolfForActivation = 12f;
+
+	public const float InventorDeviceActivationDisorientDuration = 1.5f;
 
 	public const int InventorScrapLifetimeSeconds = 180;
 
@@ -1256,7 +1258,7 @@ public static class BalancingValues
 
 	public const float PurifierBurnHealthDecreaseWolfForm = 0.8f;
 
-	public const float PurifierConfusionDurationOnWolf = 2f;
+	public const float PurifierConfusionDurationOnWolf = 3f;
 
 	public static Color PurifierBurnFogColor = Color.green;
 
@@ -1464,9 +1466,11 @@ public static class BalancingValues
 
 	public const int ConfusionInitialDelayMilliseconds = 1500;
 
-	public const int ConfusionMinimumDelayMilliseconds = 5000;
+	public const int ConfusionMinimumDelayMilliseconds = 4000;
 
-	public const int ConfusionMaximumDelayMilliseconds = 8000;
+	public const int ConfusionMaximumDelayMilliseconds = 7000;
+
+	public const float ConfusionMovementSpeedMultiplier = 0.9f;
 
 	public const float ResilienceHungerMultiplier = 0.25f;
 
@@ -1746,7 +1750,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.ConfusionAndForcedRotation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 10f,
+				Duration = 15f,
 				Ponderation = 2
 			}
 		},
@@ -1771,7 +1775,7 @@ public static class BalancingValues
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
 				Duration = 600f,
-				Ponderation = 1
+				Ponderation = 2
 			}
 		}
 	};
@@ -1894,7 +1898,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.ConfusionAndForcedRotation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 5f,
+				Duration = 8f,
 				Ponderation = 2
 			}
 		}
@@ -1986,7 +1990,9 @@ public static class BalancingValues
 
 	public const float EventPlagueFogMaximumDistance = 65f;
 
-	public const float EventTournamentWinnerHealthIncreaseWolfForm = 0.6f;
+	public const float EventTournamentWinnerHealthIncreaseWolfForm = 0.5f;
+
+	public const float EventTournamentWinnerHealthIncreaseBeast = 0.25f;
 
 	public const float EventTournamentWinnerHealthIncreaseHumanForm = 0.8f;
 
@@ -2122,7 +2128,6 @@ public static class BalancingValues
 
 	public static int VoodooRequiredZombiesForHunt(int totalPlayers, int livingPlayersWithoutVoodoo)
 	{
-		LycansUtility.AddLogOnlyForMe("VoodooRequiredZombiesForHunt, total players " + totalPlayers + ", living players without voodoo " + livingPlayersWithoutVoodoo);
 		int num;
 		switch (totalPlayers)
 		{
@@ -2589,7 +2594,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Tracker => new PowerMaterialsInfo(10000, 2f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(40, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(30, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Peasant => new PowerMaterialsInfo(10000, 1f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Avenger => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
@@ -2740,7 +2745,7 @@ public static class BalancingValues
 		}
 		if (effect is ConfusedEffect)
 		{
-			return new ModifiedEffectData(23, 75, 12f, null);
+			return new ModifiedEffectData(23, 75, 15f, null);
 		}
 		if (effect is ImmuneEffect)
 		{
@@ -2981,7 +2986,7 @@ public static class BalancingValues
 																					{
 																						if (effect is ConfusedEffect)
 																						{
-																							return 3;
+																							return 2;
 																						}
 																						return 0;
 																					}
@@ -2997,7 +3002,7 @@ public static class BalancingValues
 																}
 																return 1;
 															}
-															return 3;
+															return 2;
 														}
 														return 2;
 													}

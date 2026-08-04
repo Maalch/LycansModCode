@@ -22,21 +22,28 @@ internal class VoiceEffectPatch
 			//IL_0049: Unknown result type (might be due to invalid IL or missing references)
 			//IL_005f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0065: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0081: Unknown result type (might be due to invalid IL or missing references)
-			//IL_008e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
 			if ((int)GameManager.LocalGameState == 0 || (int)GameManager.LocalGameState == 1)
 			{
 				return;
 			}
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerRef);
-			if (talking)
+			if (!talking)
 			{
-				if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Petrified))
-				{
-					talking = false;
-				}
-				if (playerRef != PlayerController.Local.Ref && (NetworkBool.op_Implicit(player.PlayerController.PlayerEffectManager.Invisible) || NetworkBool.op_Implicit(player.Camouflage) || !player.CanBeHeardByObservedPlayer() || NetworkBool.op_Implicit(player.PlayerController.IsWolf)))
+				return;
+			}
+			if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Petrified))
+			{
+				talking = false;
+			}
+			if (playerRef != PlayerController.Local.Ref)
+			{
+				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
+				if (NetworkBool.op_Implicit(player.PlayerController.PlayerEffectManager.Invisible) || NetworkBool.op_Implicit(player.Camouflage) || !player.CanBeHeardByObservedPlayer() || NetworkBool.op_Implicit(player.PlayerController.IsWolf) || NetworkBool.op_Implicit(player2.Confused))
 				{
 					talking = false;
 				}

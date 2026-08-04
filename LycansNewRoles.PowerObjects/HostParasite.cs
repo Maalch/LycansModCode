@@ -20,6 +20,8 @@ public class HostParasite : NetworkBehaviour
 
 	private Shader _initialShader;
 
+	public static Shader CamouflageShader;
+
 	[Networked(OnChanged = "CreatorRefChanged")]
 	[NetworkedWeaved(0, 1)]
 	public unsafe PlayerRef CreatorRef
@@ -145,7 +147,7 @@ public class HostParasite : NetworkBehaviour
 		}
 		else
 		{
-			((Renderer)_visual.GetComponent<MeshRenderer>()).material.shader = PlayerCustom.CamouflageLevel2Shader;
+			((Renderer)_visual.GetComponent<MeshRenderer>()).material.shader = CamouflageShader;
 		}
 	}
 

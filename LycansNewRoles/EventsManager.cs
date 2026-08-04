@@ -36,7 +36,6 @@ public class EventsManager
 
 	public void NewEvent(EventType eventType)
 	{
-		LycansUtility.AddLogOnlyForMe("NewEvent: " + eventType);
 		CurrentEvent = eventType;
 		switch (CurrentEvent)
 		{
@@ -65,7 +64,6 @@ public class EventsManager
 		{
 			return;
 		}
-		LycansUtility.AddLogOnlyForMe("ClearEvent");
 		CurrentEvent = EventType.None;
 		CurrentEventUniqueBool = false;
 		_currentEventStopwatch.Reset();
@@ -134,7 +132,7 @@ public class EventsManager
 		case EventType.Rage:
 			if (!CurrentEventUniqueBool && (float)_currentEventStopwatch.ElapsedMilliseconds >= 20000f)
 			{
-				List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => (int)o.PlayerController.Role == 1 && !NetworkBool.op_Implicit(o.IsWolfPup) && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld).ToList();
+				List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => (int)o.PlayerController.Role == 1 && !NetworkBool.op_Implicit(o.IsWolfPup) && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.PlayerController.IsWolf) && !o.IsOutOfTheWorld).ToList();
 				if (list.Any())
 				{
 					PlayerCustom playerCustom = CollectionsUtil.Grab<PlayerCustom>(list, 1).First();

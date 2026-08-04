@@ -35,53 +35,54 @@ internal class CheckHungerPatch
 		//IL_0268: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0350: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02eb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0367: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0400: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0432: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0728: Unknown result type (might be due to invalid IL or missing references)
-		//IL_044a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0450: Invalid comparison between Unknown and I4
-		//IL_0768: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0985: Unknown result type (might be due to invalid IL or missing references)
-		//IL_080e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_047e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_099a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0828: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_053d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a38: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09b0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a49: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_056f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08c9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0873: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a82: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08e6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0903: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ba: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0709: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0626: Unknown result type (might be due to invalid IL or missing references)
-		//IL_092a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0643: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0afe: Unknown result type (might be due to invalid IL or missing references)
-		//IL_094a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0950: Invalid comparison between Unknown and I4
-		//IL_0685: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0695: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_036a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0380: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0436: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0468: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0419: Unknown result type (might be due to invalid IL or missing references)
+		//IL_075e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0480: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0486: Invalid comparison between Unknown and I4
+		//IL_079e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0844: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_085e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0810: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0573: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a6e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a7f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a0e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ab8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_091c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_062a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0939: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_073f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_065c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0960: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0679: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b22: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b3a: Invalid comparison between Unknown and I4
-		//IL_0b51: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0980: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0986: Invalid comparison between Unknown and I4
+		//IL_06bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b6a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b70: Invalid comparison between Unknown and I4
+		//IL_0b87: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!NetworkBool.op_Implicit(DraftManager.Instance.Active) && !NetworkBool.op_Implicit(GameManager.LightingManager.IsTransition) && !NetworkBool.op_Implicit(__instance.IsDead))
@@ -167,7 +168,14 @@ internal class CheckHungerPatch
 				{
 					if (NetworkBool.op_Implicit(player.PlayerController.IsWolf))
 					{
-						player.IncreaseHealth(0.6f * ((SimulationBehaviour)__instance).Runner.DeltaTime);
+						if (NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
+						{
+							player.IncreaseHealth(0.25f * ((SimulationBehaviour)__instance).Runner.DeltaTime);
+						}
+						else
+						{
+							player.IncreaseHealth(0.5f * ((SimulationBehaviour)__instance).Runner.DeltaTime);
+						}
 					}
 					else
 					{

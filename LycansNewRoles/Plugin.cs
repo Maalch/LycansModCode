@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.329")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.333")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -129,6 +129,8 @@ public class Plugin : BaseUnityPlugin
 	public const string SoundInventorDeviceActivation = "InventorDeviceActivation";
 
 	public const string SoundInventorScrapAlert = "InventorScrapAlert";
+
+	public const string SoundAcrobatJump = "AcrobatJump";
 
 	public static bool PlayerIllusionCreated = false;
 
@@ -246,8 +248,8 @@ public class Plugin : BaseUnityPlugin
 		//IL_2121: Unknown result type (might be due to invalid IL or missing references)
 		//IL_214f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_216b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_311b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_315d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_313a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_317c: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -375,7 +377,7 @@ public class Plugin : BaseUnityPlugin
 			GameObject val23 = AddEffectToList("LycansNewRoles.EffectClairvoyance", typeof(ClairvoyanceEffect), 75f);
 			GameObject val24 = AddEffectToList("LycansNewRoles.EffectChaos", typeof(ChaosEffect), 60f);
 			GameObject val25 = AddEffectToList("LycansNewRoles.EffectEnergized", typeof(EnergizedEffect), 60f);
-			GameObject val26 = AddEffectToList("LycansNewRoles.EffectConfused", typeof(ConfusedEffect), 30f);
+			GameObject val26 = AddEffectToList("LycansNewRoles.EffectConfused", typeof(ConfusedEffect), 45f);
 			GameObject val27 = AddEffectToList("LycansNewRoles.EffectStealthing", typeof(CamouflageEffect), 90f);
 			GameObject val28 = AddEffectToList("LycansNewRoles.EffectImmune", typeof(ImmuneEffect), 80f);
 			List<Effect> list = new List<Effect>();
@@ -909,6 +911,7 @@ public class Plugin : BaseUnityPlugin
 			PlayerCustom.CamouflageLevel1Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel1Shader");
 			PlayerCustom.CamouflageLevel2Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel2Shader");
 			PlayerCustom.CamouflageLevel3Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel3Shader");
+			HostParasite.CamouflageShader = NewRolesCoreBundle.LoadAsset<Shader>("HostParasiteCamouflageShader");
 			AddSoundIfNeeded("SurvivalistDying");
 			AddSoundIfNeeded("BombTicking");
 			AddSoundIfNeeded("BombExplosion");
@@ -951,6 +954,7 @@ public class Plugin : BaseUnityPlugin
 			AddSoundIfNeeded("RuneExplosion");
 			AddSoundIfNeeded("InventorDeviceActivation");
 			AddSoundIfNeeded("InventorScrapAlert");
+			AddSoundIfNeeded("AcrobatJump");
 			foreach (GameObject newHat in NewHats)
 			{
 				Object.Destroy((Object)(object)newHat);

@@ -127,15 +127,15 @@ public class MagicianIllusion : NetworkBehaviour
 
 	private void Update()
 	{
-		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
 		if (_nextCheckWatch.ElapsedMilliseconds >= 1000)
 		{
 			if (((SimulationBehaviour)this).Runner.IsServer)
@@ -144,6 +144,7 @@ public class MagicianIllusion : NetworkBehaviour
 				if (RemainingDuration <= 0)
 				{
 					((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
+					return;
 				}
 			}
 			_nextCheckWatch.Restart();
@@ -304,7 +305,7 @@ public class MagicianIllusion : NetworkBehaviour
 
 	public override void FixedUpdateNetwork()
 	{
-		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
@@ -326,6 +327,7 @@ public class MagicianIllusion : NetworkBehaviour
 			if (flag)
 			{
 				((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
+				return;
 			}
 		}
 		((NetworkCharacterControllerPrototypeCustom)((Component)this).GetComponent<PlayerIllusionNetworkCharacterController>()).Move(((Component)this).transform.forward, 3f);

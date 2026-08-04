@@ -138,7 +138,7 @@ public class RunemasterRune : NetworkBehaviour
 				{
 					((Component)item).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 3000f * num3 * num9, 2000f);
 				}
-				float num10 = 8f * num4 * num8;
+				float num10 = 10f * num4 * num8;
 				num10 = Mathf.Min(num10, 10f);
 				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, num10);
 				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)this).Runner, 1f, num10);

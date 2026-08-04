@@ -116,13 +116,14 @@ public class PlayerPetComponent : NetworkBehaviour
 	{
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b6: Invalid comparison between Unknown and I4
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c6: Invalid comparison between Unknown and I4
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if ((Object)(object)_ownerCustom == (Object)null || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsDead) || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsWolf) || NetworkBool.op_Implicit(_ownerCustom.Dying) || LycansUtility.WolvesCanTransform || (!_ownerCustom.Visible && !_ownerCustom.IsCurrentlyPlayedOrObserved) || NetworkBool.op_Implicit(player.PlayerController.PlayerEffectManager.Paranoia) || (ExtraSettings.Instance.HidePets && (int)GameManager.LocalGameState != 1))
+		if ((Object)(object)_ownerCustom == (Object)null || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsDead) || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsWolf) || NetworkBool.op_Implicit(_ownerCustom.Dying) || NetworkBool.op_Implicit(player.Confused) || LycansUtility.WolvesCanTransform || (!_ownerCustom.Visible && !_ownerCustom.IsCurrentlyPlayedOrObserved) || NetworkBool.op_Implicit(player.PlayerController.PlayerEffectManager.Paranoia) || (ExtraSettings.Instance.HidePets && (int)GameManager.LocalGameState != 1))
 		{
 			_visual.SetActive(false);
 		}
@@ -167,27 +168,28 @@ public class PlayerPetComponent : NetworkBehaviour
 	{
 		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)changed.Behaviour._object == (Object)null)
 		{
 			Plugin.Logger.LogError((object)("Pet has no object!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString()));
 		}
 		else if ((Object)(object)changed.Behaviour._object.GetComponent<Animator>() == (Object)null)
 		{
-			Plugin.Logger.LogError((object)("Pet has no animator!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString() + ", object: " + (object)changed.Behaviour._object));
+			Plugin.Logger.LogError((object)("Pet has no animator!!! Owner: " + ((object)changed.Behaviour.Ref/*cast due to constrained. prefix*/).ToString() + ", object: " + ((object)changed.Behaviour._object)?.ToString() + ", pet: " + (object)((Component)changed.Behaviour).gameObject));
 			if (PlayerCustomRegistry.HasPlayer(changed.Behaviour.Ref))
 			{
 				PlayerCustom player = PlayerCustomRegistry.GetPlayer(changed.Behaviour.Ref);
 				ManualLogSource logger = Plugin.Logger;
 				NetworkString<_32> username = player.PlayerController.PlayerData.Username;
 				logger.LogError((object)("Player name: " + ((object)username/*cast due to constrained. prefix*/).ToString() + ", pet index: " + player.PetIndex));
+				PlayerCustom.Rpc_Change_Pet(((SimulationBehaviour)player).Runner, player.Index, 0);
 			}
 			changed.Behaviour.PetIndex = 0;
 		}

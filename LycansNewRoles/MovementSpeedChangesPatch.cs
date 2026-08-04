@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fusion;
 using HarmonyLib;
 using LycansNewRoles.NewMaps;
@@ -151,11 +152,17 @@ internal class MovementSpeedChangesPatch
 		//IL_09eb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08f8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e2d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e32: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e37: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e7b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e7d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e95: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b54: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0af2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0af7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_09fe: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0df7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dfa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b71: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b76: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d6e: Unknown result type (might be due to invalid IL or missing references)
@@ -169,11 +176,17 @@ internal class MovementSpeedChangesPatch
 		//IL_0b97: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b99: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b18: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ee0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ee2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0eee: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0db0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0db5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bc4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bc6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bcb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f06: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f0b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bf6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bfb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c06: Unknown result type (might be due to invalid IL or missing references)
@@ -182,10 +195,25 @@ internal class MovementSpeedChangesPatch
 		//IL_0c2d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0be2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0be4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1271: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1276: Unknown result type (might be due to invalid IL or missing references)
+		//IL_127a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_128c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1291: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1295: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f1e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f20: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f2c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f2e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0dd6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12ae: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0de3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0de5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c61: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fa5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fbf: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c88: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c8f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c9a: Unknown result type (might be due to invalid IL or missing references)
@@ -193,6 +221,33 @@ internal class MovementSpeedChangesPatch
 		//IL_0ca6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cab: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d23: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fdd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fd0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fe9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0feb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ff0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_101e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1023: Unknown result type (might be due to invalid IL or missing references)
+		//IL_102e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_103a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_100a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_100c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_124b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1131: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1138: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1143: Unknown result type (might be due to invalid IL or missing references)
+		//IL_114a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_114f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1154: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11c0: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController value = Traverse.Create((object)__instance).Field<PlayerController>("_playerController").Value;
@@ -495,7 +550,115 @@ internal class MovementSpeedChangesPatch
 				}
 				return false;
 			}
-			return true;
+			if (((NetworkBehaviour)__instance).GetInput<NetworkInputData>(ref val3))
+			{
+				NetworkButtons pressed2 = ((NetworkButtons)(ref val3.buttons)).GetPressed(__instance.ButtonsPrevious);
+				bool flag = ((NetworkButtons)(ref pressed2)).IsSet<Buttons>(Buttons.PrimaryInteract);
+				bool flag2 = ((NetworkButtons)(ref pressed2)).IsSet<Buttons>(Buttons.SecondaryInteract);
+				bool flag3 = ((NetworkButtons)(ref pressed2)).IsSet<Buttons>(Buttons.PrimaryAction);
+				bool flag4 = ((NetworkButtons)(ref pressed2)).IsSet<Buttons>(Buttons.SecondaryAction);
+				bool flag5 = ((NetworkButtons)(ref pressed2)).IsSet<Buttons>(Buttons.Item);
+				Traverse.Create((object)__instance).Field<bool>("_sprinting").Value = NetworkBool.op_Implicit(val3.sprinting);
+				bool flag6 = ((NetworkButtons)(ref val3.buttons)).WasPressed<Buttons>(__instance.ButtonsPrevious, Buttons.Crouch);
+				if (flag || flag2)
+				{
+					value.InteractInput(flag);
+				}
+				if (flag3 || flag4)
+				{
+					value.ActionInput(flag3);
+				}
+				if (flag5)
+				{
+					value.UseItem();
+				}
+				__instance.ButtonsPrevious = val3.buttons;
+				if (!NetworkBool.op_Implicit(value.IsDead))
+				{
+					teleportData = __instance.TeleportData;
+					if (((NetworkTeleportData)(ref teleportData)).IsNone)
+					{
+						float num11 = val3.movementInput.x;
+						float num12 = val3.movementInput.y;
+						if (!value.IsCanMove())
+						{
+							num11 = 0f;
+							num12 = 0f;
+						}
+						else
+						{
+							Traverse.Create((object)__instance).Method("UpdateMovementAction", new List<Type> { typeof(bool) }.ToArray(), (object[])null).GetValue(new object[1] { flag6 });
+						}
+						if (NetworkBool.op_Implicit(value.IsClimbing))
+						{
+							num11 = 0f;
+						}
+						if ((!NetworkBool.op_Implicit(value.IsVoting) || NetworkBool.op_Implicit(Plugin.CustomConfig.AnonymousVotes)) && !NetworkBool.op_Implicit(value.IsClimbing) && val3.aimForwardVector != Vector3.zero)
+						{
+							((Component)__instance).transform.forward = val3.aimForwardVector;
+						}
+						Quaternion rotation5 = ((Component)__instance).transform.rotation;
+						((Quaternion)(ref rotation5)).eulerAngles = new Vector3(0f, ((Quaternion)(ref rotation5)).eulerAngles.y, ((Quaternion)(ref rotation5)).eulerAngles.z);
+						((Component)__instance).transform.rotation = rotation5;
+						value.UpdateIsMoving(num11 != 0f || num12 != 0f);
+						bool flag7 = value.MovementAction == 2;
+						float num13 = 2f;
+						if (flag7)
+						{
+							num13 = 3.5f;
+						}
+						else if (value.MovementAction == 1)
+						{
+							num13 = 1f;
+						}
+						if (NetworkBool.op_Implicit(value.IsWolf))
+						{
+							float num14 = 1f + (float)GameManager.Instance.WolfSpeed / 100f;
+							num13 *= num14;
+						}
+						float num15 = (NetworkBool.op_Implicit(value.PlayerEffectManager.BonusSpeed) ? 1.75f : 1f);
+						num13 *= num15;
+						if (!NetworkBool.op_Implicit(value.IsClimbing))
+						{
+							Vector3 val7 = ((Component)__instance).transform.forward * num12 + ((Component)__instance).transform.right * num11;
+							((Vector3)(ref val7)).Normalize();
+							val.Value = Maths.Lerp(val.Value, num11 * value2.maxSpeed * num13, ((SimulationBehaviour)__instance).Runner.DeltaTime * 8.9f);
+							val2.Value = Maths.Lerp(val2.Value, num12 * value2.maxSpeed * num13, ((SimulationBehaviour)__instance).Runner.DeltaTime * 8.9f);
+							value2.Move(val7, num13);
+							value.UpdateAnimation(Animator.StringToHash("X_Velocity"), val.Value);
+							value.UpdateAnimation(Animator.StringToHash("Y_Velocity"), val2.Value);
+						}
+						else
+						{
+							val2.Value = Maths.Lerp(val2.Value, num12 * value2.maxSpeed * num13 * 0.25f, ((SimulationBehaviour)__instance).Runner.DeltaTime * 8.9f);
+							value.UpdateAnimation(Animator.StringToHash("Y_Velocity"), val2.Value);
+							value2.Climb(Vector3.up * num12, num13 * 0.25f);
+						}
+					}
+					else
+					{
+						Transform transform10 = ((Component)value).transform;
+						teleportData = __instance.TeleportData;
+						transform10.position = ((NetworkTeleportData)(ref teleportData)).Position;
+						Transform transform11 = ((Component)value).transform;
+						teleportData = __instance.TeleportData;
+						transform11.rotation = ((NetworkTeleportData)(ref teleportData)).Rotation;
+						if (((SimulationBehaviour)__instance).HasStateAuthority)
+						{
+							teleportData = __instance.TeleportData;
+							if (((NetworkTeleportData)(ref teleportData)).ResetLook)
+							{
+								value.Rpc_UpdateRotation();
+							}
+						}
+						__instance.TeleportData = NetworkTeleportData.None;
+					}
+					value.UpdateAnchorRotation(val3.aimForwardVector);
+					return false;
+				}
+				value2.Move(Vector3.zero, 1f);
+			}
+			return false;
 		}
 		catch (Exception ex)
 		{

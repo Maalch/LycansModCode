@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Fusion;
+using LycansNewRoles.PowerObjects;
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -227,9 +228,20 @@ public class SleepingGasPlaced : NetworkBehaviour
 		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
 		GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("SleepingGasBreak"), ((Component)this).transform.position, 30f, 1f);
 		SleepyTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 1f);
 		DisappearTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, Duration);
+		PlayerCustom player = PlayerCustomRegistry.GetPlayer(CreatorRef);
+		if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Inventor)
+		{
+			player.AddMaterials(30);
+		}
+		else
+		{
+			InventorScrap.CreateNewScrapForRandomInventor(((SimulationBehaviour)this).Runner, ((Component)this).transform.position);
+		}
 	}
 
 	public override void FixedUpdateNetwork()

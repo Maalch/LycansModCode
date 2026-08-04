@@ -40,27 +40,27 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 	private void Update()
 	{
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06fd: Invalid comparison between Unknown and I4
-		//IL_0249: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0359: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0702: Invalid comparison between Unknown and I4
+		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
 		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0361: Unknown result type (might be due to invalid IL or missing references)
-		//IL_029b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0597: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0399: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039f: Invalid comparison between Unknown and I4
-		//IL_0318: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0363: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0366: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
+		//IL_059c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_039e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a4: Invalid comparison between Unknown and I4
+		//IL_031d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)_playerCustom != (Object)null && NetworkBool.op_Implicit(_playerCustom.Confused))
 		{
 			if (!_confusedWatch.IsRunning)
@@ -68,7 +68,7 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 				_confusedMillisecondsToNextChange = 1500;
 				_confusedWatch.Restart();
 			}
-			else if (_confusedWatch.ElapsedMilliseconds >= _confusedMillisecondsToNextChange)
+			else if (_confusedWatch.ElapsedMilliseconds >= _confusedMillisecondsToNextChange && LycansUtility.GameActuallyInPlay)
 			{
 				RandomizeConfusedEffect();
 			}
@@ -178,12 +178,12 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 
 	private void RandomizeConfusedEffect()
 	{
-		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
 		ConfusedForwardInverted = Random.value < 0.5f;
 		ConfusedSidesInverted = Random.value < 0.5f;
-		ConfusedRotationHorizontalInverted = Random.value < 0.5f;
-		ConfusedRotationVerticalInverted = Random.value < 0.5f;
-		_confusedMillisecondsToNextChange = Random.Range(5000, 8000);
+		ConfusedRotationHorizontalInverted = false;
+		ConfusedRotationVerticalInverted = false;
+		_confusedMillisecondsToNextChange = Random.Range(4000, 7000);
 		_confusedWatch.Restart();
 		if (_playerCustom.IsCurrentlyPlayedOrObserved)
 		{
