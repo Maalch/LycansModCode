@@ -231,7 +231,7 @@ public class MagicianIllusion : NetworkBehaviour
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			changed.Behaviour._creatorCustom = PlayerCustomRegistry.GetPlayer(changed.Behaviour.CreatorRef);
@@ -239,8 +239,11 @@ public class MagicianIllusion : NetworkBehaviour
 			((Component)((Component)changed.Behaviour).transform.Find("Body")).gameObject.layer = 25;
 			((Component)((Component)changed.Behaviour).transform.Find("Body").Find("Villager")).gameObject.layer = 25;
 			changed.Behaviour._layerMask = Traverse.Create((object)((Component)changed.Behaviour._creatorCustom.PlayerController).GetComponent<PlayerGroundDetection>()).Field<LayerMask>("layerMask").Value;
-			PlayerController val = CollectionsUtil.Grab<PlayerController>(PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && (int)o.Role != 1)).ToList(), 1).First();
-			changed.Behaviour.TargetRef = val.Ref;
+			if (((SimulationBehaviour)changed.Behaviour).Runner.IsServer)
+			{
+				PlayerController val = CollectionsUtil.Grab<PlayerController>(PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && (int)o.Role != 1)).ToList(), 1).First();
+				changed.Behaviour.TargetRef = val.Ref;
+			}
 			changed.Behaviour._nextCheckWatch.Restart();
 			changed.Behaviour.UpdateVisibility();
 		}
@@ -281,10 +284,13 @@ public class MagicianIllusion : NetworkBehaviour
 
 	private void UpdateVisibility()
 	{
-		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
-		bool visible = _creatorCustom.IsCurrentlyPlayedOrObserved || (NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.IsWolf) && !NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.PlayerEffectManager.NightVision));
-		UpdateVisible(visible);
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		if (!((Object)(object)_creatorCustom == (Object)null))
+		{
+			bool visible = _creatorCustom.IsCurrentlyPlayedOrObserved || (NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.IsWolf) && !NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.PlayerEffectManager.NightVision));
+			UpdateVisible(visible);
+		}
 	}
 
 	private void UpdateVisible(bool visible)

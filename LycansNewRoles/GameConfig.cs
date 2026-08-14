@@ -1229,7 +1229,7 @@ public class GameConfig : NetworkBehaviour
 		TMP_Dropdown dropdown = EventChanceConfig;
 		if (!PlayerPrefs.HasKey("GAME_SETTINGS_EVENT_CHANCE"))
 		{
-			PlayerPrefs.SetInt("GAME_SETTINGS_EVENT_CHANCE", 2);
+			PlayerPrefs.SetInt("GAME_SETTINGS_EVENT_CHANCE", 3);
 		}
 		((UnityEventBase)dropdown.onValueChanged).RemoveAllListeners();
 		((UnityEvent<int>)(object)dropdown.onValueChanged).AddListener((UnityAction<int>)delegate(int index)
@@ -1903,7 +1903,7 @@ public class GameConfig : NetworkBehaviour
 		GhostsCountConfig.value = 1;
 		SpectersCountConfig.value = 1;
 		SecondaryRolesCountConfig.value = 15;
-		EventChanceConfig.value = 2;
+		EventChanceConfig.value = 3;
 		PlayerPrefs.SetInt("GAME_SETTINGS_SOLO_ROLES_COUNT", 1);
 		PlayerPrefs.SetInt("GAME_SETTINGS_TRAITORS_COUNT", 0);
 		PlayerPrefs.SetInt("GAME_SETTINGS_WOLF_PUPS_COUNT", 0);

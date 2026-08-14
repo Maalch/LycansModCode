@@ -39,7 +39,6 @@ internal class ClearEffectsPatch
 			{
 				player.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(false);
 			}
-			player.RepulsionStacks = 0;
 			player.SleepStacks = 0;
 			player.ClearAllParticleEffects();
 			foreach (string item in __state)

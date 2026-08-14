@@ -14,7 +14,7 @@ internal class OnCharacterChangedPatch
 	{
 		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0292: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
@@ -62,7 +62,6 @@ internal class OnCharacterChangedPatch
 					allPlayer.UpdateIllusion();
 				}
 				MagicianIllusion.UpdateVisibilityForAllMagicianIllusions();
-				MysticRepulsor.UpdateVisibilityForAllRepulsors();
 			}
 			player.UpdateScaleAndPitch();
 			player.UpdateWolfColor();

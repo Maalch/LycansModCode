@@ -13,24 +13,24 @@ internal class EffectSpawnedPatch
 	private static void Postfix(Effect __instance)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0486: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0490: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_013a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0197: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0404: Unknown result type (might be due to invalid IL or missing references)
-		//IL_040e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0447: Unknown result type (might be due to invalid IL or missing references)
-		//IL_044c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0450: Unknown result type (might be due to invalid IL or missing references)
-		//IL_045b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0449: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0453: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0186: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0284: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0413: Unknown result type (might be due to invalid IL or missing references)
+		//IL_041e: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.EffectPlayer);
 		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is TrackedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is SneakyEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect))
 		{
@@ -38,49 +38,41 @@ internal class EffectSpawnedPatch
 			{
 				if (!(__instance is EnergizedEffect))
 				{
-					if (!(__instance is RepulsionEffect))
+					if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
 					{
-						if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
+						if (!(__instance is SpotterEffect))
 						{
-							if (!(__instance is SpotterEffect))
+							if (!(__instance is MoleClockEffect))
 							{
-								if (!(__instance is MoleClockEffect))
+								if (__instance is JumpEffect)
 								{
-									if (__instance is JumpEffect)
-									{
-										((Component)player.PlayerController).gameObject.layer = 26;
-									}
-								}
-								else if (player.IsCurrentlyPlayedOrObserved)
-								{
-									AudioManager.Play("BELL", (MixerTarget)2, 1f, 1f);
-									ColorAdjustmentManager.FlashScreen(Color.red);
+									((Component)player.PlayerController).gameObject.layer = 26;
 								}
 							}
 							else if (player.IsCurrentlyPlayedOrObserved)
 							{
-								foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
-								{
-									item.UpdateVisibility();
-									((Component)item.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
-								}
+								AudioManager.Play("BELL", (MixerTarget)2, 1f, 1f);
+								ColorAdjustmentManager.FlashScreen(Color.red);
 							}
 						}
-						else
+						else if (player.IsCurrentlyPlayedOrObserved)
 						{
-							player.UpdateVisibility();
-							player.UpdateCanMoveAnimation();
-							AudioManager.PlayPosition("Banish", ((Component)player.PlayerController).transform.position, (MixerTarget)2, 10f, 0.5f);
-							if (player.IsCurrentlyPlayedOrObserved)
+							foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
 							{
-								ColorAdjustmentManager.UpdateColorAdjustment();
+								item.UpdateVisibility();
+								((Component)item.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
 							}
 						}
 					}
-					else if (player.IsCurrentlyPlayedOrObserved)
+					else
 					{
-						ColorAdjustmentManager.UpdateColorAdjustment();
-						player.UpdateTargetArrowComponent();
+						player.UpdateVisibility();
+						player.UpdateCanMoveAnimation();
+						AudioManager.PlayPosition("Banish", ((Component)player.PlayerController).transform.position, (MixerTarget)2, 10f, 0.5f);
+						if (player.IsCurrentlyPlayedOrObserved)
+						{
+							ColorAdjustmentManager.UpdateColorAdjustment();
+						}
 					}
 				}
 				else
@@ -108,7 +100,7 @@ internal class EffectSpawnedPatch
 		{
 			player.UpdateVisibility();
 		}
-		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is RepulsionEffect) && !(__instance is StrenghtenedEffect))
+		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
 		{
 			if (!(__instance is BurningEffect) && !(__instance is PurifierBurnEffect))
 			{

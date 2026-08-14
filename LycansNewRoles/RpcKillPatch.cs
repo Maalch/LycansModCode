@@ -41,28 +41,28 @@ internal class RpcKillPatch
 		//IL_02c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02ca: Invalid comparison between Unknown and I4
 		//IL_063b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0913: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0912: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0655: Unknown result type (might be due to invalid IL or missing references)
 		//IL_065b: Invalid comparison between Unknown and I4
 		//IL_0664: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04d8: Invalid comparison between Unknown and I4
-		//IL_0982: Unknown result type (might be due to invalid IL or missing references)
-		//IL_092d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_093e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_096b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0981: Unknown result type (might be due to invalid IL or missing references)
+		//IL_092c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_093d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_096a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0686: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0999: Unknown result type (might be due to invalid IL or missing references)
-		//IL_099f: Invalid comparison between Unknown and I4
-		//IL_076f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0775: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0998: Unknown result type (might be due to invalid IL or missing references)
+		//IL_099e: Invalid comparison between Unknown and I4
+		//IL_076e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0774: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0694: Unknown result type (might be due to invalid IL or missing references)
 		//IL_069a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0794: Unknown result type (might be due to invalid IL or missing references)
-		//IL_079f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0793: Unknown result type (might be due to invalid IL or missing references)
+		//IL_079e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06b8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0563: Unknown result type (might be due to invalid IL or missing references)
@@ -77,17 +77,17 @@ internal class RpcKillPatch
 		//IL_05f7: Expected O, but got Unknown
 		//IL_0602: Unknown result type (might be due to invalid IL or missing references)
 		//IL_061a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07f9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07ff: Invalid comparison between Unknown and I4
-		//IL_0806: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07fe: Invalid comparison between Unknown and I4
+		//IL_0805: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03cf: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03d5: Invalid comparison between Unknown and I4
-		//IL_0a27: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a0e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a19: Unknown result type (might be due to invalid IL or missing references)
-		//IL_082c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a26: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a0d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a18: Unknown result type (might be due to invalid IL or missing references)
+		//IL_082b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_087f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_087e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_041b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0420: Unknown result type (might be due to invalid IL or missing references)
 		//IL_044a: Unknown result type (might be due to invalid IL or missing references)
@@ -99,12 +99,12 @@ internal class RpcKillPatch
 		//IL_049a: Expected O, but got Unknown
 		//IL_04a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0892: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0898: Invalid comparison between Unknown and I4
-		//IL_08d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0891: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0897: Invalid comparison between Unknown and I4
+		//IL_08d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08f2: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (((SimulationBehaviour)__instance).HasStateAuthority && !NetworkBool.op_Implicit(__instance.IsDead))

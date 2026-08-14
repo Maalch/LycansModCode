@@ -94,6 +94,11 @@ public static class ItemUtility
 		return "NALES_GADGET_TRAP";
 	}
 
+	public static string ItemDescriptionToTranslateKey(Item item)
+	{
+		return ItemToTranslateKey(item) + "_DESCRIPTION";
+	}
+
 	public static Item SpawnItem(Item prefab, Vector3 position, Quaternion rotation, NetworkRunner runner)
 	{
 		//IL_005c: Unknown result type (might be due to invalid IL or missing references)

@@ -18,7 +18,6 @@ internal class HungerEffectVisualEffect
 		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
 		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((int)GameManager.LocalGameState == 2 && (Object)(object)PlayerController.Local != (Object)null)
@@ -28,7 +27,7 @@ internal class HungerEffectVisualEffect
 				{
 					GameManager.LightingManager.UpdateHungry(0.8f);
 				}
-				if (NetworkBool.op_Implicit(player.Possessed) || NetworkBool.op_Implicit(player.Hidden) || (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Peasant && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool)) || (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Shadow && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool)))
+				if (NetworkBool.op_Implicit(player.Possessed) || NetworkBool.op_Implicit(player.Hidden) || (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Shadow && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool)))
 				{
 					GameManager.LightingManager.UpdateHungry(0.5f);
 				}

@@ -148,8 +148,6 @@ public static class GlobalManager
 
 	public const string RecuperatingEffectName = "LycansNewRoles.EffectRecuperating";
 
-	public const string RepulsionEffectName = "LycansNewRoles.EffectRepulsion";
-
 	public const string BurningEffectName = "LycansNewRoles.EffectBurning";
 
 	public const string TenacityEffectName = "LycansNewRoles.EffectTenacity";
@@ -203,10 +201,6 @@ public static class GlobalManager
 	public const string MagicianBeaconName = "LycansNewRoles.GameObjectMagicianBeaconName";
 
 	public const string MagicianIllusionName = "LycansNewRoles.GameObjectMagicianIllusionName";
-
-	public const string MysticRepulsorName = "LycansNewRoles.GameObjectMysticRepulsor";
-
-	public const string TrackerRadarName = "LycansNewRoles.GameObjectTrackerRadar";
 
 	public const string CultistSkullName = "LycansNewRoles.GameObjectCultistSkull";
 

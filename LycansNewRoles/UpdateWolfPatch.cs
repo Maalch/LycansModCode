@@ -57,10 +57,6 @@ internal class UpdateWolfPatch
 			}
 			Traverse.Create((object)__instance).Method("UpdateCollider", Array.Empty<object>()).GetValue();
 			__instance.UpdateCameraAnchorOffset();
-			foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
-			{
-				allPlayer.UpdatePoacherMarkVisibility();
-			}
 			return false;
 		}
 		catch (Exception ex)

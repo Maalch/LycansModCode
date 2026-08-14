@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.333")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.337")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -56,8 +56,6 @@ public class Plugin : BaseUnityPlugin
 
 	public const string SoundUseTrappedItem = "UseTrappedItem";
 
-	public const string SoundPoacherMark = "PoacherMark";
-
 	public const string SoundAngelHeal = "AngelHeal";
 
 	public const string SoundBeastAwakening = "BeastAwakening";
@@ -80,7 +78,13 @@ public class Plugin : BaseUnityPlugin
 
 	public const string SoundChaos = "ChaosEffect";
 
-	public const string SoundZombie = "Zombie";
+	public const string SoundZombie1 = "Zombie1";
+
+	public const string SoundZombie2 = "Zombie2";
+
+	public const string SoundZombie3 = "Zombie3";
+
+	public const string SoundZombieAttack = "ZombieAttack";
 
 	public const string SoundVoodooReanimation = "VoodooRez";
 
@@ -110,10 +114,6 @@ public class Plugin : BaseUnityPlugin
 
 	public const string SoundBanish = "Banish";
 
-	public const string SoundRepulsor = "Repulsor";
-
-	public const string SoundTracker = "Tracker";
-
 	public const string SoundRadar = "Radar";
 
 	public const string SoundCultistSkull = "CultistSkull";
@@ -131,6 +131,10 @@ public class Plugin : BaseUnityPlugin
 	public const string SoundInventorScrapAlert = "InventorScrapAlert";
 
 	public const string SoundAcrobatJump = "AcrobatJump";
+
+	public const string SoundBurp = "Burp";
+
+	public const string SoundTinyCrush = "TinyCrush";
 
 	public static bool PlayerIllusionCreated = false;
 
@@ -244,12 +248,12 @@ public class Plugin : BaseUnityPlugin
 		//IL_01ba: Expected O, but got Unknown
 		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01eb: Expected O, but got Unknown
-		//IL_2105: Unknown result type (might be due to invalid IL or missing references)
-		//IL_2121: Unknown result type (might be due to invalid IL or missing references)
-		//IL_214f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_216b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_313a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_317c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2110: Unknown result type (might be due to invalid IL or missing references)
+		//IL_212c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_30c3: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -349,7 +353,6 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectEscaping", typeof(EscapingEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectBanished", typeof(BanishedEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectRecuperating", typeof(RecuperatingEffect), 3600f);
-			AddEffectToList("LycansNewRoles.EffectRepulsion", typeof(RepulsionEffect), 5f);
 			AddEffectToList("LycansNewRoles.EffectBurning", typeof(BurningEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectTenacity", typeof(TenacityEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectHubris", typeof(HubrisEffect), 3600f);
@@ -658,8 +661,6 @@ public class Plugin : BaseUnityPlugin
 			UIGenericChoicePanel.GenericChoiceButtonPrefab.SetActive(false);
 			PlayerCustom.DownedParticleSystemPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("DownedParticleSystem"));
 			PlayerCustom.DownedParticleSystemPrefab.SetActive(false);
-			PlayerPoacherMarkComponent.PoacherMarkPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("PoacherMark"));
-			PlayerPoacherMarkComponent.PoacherMarkPrefab.SetActive(false);
 			PlayerAngelIconComponent.AngelIconPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("AngelShieldIcon"));
 			PlayerAngelIconComponent.AngelIconPrefab.SetActive(false);
 			UIDraftPanel.DraftChoiceRolePrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("DraftChoiceRole"));
@@ -840,71 +841,59 @@ public class Plugin : BaseUnityPlugin
 			val61.AddComponent<MagicianBeacon>();
 			((Object)val61).name = "LycansNewRoles.GameObjectMagicianBeaconName";
 			RegisterGameObject(val61, "LycansNewRoles.GameObjectMagicianBeaconName");
-			GameObject val62 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("MysticRepulsor"));
+			GameObject val62 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("CultistSkull"));
 			val62.AddComponent<NetworkObject>();
 			val62.AddComponent<NetworkTransform>();
-			val62.AddComponent<MysticRepulsor>();
-			((Object)val62).name = "LycansNewRoles.GameObjectMysticRepulsor";
-			RegisterGameObject(val62, "LycansNewRoles.GameObjectMysticRepulsor");
-			GameObject val63 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("TrackerRadar"));
+			val62.AddComponent<CultistSkull>();
+			((Object)val62).name = "LycansNewRoles.GameObjectCultistSkull";
+			RegisterGameObject(val62, "LycansNewRoles.GameObjectCultistSkull");
+			GameObject val63 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("CultistSkullSpirit"));
 			val63.AddComponent<NetworkObject>();
 			val63.AddComponent<NetworkTransform>();
-			val63.AddComponent<TrackerRadar>();
-			((Object)val63).name = "LycansNewRoles.GameObjectTrackerRadar";
-			RegisterGameObject(val63, "LycansNewRoles.GameObjectTrackerRadar");
-			GameObject val64 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("CultistSkull"));
+			val63.AddComponent<CultistSkullSpirit>();
+			((Object)val63).name = "LycansNewRoles.GameObjectCultistSkullSpirit";
+			RegisterGameObject(val63, "LycansNewRoles.GameObjectCultistSkullSpirit");
+			GameObject val64 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("HermitHideout"));
 			val64.AddComponent<NetworkObject>();
 			val64.AddComponent<NetworkTransform>();
-			val64.AddComponent<CultistSkull>();
-			((Object)val64).name = "LycansNewRoles.GameObjectCultistSkull";
-			RegisterGameObject(val64, "LycansNewRoles.GameObjectCultistSkull");
-			GameObject val65 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("CultistSkullSpirit"));
+			val64.AddComponent<HermitHideout>();
+			val64.layer = LayerMask.NameToLayer("NoInteract");
+			((Object)val64).name = "LycansNewRoles.GameObjectHermitHideout";
+			RegisterGameObject(val64, "LycansNewRoles.GameObjectHermitHideout");
+			GameObject val65 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("HostParasite"));
 			val65.AddComponent<NetworkObject>();
 			val65.AddComponent<NetworkTransform>();
-			val65.AddComponent<CultistSkullSpirit>();
-			((Object)val65).name = "LycansNewRoles.GameObjectCultistSkullSpirit";
-			RegisterGameObject(val65, "LycansNewRoles.GameObjectCultistSkullSpirit");
-			GameObject val66 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("HermitHideout"));
+			val65.AddComponent<HostParasite>();
+			((Object)val65).name = "LycansNewRoles.GameObjectHostParasite";
+			RegisterGameObject(val65, "LycansNewRoles.GameObjectHostParasite");
+			GameObject val66 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("RunemasterRune"));
 			val66.AddComponent<NetworkObject>();
 			val66.AddComponent<NetworkTransform>();
-			val66.AddComponent<HermitHideout>();
-			val66.layer = LayerMask.NameToLayer("NoInteract");
-			((Object)val66).name = "LycansNewRoles.GameObjectHermitHideout";
-			RegisterGameObject(val66, "LycansNewRoles.GameObjectHermitHideout");
-			GameObject val67 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("HostParasite"));
+			val66.AddComponent<RunemasterRune>();
+			((Object)val66).name = "LycansNewRoles.GameObjectRunemasterRune";
+			RegisterGameObject(val66, "LycansNewRoles.GameObjectRunemasterRune");
+			GameObject val67 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("AcrobatSpot"));
 			val67.AddComponent<NetworkObject>();
 			val67.AddComponent<NetworkTransform>();
-			val67.AddComponent<HostParasite>();
-			((Object)val67).name = "LycansNewRoles.GameObjectHostParasite";
-			RegisterGameObject(val67, "LycansNewRoles.GameObjectHostParasite");
-			GameObject val68 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("RunemasterRune"));
+			val67.AddComponent<AcrobatSpot>();
+			((Object)val67).name = "LycansNewRoles.GameObjectAcrobatSpot";
+			RegisterGameObject(val67, "LycansNewRoles.GameObjectAcrobatSpot");
+			GameObject val68 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("InventorDeviceSmoke"));
 			val68.AddComponent<NetworkObject>();
 			val68.AddComponent<NetworkTransform>();
-			val68.AddComponent<RunemasterRune>();
-			((Object)val68).name = "LycansNewRoles.GameObjectRunemasterRune";
-			RegisterGameObject(val68, "LycansNewRoles.GameObjectRunemasterRune");
-			GameObject val69 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("AcrobatSpot"));
-			val69.AddComponent<NetworkObject>();
-			val69.AddComponent<NetworkTransform>();
-			val69.AddComponent<AcrobatSpot>();
-			((Object)val69).name = "LycansNewRoles.GameObjectAcrobatSpot";
-			RegisterGameObject(val69, "LycansNewRoles.GameObjectAcrobatSpot");
-			GameObject val70 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("InventorDeviceSmoke"));
-			val70.AddComponent<NetworkObject>();
-			val70.AddComponent<NetworkTransform>();
-			val70.AddComponent<InventorSmoke>();
-			((Object)val70).name = "LycansNewRoles.GameObjectInventorSmoke";
-			RegisterGameObject(val70, "LycansNewRoles.GameObjectInventorSmoke");
+			val68.AddComponent<InventorSmoke>();
+			((Object)val68).name = "LycansNewRoles.GameObjectInventorSmoke";
+			RegisterGameObject(val68, "LycansNewRoles.GameObjectInventorSmoke");
 			InventorSmoke.InventorSmokeForOthersPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("InventorDeviceSmoke"));
 			InventorSmoke.InventorSmokeForOthersPrefab.SetActive(false);
 			InventorSmoke.InventorSmokeForInventorPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("InventorDeviceSmokeForInventor"));
 			InventorSmoke.InventorSmokeForInventorPrefab.SetActive(false);
-			GameObject val71 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("InventorScrap"));
-			val71.AddComponent<NetworkObject>();
-			val71.AddComponent<NetworkTransform>();
-			val71.AddComponent<InventorScrap>();
-			((Object)val71).name = "LycansNewRoles.GameObjectInventorScrap";
-			RegisterGameObject(val71, "LycansNewRoles.GameObjectInventorScrap");
+			GameObject val69 = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("InventorScrap"));
+			val69.AddComponent<NetworkObject>();
+			val69.AddComponent<NetworkTransform>();
+			val69.AddComponent<InventorScrap>();
+			((Object)val69).name = "LycansNewRoles.GameObjectInventorScrap";
+			RegisterGameObject(val69, "LycansNewRoles.GameObjectInventorScrap");
 			PlayerNewAnimationsComponent.CustomAnimatorController = NewRolesCoreBundle.LoadAsset<RuntimeAnimatorController>("PlayerCustomAnimatorController");
 			PlayerCustom.SeeThroughShaderHuman = NewRolesCoreBundle.LoadAsset<Shader>("SeeThroughShaderBlue");
 			PlayerCustom.SeeThroughShaderWolf = NewRolesCoreBundle.LoadAsset<Shader>("SeeThroughShaderRed");
@@ -917,7 +906,6 @@ public class Plugin : BaseUnityPlugin
 			AddSoundIfNeeded("BombExplosion");
 			AddSoundIfNeeded("PowerAvailable");
 			AddSoundIfNeeded("UseTrappedItem");
-			AddSoundIfNeeded("PoacherMark");
 			AddSoundIfNeeded("AngelHeal");
 			AddSoundIfNeeded("BeastAwakening");
 			AddSoundIfNeeded("BeastHeartBeatFast");
@@ -929,7 +917,10 @@ public class Plugin : BaseUnityPlugin
 			AddSoundIfNeeded("GrenadeEffect");
 			AddSoundIfNeeded("GrenadeThrow");
 			AddSoundIfNeeded("ChaosEffect");
-			AddSoundIfNeeded("Zombie");
+			AddSoundIfNeeded("Zombie1");
+			AddSoundIfNeeded("Zombie2");
+			AddSoundIfNeeded("Zombie3");
+			AddSoundIfNeeded("ZombieAttack");
 			AddSoundIfNeeded("VoodooRez");
 			AddSoundIfNeeded("PredatorKill");
 			AddSoundIfNeeded("Exorcism");
@@ -944,8 +935,6 @@ public class Plugin : BaseUnityPlugin
 			AddSoundIfNeeded("AlchemistT");
 			AddSoundIfNeeded("InquisitorFire");
 			AddSoundIfNeeded("Banish");
-			AddSoundIfNeeded("Repulsor");
-			AddSoundIfNeeded("Tracker");
 			AddSoundIfNeeded("Radar");
 			AddSoundIfNeeded("CultistSkull");
 			AddSoundIfNeeded("CultistCapture");
@@ -955,6 +944,8 @@ public class Plugin : BaseUnityPlugin
 			AddSoundIfNeeded("InventorDeviceActivation");
 			AddSoundIfNeeded("InventorScrapAlert");
 			AddSoundIfNeeded("AcrobatJump");
+			AddSoundIfNeeded("Burp");
+			AddSoundIfNeeded("TinyCrush");
 			foreach (GameObject newHat in NewHats)
 			{
 				Object.Destroy((Object)(object)newHat);
@@ -967,12 +958,12 @@ public class Plugin : BaseUnityPlugin
 				foreach (string text in array)
 				{
 					Logger.LogInfo((object)("Load hat: " + text));
-					GameObject val72 = newHatsBundle.LoadAsset<GameObject>(text);
-					Logger.LogInfo((object)("Loaded hat: " + (object)val72));
-					GameObject val73 = Object.Instantiate<GameObject>(val72);
-					val73.SetActive(false);
-					NewHats.Add(val73);
-					Logger.LogInfo((object)("Added hat: " + (object)val73));
+					GameObject val70 = newHatsBundle.LoadAsset<GameObject>(text);
+					Logger.LogInfo((object)("Loaded hat: " + (object)val70));
+					GameObject val71 = Object.Instantiate<GameObject>(val70);
+					val71.SetActive(false);
+					NewHats.Add(val71);
+					Logger.LogInfo((object)("Added hat: " + (object)val71));
 				}
 			}
 			PetNames.Clear();
@@ -983,27 +974,27 @@ public class Plugin : BaseUnityPlugin
 				foreach (string text2 in array2)
 				{
 					Logger.LogInfo((object)("Load pet: " + text2));
-					GameObject val74 = petsBundle.LoadAsset<GameObject>(text2);
-					Logger.LogInfo((object)("Loaded pet: " + (object)val74));
-					GameObject val75 = Object.Instantiate<GameObject>(val74);
-					val75.AddComponent<NetworkObject>();
-					val75.AddComponent<PlayerPetComponent>();
-					NetworkCharacterControllerPrototype val76 = val75.AddComponent<NetworkCharacterControllerPrototype>();
-					val76.Controller.center = new Vector3(0f, 0.8f, 0f);
-					val76.Controller.height = 1.5f;
-					val76.Controller.radius = 0.25f;
-					val76.Controller.stepOffset = 0.07f * val75.transform.localScale.x;
-					val76.Controller.slopeLimit = 45f;
-					val76.Controller.skinWidth = 0.025f;
-					val76.maxSpeed = 5f;
-					val76.acceleration = 50f;
-					val76.braking = 50f;
+					GameObject val72 = petsBundle.LoadAsset<GameObject>(text2);
+					Logger.LogInfo((object)("Loaded pet: " + (object)val72));
+					GameObject val73 = Object.Instantiate<GameObject>(val72);
+					val73.AddComponent<NetworkObject>();
+					val73.AddComponent<PlayerPetComponent>();
+					NetworkCharacterControllerPrototype val74 = val73.AddComponent<NetworkCharacterControllerPrototype>();
+					val74.Controller.center = new Vector3(0f, 0.8f, 0f);
+					val74.Controller.height = 1.5f;
+					val74.Controller.radius = 0.25f;
+					val74.Controller.stepOffset = 0.07f * val73.transform.localScale.x;
+					val74.Controller.slopeLimit = 45f;
+					val74.Controller.skinWidth = 0.025f;
+					val74.maxSpeed = 5f;
+					val74.acceleration = 50f;
+					val74.braking = 50f;
 					string text3 = "Pet" + PetNames.Count + 1;
 					PetNames.Add(text3);
-					((Object)val75).name = text3;
-					val75.SetActive(false);
-					RegisterGameObject(val75, text3);
-					Logger.LogInfo((object)("Added pet: " + ((object)val75)?.ToString() + " with name " + text3));
+					((Object)val73).name = text3;
+					val73.SetActive(false);
+					RegisterGameObject(val73, text3);
+					Logger.LogInfo((object)("Added pet: " + ((object)val73)?.ToString() + " with name " + text3));
 				}
 			}
 			List<Transform> list2 = Traverse.Create((object)GameManager.Instance).Field<Transform[]>("mapSpawns").Value.ToList();
@@ -1032,9 +1023,9 @@ public class Plugin : BaseUnityPlugin
 		GameObject val = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
 		MagicianIllusion magicianIllusion = val.AddComponent<MagicianIllusion>();
 		SkinnedMeshRenderer value = Traverse.Create((object)val.GetComponent<PlayerController>()).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value;
-		Object.DestroyImmediate((Object)(object)((Component)val.GetComponent<PlayerController>().FindVillagerHandLeft().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
-		Object.DestroyImmediate((Object)(object)((Component)val.GetComponent<PlayerController>().FindVillagerHandRight().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
-		Object.DestroyImmediate((Object)(object)((Component)val.GetComponent<PlayerController>().hatsContainer.transform.parent.Find("TruesightParticleSystem(Clone)(Clone)")).gameObject);
+		((Component)val.GetComponent<PlayerController>().FindVillagerHandLeft()).gameObject.ListComponentsAndChildren();
+		((Component)val.GetComponent<PlayerController>().FindVillagerHandRight()).gameObject.ListComponentsAndChildren();
+		val.GetComponent<PlayerController>().hatsContainer.ListComponentsAndChildren();
 		DestroyComponentIfExists<PlayerController>(val);
 		DestroyComponentIfExists<PlayerInteract>(val);
 		DestroyComponentIfExists<AudioListener>(val);
@@ -1049,7 +1040,6 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerBombTickingComponent>(val);
 		DestroyComponentIfExists<PlayerBombIconComponent>(val);
 		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val);
-		DestroyComponentIfExists<PlayerPoacherMarkComponent>(val);
 		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val);
 		DestroyComponentIfExists<PlayerHeldItemComponent>(val);
 		DestroyComponentIfExists<PlayerPredatorComponent>(val);
@@ -1064,6 +1054,7 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerNewAnimationsComponent>(val);
 		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val);
 		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val);
+		DestroyComponentIfExists<PlayerLocalEachSecondTimerComponent>(val);
 		PlayerIllusionNetworkCharacterController playerIllusionNetworkCharacterController = val.AddComponent<PlayerIllusionNetworkCharacterController>();
 		((NetworkCharacterControllerPrototypeCustom)playerIllusionNetworkCharacterController).acceleration = 500f;
 		((NetworkCharacterControllerPrototypeCustom)playerIllusionNetworkCharacterController).braking = 500f;
@@ -1107,7 +1098,6 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerBombTickingComponent>(val3);
 		DestroyComponentIfExists<PlayerBombIconComponent>(val3);
 		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val3);
-		DestroyComponentIfExists<PlayerPoacherMarkComponent>(val3);
 		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val3);
 		DestroyComponentIfExists<PlayerHeldItemComponent>(val3);
 		DestroyComponentIfExists<PlayerPredatorComponent>(val3);

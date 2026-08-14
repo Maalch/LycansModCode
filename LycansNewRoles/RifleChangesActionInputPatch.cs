@@ -28,17 +28,15 @@ internal class RifleChangesActionInputPatch
 		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
-		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBool.op_Implicit(GameManager.LightingManager.IsTransition) || (int)GameManager.State.Current != 2 || NetworkBool.op_Implicit(__instance.IsDead))
@@ -48,13 +46,6 @@ internal class RifleChangesActionInputPatch
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
 			if (!isPrimary || NetworkBool.op_Implicit(__instance.IsClimbing) || !NetworkBool.op_Implicit(__instance.CanMoveAnimation) || NetworkBool.op_Implicit(__instance.IsZooming))
 			{
-				return;
-			}
-			PlayerCustom.PlayerPrimaryRolePower primaryRolePower = player.PrimaryRolePower;
-			PlayerCustom.PlayerPrimaryRolePower playerPrimaryRolePower = primaryRolePower;
-			if (playerPrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Poacher)
-			{
-				__instance.IsAiming = NetworkBool.op_Implicit(!NetworkBool.op_Implicit(__instance.IsAiming));
 				return;
 			}
 			PlayerCustom.PlayerNewPrimaryRole newPrimaryRole = player.NewPrimaryRole;

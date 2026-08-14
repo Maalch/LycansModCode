@@ -364,78 +364,77 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-		//IL_156c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_18a4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1617: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17f8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1815: Unknown result type (might be due to invalid IL or missing references)
+		//IL_162f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_164c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1837: Unknown result type (might be due to invalid IL or missing references)
-		//IL_183d: Invalid comparison between Unknown and I4
+		//IL_166e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1674: Invalid comparison between Unknown and I4
+		//IL_0b2f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c7b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c80: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05b0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05f0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1608: Unknown result type (might be due to invalid IL or missing references)
-		//IL_160d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cd3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e1a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e1f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1453: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1458: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b4b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b55: Unknown result type (might be due to invalid IL or missing references)
 		//IL_070f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0618: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0641: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1623: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1628: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cf4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_146e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1473: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e8: Invalid comparison between Unknown and I4
-		//IL_09c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c41: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fc5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f5a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cf7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d08: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0770: Unknown result type (might be due to invalid IL or missing references)
 		//IL_077c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_167a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_167f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_169c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14e7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0434: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0de0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_117a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_110f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e6d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e96: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ea7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bc5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0db6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d30: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e1b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e2c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a78: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a89: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aa0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_084f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d64: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f55: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ecf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fba: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fcb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bb9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0be1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c09: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f38: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dbf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d99: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c20: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a2c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a3d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1282: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1288: Invalid comparison between Unknown and I4
-		//IL_12bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1482: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_132a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_133b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10d3: Invalid comparison between Unknown and I4
+		//IL_1108: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1335: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1175: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1186: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)this).Runner.IsServer)
 		{
 			return;
@@ -453,7 +452,7 @@ public class GameManagerCustom : NetworkBehaviour
 		}
 		EffectManager effectManager = Traverse.Create(typeof(EffectManager)).Field<EffectManager>("_instance").Value;
 		IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead));
-		Vector3 val5 = default(Vector3);
+		Vector3 val4 = default(Vector3);
 		foreach (PlayerCustom playerCustom in enumerable)
 		{
 			PlayerController player = playerCustom.PlayerController;
@@ -499,35 +498,35 @@ public class GameManagerCustom : NetworkBehaviour
 					{
 						break;
 					}
-					float num12 = 200f;
+					float num14 = 200f;
 					foreach (PlayerCustom item3 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != player.Ref))
 					{
-						float num13 = Vector3.Distance(((Component)player).transform.position, ((Component)item3.PlayerController).transform.position);
-						float num14 = (NetworkBool.op_Implicit(item3.PlayerController.IsWolf) ? 40f : 30f) * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
-						if (num13 <= num14)
+						float num15 = Vector3.Distance(((Component)player).transform.position, ((Component)item3.PlayerController).transform.position);
+						float num16 = (NetworkBool.op_Implicit(item3.PlayerController.IsWolf) ? 40f : 30f) * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
+						if (num15 <= num16)
 						{
-							float num15 = (0f + 3000f * (1f - num13 / num14)) / (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1);
+							float num17 = (0f + 3000f * (1f - num15 / num16)) / (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1);
 							if (NetworkBool.op_Implicit(item3.PlayerController.IsWolf))
 							{
-								num15 *= 2f;
+								num17 *= 2f;
 							}
-							num12 -= num15;
+							num14 -= num17;
 						}
 					}
 					if (NetworkBool.op_Implicit(player.IsWolf))
 					{
-						num12 -= 400f;
+						num14 -= 400f;
 					}
-					float num16 = (float)playerCustom.PrimaryRolePowerCurrentMaterials + num12;
-					if (num16 > 10000f)
+					float num18 = (float)playerCustom.PrimaryRolePowerCurrentMaterials + num14;
+					if (num18 > 10000f)
 					{
-						num16 = 10000f;
+						num18 = 10000f;
 					}
-					if (num16 < 0f)
+					if (num18 < 0f)
 					{
-						num16 = 0f;
+						num18 = 0f;
 					}
-					playerCustom.PrimaryRolePowerCurrentMaterials = Mathf.RoundToInt(num16);
+					playerCustom.PrimaryRolePowerCurrentMaterials = Mathf.RoundToInt(num18);
 					break;
 				}
 				case PlayerCustom.PlayerNewPrimaryRole.Spy:
@@ -537,29 +536,29 @@ public class GameManagerCustom : NetworkBehaviour
 						break;
 					}
 					PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
-					float num10 = 25f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
-					if (Vector3.Distance(((Component)player).transform.position, ((Component)player2.PlayerController).transform.position) <= num10)
+					float num12 = 25f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
+					if (Vector3.Distance(((Component)player).transform.position, ((Component)player2.PlayerController).transform.position) <= num12)
 					{
 						playerCustom.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(true);
-						bool flag = LycansUtility.CanPlayerSeeOtherPlayer(playerCustom, player2, num10);
+						bool flag = LycansUtility.CanPlayerSeeOtherPlayer(playerCustom, player2, num12);
 						bool flag2 = !NetworkBool.op_Implicit(player.IsMoving);
-						float num11 = 20f;
+						float num13 = 20f;
 						if (flag && flag2)
 						{
-							num11 = 110f;
+							num13 = 110f;
 						}
 						else if (flag)
 						{
-							num11 = 58f;
+							num13 = 58f;
 						}
 						else if (flag2)
 						{
-							num11 = 34f;
+							num13 = 34f;
 						}
-						num11 *= (float)Plugin.CustomConfig.SpyPercentage * 0.01f;
-						num11 /= Instance.SoloRoleDifficulty;
-						num11 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 12f);
-						playerCustom.AddSoloRoleProgress(Mathf.RoundToInt(num11), BalancingValues.SpyGoal(PlayerRegistry.Count));
+						num13 *= (float)Plugin.CustomConfig.SpyPercentage * 0.01f;
+						num13 /= Instance.SoloRoleDifficulty;
+						num13 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 12f);
+						playerCustom.AddSoloRoleProgress(Mathf.RoundToInt(num13), BalancingValues.SpyGoal(PlayerRegistry.Count));
 					}
 					else
 					{
@@ -590,10 +589,22 @@ public class GameManagerCustom : NetworkBehaviour
 						int val2 = Mathf.RoundToInt(num9);
 						num6 = Math.Max(num6, val2);
 					}
+					if (NetworkBool.op_Implicit(playerCustom.Possessed))
+					{
+						float num10 = 40f;
+						num10 *= (float)Plugin.CustomConfig.ScientistResearchSpeed * 0.01f;
+						num10 /= Instance.SoloRoleDifficulty;
+						num6 = Math.Max(num6, Mathf.RoundToInt(num10));
+					}
 					num6 = Mathf.RoundToInt((float)num6 * BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 7f));
+					int num11 = BalancingValues.ScientistGoal(PlayerRegistry.Count);
+					if (NetworkBool.op_Implicit(playerCustom.Possessed))
+					{
+						num6 = Mathf.Min(num6, num11 - playerCustom.SoloRoleObjectiveCount - 10);
+					}
 					if (num6 > 0)
 					{
-						playerCustom.AddSoloRoleProgress(num6, BalancingValues.ScientistGoal(PlayerRegistry.Count));
+						playerCustom.AddSoloRoleProgress(num6, num11);
 					}
 					break;
 				}
@@ -611,69 +622,26 @@ public class GameManagerCustom : NetworkBehaviour
 				}
 				switch (playerCustom.PrimaryRolePower)
 				{
-				case PlayerCustom.PlayerPrimaryRolePower.Peasant:
-				{
-					if (NetworkBool.op_Implicit(playerCustom.NewPrimaryRoleUniqueBool))
-					{
-						break;
-					}
-					float num21 = 0f;
-					foreach (PlayerCustom item5 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != player.Ref))
-					{
-						float num22 = Vector3.Distance(((Component)player).transform.position, ((Component)item5.PlayerController).transform.position);
-						float num23 = 30f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
-						if (num22 <= num23)
-						{
-							float num24 = (70f + 260f * (1f - num22 / num23)) / (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1);
-							num21 += num24;
-						}
-					}
-					if (num21 > 0f)
-					{
-						playerCustom.AddMaterials(Mathf.RoundToInt(num21));
-					}
-					break;
-				}
-				case PlayerCustom.PlayerPrimaryRolePower.Avenger:
-				{
-					float num26 = 0f;
-					if (PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && o.Ref != player.Ref && NetworkBool.op_Implicit(o.IsWolf) && Vector3.Distance(((Component)player).transform.position, ((Component)o).transform.position) <= 30f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))))
-					{
-						num26 += 100f;
-					}
-					if (num26 > 0f)
-					{
-						playerCustom.AddMaterials(Mathf.RoundToInt(num26));
-					}
-					break;
-				}
 				case PlayerCustom.PlayerPrimaryRolePower.Survivalist:
 					if (Random.value < 0.035f)
 					{
 						List<PlayerController> list = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsMoving) && !NetworkBool.op_Implicit(o.IsDead) && o.Ref != playerCustom.Ref)).ToList();
 						if (list.Any())
 						{
-							PlayerController val4 = CollectionsUtil.Grab<PlayerController>(list, 1).First();
-							((Vector3)(ref val5))._002Ector(((Component)val4).transform.position.x, ((Component)val4).transform.position.y + 0.5f, ((Component)val4).transform.position.z);
-							SurvivalistHint.CreateNewHint(((SimulationBehaviour)this).Runner, playerCustom, ((Component)val4).transform.position);
+							PlayerController val3 = CollectionsUtil.Grab<PlayerController>(list, 1).First();
+							((Vector3)(ref val4))._002Ector(((Component)val3).transform.position.x, ((Component)val3).transform.position.y + 0.5f, ((Component)val3).transform.position.z);
+							SurvivalistHint.CreateNewHint(((SimulationBehaviour)this).Runner, playerCustom, ((Component)val3).transform.position);
 						}
 					}
 					break;
-				case PlayerCustom.PlayerPrimaryRolePower.Mystic:
-				{
-					float num28 = Mathf.InverseLerp(0f, (float)GameManager.Instance.MaxHunger, playerCustom.PlayerController.Hunger);
-					int amount = Mathf.RoundToInt(Mathf.Lerp(150f, 25f, num28));
-					playerCustom.AddMaterials(amount);
-					break;
-				}
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
 				{
-					float num25 = 45f;
+					float num23 = 45f;
 					if (PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && o.Ref != player.Ref && NetworkBool.op_Implicit(o.IsWolf) && Vector3.Distance(((Component)player).transform.position, ((Component)o).transform.position) <= 30f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))))
 					{
-						num25 += 225f;
+						num23 += 225f;
 					}
-					playerCustom.AddMaterials(Mathf.RoundToInt(num25));
+					playerCustom.AddMaterials(Mathf.RoundToInt(num23));
 					break;
 				}
 				case PlayerCustom.PlayerPrimaryRolePower.Necromancer:
@@ -684,11 +652,11 @@ public class GameManagerCustom : NetworkBehaviour
 						playerCustom.PrimaryRolePowerCurrentMaterials = Mathf.Max(0, playerCustom.PrimaryRolePowerCurrentMaterials - 300);
 						if (playerCustom.PrimaryRolePowerCurrentMaterials == 0)
 						{
-							PlayerController player3 = PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
-							Effect val3 = player3.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is ResurrectedEffect);
-							if ((Object)(object)val3 != (Object)null)
+							PlayerController player4 = PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
+							Effect val5 = player4.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is ResurrectedEffect);
+							if ((Object)(object)val5 != (Object)null)
 							{
-								player3.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val3).Object.Id);
+								player4.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val5).Object.Id);
 							}
 						}
 					}
@@ -704,9 +672,9 @@ public class GameManagerCustom : NetworkBehaviour
 					{
 						break;
 					}
-					PlayerCustom player4 = PlayerCustomRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
-					float num27 = BalancingValues.PossessorMaximumRangeByMap(GameManager.Instance.MapID);
-					if (Vector3.Distance(((Component)player).transform.position, ((Component)player4.PlayerController).transform.position) <= num27)
+					PlayerCustom player3 = PlayerCustomRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
+					float num24 = BalancingValues.PossessorMaximumRangeByMap(GameManager.Instance.MapID);
+					if (Vector3.Distance(((Component)player).transform.position, ((Component)player3.PlayerController).transform.position) <= num24)
 					{
 						playerCustom.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(true);
 						playerCustom.PrimaryRolePowerCurrentMaterials += 400;
@@ -723,28 +691,25 @@ public class GameManagerCustom : NetworkBehaviour
 				}
 				case PlayerCustom.PlayerPrimaryRolePower.Ritualist:
 				{
-					float num17 = 0f;
-					foreach (PlayerCustom item6 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != player.Ref))
+					float num19 = 0f;
+					foreach (PlayerCustom item5 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != player.Ref))
 					{
-						float num18 = Vector3.Distance(((Component)player).transform.position, ((Component)item6.PlayerController).transform.position);
-						float num19 = 25f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
-						if (num18 <= num19)
+						float num20 = Vector3.Distance(((Component)player).transform.position, ((Component)item5.PlayerController).transform.position);
+						float num21 = 25f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
+						if (num20 <= num21)
 						{
-							float num20 = (100f + 500f * (1f - num18 / num19)) / (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1);
-							num17 += num20;
+							float num22 = (100f + 500f * (1f - num20 / num21)) / (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1);
+							num19 += num22;
 						}
 					}
-					if (num17 > 0f)
+					if (num19 > 0f)
 					{
-						playerCustom.AddMaterials(Mathf.RoundToInt(num17));
+						playerCustom.AddMaterials(Mathf.RoundToInt(num19));
 					}
 					break;
 				}
 				case PlayerCustom.PlayerPrimaryRolePower.Saboteur:
 					playerCustom.AddMaterials(160);
-					break;
-				case PlayerCustom.PlayerPrimaryRolePower.Tracker:
-					playerCustom.AddMaterials(100);
 					break;
 				}
 				if ((Object)(object)playerCustom.Accessory != (Object)null && playerCustom.Accessory is AccessoryRing accessoryRing)
@@ -774,18 +739,18 @@ public class GameManagerCustom : NetworkBehaviour
 				}
 				if (Instance.EventsManager.CurrentEvent == EventsManager.EventType.Plague && (int)playerCustom.PlayerController.Role != 1 && playerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Lover && !playerCustom.IsOutOfTheWorld && !NetworkBool.op_Implicit(playerCustom.Dying))
 				{
-					float num29 = 0.4f;
-					foreach (PlayerCustom item7 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != player.Ref))
+					float num25 = 0.4f;
+					foreach (PlayerCustom item6 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != player.Ref))
 					{
-						float num30 = Vector3.Distance(((Component)player).transform.position, ((Component)item7.PlayerController).transform.position);
-						float num31 = 10f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
-						if (num30 <= num31)
+						float num26 = Vector3.Distance(((Component)player).transform.position, ((Component)item6.PlayerController).transform.position);
+						float num27 = 10f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
+						if (num26 <= num27)
 						{
-							float num32 = (5f + 20f * (1f - num30 / num31)) / (8f + (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1));
-							num29 -= num32;
+							float num28 = (5f + 20f * (1f - num26 / num27)) / (8f + (float)(PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) - 1));
+							num25 -= num28;
 						}
 					}
-					playerCustom.PlayerController.Hunger = Mathf.Clamp(playerCustom.PlayerController.Hunger + num29, 0f, (float)GameManager.Instance.MaxHunger);
+					playerCustom.PlayerController.Hunger = Mathf.Clamp(playerCustom.PlayerController.Hunger + num25, 0f, (float)GameManager.Instance.MaxHunger);
 				}
 				if (playerCustom.Stats != null)
 				{
@@ -857,19 +822,15 @@ public class GameManagerCustom : NetworkBehaviour
 					switch (playerCustom.PrimaryRolePower)
 					{
 					case PlayerCustom.PlayerPrimaryRolePower.Saboteur:
-					case PlayerCustom.PlayerPrimaryRolePower.Tracker:
 					case PlayerCustom.PlayerPrimaryRolePower.Bomber:
 					case PlayerCustom.PlayerPrimaryRolePower.Ritualist:
 					case PlayerCustom.PlayerPrimaryRolePower.Host:
-					case PlayerCustom.PlayerPrimaryRolePower.Peasant:
 					case PlayerCustom.PlayerPrimaryRolePower.Exorcist:
-					case PlayerCustom.PlayerPrimaryRolePower.Avenger:
 					case PlayerCustom.PlayerPrimaryRolePower.Investigator:
 					case PlayerCustom.PlayerPrimaryRolePower.Survivalist:
 					case PlayerCustom.PlayerPrimaryRolePower.Priest:
 					case PlayerCustom.PlayerPrimaryRolePower.Scout:
 					case PlayerCustom.PlayerPrimaryRolePower.Magician:
-					case PlayerCustom.PlayerPrimaryRolePower.Mystic:
 					case PlayerCustom.PlayerPrimaryRolePower.Shadow:
 					case PlayerCustom.PlayerPrimaryRolePower.Hermit:
 					case PlayerCustom.PlayerPrimaryRolePower.Runemaster:

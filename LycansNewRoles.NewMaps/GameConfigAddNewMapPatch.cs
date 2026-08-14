@@ -32,6 +32,9 @@ internal class GameConfigAddNewMapPatch
 				case "map_got":
 					item = "Wisterio Lane (Hornicoo)";
 					break;
+				case "map_passifou":
+					item = "Passifou";
+					break;
 				}
 				Traverse.Create((object)__instance).Field<TMP_Dropdown>("mapDropdown").Value.AddOptions(new List<string> { item });
 			}

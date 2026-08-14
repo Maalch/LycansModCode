@@ -15,61 +15,62 @@ internal class CheckForEndgamePatch
 	{
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ab: Invalid comparison between Unknown and I4
-		//IL_0169: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0176: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0312: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0339: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033f: Invalid comparison between Unknown and I4
-		//IL_0320: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0390: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0248: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03bd: Invalid comparison between Unknown and I4
-		//IL_039e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0408: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0532: Unknown result type (might be due to invalid IL or missing references)
-		//IL_045c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0462: Invalid comparison between Unknown and I4
-		//IL_0540: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0635: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0647: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04cd: Invalid comparison between Unknown and I4
-		//IL_068f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_069d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05e4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ea: Invalid comparison between Unknown and I4
-		//IL_06e3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06f1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0757: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0761: Unknown result type (might be due to invalid IL or missing references)
-		//IL_087a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07f1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07f7: Invalid comparison between Unknown and I4
-		//IL_08c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08cb: Invalid comparison between Unknown and I4
-		//IL_09da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09e0: Invalid comparison between Unknown and I4
-		//IL_0922: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0928: Invalid comparison between Unknown and I4
-		//IL_0a70: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a76: Invalid comparison between Unknown and I4
-		//IL_0a01: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a22: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a28: Invalid comparison between Unknown and I4
-		//IL_0a0f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cc: Invalid comparison between Unknown and I4
+		//IL_017f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0365: Unknown result type (might be due to invalid IL or missing references)
+		//IL_036b: Invalid comparison between Unknown and I4
+		//IL_034c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0269: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f4: Invalid comparison between Unknown and I4
+		//IL_03d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_044a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_057f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a4: Invalid comparison between Unknown and I4
+		//IL_058d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_068d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_069f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0509: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050f: Invalid comparison between Unknown and I4
+		//IL_06f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0700: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0631: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0637: Invalid comparison between Unknown and I4
+		//IL_0751: Unknown result type (might be due to invalid IL or missing references)
+		//IL_075f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_086a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0870: Invalid comparison between Unknown and I4
+		//IL_0949: Unknown result type (might be due to invalid IL or missing references)
+		//IL_094f: Invalid comparison between Unknown and I4
+		//IL_0a74: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a7a: Invalid comparison between Unknown and I4
+		//IL_09a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09ac: Invalid comparison between Unknown and I4
+		//IL_0b15: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b1b: Invalid comparison between Unknown and I4
+		//IL_0a9b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0abc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac2: Invalid comparison between Unknown and I4
+		//IL_0aa9: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBool.op_Implicit(__instance.IsStarted) && !NetworkBool.op_Implicit(__instance.IsFinished))
 			{
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: voodoo hunt");
 				if (NetworkBool.op_Implicit(VoodooManager.Instance.VoodooTriggered))
 				{
 					PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
@@ -91,6 +92,7 @@ internal class CheckForEndgamePatch
 				{
 					return false;
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: village idiot");
 				PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.VillageIdiot);
 				if ((Object)(object)specificNewPrimaryRole2 != (Object)null)
 				{
@@ -101,6 +103,7 @@ internal class CheckForEndgamePatch
 						return false;
 					}
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: agent");
 				if ((int)GameManager.LocalGameState == 4 && PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) <= BalancingValues.AgentMaxSurvivorsToWin(PlayerRegistry.Count))
 				{
 					IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Agent);
@@ -127,6 +130,7 @@ internal class CheckForEndgamePatch
 					}
 				}
 				bool flag = false;
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: spy");
 				PlayerCustom specificNewPrimaryRole3 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
 				if ((Object)(object)specificNewPrimaryRole3 != (Object)null && specificNewPrimaryRole3.SoloRoleObjectiveCount >= BalancingValues.SpyGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.Kidnapped))
 				{
@@ -137,6 +141,7 @@ internal class CheckForEndgamePatch
 						return false;
 					}
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: scientist");
 				PlayerCustom specificNewPrimaryRole4 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Scientist);
 				if ((Object)(object)specificNewPrimaryRole4 != (Object)null && specificNewPrimaryRole4.SoloRoleObjectiveCount >= BalancingValues.ScientistGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.Kidnapped))
 				{
@@ -147,6 +152,7 @@ internal class CheckForEndgamePatch
 						return false;
 					}
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: kidnapper");
 				PlayerCustom kidnapper = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Kidnapper);
 				if ((Object)(object)kidnapper != (Object)null && !NetworkBool.op_Implicit(kidnapper.PlayerController.IsDead))
 				{
@@ -170,6 +176,7 @@ internal class CheckForEndgamePatch
 						}
 					}
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: voodoo");
 				PlayerCustom specificNewPrimaryRole5 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
 				if ((Object)(object)specificNewPrimaryRole5 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole5.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole5.Kidnapped))
 				{
@@ -186,21 +193,25 @@ internal class CheckForEndgamePatch
 						}
 					}
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: beast");
 				PlayerCustom beast = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Beast);
 				if ((Object)(object)beast != (Object)null && !NetworkBool.op_Implicit(beast.PlayerController.IsDead) && !NetworkBool.op_Implicit(beast.Kidnapped) && PlayerCustomRegistry.AllPlayers.All((PlayerCustom o) => o.Ref == beast.Ref || NetworkBool.op_Implicit(o.PlayerController.IsDead) || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie || NetworkBool.op_Implicit(o.BeastMark) || NetworkBool.op_Implicit(o.Kidnapped) || NetworkBool.op_Implicit(o.ResurrectedByNecromancer)))
 				{
 					flag = true;
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: mercenary");
 				PlayerCustom specificNewPrimaryRole6 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Mercenary);
 				if ((Object)(object)specificNewPrimaryRole6 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole6.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole6.Kidnapped) && specificNewPrimaryRole6.SoloRoleObjectiveCount >= specificNewPrimaryRole6.SoloRoleObjectiveTarget)
 				{
 					flag = true;
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: cultist");
 				PlayerCustom specificNewPrimaryRole7 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Cultist);
 				if ((Object)(object)specificNewPrimaryRole7 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole7.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole7.Kidnapped) && specificNewPrimaryRole7.SoloRoleObjectiveCount >= 10000)
 				{
 					flag = true;
 				}
+				LycansUtility.AddLogOnlyForMe("CheckForEndGame: lovers");
 				List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Lover).ToList();
 				if (list.Count == 2 && !NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(list.First().Ref).IsDead) && !list.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.Kidnapped)))
 				{
@@ -220,6 +231,7 @@ internal class CheckForEndgamePatch
 				{
 					int num5 = list2.Count((PlayerCustom o) => (int)o.PlayerController.Role == 1);
 					int num6 = list2.Count - num5;
+					LycansUtility.AddLogOnlyForMe("CheckForEndGame: default case 1");
 					if ((int)GameManager.LocalGameState == 4 && num5 > 0)
 					{
 						foreach (PlayerCustom item2 in list2)
@@ -235,6 +247,7 @@ internal class CheckForEndgamePatch
 							}
 						}
 					}
+					LycansUtility.AddLogOnlyForMe("CheckForEndGame: default case 2");
 					if (num5 == 0 && !flag)
 					{
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, PlayerCustomRegistry.GetAnyVillager().Index);
@@ -245,6 +258,7 @@ internal class CheckForEndgamePatch
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, PlayerCustomRegistry.Where((PlayerCustom o) => (int)o.PlayerController.Role == 1 && o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.None).First().Index);
 						return false;
 					}
+					LycansUtility.AddLogOnlyForMe("CheckForEndGame: default case 3");
 					if ((int)GameManager.State.Current == 4)
 					{
 						foreach (PlayerCustom item3 in list2)
@@ -255,6 +269,7 @@ internal class CheckForEndgamePatch
 							}
 						}
 					}
+					LycansUtility.AddLogOnlyForMe("CheckForEndGame: default case 4");
 					if (num5 >= num6 && (int)GameManager.State.Current == 4)
 					{
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, PlayerCustomRegistry.Where((PlayerCustom o) => (int)o.PlayerController.Role == 1 && o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.None).First().Index);

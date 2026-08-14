@@ -44,7 +44,6 @@ public class PlayerTargetArrowComponent : MonoBehaviour
 		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
 		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom playerCustom = PlayerCustomRegistry.GetPlayer(_playerController.Ref);
 		bool flag = false;
 		GameObject colorToShow = null;
@@ -83,11 +82,6 @@ public class PlayerTargetArrowComponent : MonoBehaviour
 				flag = MerchantCoin.AllCoins.Any((MerchantCoin o) => o.CreatorRef == playerCustom.Ref) && !NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf);
 				colorToShow = _yellow;
 			}
-			if (NetworkBool.op_Implicit(playerCustom.Repulsion))
-			{
-				flag = true;
-				colorToShow = _red;
-			}
 		}
 		if (flag != _active)
 		{
@@ -115,7 +109,6 @@ public class PlayerTargetArrowComponent : MonoBehaviour
 		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
 		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02be: Unknown result type (might be due to invalid IL or missing references)
 		if (!_active)
 		{
 			return;
@@ -205,19 +198,6 @@ public class PlayerTargetArrowComponent : MonoBehaviour
 			if ((Object)(object)merchantCoin != (Object)null)
 			{
 				_visual.transform.LookAt(((Component)merchantCoin).transform);
-			}
-			else
-			{
-				SetActive(active: false, null);
-			}
-		}
-		if (NetworkBool.op_Implicit(_playerCustom.Repulsion))
-		{
-			flag = true;
-			MysticRepulsor mysticRepulsor = MysticRepulsor.AllRepulsors.OrderBy((MysticRepulsor o) => Vector3.Distance(((Component)o).transform.position, ((Component)_playerCustom.PlayerController).transform.position)).FirstOrDefault();
-			if ((Object)(object)mysticRepulsor != (Object)null)
-			{
-				_visual.transform.LookAt(((Component)mysticRepulsor).transform);
 			}
 			else
 			{

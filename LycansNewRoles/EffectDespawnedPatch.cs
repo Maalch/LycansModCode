@@ -18,50 +18,42 @@ internal class EffectDespawnedPatch
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.EffectPlayer);
 		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is ResistanceEffect) && !(__instance is SneakyEffect) && !(__instance is TrackedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect))
 		{
-			if (!(__instance is RepulsionEffect))
+			if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
 			{
-				if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
+				if (!(__instance is SpotterEffect))
 				{
-					if (!(__instance is SpotterEffect))
+					if (__instance is JumpEffect)
 					{
-						if (__instance is JumpEffect)
-						{
-							((Component)player.PlayerController).gameObject.layer = 3;
-							player.ResetGravity();
-							((Component)player.PlayerController).GetComponent<KnockbackComponent>().StopKnockback();
-							player.UpdateCanMoveAnimation();
-						}
-					}
-					else if (player.IsCurrentlyPlayedOrObserved)
-					{
-						foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
-						{
-							item.UpdateVisibility();
-							((Component)item.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
-						}
+						((Component)player.PlayerController).gameObject.layer = 3;
+						player.ResetGravity();
+						((Component)player.PlayerController).GetComponent<KnockbackComponent>().StopKnockback();
+						player.UpdateCanMoveAnimation();
 					}
 				}
-				else
+				else if (player.IsCurrentlyPlayedOrObserved)
 				{
-					player.UpdateVisibility();
-					player.UpdateCanMoveAnimation();
-					if (player.IsCurrentlyPlayedOrObserved)
+					foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
 					{
-						ColorAdjustmentManager.UpdateColorAdjustment();
+						item.UpdateVisibility();
+						((Component)item.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
 					}
 				}
 			}
-			else if (player.IsCurrentlyPlayedOrObserved)
+			else
 			{
-				ColorAdjustmentManager.UpdateColorAdjustment();
-				player.UpdateTargetArrowComponent();
+				player.UpdateVisibility();
+				player.UpdateCanMoveAnimation();
+				if (player.IsCurrentlyPlayedOrObserved)
+				{
+					ColorAdjustmentManager.UpdateColorAdjustment();
+				}
 			}
 		}
 		else
 		{
 			player.UpdateVisibility();
 		}
-		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is RepulsionEffect) && !(__instance is StrenghtenedEffect))
+		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
 		{
 			if (__instance is BurningEffect || __instance is PurifierBurnEffect)
 			{

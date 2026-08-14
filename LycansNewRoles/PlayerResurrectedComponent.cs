@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Fusion;
+using Helpers.Collections;
 using UnityEngine;
 
 namespace LycansNewRoles;
@@ -55,7 +58,8 @@ public class PlayerResurrectedComponent : MonoBehaviour
 	{
 		if ((float)_stopwatch.ElapsedMilliseconds >= IntervalMilliseconds && _active)
 		{
-			AudioManager.PlayAndFollow("Zombie", ((Component)_playerController).transform, (MixerTarget)2, 22f, 0.2f);
+			List<string> list = new List<string> { "Zombie1", "Zombie2", "Zombie3" };
+			AudioManager.PlayAndFollow(CollectionsUtil.Grab<string>(list, 1).First(), ((Component)_playerController).transform, (MixerTarget)2, 22f, 0.2f);
 			_stopwatch.Restart();
 		}
 	}

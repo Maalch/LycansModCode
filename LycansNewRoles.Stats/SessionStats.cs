@@ -9,7 +9,7 @@ public class SessionStats
 {
 	public static SessionStats Stats = new SessionStats
 	{
-		ModVersion = "0.333",
+		ModVersion = "0.337",
 		Filename = ((object)PlayerController.Local.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "-" + LycansUtility.GetCurrentDateTimeUtcForId,
 		Key = "N8W0_QJ7Z5"
 	};
@@ -27,9 +27,9 @@ public class SessionStats
 
 	public void NewGame()
 	{
-		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0158: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			LycansUtility.AddLogOnlyForMe("Stats: New game now");
@@ -56,6 +56,9 @@ public class SessionStats
 				break;
 			case "map_got":
 				mapName = "Wisterio Lane";
+				break;
+			case "map_passifou":
+				mapName = "Passifou";
 				break;
 			}
 			CurrentGame = new GameStats

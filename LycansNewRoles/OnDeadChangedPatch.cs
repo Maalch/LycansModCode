@@ -174,24 +174,22 @@ internal class OnDeadChangedPatch
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0023: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0096: Invalid comparison between Unknown and I4
-		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a8: Invalid comparison between Unknown and I4
-		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Invalid comparison between Unknown and I4
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0196: Invalid comparison between Unknown and I4
+		//IL_02ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0203: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0293: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController behaviour = changed.Behaviour;
 			PlayerCustom deadPlayerCustom = PlayerCustomRegistry.GetPlayer(behaviour.Ref);
 			if (NetworkBool.op_Implicit(behaviour.IsDead))
 			{
-				deadPlayerCustom.PoacherMark = NetworkBool.op_Implicit(false);
 				if (deadPlayerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Spy)
 				{
 					deadPlayerCustom.PrimaryRoleTargetRef = PlayerRef.None;

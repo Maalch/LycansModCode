@@ -11,11 +11,11 @@ internal class RifleChangesReloadPatch
 	private static bool Prefix(BulletItem __instance, ref bool __result)
 	{
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(((Item)__instance).Owner);
-			if ((Object)(object)player != (Object)null && (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Poacher || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Mercenary))
+			if ((Object)(object)player != (Object)null && player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Mercenary)
 			{
 				__result = !NetworkBool.op_Implicit(player.PlayerController.IsGunLoaded);
 				return false;

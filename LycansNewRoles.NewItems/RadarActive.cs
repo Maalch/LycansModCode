@@ -95,7 +95,7 @@ public class RadarActive : NetworkBehaviour
 		if (((SimulationBehaviour)this).Runner.IsServer)
 		{
 			ActivationTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 2f);
-			DisappearTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 23f);
+			DisappearTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 20f);
 		}
 	}
 

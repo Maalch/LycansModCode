@@ -46,7 +46,10 @@ internal class TrapTriggerPatch
 		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0158: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController component = ((Component)other).gameObject.GetComponent<PlayerController>();
@@ -67,7 +70,7 @@ internal class TrapTriggerPatch
 					if (((TickTimer)(ref value)).IsRunning)
 					{
 						__instance.TrappedTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 2f);
-						goto IL_0145;
+						goto IL_0184;
 					}
 				}
 				if (NetworkBool.op_Implicit(component.IsWolf) && NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
@@ -78,9 +81,13 @@ internal class TrapTriggerPatch
 				{
 					__instance.TrappedTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 3f);
 				}
+				else if (NetworkBool.op_Implicit(component.IsWolf) && NetworkBool.op_Implicit(player.Jump))
+				{
+					__instance.TrappedTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 2f);
+				}
 			}
-			goto IL_0145;
-			IL_0145:
+			goto IL_0184;
+			IL_0184:
 			player.Knockback.StopKnockback();
 		}
 		catch (Exception ex)

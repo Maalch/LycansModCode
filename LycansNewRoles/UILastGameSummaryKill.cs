@@ -196,15 +196,17 @@ public class UILastGameSummaryKill : MonoBehaviour
 		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0052: Invalid comparison between Unknown and I4
-		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
 		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
@@ -222,6 +224,10 @@ public class UILastGameSummaryKill : MonoBehaviour
 		if ((int)playerCustom.PlayerController.Role == 1)
 		{
 			return GameUI.WolfColor;
+		}
+		if (PlayerCustom.IsPrimaryRolePowerForEliteVillagers(playerCustom.PrimaryRolePower))
+		{
+			return PlayerCustom.EliteRoleColor;
 		}
 		return GameUI.VillagerColor;
 	}

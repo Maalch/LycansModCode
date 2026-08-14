@@ -1,4 +1,5 @@
 using Fusion;
+using HarmonyLib;
 using UnityEngine;
 
 namespace LycansNewRoles;
@@ -11,44 +12,55 @@ public class KnockbackComponent : MonoBehaviour
 
 	public Vector3? Knockback => _knockback;
 
-	public void Init(Vector3 direction, float power, float reductionPerSecond, int animationIndex = 9)
+	public void Init(Vector3 direction, float power, float reductionPerSecond, int animationIndex = 9, bool heavyGravity = true)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		Init(direction, power, new Vector3(reductionPerSecond, reductionPerSecond, reductionPerSecond));
+		Init(direction, power, new Vector3(reductionPerSecond, reductionPerSecond, reductionPerSecond), animationIndex, heavyGravity);
 	}
 
-	public void Init(Vector3 direction, float power, Vector3 reductionPerSecond, int animationIndex = 9)
+	public void Init(Vector3 direction, float power, Vector3 reductionPerSecond, int animationIndex = 9, bool heavyGravity = true)
 	{
-		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
-		Vector3 val = direction * power;
-		_knockback = val;
-		float num = Mathf.Abs(val.x) + Mathf.Abs(val.y) + Mathf.Abs(val.z);
-		float num2 = Mathf.Abs(val.x) / num;
-		float num3 = Mathf.Abs(val.y) / num;
-		float num4 = Mathf.Abs(val.z) / num;
-		_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
-		PlayerController component = ((Component)this).GetComponent<PlayerController>();
-		PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)component).Runner, component.Index, animationIndex);
+		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
+		if (!_knockback.HasValue)
+		{
+			Vector3 val = direction * power;
+			_knockback = val;
+			float num = Mathf.Abs(val.x) + Mathf.Abs(val.y) + Mathf.Abs(val.z);
+			float num2 = Mathf.Abs(val.x) / num;
+			float num3 = Mathf.Abs(val.y) / num;
+			float num4 = Mathf.Abs(val.z) / num;
+			_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
+			PlayerController component = ((Component)this).GetComponent<PlayerController>();
+			PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)component).Runner, component.Index, animationIndex);
+			if (heavyGravity)
+			{
+				Traverse.Create((object)component.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.gravity = -400f * BalancingValues.GravityMultiplier(GameManager.Instance.MapID);
+			}
+		}
 	}
 
 	public void StopKnockback()
 	{
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
 		_knockback = null;
+		PlayerController component = ((Component)this).GetComponent<PlayerController>();
+		PlayerCustom player = PlayerCustomRegistry.GetPlayer(component.Ref);
+		player.ResetGravity();
 	}
 
 	public void Update()

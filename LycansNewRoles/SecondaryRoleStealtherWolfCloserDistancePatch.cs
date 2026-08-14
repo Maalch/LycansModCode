@@ -15,8 +15,8 @@ internal class SecondaryRoleStealtherWolfCloserDistancePatch
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(wolfPlayer.Ref);

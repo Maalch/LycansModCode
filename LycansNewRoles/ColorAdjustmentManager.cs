@@ -27,23 +27,19 @@ public static class ColorAdjustmentManager
 		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0151: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0174: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0269: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
 		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0253: Unknown result type (might be due to invalid IL or missing references)
-		//IL_023e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0218: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0203: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bb: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)PlayerController.Local == (Object)null || (Object)(object)PlayerController.Local.LocalCameraHandler == (Object)null || (Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer == (Object)null)
 		{
 			return;
@@ -58,25 +54,14 @@ public static class ColorAdjustmentManager
 		if (FlashColor.HasValue)
 		{
 			((VolumeParameter<Color>)(object)value.colorFilter).value = FlashColor.Value;
-			return;
 		}
-		if (NetworkBool.op_Implicit(player.Blind) || NetworkBool.op_Implicit(player.Dying) || NetworkBool.op_Implicit(player.Paralyzed) || NetworkBool.op_Implicit(player.Asleep) || NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Banished) || (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(player.SecondaryRolePowerActive)))
+		else if (NetworkBool.op_Implicit(player.Blind) || NetworkBool.op_Implicit(player.Dying) || NetworkBool.op_Implicit(player.Paralyzed) || NetworkBool.op_Implicit(player.Asleep) || NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Banished) || (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(player.SecondaryRolePowerActive)))
 		{
 			((VolumeParameter<Color>)(object)value.colorFilter).value = Color.black;
-			return;
 		}
-		if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Tracker)
+		else if (NetworkBool.op_Implicit(povPlayer.IsWolf))
 		{
-			TickTimer primaryRoleActionTimer = player.PrimaryRoleActionTimer;
-			if (((TickTimer)(ref primaryRoleActionTimer)).IsRunning)
-			{
-				((VolumeParameter<Color>)(object)value.colorFilter).value = Color.black;
-				return;
-			}
-		}
-		if (NetworkBool.op_Implicit(povPlayer.IsWolf))
-		{
-			if (NetworkBool.op_Implicit(player.Repulsion) || NetworkBool.op_Implicit(player.CapturedByCultist))
+			if (NetworkBool.op_Implicit(player.CapturedByCultist))
 			{
 				((VolumeParameter<Color>)(object)value.colorFilter).value = MysticCloseColor;
 			}

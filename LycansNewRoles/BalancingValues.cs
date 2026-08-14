@@ -221,6 +221,8 @@ public static class BalancingValues
 
 	public const float ScientistAnalysisRangeKill = 30f;
 
+	public const float ScientistAnalysisPowerWhenPossessed = 40f;
+
 	public const float ScientistAnalysisDiminishingReturnsValue = 7f;
 
 	public const float ScientistCreateGadgetCooldown = 60f;
@@ -319,9 +321,9 @@ public static class BalancingValues
 
 	public const float KidnapperKidnapSoundRange = 7f;
 
-	public const float KidnapperSilenceHealthAdditionalHungerOutsideMeetings = 0.25f;
+	public const float KidnapperSilenceHealthAdditionalHungerOutsideMeetings = 0.5f;
 
-	public const float KidnapperSilenceHealthAdditionalHungerDuringMeetings = 0.15f;
+	public const float KidnapperSilenceHealthAdditionalHungerDuringMeetings = 0.3f;
 
 	public const float KidnapperKidnappedPlayersVolumeWithoutSilence = 0.4f;
 
@@ -335,7 +337,7 @@ public static class BalancingValues
 
 	public const float CultistChargeGainPerSecondPerSkull = 15f;
 
-	public const float CultistSpiritMoveSpeed = 2f;
+	public const float CultistSpiritMoveSpeed = 1.75f;
 
 	public const float CultistSpiritCaptureCooldown = 2f;
 
@@ -349,9 +351,9 @@ public static class BalancingValues
 
 	public const float CultistInvokedSkullLifetime = 45f;
 
-	public const float CultistInvokedSkullMoveSpeed = 3.8f;
+	public const float CultistInvokedSkullMoveSpeed = 3.6f;
 
-	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1.4f;
+	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1.3f;
 
 	public const float CultistInvokedSkullSlowDuration = 2f;
 
@@ -363,7 +365,7 @@ public static class BalancingValues
 
 	public const float CultistSkullDestructionCooldownMultiplication = 0.5f;
 
-	public const float CultistFreeCastTime = 3f;
+	public const float CultistFreeCastTime = 2f;
 
 	public const float CultistSkullForbiddenAreaRadius = 10f;
 
@@ -448,10 +450,6 @@ public static class BalancingValues
 
 	public const float BomberBombExplosionSoundRange = 60f;
 
-	public const float PoacherShotSoundRange = 20f;
-
-	public const float PoacherMarkSoundRange = 30f;
-
 	public const float RitualistChargePerSecondAtMinDistance = 600f;
 
 	public const float RitualistChargePerSecondAtMaxDistance = 100f;
@@ -488,29 +486,25 @@ public static class BalancingValues
 
 	public const float SneakSilentTransformationDelayMultiplier = 2f;
 
-	public const float TrackerPlaceRadarCastTime = 6f;
-
-	public const float TrackerRadarRadius = 30f;
-
-	public const int TrackerRadarDuration = 30;
-
-	public const int TrackerChargesGainPerSecond = 100;
-
 	public const int HostEggHatchDuration = 15;
 
 	public const float HostParasiteDestroyRange = 0.1f;
 
 	public const float HostParasiteDetectRange = 20f;
 
-	public const float HostParasiteTargetDamagePercentage = 0.2f;
+	public const float HostParasiteTargetDamagePercentage = 0.1f;
 
 	public const float HostParasiteTargetPoisonDuration = 20f;
 
+	public const float HostParasiteTargetDisorientedDuration = 5f;
+
 	public const float HostParasiteNearbyPlayerRange = 15f;
 
-	public const float HostParasiteNearbyPlayerMaximumDamagePercentage = 0.2f;
+	public const float HostParasiteNearbyPlayerMaximumDamagePercentage = 0.1f;
 
 	public const float HostParasiteNearbyPlayerMaximumPoisonDuration = 20f;
+
+	public const float HostParasiteNearbyPlayerMaximumDisorientedDuration = 5f;
 
 	public const float AcrobatCastTime = 2f;
 
@@ -864,16 +858,6 @@ public static class BalancingValues
 
 	public const float MerchantHealPercentage = 0.5f;
 
-	public const float PeasantChargePerSecondAtMinDistance = 330f;
-
-	public const float PeasantChargePerSecondAtMaxDistance = 70f;
-
-	public const float PeasantChargePerSecondRange = 30f;
-
-	public const float PeasantMinimumChargeToUse = 2500f;
-
-	public const float PeasantChargeLossPerSecondWhenActive = 1250f;
-
 	public const float ExorcistCastTime = 3f;
 
 	public const float ExorcistBlindDuration = 1.5f;
@@ -893,22 +877,6 @@ public static class BalancingValues
 	public const float ExorcistDetectorMaximumDuration = 210f;
 
 	public const float ExorcistDetectorDistanceFromMeetingForMaximumDuration = 80f;
-
-	public const float AvengerAttackRange = 3.5f;
-
-	public const float AvengerAttackDownedDuration = 5f;
-
-	public const float AvengerAttackResilienceDuration = 8f;
-
-	public const float AvengerOnWolfKnockbackPower = 6f;
-
-	public const float AvengerOnWolfKnockbackReductionPerSecond = 6f;
-
-	public const float AvengerRadiusForChargeBonus = 30f;
-
-	public const float AvengerChargePerSecondIfNearbyWolf = 100f;
-
-	public const int AvengerChargeIncreaseOnNearbyWolfKill = 2500;
 
 	public const int InvestigatorHintsAmountOnNewDay = 3;
 
@@ -1083,36 +1051,6 @@ public static class BalancingValues
 	public const float MagicianIllusionMoveSpeed = 3f;
 
 	public const float MagicianIllusionExplosionBlindDuration = 2f;
-
-	public const int MysticCastTime = 1;
-
-	public const int MysticPowerChargePerSecondAtMaximumHealth = 25;
-
-	public const int MysticPowerChargePerSecondAtZeroHealth = 150;
-
-	public const float MysticRepulsorRadius = 30f;
-
-	public const int MysticRepulsorDuration = 15;
-
-	public const float MysticRepulsorBanishDuration = 8f;
-
-	public static Color MysticRepulsorFogColor = Color.cyan;
-
-	public static float MysticRepulsorFogEndDistanceAtZeroStack = 40f;
-
-	public static float MysticRepulsorFogEndDistanceAtMaxStacks = 15f;
-
-	public const int MysticRepulsorStacksMaximum = 1000;
-
-	public const int MysticRepulsorStacksPerSecond = 175;
-
-	public const float MysticRepulsorStacksMultiplierAtZeroRange = 1f;
-
-	public const float MysticRepulsorStacksMultiplierAtMaximumRange = 0.35f;
-
-	public const float MysticRepulsorMovementSpeedAtZeroStack = 0.9f;
-
-	public const float MysticRepulsorMovementSpeedAtMaxStacks = 0.25f;
 
 	public const float ShadowCastTime = 1f;
 
@@ -1548,7 +1486,7 @@ public static class BalancingValues
 
 	public const float RadarDelayBeforeActivation = 2f;
 
-	public const float RadarDuration = 23f;
+	public const float RadarDuration = 20f;
 
 	public const float RadarYAngleIncrease = 0.1f;
 
@@ -1621,6 +1559,8 @@ public static class BalancingValues
 	public const float SleepingGasSleepDurationOnHuman = 30f;
 
 	public const float SleepingGasSleepDurationOnWolf = 12f;
+
+	public const float PotionBurpChance = 0.1f;
 
 	public const float RingMovementSpeedForVillagerInDanger = 1.15f;
 
@@ -1906,7 +1846,7 @@ public static class BalancingValues
 
 	public const float SabotageObjectRaycastRange = 7f;
 
-	public const float SabotageSubtlyDurationMultiplier = 5f;
+	public const float SabotageSubtlyDurationMultiplier = 4f;
 
 	public const float DiseaseEffectHealthDecrease = 0.3f;
 
@@ -2015,8 +1955,6 @@ public static class BalancingValues
 	public const float PlayerRaycastRange = 10f;
 
 	public const float PlayerRaycastRangeWhenInvisible = 3.5f;
-
-	public const float PlayerRaycastRangeWhenHiddenWithPeasant = 2.25f;
 
 	public const float TrapSetupTime = 1f;
 
@@ -2512,15 +2450,12 @@ public static class BalancingValues
 	{
 		return power switch
 		{
-			PlayerCustom.PlayerPrimaryRolePower.Peasant => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => 3, 
-			PlayerCustom.PlayerPrimaryRolePower.Avenger => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Survivalist => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Priest => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Scout => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Magician => 3, 
-			PlayerCustom.PlayerPrimaryRolePower.Mystic => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => 3, 
@@ -2593,17 +2528,13 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Bomber => new PowerMaterialsInfo(70, 2.5f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Tracker => new PowerMaterialsInfo(10000, 2f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(30, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Peasant => new PowerMaterialsInfo(10000, 1f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Avenger => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(100, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => new PowerMaterialsInfo(100, 2f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Survivalist => new PowerMaterialsInfo(10000, 1.5f, 1.306f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Scout => new PowerMaterialsInfo(120, 1.5f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Magician => new PowerMaterialsInfo(40, 4f, 2.506f, gainsMaterialsOnCollect: true, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Mystic => new PowerMaterialsInfo(10000, 1.5f, 0.756f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => new PowerMaterialsInfo(10000, 3f, 1.056f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => new PowerMaterialsInfo(200, 2f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => new PowerMaterialsInfo(80, 2.5f, 1.556f, gainsMaterialsOnCollect: true, 0f), 
@@ -2759,16 +2690,13 @@ public static class BalancingValues
 		return power switch
 		{
 			PlayerCustom.PlayerPrimaryRolePower.Alchemist => 2, 
-			PlayerCustom.PlayerPrimaryRolePower.Avenger => 50, 
 			PlayerCustom.PlayerPrimaryRolePower.Bomber => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => 1, 
-			PlayerCustom.PlayerPrimaryRolePower.Peasant => 100, 
 			PlayerCustom.PlayerPrimaryRolePower.Survivalist => 100, 
 			PlayerCustom.PlayerPrimaryRolePower.Priest => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Scout => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Magician => 2, 
-			PlayerCustom.PlayerPrimaryRolePower.Mystic => 100, 
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => 200, 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => 2, 
@@ -2777,7 +2705,6 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Purifier => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => 100, 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => 200, 
-			PlayerCustom.PlayerPrimaryRolePower.Tracker => 100, 
 			PlayerCustom.PlayerPrimaryRolePower.Host => 2, 
 			_ => 0, 
 		};

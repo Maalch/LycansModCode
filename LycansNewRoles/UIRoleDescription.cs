@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusion;
+using HarmonyLib;
 using Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LycansNewRoles;
 
@@ -18,6 +20,12 @@ public class UIRoleDescription : MonoBehaviour
 
 	private GameObject _panelAccessory;
 
+	private Image _imageAccessory;
+
+	private GameObject _panelItem;
+
+	private Image _imageItem;
+
 	private GameObject _panelEvent;
 
 	private TextMeshProUGUI _descriptionPrimary;
@@ -26,6 +34,8 @@ public class UIRoleDescription : MonoBehaviour
 
 	private TextMeshProUGUI _descriptionAccessory;
 
+	private TextMeshProUGUI _descriptionItem;
+
 	private TextMeshProUGUI _descriptionEvent;
 
 	private void Awake()
@@ -33,12 +43,16 @@ public class UIRoleDescription : MonoBehaviour
 		_panelPrimary = ((Component)((Component)this).transform.Find("PanelPrimary")).gameObject;
 		_panelPrimaryWarning = ((Component)((Component)this).transform.Find("PanelPrimaryWarning")).gameObject;
 		_panelSecondary = ((Component)((Component)this).transform.Find("PanelSecondary")).gameObject;
-		_panelAccessory = ((Component)((Component)this).transform.Find("PanelAccessory")).gameObject;
+		_panelAccessory = ((Component)((Component)this).transform.Find("PanelGear").Find("PanelAccessory")).gameObject;
+		_panelItem = ((Component)((Component)this).transform.Find("PanelGear").Find("PanelItem")).gameObject;
 		_panelEvent = ((Component)((Component)this).transform.Find("PanelEvent")).gameObject;
-		_descriptionPrimary = ((Component)((Component)this).transform.Find("PanelPrimary").Find("Description")).GetComponent<TextMeshProUGUI>();
-		_descriptionSecondary = ((Component)((Component)this).transform.Find("PanelSecondary").Find("Description")).GetComponent<TextMeshProUGUI>();
-		_descriptionAccessory = ((Component)((Component)this).transform.Find("PanelAccessory").Find("Description")).GetComponent<TextMeshProUGUI>();
-		_descriptionEvent = ((Component)((Component)this).transform.Find("PanelEvent").Find("Description")).GetComponent<TextMeshProUGUI>();
+		_descriptionPrimary = ((Component)_panelPrimary.transform.Find("Description")).GetComponent<TextMeshProUGUI>();
+		_descriptionSecondary = ((Component)_panelSecondary.transform.Find("Description")).GetComponent<TextMeshProUGUI>();
+		_imageAccessory = ((Component)_panelAccessory.transform.Find("Icon")).GetComponent<Image>();
+		_descriptionAccessory = ((Component)_panelAccessory.transform.Find("Description")).GetComponent<TextMeshProUGUI>();
+		_imageItem = ((Component)_panelItem.transform.Find("Icon")).GetComponent<Image>();
+		_descriptionItem = ((Component)_panelItem.transform.Find("Description")).GetComponent<TextMeshProUGUI>();
+		_descriptionEvent = ((Component)_panelEvent.transform.Find("Description")).GetComponent<TextMeshProUGUI>();
 		Hide();
 	}
 
@@ -47,10 +61,10 @@ public class UIRoleDescription : MonoBehaviour
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d2d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d32: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0da1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0da6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c5c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c61: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cd0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cd5: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -92,14 +106,6 @@ public class UIRoleDescription : MonoBehaviour
 					{
 						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", ""),
 						playerCustom.PrimaryRolePowerCooldown.Value.ToString()
-					};
-					break;
-				case PlayerCustom.PlayerPrimaryRolePower.Tracker:
-					list = new List<string>
-					{
-						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
-						6f.ToString(),
-						30.ToString()
 					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Warlock:
@@ -145,12 +151,6 @@ public class UIRoleDescription : MonoBehaviour
 						2f.ToString()
 					};
 					break;
-				case PlayerCustom.PlayerPrimaryRolePower.Peasant:
-					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
-					break;
-				case PlayerCustom.PlayerPrimaryRolePower.Avenger:
-					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", "") };
-					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Exorcist:
 					list = new List<string>
 					{
@@ -180,13 +180,6 @@ public class UIRoleDescription : MonoBehaviour
 					{
 						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
 						LycansUtility.GetInputDisplayCustom((InputActionName)6).Replace(" -", "")
-					};
-					break;
-				case PlayerCustom.PlayerPrimaryRolePower.Mystic:
-					list = new List<string>
-					{
-						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
-						15.ToString()
 					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
@@ -251,7 +244,11 @@ public class UIRoleDescription : MonoBehaviour
 				switch (playerCustom.NewPrimaryRole)
 				{
 				case PlayerCustom.PlayerNewPrimaryRole.VillageIdiot:
-					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", "") };
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", ""),
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "")
+					};
 					break;
 				case PlayerCustom.PlayerNewPrimaryRole.Agent:
 					list = new List<string>
@@ -363,10 +360,33 @@ public class UIRoleDescription : MonoBehaviour
 			text3 = text3.Replace("#COOLDOWN", playerCustom.Accessory.CooldownAfterUse + "s");
 			_panelAccessory.SetActive(true);
 			((TMP_Text)_descriptionAccessory).text = text3;
+			_imageAccessory.sprite = Traverse.Create((object)playerCustom.Accessory).Field<Sprite>("sprite").Value;
 		}
 		else
 		{
 			_panelAccessory.SetActive(false);
+		}
+		if ((Object)(object)playerCustom.PlayerController.Item != (Object)null)
+		{
+			string text4 = TranslationManager.Instance.GetTranslation(ItemUtility.ItemToTranslateKey(playerCustom.PlayerController.Item)) + " - " + TranslationManager.Instance.GetTranslation(ItemUtility.ItemDescriptionToTranslateKey(playerCustom.PlayerController.Item));
+			_panelItem.SetActive(true);
+			((TMP_Text)_descriptionItem).text = text4;
+			Item item = playerCustom.PlayerController.Item;
+			Potion val2 = (Potion)(object)((item is Potion) ? item : null);
+			if (val2 != null)
+			{
+				EffectManager value = Traverse.Create(typeof(EffectManager)).Field<EffectManager>("_instance").Value;
+				List<Sprite> list2 = Traverse.Create((object)value).Field<Sprite[]>("potionSprites").Value.ToList();
+				_imageItem.sprite = list2[val2.ColorIndex];
+			}
+			else
+			{
+				_imageItem.sprite = Traverse.Create((object)playerCustom.PlayerController.Item).Field<Sprite>("sprite").Value;
+			}
+		}
+		else
+		{
+			_panelItem.SetActive(false);
 		}
 		if (GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.None)
 		{
@@ -420,6 +440,7 @@ public class UIRoleDescription : MonoBehaviour
 		_panelPrimaryWarning.SetActive(false);
 		_panelSecondary.SetActive(false);
 		_panelAccessory.SetActive(false);
+		_panelItem.SetActive(false);
 		_panelEvent.SetActive(false);
 		ShowRoleDescriptionPatch.ShowingExplanation = false;
 	}

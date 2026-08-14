@@ -16,9 +16,9 @@ internal class DraftPreventShowMenuPatch
 		//IL_004d: Invalid comparison between Unknown and I4
 		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0138: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0125: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013b: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)DraftManager.Instance != (Object)null && NetworkBool.op_Implicit(DraftManager.Instance.Active))
 		{
 			Traverse.Create((object)__instance).Method("UpdateTalkingUI", Array.Empty<object>()).GetValue();
@@ -41,13 +41,11 @@ internal class DraftPreventShowMenuPatch
 				switch (local.PrimaryRolePower)
 				{
 				case PlayerCustom.PlayerPrimaryRolePower.Necromancer:
-				case PlayerCustom.PlayerPrimaryRolePower.Tracker:
 				case PlayerCustom.PlayerPrimaryRolePower.Warlock:
 				case PlayerCustom.PlayerPrimaryRolePower.Acrobat:
 				case PlayerCustom.PlayerPrimaryRolePower.Exorcist:
 				case PlayerCustom.PlayerPrimaryRolePower.Survivalist:
 				case PlayerCustom.PlayerPrimaryRolePower.Scout:
-				case PlayerCustom.PlayerPrimaryRolePower.Mystic:
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
 				case PlayerCustom.PlayerPrimaryRolePower.Runemaster:
 					PlayerCustom.Rpc_Cancel_Current_Action(((SimulationBehaviour)local).Runner, local.Index);

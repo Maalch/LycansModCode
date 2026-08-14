@@ -23,6 +23,8 @@ public static class MapManager
 
 	public const string MapNameGot = "map_got";
 
+	public const string MapNamePassifou = "map_passifou";
+
 	public static Camera TestCamera;
 
 	public static Dictionary<int, CustomMap> NewMapsByIdInfo = new Dictionary<int, CustomMap>();

@@ -213,7 +213,7 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 		PlayerCustom.PlayerNewPrimaryRole playerNewPrimaryRole = newPrimaryRole;
 		if (playerNewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Cultist)
 		{
-			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = 2f;
+			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = 1.75f;
 		}
 		changed.Behaviour._playerCustom.SummonedSpirit = changed.Behaviour;
 		changed.Behaviour.SetFocus(focus: true);
@@ -280,11 +280,19 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 
 	private void OnFocusLost()
 	{
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
 		((Behaviour)PlayerController.Local.LocalCameraHandler.LocalCamera).enabled = true;
 		((Behaviour)PlayerController.Local.LocalCameraHandler).enabled = true;
 		((Behaviour)PlayerController.Local.AudioListener).enabled = true;
 		((Behaviour)((Component)PlayerController.Local).GetComponent<CharacterInputHandler>()).enabled = true;
-		PlayerController.Local.LocalCameraHandler.NextPov(true);
+		if (NetworkBool.op_Implicit(PlayerController.Local.IsDead))
+		{
+			PlayerController.Local.LocalCameraHandler.NextPov(true);
+		}
+		else
+		{
+			PlayerController.Local.LocalCameraHandler.SwitchPov(PlayerController.Local);
+		}
 	}
 
 	public void Shift()

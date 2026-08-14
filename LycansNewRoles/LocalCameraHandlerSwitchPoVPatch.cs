@@ -44,9 +44,9 @@ internal class LocalCameraHandlerSwitchPoVPatch
 	private static void Postfix(LocalCameraHandler __instance, PlayerRef __state)
 	{
 		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((Object)(object)__instance.PovPlayer == (Object)null)
@@ -59,7 +59,8 @@ internal class LocalCameraHandlerSwitchPoVPatch
 				foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
 				{
 					allPlayer.UpdateVisibility();
-					allPlayer.UpdatePoacherMarkVisibility();
+					allPlayer.UpdateIllusion();
+					allPlayer.UpdateScaleAndPitch();
 					((Component)allPlayer.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
 				}
 			}
@@ -81,7 +82,6 @@ internal class LocalCameraHandlerSwitchPoVPatch
 			InvestigatorHint.UpdateVisibilityForAllHints();
 			SurvivalistHint.UpdateVisibilityForAllHints();
 			DiscipleAnchor.UpdateVisibilityForAllAnchors();
-			MysticRepulsor.UpdateVisibilityForAllRepulsors();
 			HermitHideout.UpdateVisibilityForAllHideouts();
 			RunemasterRune.UpdateVisibilityForAllRunes();
 			AcrobatSpot.UpdateVisibilityForAllSpots();

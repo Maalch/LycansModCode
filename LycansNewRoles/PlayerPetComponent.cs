@@ -105,7 +105,7 @@ public class PlayerPetComponent : NetworkBehaviour
 
 	public override void Despawned(NetworkRunner runner, bool hasState)
 	{
-		if ((Object)(object)_ownerCustom != (Object)null)
+		if ((Object)(object)_ownerCustom != (Object)null && (Object)(object)_ownerCustom.CurrentPet == (Object)(object)this)
 		{
 			_ownerCustom.CurrentPet = null;
 		}
@@ -117,13 +117,13 @@ public class PlayerPetComponent : NetworkBehaviour
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c6: Invalid comparison between Unknown and I4
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d7: Invalid comparison between Unknown and I4
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if ((Object)(object)_ownerCustom == (Object)null || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsDead) || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsWolf) || NetworkBool.op_Implicit(_ownerCustom.Dying) || NetworkBool.op_Implicit(player.Confused) || LycansUtility.WolvesCanTransform || (!_ownerCustom.Visible && !_ownerCustom.IsCurrentlyPlayedOrObserved) || NetworkBool.op_Implicit(player.PlayerController.PlayerEffectManager.Paranoia) || (ExtraSettings.Instance.HidePets && (int)GameManager.LocalGameState != 1))
+		if ((Object)(object)_ownerCustom == (Object)null || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsDead) || NetworkBool.op_Implicit(_ownerCustom.PlayerController.IsWolf) || NetworkBool.op_Implicit(_ownerCustom.Dying) || NetworkBool.op_Implicit(player.Confused) || LycansUtility.WolvesCanTransform || (!_ownerCustom.Visible && !_ownerCustom.IsCurrentlyPlayedOrObserved) || _ownerCustom.CamouflageLevelForPovPlayer > 0 || NetworkBool.op_Implicit(player.PlayerController.PlayerEffectManager.Paranoia) || (ExtraSettings.Instance.HidePets && (int)GameManager.LocalGameState != 1))
 		{
 			_visual.SetActive(false);
 		}
