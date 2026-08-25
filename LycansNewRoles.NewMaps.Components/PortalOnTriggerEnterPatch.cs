@@ -62,7 +62,7 @@ internal class PortalOnTriggerEnterPatch
 						PlayerCustom.ApplyEffectToPlayer(component, "LycansNewRoles.EffectTrapResistance", ((SimulationBehaviour)__instance).Runner);
 						if (SabotageManager.Instance.IsSabotageActive(SabotageManager.SabotageIds.Portals) && NetworkBool.op_Implicit(component.IsWolf))
 						{
-							component.Hunger = Mathf.Min((float)GameManager.Instance.MaxHunger, component.Hunger + 0.35f * (float)GameManager.Instance.MaxHunger);
+							component.Hunger = Mathf.Min((float)GameManager.Instance.MaxHunger, component.Hunger + 0.25f * (float)GameManager.Instance.MaxHunger);
 							PlayerCustom.ApplyEffectToPlayer(component, "LycansNewRoles.EffectPortal", ((SimulationBehaviour)__instance).Runner, 1f, 8f);
 						}
 					}

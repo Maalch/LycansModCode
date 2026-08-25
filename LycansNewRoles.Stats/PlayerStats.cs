@@ -64,6 +64,10 @@ public class PlayerStats
 
 		public const string ActionTakeAccessory = "TakeAccessory";
 
+		public const string ActionTournamentWon = "TournamentWon";
+
+		public const string ActionTournamentLost = "TournamentLost";
+
 		public string Date;
 
 		public string Timing;

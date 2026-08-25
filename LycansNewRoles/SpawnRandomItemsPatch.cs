@@ -16,27 +16,27 @@ internal class SpawnRandomItemsPatch
 	private static bool Prefix(GameManager __instance)
 	{
 		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0686: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0824: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0139: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0140: Expected O, but got Unknown
 		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06d8: Expected O, but got Unknown
-		//IL_0557: Unknown result type (might be due to invalid IL or missing references)
-		//IL_055e: Expected O, but got Unknown
-		//IL_06f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0706: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0576: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0582: Unknown result type (might be due to invalid IL or missing references)
+		//IL_086f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0876: Expected O, but got Unknown
+		//IL_0893: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0449: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0450: Expected O, but got Unknown
 		//IL_0468: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0474: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0645: Unknown result type (might be due to invalid IL or missing references)
-		//IL_064c: Expected O, but got Unknown
-		//IL_0664: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0670: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06fc: Expected O, but got Unknown
+		//IL_0714: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0720: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07ea: Expected O, but got Unknown
+		//IL_0802: Unknown result type (might be due to invalid IL or missing references)
+		//IL_080e: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBool.op_Implicit(DraftManager.Instance.Active))
@@ -184,43 +184,116 @@ internal class SpawnRandomItemsPatch
 			List<Accessory> list3 = GameManagerCustom.SpawnableAccessories.Where((Accessory o) => Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)]).ToList();
 			if (list3.Count > 0)
 			{
-				int num16 = BalancingValues.AccessoriesAmountToSpawn(__instance.ItemsSpawnRate, PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (Object)(object)o.Accessory == (Object)null));
+				List<Accessory> list4 = new List<Accessory>();
+				foreach (Accessory item2 in list3)
+				{
+					Accessory accessory = item2;
+					Accessory accessory2 = accessory;
+					if (!(accessory2 is AccessoryBoots))
+					{
+						if (!(accessory2 is AccessoryHorn))
+						{
+							if (!(accessory2 is AccessoryRing))
+							{
+								if (!(accessory2 is AccessoryMagnifier))
+								{
+									if (!(accessory2 is AccessoryCrystalBall))
+									{
+										if (!(accessory2 is AccessoryBackpack))
+										{
+											if (accessory2 is AccessorySpellbook)
+											{
+												for (int num16 = 0; num16 < 2; num16++)
+												{
+													list4.Add(item2);
+												}
+											}
+										}
+										else
+										{
+											for (int num17 = 0; num17 < 1; num17++)
+											{
+												list4.Add(item2);
+											}
+										}
+									}
+									else
+									{
+										for (int num18 = 0; num18 < 1; num18++)
+										{
+											list4.Add(item2);
+										}
+									}
+								}
+								else
+								{
+									for (int num19 = 0; num19 < 1; num19++)
+									{
+										list4.Add(item2);
+									}
+								}
+							}
+							else
+							{
+								for (int num20 = 0; num20 < 1; num20++)
+								{
+									list4.Add(item2);
+								}
+							}
+						}
+						else
+						{
+							for (int num21 = 0; num21 < 1; num21++)
+							{
+								list4.Add(item2);
+							}
+						}
+					}
+					else
+					{
+						for (int num22 = 0; num22 < 1; num22++)
+						{
+							list4.Add(item2);
+						}
+					}
+				}
+				int num23 = BalancingValues.AccessoriesAmountToSpawn(__instance.ItemsSpawnRate, PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (Object)(object)o.Accessory == (Object)null));
 				if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Harvest)
 				{
-					num16 = Mathf.RoundToInt((float)num16 * 1.75f);
+					num23 = Mathf.RoundToInt((float)num23 * 1.75f);
 				}
-				int num17 = 0;
-				for (int num18 = 0; num18 < num16; num18++)
+				int num24 = 0;
+				for (int num25 = 0; num25 < num23; num25++)
 				{
-					Item prefab2 = ((IEnumerable<Item>)CollectionsUtil.Grab<Accessory>(list3, 1)).First();
+					Item prefab2 = ((IEnumerable<Item>)CollectionsUtil.Grab<Accessory>(list4, 1)).First();
 					ItemSpawner val6 = (ItemSpawner)val.GetValue();
 					if ((Object)(object)val6 != (Object)null)
 					{
 						Item val7 = ItemUtility.SpawnItem(prefab2, ((Component)val6).transform.position, ((Component)val6).transform.rotation, ((SimulationBehaviour)__instance).Runner);
 						if (val7 is AccessoryCrystalBall)
 						{
-							num17++;
+							num24++;
 						}
 					}
 				}
-				if (num17 == 0 && !PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && (Object)(object)o.Item != (Object)null && o.Item is AccessoryCrystalBall)))
+				if (num24 == 0 && !PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && (Object)(object)o.Item != (Object)null && o.Item is AccessoryCrystalBall)))
 				{
 					Plugin.Logger.LogInfo((object)"Adding extra crystal ball because no living player has one");
-					Accessory accessory = list3.FirstOrDefault((Accessory o) => o is AccessoryCrystalBall);
-					if ((Object)(object)accessory != (Object)null)
+					Accessory accessory3 = list3.FirstOrDefault((Accessory o) => o is AccessoryCrystalBall);
+					if ((Object)(object)accessory3 != (Object)null)
 					{
 						ItemSpawner val8 = (ItemSpawner)val.GetValue();
 						if ((Object)(object)val8 != (Object)null)
 						{
-							ItemUtility.SpawnItem((Item)(object)accessory, ((Component)val8).transform.position, ((Component)val8).transform.rotation, ((SimulationBehaviour)__instance).Runner);
+							ItemUtility.SpawnItem((Item)(object)accessory3, ((Component)val8).transform.position, ((Component)val8).transform.rotation, ((SimulationBehaviour)__instance).Runner);
 						}
 					}
 				}
 			}
 			if (NetworkBool.op_Implicit(__instance.BattleRoyale))
 			{
-				int num19 = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).Count();
-				for (int num20 = 0; num20 < num19 * 10; num20++)
+				int num26 = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).Count();
+				for (int num27 = 0; num27 < num26 * 10; num27++)
 				{
 					ItemSpawner val9 = (ItemSpawner)val.GetValue();
 					if ((Object)(object)val9 != (Object)null)

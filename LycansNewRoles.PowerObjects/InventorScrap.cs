@@ -206,7 +206,7 @@ public class InventorScrap : NetworkBehaviour
 		if (list.Count > 0)
 		{
 			PlayerCustom playerCustom = CollectionsUtil.Grab<PlayerCustom>(list, 1).First();
-			CreateNewScrap(runner, playerCustom, position, list.Count * 30);
+			CreateNewScrap(runner, playerCustom, position, list.Count * 25);
 		}
 	}
 
@@ -233,6 +233,6 @@ public class InventorScrap : NetworkBehaviour
 			((Component)no).transform.position = position;
 		}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 		((Component)val).transform.position = position;
-		((Component)val).GetComponent<InventorScrap>().Init(playerCustom.Ref, 180, chargePower);
+		((Component)val).GetComponent<InventorScrap>().Init(playerCustom.Ref, 120, chargePower);
 	}
 }

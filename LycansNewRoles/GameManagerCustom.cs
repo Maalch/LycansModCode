@@ -25,7 +25,7 @@ public class GameManagerCustom : NetworkBehaviour
 
 	public float SoloRoleDifficulty = 1f;
 
-	public float? IsolationTime = null;
+	public int GhostsCreated = 0;
 
 	public Dictionary<int, int> TransformationsAmountByDay = new Dictionary<int, int>();
 
@@ -156,16 +156,16 @@ public class GameManagerCustom : NetworkBehaviour
 	{
 		CurrentDay = 0;
 		SoloRoleDifficulty = 1f;
+		GhostsCreated = 0;
 	}
 
 	public void NewGame()
 	{
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
 		LycansUtility.AddLogOnlyForMe("Stats: New Game");
-		CurrentDay = 0;
-		SoloRoleDifficulty = 1f;
+		Reset();
 		CurrentMayor = PlayerRef.None;
 		MayorActionCooldownTimer = TickTimer.None;
 		EventsManager.GameEventsHistory.Clear();
@@ -364,18 +364,18 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_135f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1617: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1687: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_162f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_164c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15f8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_166e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1674: Invalid comparison between Unknown and I4
+		//IL_161a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1620: Invalid comparison between Unknown and I4
 		//IL_0b2f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c7b: Unknown result type (might be due to invalid IL or missing references)
@@ -385,8 +385,8 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_05f0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1453: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1458: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1400: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b4b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b55: Unknown result type (might be due to invalid IL or missing references)
 		//IL_070f: Unknown result type (might be due to invalid IL or missing references)
@@ -395,21 +395,20 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_146e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1473: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1416: Unknown result type (might be due to invalid IL or missing references)
+		//IL_141b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e8: Invalid comparison between Unknown and I4
 		//IL_0c41: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fc5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0f5a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cf7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d08: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0770: Unknown result type (might be due to invalid IL or missing references)
 		//IL_077c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_146d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1472: Unknown result type (might be due to invalid IL or missing references)
+		//IL_148f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0434: Unknown result type (might be due to invalid IL or missing references)
@@ -424,17 +423,17 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_0ac8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_084f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_107b: Invalid comparison between Unknown and I4
 		//IL_0d99: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08db: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c20: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10d3: Invalid comparison between Unknown and I4
-		//IL_1108: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1335: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1175: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1186: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1275: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_111d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_112e: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)this).Runner.IsServer)
 		{
 			return;
@@ -720,10 +719,6 @@ public class GameManagerCustom : NetworkBehaviour
 						accessoryRing.EffectActive = flag3;
 						playerCustom.UpdateMoveSpeed();
 					}
-				}
-				if (NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) || PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && Vector3.Distance(((Component)playerCustom.PlayerController).transform.position, ((Component)o).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o }))))
-				{
-					playerCustom.SecondsTransformedOrNearTransformedWolfToday++;
 				}
 				if (Instance.EventsManager.CurrentEvent == EventsManager.EventType.Spellstorm)
 				{

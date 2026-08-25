@@ -49,7 +49,11 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 
 	public bool CanActivate()
 	{
-		return !_destructionWatch.IsRunning;
+		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		return !_destructionWatch.IsRunning && _playerCustom.InventorDeviceRef != PlayerRef.None && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead);
 	}
 
 	public void Activate(PlayerCustom wolf)
@@ -63,9 +67,6 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 
 	private void Update()
 	{
-		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)_playerCustom == (Object)null)
 		{
 			if (!_gaveError)
@@ -75,7 +76,7 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 			}
 			return;
 		}
-		if (((SimulationBehaviour)_playerCustom).Runner.IsServer && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && _playerCustom.InventorDeviceRef != PlayerRef.None && _playerCustom.InventorDeviceInfo.CanActivate() && (!_nextDeviceCheckWatch.IsRunning || _nextDeviceCheckWatch.ElapsedMilliseconds >= 200))
+		if (((SimulationBehaviour)_playerCustom).Runner.IsServer && _playerCustom.InventorDeviceInfo.CanActivate() && (!_nextDeviceCheckWatch.IsRunning || _nextDeviceCheckWatch.ElapsedMilliseconds >= 200))
 		{
 			_nextDeviceCheckWatch.Restart();
 			PlayerCustom playerCustom = PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != _playerCustom.Ref && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)o.PlayerController).transform.position) <= 12f && LycansUtility.CanPlayerSeeOtherPlayer(o, _playerCustom, 12f)).FirstOrDefault();

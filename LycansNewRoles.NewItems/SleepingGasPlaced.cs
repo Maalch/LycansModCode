@@ -236,7 +236,7 @@ public class SleepingGasPlaced : NetworkBehaviour
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(CreatorRef);
 		if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Inventor)
 		{
-			player.AddMaterials(30);
+			player.AddMaterials(25);
 		}
 		else
 		{

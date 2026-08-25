@@ -89,6 +89,7 @@ public class PlayerCustom : NetworkBehaviour
 		Sneak,
 		Host,
 		Acrobat,
+		Tracker,
 		Exorcist,
 		Investigator,
 		Survivalist,
@@ -156,8 +157,13 @@ public class PlayerCustom : NetworkBehaviour
 		private static bool Prefix(Changed<PlayerEffectsManager> changed)
 		{
 			//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Unknown result type (might be due to invalid IL or missing references)
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(Traverse.Create((object)changed.Behaviour).Field<PlayerController>("_playerController").Value.Ref);
 			player.UpdateScaleAndPitch();
+			if (NetworkBool.op_Implicit(player.PlayerController.IsWolf))
+			{
+				player.GrantResilience(14f);
+			}
 			return false;
 		}
 	}
@@ -180,516 +186,544 @@ public class PlayerCustom : NetworkBehaviour
 	{
 		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		public static Func<PlayerPrimaryRolePower, bool> _003C_003E9__88_0;
+		public static Func<PlayerPrimaryRolePower, bool> _003C_003E9__89_0;
 
-		public static Func<PlayerPrimaryRolePower, bool> _003C_003E9__90_0;
+		public static Func<PlayerPrimaryRolePower, bool> _003C_003E9__91_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__532_0;
+		public static Predicate<PlayerCustom> _003C_003E9__535_0;
 
-		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__535_0;
+		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__538_0;
 
-		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__535_1;
+		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__538_1;
 
-		public static Func<Effect, bool> _003C_003E9__535_2;
+		public static Func<Effect, bool> _003C_003E9__538_2;
 
-		public static Func<Effect, bool> _003C_003E9__535_3;
+		public static Func<Effect, bool> _003C_003E9__538_3;
 
-		public static Func<Effect, bool> _003C_003E9__535_4;
+		public static Func<Effect, bool> _003C_003E9__538_4;
 
-		public static Func<Effect, bool> _003C_003E9__535_5;
+		public static Func<Effect, bool> _003C_003E9__538_5;
 
-		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__535_7;
+		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__538_7;
 
-		public static Func<Door, bool> _003C_003E9__535_11;
+		public static Func<Door, bool> _003C_003E9__538_11;
 
-		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__535_9;
+		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__538_9;
 
-		public static Func<Door, bool> _003C_003E9__535_12;
+		public static Func<Door, bool> _003C_003E9__538_12;
 
-		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__535_10;
+		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__538_10;
 
-		public static Func<Item, bool> _003C_003E9__535_13;
+		public static Func<Item, bool> _003C_003E9__538_13;
 
-		public static Func<Door, bool> _003C_003E9__535_14;
+		public static Func<Door, bool> _003C_003E9__538_14;
 
-		public static Func<Door, bool> _003C_003E9__535_15;
+		public static Func<Door, bool> _003C_003E9__538_15;
 
-		public static Func<Item, bool> _003C_003E9__535_16;
+		public static Func<Item, bool> _003C_003E9__538_16;
 
-		public static Func<Effect, bool> _003C_003E9__535_20;
+		public static Func<Effect, bool> _003C_003E9__538_20;
 
-		public static Predicate<PlayerCustom> _003C_003E9__535_22;
+		public static Predicate<PlayerCustom> _003C_003E9__538_22;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__535_23;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__538_23;
 
-		public static Predicate<PlayerCustom> _003C_003E9__535_24;
+		public static Predicate<PlayerCustom> _003C_003E9__538_24;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__535_25;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__538_25;
 
-		public static Predicate<PlayerCustom> _003C_003E9__535_26;
+		public static Predicate<PlayerCustom> _003C_003E9__538_26;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__535_27;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__538_27;
 
-		public static Predicate<PlayerCustom> _003C_003E9__535_28;
+		public static Predicate<PlayerCustom> _003C_003E9__538_28;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__535_29;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__538_29;
 
-		public static Func<PlayerRef, bool> _003C_003E9__535_31;
+		public static Predicate<PlayerCustom> _003C_003E9__538_30;
 
-		public static Func<Effect, Effect> _003C_003E9__542_0;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__538_31;
 
-		public static Func<Item, bool> _003C_003E9__542_3;
+		public static Func<PlayerRef, bool> _003C_003E9__538_33;
 
-		public static Func<Item, bool> _003C_003E9__542_4;
+		public static Func<Effect, Effect> _003C_003E9__545_0;
 
-		public static Func<Item, bool> _003C_003E9__543_0;
+		public static Func<Item, bool> _003C_003E9__545_3;
 
-		public static Func<Item, bool> _003C_003E9__543_1;
+		public static Func<Item, bool> _003C_003E9__545_4;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__553_0;
+		public static Func<Item, bool> _003C_003E9__546_0;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__553_1;
+		public static Func<Item, bool> _003C_003E9__546_1;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__553_2;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__556_0;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__553_3;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__556_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_16;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__556_2;
 
-		public static Predicate<PlayerController> _003C_003E9__553_17;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__556_3;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__553_18;
+		public static Predicate<PlayerCustom> _003C_003E9__556_16;
 
-		public static Func<PlayerCustom, bool> _003C_003E9__553_20;
+		public static Predicate<PlayerController> _003C_003E9__556_17;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_7;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__556_18;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_8;
+		public static Func<PlayerCustom, bool> _003C_003E9__556_20;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_9;
+		public static Predicate<PlayerCustom> _003C_003E9__556_7;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_10;
+		public static Predicate<PlayerCustom> _003C_003E9__556_8;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_12;
+		public static Predicate<PlayerCustom> _003C_003E9__556_9;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_13;
+		public static Predicate<PlayerCustom> _003C_003E9__556_10;
 
-		public static Predicate<PlayerCustom> _003C_003E9__553_14;
+		public static Predicate<PlayerCustom> _003C_003E9__556_12;
 
-		public static Func<Effect, bool> _003C_003E9__560_9;
+		public static Predicate<PlayerCustom> _003C_003E9__556_13;
 
-		public static Func<Item, bool> _003C_003E9__560_3;
+		public static Predicate<PlayerCustom> _003C_003E9__556_14;
 
-		public static Func<Item, bool> _003C_003E9__560_10;
+		public static Func<Effect, bool> _003C_003E9__563_9;
 
-		public static Func<Effect, bool> _003C_003E9__560_11;
+		public static Func<Item, bool> _003C_003E9__563_3;
 
-		public static Func<PlayerCustom, bool> _003C_003E9__560_12;
+		public static Func<Item, bool> _003C_003E9__563_10;
 
-		public static OnBeforeSpawned _003C_003E9__562_5;
+		public static Func<Effect, bool> _003C_003E9__563_11;
 
-		public static Func<Effect, bool> _003C_003E9__562_7;
+		public static Func<PlayerCustom, bool> _003C_003E9__563_12;
 
-		public static Func<Effect, bool> _003C_003E9__562_8;
+		public static OnBeforeSpawned _003C_003E9__565_5;
 
-		public static Func<Effect, bool> _003C_003E9__562_9;
+		public static Func<Effect, bool> _003C_003E9__565_7;
 
-		public static Func<Effect, bool> _003C_003E9__562_10;
+		public static Func<Effect, bool> _003C_003E9__565_8;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__564_1;
+		public static Func<Effect, bool> _003C_003E9__565_9;
 
-		public static Predicate<PlayerController> _003C_003E9__564_2;
+		public static Func<Effect, bool> _003C_003E9__565_10;
 
-		public static Func<Item, bool> _003C_003E9__564_4;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__567_1;
 
-		public static Func<Item, bool> _003C_003E9__564_8;
+		public static Predicate<PlayerController> _003C_003E9__567_2;
 
-		public static Func<Item, bool> _003C_003E9__564_9;
+		public static Func<Item, bool> _003C_003E9__567_4;
 
-		public static Func<Item, bool> _003C_003E9__564_10;
+		public static Func<Item, bool> _003C_003E9__567_8;
 
-		public static Func<Item, bool> _003C_003E9__564_11;
+		public static Func<Item, bool> _003C_003E9__567_9;
 
-		public static Func<Item, bool> _003C_003E9__564_12;
+		public static Func<Item, bool> _003C_003E9__567_10;
 
-		public static Func<Item, bool> _003C_003E9__564_13;
+		public static Func<Item, bool> _003C_003E9__567_11;
 
-		public static Func<Item, bool> _003C_003E9__564_14;
+		public static Func<Item, bool> _003C_003E9__567_12;
 
-		public static Func<Item, bool> _003C_003E9__564_15;
+		public static Func<Item, bool> _003C_003E9__567_13;
 
-		public static Func<Item, bool> _003C_003E9__564_16;
+		public static Func<Item, bool> _003C_003E9__567_14;
 
-		public static Func<Effect, bool> _003C_003E9__565_5;
+		public static Func<Item, bool> _003C_003E9__567_15;
 
-		public static Func<Effect, bool> _003C_003E9__565_6;
+		public static Func<Item, bool> _003C_003E9__567_16;
 
-		public static Predicate<PlayerCustom> _003C_003E9__567_0;
+		public static Func<Effect, bool> _003C_003E9__568_5;
 
-		public static Predicate<PlayerCustom> _003C_003E9__567_1;
+		public static Func<Effect, bool> _003C_003E9__568_6;
 
-		public static Predicate<PlayerCustom> _003C_003E9__571_0;
+		public static Predicate<PlayerCustom> _003C_003E9__570_0;
 
-		public static Predicate<PlayerController> _003C_003E9__571_1;
+		public static Predicate<PlayerCustom> _003C_003E9__570_1;
 
-		public static Func<Effect, bool> _003C_003E9__571_4;
+		public static Predicate<PlayerCustom> _003C_003E9__574_0;
 
-		public static Func<Teleporter, bool> _003C_003E9__571_5;
+		public static Predicate<PlayerController> _003C_003E9__574_1;
 
-		public static Func<Effect, bool> _003C_003E9__587_0;
+		public static Func<Effect, bool> _003C_003E9__574_4;
+
+		public static Func<Teleporter, bool> _003C_003E9__574_5;
+
+		public static Predicate<PlayerCustom> _003C_003E9__574_6;
 
 		public static Func<Effect, bool> _003C_003E9__590_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__604_0;
+		public static Func<Effect, bool> _003C_003E9__593_0;
 
 		public static Predicate<PlayerCustom> _003C_003E9__607_0;
 
-		public static Func<Effect, bool> _003C_003E9__608_0;
+		public static Predicate<PlayerCustom> _003C_003E9__610_0;
 
-		public static Func<Effect, bool> _003C_003E9__615_0;
+		public static Func<Effect, bool> _003C_003E9__611_0;
 
 		public static Func<Effect, bool> _003C_003E9__618_0;
 
-		public static Func<Effect, bool> _003C_003E9__620_0;
+		public static Func<Effect, bool> _003C_003E9__621_0;
 
-		public static Func<Effect, bool> _003C_003E9__620_1;
+		public static Func<Effect, bool> _003C_003E9__623_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__630_0;
+		public static Func<Effect, bool> _003C_003E9__623_1;
 
-		public static Func<Effect, bool> _003C_003E9__648_0;
+		public static Predicate<PlayerCustom> _003C_003E9__633_0;
 
-		public static Func<Effect, bool> _003C_003E9__650_1;
+		public static Func<Effect, bool> _003C_003E9__651_0;
 
-		public static Func<Effect, bool> _003C_003E9__650_0;
+		public static Func<Effect, bool> _003C_003E9__653_1;
 
-		public static Func<Effect, bool> _003C_003E9__654_0;
+		public static Func<Effect, bool> _003C_003E9__653_0;
 
-		public static Func<Effect, bool> _003C_003E9__654_1;
+		public static Func<Effect, bool> _003C_003E9__657_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__654_2;
+		public static Func<Effect, bool> _003C_003E9__657_1;
 
-		public static Func<Effect, bool> _003C_003E9__656_0;
+		public static Predicate<PlayerCustom> _003C_003E9__657_2;
 
-		public static Func<Effect, bool> _003C_003E9__656_1;
+		public static Func<Effect, bool> _003C_003E9__660_0;
 
-		public static Func<Effect, bool> _003C_003E9__656_2;
+		public static Func<Effect, bool> _003C_003E9__660_1;
 
-		public static Func<Effect, bool> _003C_003E9__656_3;
+		public static Func<Effect, bool> _003C_003E9__660_2;
 
-		public static Func<Effect, bool> _003C_003E9__691_0;
+		public static Func<Effect, bool> _003C_003E9__660_3;
 
-		public static Func<Accessory, bool> _003C_003E9__691_1;
+		public static Func<Effect, bool> _003C_003E9__660_4;
 
-		public static Predicate<PlayerController> _003C_003E9__704_0;
+		public static Func<Accessory, bool> _003C_003E9__662_1;
 
-		public static Func<Item, bool> _003C_003E9__705_0;
+		public static Func<Effect, Effect> _003C_003E9__662_2;
 
-		public static Func<Accessory, bool> _003C_003E9__705_1;
+		public static Func<Item, bool> _003C_003E9__662_5;
 
-		public static Func<Item, bool> _003C_003E9__705_2;
+		public static Func<Item, bool> _003C_003E9__662_6;
 
-		public static Func<Accessory, bool> _003C_003E9__705_3;
+		public static Func<Effect, bool> _003C_003E9__695_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__705_4;
+		public static Func<Accessory, bool> _003C_003E9__695_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__705_5;
+		public static Predicate<PlayerController> _003C_003E9__708_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__705_6;
+		public static Func<Item, bool> _003C_003E9__709_0;
 
-		public static Func<Teleporter, bool> _003C_003E9__705_8;
+		public static Func<Accessory, bool> _003C_003E9__709_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__709_1;
+		public static Func<Item, bool> _003C_003E9__709_2;
 
-		public static Func<Effect, bool> _003C_003E9__709_2;
+		public static Func<Accessory, bool> _003C_003E9__709_3;
 
-		public static Func<Effect, bool> _003C_003E9__709_3;
+		public static Predicate<PlayerCustom> _003C_003E9__709_4;
 
-		public static Func<Effect, bool> _003C_003E9__709_6;
+		public static Predicate<PlayerCustom> _003C_003E9__709_5;
 
-		public static Func<Effect, bool> _003C_003E9__721_0;
+		public static Predicate<PlayerCustom> _003C_003E9__709_6;
 
-		public static Func<Teleporter, bool> _003C_003E9__724_0;
+		public static Func<Teleporter, bool> _003C_003E9__709_8;
 
-		public static Action<PlayerController> _003C_003E9__735_0;
+		public static Predicate<PlayerCustom> _003C_003E9__713_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__735_1;
+		public static Func<Effect, bool> _003C_003E9__713_2;
 
-		public static Predicate<PlayerCustom> _003C_003E9__735_2;
+		public static Func<Effect, bool> _003C_003E9__713_3;
 
-		public static Func<PlayerCustom, bool> _003C_003E9__735_3;
+		public static Func<Effect, bool> _003C_003E9__713_6;
 
-		public static Predicate<PlayerCustom> _003C_003E9__735_6;
+		public static Func<Effect, bool> _003C_003E9__726_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__735_7;
+		public static Func<Teleporter, bool> _003C_003E9__729_0;
 
-		public static Func<PlayerCustom, PlayerController> _003C_003E9__735_8;
+		public static Action<PlayerController> _003C_003E9__740_0;
 
-		public static Func<PlayerCustom, PlayerController> _003C_003E9__735_4;
+		public static Predicate<PlayerCustom> _003C_003E9__740_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__735_5;
+		public static Predicate<PlayerCustom> _003C_003E9__740_2;
 
-		public static Predicate<PlayerController> _003C_003E9__735_9;
+		public static Func<PlayerCustom, bool> _003C_003E9__740_3;
 
-		public static Predicate<PlayerController> _003C_003E9__735_10;
+		public static Predicate<PlayerCustom> _003C_003E9__740_6;
 
-		public static Predicate<PlayerController> _003C_003E9__735_11;
+		public static Predicate<PlayerCustom> _003C_003E9__740_7;
 
-		public static Predicate<PlayerController> _003C_003E9__735_12;
+		public static Func<PlayerCustom, PlayerController> _003C_003E9__740_8;
 
-		public static Predicate<PlayerController> _003C_003E9__735_13;
+		public static Func<PlayerCustom, PlayerController> _003C_003E9__740_4;
 
-		internal bool _003Cget_AllVillagerJobs_003Eb__88_0(PlayerPrimaryRolePower o)
+		public static Predicate<PlayerCustom> _003C_003E9__740_5;
+
+		public static Predicate<PlayerController> _003C_003E9__740_9;
+
+		public static Predicate<PlayerController> _003C_003E9__740_10;
+
+		public static Predicate<PlayerController> _003C_003E9__740_11;
+
+		public static Predicate<PlayerController> _003C_003E9__740_12;
+
+		public static Predicate<PlayerController> _003C_003E9__740_13;
+
+		internal bool _003Cget_AllVillagerJobs_003Eb__89_0(PlayerPrimaryRolePower o)
 		{
 			return IsPrimaryRolePowerForNormalVillagers(o);
 		}
 
-		internal bool _003Cget_AllWolfPowers_003Eb__90_0(PlayerPrimaryRolePower o)
+		internal bool _003Cget_AllWolfPowers_003Eb__91_0(PlayerPrimaryRolePower o)
 		{
 			return IsPrimaryRolePowerForWolves(o);
 		}
 
-		internal bool _003CDespawned_003Eb__532_0(PlayerCustom o)
+		internal bool _003CDespawned_003Eb__535_0(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Kidnapped);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_0(HauntedEffect.HauntedPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_0(HauntedEffect.HauntedPossibleEffect o)
 		{
 			return o == HauntedEffect.HauntedPossibleEffect.HealthGain;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_1(HauntedEffect.HauntedPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_1(HauntedEffect.HauntedPossibleEffect o)
 		{
 			return o == HauntedEffect.HauntedPossibleEffect.HealthLoss;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_2(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_2(Effect o)
 		{
 			return o is FlatulenceEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_3(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_3(Effect o)
 		{
 			return o is InvisibilityEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_4(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_4(Effect o)
 		{
 			return o is ParanoiaEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_5(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_5(Effect o)
 		{
 			return o is SpeedEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_7(ChaosEffect.ChaosPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_7(ChaosEffect.ChaosPossibleEffect o)
 		{
 			return o == ChaosEffect.ChaosPossibleEffect.UseScrollOnNearbyPlayer || o == ChaosEffect.ChaosPossibleEffect.UseDiamondOnNearbyPlayer;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_11(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_11(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_9(ChaosEffect.ChaosPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_9(ChaosEffect.ChaosPossibleEffect o)
 		{
 			return o == ChaosEffect.ChaosPossibleEffect.UnlockNearbyDoor;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_12(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_12(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_10(ChaosEffect.ChaosPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_10(ChaosEffect.ChaosPossibleEffect o)
 		{
 			return o == ChaosEffect.ChaosPossibleEffect.LockNearbyDoor;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_13(Item o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_13(Item o)
 		{
 			return o is TrapItem;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_14(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_14(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_15(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_15(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_16(Item o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_16(Item o)
 		{
 			return o is SmokeItem;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_20(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_20(Effect o)
 		{
 			return o is RecuperatingEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_22(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_22(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.BeastMark);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__535_23(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__538_23(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_24(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_24(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__535_25(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__538_25(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_26(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_26(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Kidnapped);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__535_27(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__538_27(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_28(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_28(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Parasite);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__535_29(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__538_29(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__535_31(PlayerRef o)
+		internal bool _003CFixedUpdateNetwork_003Eb__538_30(PlayerCustom o)
+		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return NetworkBool.op_Implicit(o.Tracked);
+		}
+
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__538_31(PlayerCustom o)
+		{
+			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+			return o.Ref;
+		}
+
+		internal bool _003CFixedUpdateNetwork_003Eb__538_33(PlayerRef o)
 		{
 			//IL_0005: Unknown result type (might be due to invalid IL or missing references)
 			return !PlayersWithSpecificColor.Contains(o);
 		}
 
-		internal Effect _003CGiveRandomItem_003Eb__542_0(Effect e)
+		internal Effect _003CGiveRandomItem_003Eb__545_0(Effect e)
 		{
 			return e;
 		}
 
-		internal bool _003CGiveRandomItem_003Eb__542_3(Item o)
+		internal bool _003CGiveRandomItem_003Eb__545_3(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CGiveRandomItem_003Eb__542_4(Item o)
+		internal bool _003CGiveRandomItem_003Eb__545_4(Item o)
 		{
 			return o is LockItem || o is TrapItem || o is SmokeItem || o is SpyglassItem || o is MagicScrollItem || o is PhasingDiamondItem || o is GrenadeItem || o is SleepingGasItem || o is MolotovItem || o is RadarItem;
 		}
 
-		internal bool _003CGiveScientistGadget_003Eb__543_0(Item o)
+		internal bool _003CGiveScientistGadget_003Eb__546_0(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CGiveScientistGadget_003Eb__543_1(Item o)
+		internal bool _003CGiveScientistGadget_003Eb__546_1(Item o)
 		{
-			return o is SmokeItem || o is GrenadeItem || o is SleepingGasItem || o is RadarItem;
+			return o is SmokeItem || o is GrenadeItem || o is SleepingGasItem || o is PhasingDiamondItem;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_0(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_0(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.DifferentSides;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_1(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_1(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.OneIsEvil;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_2(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_2(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.TransformationsAndDetransformations;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_3(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_3(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.WolvesAndSoloRolesRemaining;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_16(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_16(PlayerCustom o)
 		{
 			return o.SecondaryRole == PlayerSecondaryRole.BothTelepath;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_17(PlayerController o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_17(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsDead);
 		}
 
-		internal PlayerRef _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_18(PlayerCustom o)
+		internal PlayerRef _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_18(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_20(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_20(PlayerCustom o)
 		{
 			//IL_000e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0014: Invalid comparison between Unknown and I4
 			return o.NewPrimaryRole != PlayerNewPrimaryRole.None || (int)o.PlayerController.Role == 1;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_7(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_7(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Invalid comparison between Unknown and I4
 			return (int)o.PlayerController.Role == 1 || o.NewPrimaryRole == PlayerNewPrimaryRole.Traitor;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_8(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_8(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Lover;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_9(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_9(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Invalid comparison between Unknown and I4
 			return (int)o.PlayerController.Role != 1 && o.NewPrimaryRole == PlayerNewPrimaryRole.None;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_10(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_10(PlayerCustom o)
 		{
 			return o.SecondaryRole == PlayerSecondaryRole.BothTelepath;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_12(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_12(PlayerCustom o)
 		{
 			return o.SecondaryRole == PlayerSecondaryRole.BothTelepath;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_13(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_13(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
@@ -698,363 +732,395 @@ public class PlayerCustom : NetworkBehaviour
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.ResurrectedByNecromancer) && (int)o.PlayerController.Role == 1;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__553_14(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__556_14(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.NewPrimaryRole != PlayerNewPrimaryRole.None && o.NewPrimaryRole != PlayerNewPrimaryRole.Traitor && o.NewPrimaryRole != PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__560_9(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__563_9(Effect o)
 		{
 			return o is FlatulenceEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__560_3(Item o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__563_3(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__560_10(Item o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__563_10(Item o)
 		{
 			return o is MagicScrollItem;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__560_11(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__563_11(Effect o)
 		{
 			return o is TelepathyEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__560_12(PlayerCustom o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__563_12(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.PlayerController.IsWolf);
 		}
 
-		internal void _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__562_5(NetworkRunner _, NetworkObject no)
+		internal void _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__565_5(NetworkRunner _, NetworkObject no)
 		{
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__562_7(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__565_7(Effect o)
 		{
 			return o is InvisibilityEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__562_8(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__565_8(Effect o)
 		{
 			return o is SpeedEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__562_9(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__565_9(Effect o)
 		{
 			return o is NightVision;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__562_10(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__565_10(Effect o)
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 			//IL_001e: Invalid comparison between Unknown and I4
 			return Plugin.CustomConfig.PotionsAvailability[o.GetTranslateKey()] && (int)o.GetEffectType() == 0;
 		}
 
-		internal PlayerRef _003CSecondaryRoleActionTimerExpired_003Eb__564_1(PlayerCustom o)
+		internal PlayerRef _003CSecondaryRoleActionTimerExpired_003Eb__567_1(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_2(PlayerController o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_2(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsDead);
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_4(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_4(Item o)
 		{
 			return o is MagicScrollItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_8(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_8(Item o)
 		{
 			return o is LockItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_9(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_9(Item o)
 		{
 			return o is TrapItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_10(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_10(Item o)
 		{
 			return o is SmokeItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_11(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_11(Item o)
 		{
 			return o is SpyglassItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_12(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_12(Item o)
 		{
 			return o is PhasingDiamondItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_13(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_13(Item o)
 		{
 			return o is GrenadeItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_14(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_14(Item o)
 		{
 			return o is SleepingGasItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_15(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_15(Item o)
 		{
 			return o is MolotovItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__564_16(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__567_16(Item o)
 		{
 			return o is RadarItem;
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__565_5(Effect o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__568_5(Effect o)
 		{
 			return o is TelepathyEffect;
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__565_6(Effect o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__568_6(Effect o)
 		{
 			return o is KidnapperSilenceEffect;
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__567_0(PlayerCustom o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__570_0(PlayerCustom o)
 		{
 			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && !NetworkBool.op_Implicit(o.PlayerController.IsDead);
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__567_1(PlayerCustom o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__570_1(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Parasite);
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__571_0(PlayerCustom o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__574_0(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__571_1(PlayerController o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__574_1(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsDead);
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__571_4(Effect o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__574_4(Effect o)
 		{
 			return o is DisguisedEffect;
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__571_5(Teleporter o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__574_5(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal bool _003CRpc_Assassinate_003Eb__587_0(Effect o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__574_6(PlayerCustom o)
+		{
+			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld && !NetworkBool.op_Implicit(o.PlayerController.IsWolf) && o.NewPrimaryRole != PlayerNewPrimaryRole.Zombie;
+		}
+
+		internal bool _003CRpc_Assassinate_003Eb__590_0(Effect o)
 		{
 			return o is AssassinEffect;
 		}
 
-		internal bool _003CRpc_Petrify_003Eb__590_0(Effect o)
+		internal bool _003CRpc_Petrify_003Eb__593_0(Effect o)
 		{
 			return o is MidasEffect;
 		}
 
-		internal bool _003CKidnappedChanged_003Eb__604_0(PlayerCustom o)
+		internal bool _003CKidnappedChanged_003Eb__607_0(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Kidnapper;
 		}
 
-		internal bool _003CPossessedChanged_003Eb__607_0(PlayerCustom o)
+		internal bool _003CPossessedChanged_003Eb__610_0(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Possessor;
 		}
 
-		internal bool _003CRpc_Manipulate_Item_003Eb__608_0(Effect o)
+		internal bool _003CRpc_Manipulate_Item_003Eb__611_0(Effect o)
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 			//IL_001e: Invalid comparison between Unknown and I4
 			return Plugin.CustomConfig.PotionsAvailability[o.GetTranslateKey()] && (int)o.GetEffectType() == 0;
 		}
 
-		internal bool _003CUpdateIconAbovePlayer_003Eb__615_0(Effect o)
+		internal bool _003CUpdateIconAbovePlayer_003Eb__618_0(Effect o)
 		{
 			return o is SpiritResistanceEffect;
 		}
 
-		internal bool _003CRpc_Give_Bomb_003Eb__618_0(Effect o)
+		internal bool _003CRpc_Give_Bomb_003Eb__621_0(Effect o)
 		{
 			return o is BombEffect;
 		}
 
-		internal bool _003CBombActiveChanged_003Eb__620_0(Effect o)
+		internal bool _003CBombActiveChanged_003Eb__623_0(Effect o)
 		{
 			return o is FleeingEffect;
 		}
 
-		internal bool _003CBombActiveChanged_003Eb__620_1(Effect o)
+		internal bool _003CBombActiveChanged_003Eb__623_1(Effect o)
 		{
 			return o is GlowingEffect;
 		}
 
-		internal bool _003CRpc_Ritualist_Ritual_003Eb__630_0(PlayerCustom o)
+		internal bool _003CRpc_Ritualist_Ritual_003Eb__633_0(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.PlayerController.IsWolf);
 		}
 
-		internal bool _003CRpc_Save_003Eb__648_0(Effect o)
+		internal bool _003CRpc_Save_003Eb__651_0(Effect o)
 		{
 			return o is DyingEffect;
 		}
 
-		internal bool _003CFinishSurvivalistSave_003Eb__650_1(Effect o)
+		internal bool _003CFinishSurvivalistSave_003Eb__653_1(Effect o)
 		{
 			return o is CapturedEffect;
 		}
 
-		internal bool _003CFinishSurvivalistSave_003Eb__650_0(Effect o)
+		internal bool _003CFinishSurvivalistSave_003Eb__653_0(Effect o)
 		{
 			return o is DyingEffect;
 		}
 
-		internal bool _003CRpc_Wolf_Attack_003Eb__654_0(Effect o)
+		internal bool _003CRpc_Wolf_Attack_003Eb__657_0(Effect o)
 		{
 			return o is AsleepEffect;
 		}
 
-		internal bool _003CRpc_Wolf_Attack_003Eb__654_1(Effect o)
+		internal bool _003CRpc_Wolf_Attack_003Eb__657_1(Effect o)
 		{
 			return o is MoleClockEffect;
 		}
 
-		internal bool _003CRpc_Wolf_Attack_003Eb__654_2(PlayerCustom o)
+		internal bool _003CRpc_Wolf_Attack_003Eb__657_2(PlayerCustom o)
 		{
 			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && !NetworkBool.op_Implicit(o.PlayerController.IsDead);
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__656_0(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__660_0(Effect o)
+		{
+			return o is NightVision;
+		}
+
+		internal bool _003CRpc_Spirit_Attack_003Eb__660_1(Effect o)
+		{
+			return o is SpeedEffect;
+		}
+
+		internal bool _003CRpc_Spirit_Attack_003Eb__660_2(Effect o)
 		{
 			return o is SpiritResistanceEffect;
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__656_1(Effect o)
-		{
-			return o is SpiritResistanceEffect;
-		}
-
-		internal bool _003CRpc_Spirit_Attack_003Eb__656_2(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__660_3(Effect o)
 		{
 			return o is ParanoiaEffect;
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__656_3(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__660_4(Effect o)
 		{
 			return o is FlatulenceEffect;
 		}
 
-		internal bool _003CGiveSecondaryRole_003Eb__691_0(Effect o)
-		{
-			return o is AuditionEffect || o is NightVision || o is StinkingEffect || o is HauntedEffect || o is FlatulenceEffect || o is DeafnessEffect;
-		}
-
-		internal bool _003CGiveSecondaryRole_003Eb__691_1(Accessory o)
+		internal bool _003CRpc_Spirit_Spell_003Eb__662_1(Accessory o)
 		{
 			return Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)];
 		}
 
-		internal bool _003CUpdatePrimaryRole_003Eb__704_0(PlayerController p)
+		internal Effect _003CRpc_Spirit_Spell_003Eb__662_2(Effect e)
+		{
+			return e;
+		}
+
+		internal bool _003CRpc_Spirit_Spell_003Eb__662_5(Item o)
+		{
+			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
+		}
+
+		internal bool _003CRpc_Spirit_Spell_003Eb__662_6(Item o)
+		{
+			return o is LockItem || o is TrapItem || o is SmokeItem || o is SpyglassItem || o is MagicScrollItem || o is PhasingDiamondItem || o is GrenadeItem || o is SleepingGasItem || o is MolotovItem || o is RadarItem;
+		}
+
+		internal bool _003CGiveSecondaryRole_003Eb__695_0(Effect o)
+		{
+			return o is AuditionEffect || o is NightVision || o is StinkingEffect || o is HauntedEffect || o is FlatulenceEffect || o is DeafnessEffect;
+		}
+
+		internal bool _003CGiveSecondaryRole_003Eb__695_1(Accessory o)
+		{
+			return Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)];
+		}
+
+		internal bool _003CUpdatePrimaryRole_003Eb__708_0(PlayerController p)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0007: Invalid comparison between Unknown and I4
 			return (int)p.Role == 1;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_0(Item o)
+		internal bool _003CInitForGameStart_003Eb__709_0(Item o)
 		{
 			return (o is LockItem || o is PhasingDiamondItem || o is GrenadeItem) && Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_1(Accessory o)
+		internal bool _003CInitForGameStart_003Eb__709_1(Accessory o)
 		{
 			return o is AccessorySpellbook;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_2(Item o)
+		internal bool _003CInitForGameStart_003Eb__709_2(Item o)
 		{
 			return o is MagicScrollItem;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_3(Accessory o)
+		internal bool _003CInitForGameStart_003Eb__709_3(Accessory o)
 		{
 			return Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)];
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_4(PlayerCustom o)
+		internal bool _003CInitForGameStart_003Eb__709_4(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Warlock;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_5(PlayerCustom o)
+		internal bool _003CInitForGameStart_003Eb__709_5(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Bomber;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_6(PlayerCustom o)
+		internal bool _003CInitForGameStart_003Eb__709_6(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Saboteur;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__705_8(Teleporter o)
+		internal bool _003CInitForGameStart_003Eb__709_8(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal bool _003CUpdateVisible_003Eb__709_1(PlayerCustom o)
+		internal bool _003CUpdateVisible_003Eb__713_1(PlayerCustom o)
 		{
 			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && NetworkBool.op_Implicit(o.NewPrimaryRoleUniqueBool);
 		}
 
-		internal bool _003CUpdateVisible_003Eb__709_2(Effect o)
+		internal bool _003CUpdateVisible_003Eb__713_2(Effect o)
 		{
 			return o is VampireEffect;
 		}
 
-		internal bool _003CUpdateVisible_003Eb__709_3(Effect o)
+		internal bool _003CUpdateVisible_003Eb__713_3(Effect o)
 		{
 			return o is HauntedEffect;
 		}
 
-		internal bool _003CUpdateVisible_003Eb__709_6(Effect o)
+		internal bool _003CUpdateVisible_003Eb__713_6(Effect o)
 		{
 			return o is CamouflageEffect;
 		}
 
-		internal bool _003CUpdateMoveSpeed_003Eb__721_0(Effect o)
+		internal bool _003CUpdateMoveSpeed_003Eb__726_0(Effect o)
 		{
 			return o is ChasingEffect;
 		}
 
-		internal bool _003CFindRandomTeleporter_003Eb__724_0(Teleporter o)
+		internal bool _003CFindRandomTeleporter_003Eb__729_0(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal void _003CRpc_End_Game_003Eb__735_0(PlayerController pObj)
+		internal void _003CRpc_End_Game_003Eb__740_0(PlayerController pObj)
 		{
 			//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
@@ -1079,78 +1145,78 @@ public class PlayerCustom : NetworkBehaviour
 			}
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_1(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__740_1(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Agent;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_2(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__740_2(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Lover;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_3(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__740_3(PlayerCustom o)
 		{
 			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0015: Invalid comparison between Unknown and I4
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Lover && (int)o.PlayerController.Role == 1;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_6(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__740_6(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Traitor;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_7(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__740_7(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Traitor;
 		}
 
-		internal PlayerController _003CRpc_End_Game_003Eb__735_8(PlayerCustom o)
+		internal PlayerController _003CRpc_End_Game_003Eb__740_8(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return PlayerRegistry.GetPlayer(o.Ref);
 		}
 
-		internal PlayerController _003CRpc_End_Game_003Eb__735_4(PlayerCustom o)
+		internal PlayerController _003CRpc_End_Game_003Eb__740_4(PlayerCustom o)
 		{
 			return o.PlayerController;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_5(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__740_5(PlayerCustom o)
 		{
 			return IsPrimaryRolePowerForEliteVillagers(o.InitialPower);
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_9(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__740_9(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561198034021995";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_10(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__740_10(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561198045789440";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_11(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__740_11(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561199060053791";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_12(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__740_12(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561197973106144";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__735_13(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__740_13(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return PlayerRef.op_Implicit(o.Ref) >= 1000;
@@ -1212,6 +1278,8 @@ public class PlayerCustom : NetworkBehaviour
 	public static Color PlayerColorInListForPredator = new Color(1f, 0f, 0f, 1f);
 
 	public static Color PlayerColorInListForHost = new Color(0f, 1f, 0f, 1f);
+
+	public static Color PlayerColorInListForTracker = new Color(0f, 1f, 0f, 1f);
 
 	private static Color SkinColorZombieHuman = new Color(0.8f, 0f, 0.8f);
 
@@ -1381,8 +1449,6 @@ public class PlayerCustom : NetworkBehaviour
 
 	public bool AlreadyAngeledToday;
 
-	public int SecondsTransformedOrNearTransformedWolfToday;
-
 	public Stopwatch WolfRecuperateStopwatch = new Stopwatch();
 
 	public bool GainEmpoweredOnEachTransformation;
@@ -1404,6 +1470,12 @@ public class PlayerCustom : NetworkBehaviour
 	public List<RunemasterRune> AssociatedRunes = new List<RunemasterRune>();
 
 	public PlayerInventorDeviceComponent InventorDeviceInfo;
+
+	public bool RecuperateDisabled = false;
+
+	public bool GhostImmuneToWolf = false;
+
+	public Stopwatch TransformationTimer = new Stopwatch();
 
 	public bool DraftWantsSecondAgent = true;
 
@@ -1461,7 +1533,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	[Networked]
 	[NetworkedWeaved(1, 1)]
-	public unsafe NetworkBool Stunned
+	public unsafe PlayerRef BombGiverRef
 	{
 		get
 		{
@@ -1470,17 +1542,17 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_002b: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.Stunned. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.BombGiverRef. Networked properties can only be accessed when Spawned() has been called.");
 			}
-			return (NetworkBool)base.Ptr[1];
+			return (PlayerRef)base.Ptr[1];
 		}
-		set
+		private set
 		{
 			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0024: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.Stunned. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.BombGiverRef. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			Unsafe.Write(base.Ptr + 1, value);
 		}
@@ -3528,7 +3600,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	[Networked]
 	[NetworkedWeaved(87, 1)]
-	public unsafe NetworkBool UnusedBool
+	public unsafe NetworkBool Endurance
 	{
 		get
 		{
@@ -3537,7 +3609,7 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.PoacherMark. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.Endurance. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			return (NetworkBool)base.Ptr[87];
 		}
@@ -3547,7 +3619,7 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.PoacherMark. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.Endurance. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			Unsafe.Write(base.Ptr + 87, value);
 		}
@@ -4215,7 +4287,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	[Networked]
 	[NetworkedWeaved(120, 1)]
-	public unsafe NetworkBool UnusedBool2
+	public unsafe NetworkBool Tracked
 	{
 		get
 		{
@@ -4224,7 +4296,7 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.Repulsion. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.Tracked. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			return (NetworkBool)base.Ptr[120];
 		}
@@ -4234,7 +4306,7 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.Repulsion. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.Tracked. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			Unsafe.Write(base.Ptr + 120, value);
 		}
@@ -4401,7 +4473,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	[Networked]
 	[NetworkedWeaved(128, 1)]
-	public unsafe NetworkBool Tracked
+	public unsafe NetworkBool Detected
 	{
 		get
 		{
@@ -4410,7 +4482,7 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_0032: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.Tracked. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.Detected. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			return (NetworkBool)base.Ptr[128];
 		}
@@ -4420,7 +4492,7 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_002b: Unknown result type (might be due to invalid IL or missing references)
 			if (base.Ptr == null)
 			{
-				throw new InvalidOperationException("Error when accessing PlayerCustom.Tracked. Networked properties can only be accessed when Spawned() has been called.");
+				throw new InvalidOperationException("Error when accessing PlayerCustom.Detected. Networked properties can only be accessed when Spawned() has been called.");
 			}
 			Unsafe.Write(base.Ptr + 128, value);
 		}
@@ -5052,6 +5124,7 @@ public class PlayerCustom : NetworkBehaviour
 			PlayerPrimaryRolePower.Sneak => "SNEAK", 
 			PlayerPrimaryRolePower.Host => "HOST", 
 			PlayerPrimaryRolePower.Acrobat => "ACROBAT", 
+			PlayerPrimaryRolePower.Tracker => "TRACKER", 
 			PlayerPrimaryRolePower.Exorcist => "EXORCIST", 
 			PlayerPrimaryRolePower.Investigator => "INVESTIGATOR", 
 			PlayerPrimaryRolePower.Survivalist => "SURVIVALIST", 
@@ -5637,7 +5710,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	public static bool IsPrimaryRolePowerForEliteVillagers(PlayerPrimaryRolePower primaryRolePower)
 	{
-		if ((uint)(primaryRolePower - 24) <= 3u)
+		if ((uint)(primaryRolePower - 25) <= 3u)
 		{
 			return true;
 		}
@@ -5646,7 +5719,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	public static bool IsPrimaryRolePowerForWolves(PlayerPrimaryRolePower primaryRolePower)
 	{
-		if ((uint)(primaryRolePower - 1) <= 10u)
+		if ((uint)(primaryRolePower - 1) <= 11u)
 		{
 			return true;
 		}
@@ -5664,7 +5737,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	public static bool IsPrimaryRolePowerDisabled(PlayerPrimaryRolePower primaryRolePower)
 	{
-		if (primaryRolePower == PlayerPrimaryRolePower.Predator || (uint)(primaryRolePower - 28) <= 2u)
+		if (primaryRolePower == PlayerPrimaryRolePower.Predator || primaryRolePower == PlayerPrimaryRolePower.Tracker || (uint)(primaryRolePower - 29) <= 2u)
 		{
 			return true;
 		}
@@ -5690,6 +5763,7 @@ public class PlayerCustom : NetworkBehaviour
 		case PlayerPrimaryRolePower.Bomber:
 		case PlayerPrimaryRolePower.Ritualist:
 		case PlayerPrimaryRolePower.Host:
+		case PlayerPrimaryRolePower.Tracker:
 			return true;
 		default:
 			return false;
@@ -6007,11 +6081,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.337", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.344", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.337", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.344", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -6142,8 +6216,8 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1996: Unknown result type (might be due to invalid IL or missing references)
-		//IL_199b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1adc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1ae1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_022d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0232: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03c3: Unknown result type (might be due to invalid IL or missing references)
@@ -6153,24 +6227,24 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0b02: Unknown result type (might be due to invalid IL or missing references)
 		//IL_026d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0273: Invalid comparison between Unknown and I4
-		//IL_19bf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_19c4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1338: Unknown result type (might be due to invalid IL or missing references)
-		//IL_133d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1b05: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1b0a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_142e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1433: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0af0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0347: Unknown result type (might be due to invalid IL or missing references)
 		//IL_034d: Invalid comparison between Unknown and I4
 		//IL_0277: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1355: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1361: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1379: Unknown result type (might be due to invalid IL or missing references)
-		//IL_137f: Invalid comparison between Unknown and I4
-		//IL_132b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_144b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1457: Unknown result type (might be due to invalid IL or missing references)
+		//IL_146f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1475: Invalid comparison between Unknown and I4
+		//IL_1421: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0354: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0288: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13d2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1383: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1479: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03b5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0390: Unknown result type (might be due to invalid IL or missing references)
@@ -6179,136 +6253,150 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0322: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0299: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14d5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0376: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0304: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02e9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1a48: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1afb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1b8e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1c41: Unknown result type (might be due to invalid IL or missing references)
 		//IL_046f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0475: Invalid comparison between Unknown and I4
-		//IL_1a88: Unknown result type (might be due to invalid IL or missing references)
-		//IL_152a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1bfb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1c00: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1541: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1546: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1439: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1445: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1c1b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1552: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1557: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1458: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1d46: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1d4b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1bce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1620: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1d66: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1637: Unknown result type (might be due to invalid IL or missing references)
+		//IL_163c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_152f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_153b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1648: Unknown result type (might be due to invalid IL or missing references)
+		//IL_164d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_169e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_154e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a86: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0aa6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0ab2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1563: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15ba: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16ba: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_172d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1732: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1659: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_18bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1823: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1828: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1570: Unknown result type (might be due to invalid IL or missing references)
-		//IL_157a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17e1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17e7: Invalid comparison between Unknown and I4
-		//IL_1746: Unknown result type (might be due to invalid IL or missing references)
-		//IL_146e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_147c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1e2d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1e32: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1666: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1670: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_18d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_18dd: Invalid comparison between Unknown and I4
+		//IL_183c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1564: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1572: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06c0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1c88: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1c8d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15d7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_176b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_177e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_175b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1646: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e8d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eb3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ecf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ef8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0efd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f05: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f07: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f0e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f3d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fcb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fdc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1281: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1292: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1e4d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1a93: Unknown result type (might be due to invalid IL or missing references)
+		//IL_18e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1861: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1874: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1851: Unknown result type (might be due to invalid IL or missing references)
+		//IL_173c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_159b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e91: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0eb7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ed3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0efc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f01: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f09: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f0b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f12: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f41: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fcf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fe0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1288: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1299: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1303: Unknown result type (might be due to invalid IL or missing references)
+		//IL_132c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1331: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1339: Unknown result type (might be due to invalid IL or missing references)
+		//IL_133b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1342: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1371: Unknown result type (might be due to invalid IL or missing references)
+		//IL_137d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05bc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05c8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06d7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1ca8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15e4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16eb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16f0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_184c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1790: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d4a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d51: Expected O, but got Unknown
-		//IL_12b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12e6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1066: Unknown result type (might be due to invalid IL or missing references)
-		//IL_113c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1148: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1160: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11b4: Expected O, but got Unknown
-		//IL_11d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_120f: Expected O, but got Unknown
-		//IL_1233: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1706: Unknown result type (might be due to invalid IL or missing references)
-		//IL_18f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_107a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1aa5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_194a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1886: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d4e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d55: Expected O, but got Unknown
+		//IL_13aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_106a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_114c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11b8: Expected O, but got Unknown
+		//IL_11d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1213: Expected O, but got Unknown
+		//IL_1237: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_17fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1ab7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_19f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_107e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_108c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1816: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17b1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d89: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0daf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dcb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0df5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dfa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e14: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e1b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_18a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d8d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0db3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dcf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0df9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dfe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e18: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e1f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05fb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_171b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1828: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e44: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e49: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e4c: Expected O, but got Unknown
-		//IL_0e51: Expected O, but got Unknown
+		//IL_1811: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1acd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1914: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1798: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e48: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e4d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e50: Expected O, but got Unknown
+		//IL_0e55: Expected O, but got Unknown
 		//IL_0624: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0609: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1839: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1926: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0637: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1937: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0645: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1964: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1a62: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0660: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
@@ -6486,41 +6574,41 @@ public class PlayerCustom : NetworkBehaviour
 							break;
 						case HauntedEffect.HauntedPossibleEffect.RandomEffect:
 						{
-							List<string> list2 = new List<string> { "LycansNewRoles.EffectStunned", "LycansNewRoles.EffectBlind", "LycansNewRoles.EffectClairvoyance", "Flatulences", "Invisibility", "Paranoia", "Speed" };
+							List<string> list2 = new List<string> { "LycansNewRoles.EffectDisoriented", "LycansNewRoles.EffectBlind", "LycansNewRoles.EffectClairvoyance", "Flatulences", "Invisibility", "Paranoia", "Speed" };
 							string text = CollectionsUtil.Grab<string>(list2, 1).First();
 							switch (text)
 							{
-							case "LycansNewRoles.EffectStunned":
-								ApplyEffectToPlayer(playerController2, text, ((SimulationBehaviour)this).Runner, 0.6f);
+							case "LycansNewRoles.EffectDisoriented":
+								ApplyEffectToPlayer(playerController2, text, ((SimulationBehaviour)this).Runner, 1f, 5f);
 								break;
 							case "LycansNewRoles.EffectBlind":
-								ApplyEffectToPlayer(playerController2, text, ((SimulationBehaviour)this).Runner);
+								ApplyEffectToPlayer(playerController2, text, ((SimulationBehaviour)this).Runner, 1f, 3f);
 								break;
 							case "LycansNewRoles.EffectClairvoyance":
-								ApplyEffectToPlayer(playerController2, text, ((SimulationBehaviour)this).Runner, 0.3f);
+								ApplyEffectToPlayer(playerController2, text, ((SimulationBehaviour)this).Runner, 1f, 10f);
 								break;
 							case "Flatulences":
 							{
 								Effect effect3 = EffectManager.GetEffects().First((Effect o) => o is FlatulenceEffect);
-								ApplyEffectToPlayer(playerController2, effect3, ((SimulationBehaviour)this).Runner, 0.1f);
+								ApplyEffectToPlayer(playerController2, effect3, ((SimulationBehaviour)this).Runner, 1f, 8f);
 								break;
 							}
 							case "Invisibility":
 							{
 								Effect effect4 = EffectManager.GetEffects().First((Effect o) => o is InvisibilityEffect);
-								ApplyEffectToPlayer(playerController2, effect4, ((SimulationBehaviour)this).Runner, 0.2f);
+								ApplyEffectToPlayer(playerController2, effect4, ((SimulationBehaviour)this).Runner, 1f, 8f);
 								break;
 							}
 							case "Paranoia":
 							{
 								Effect effect2 = EffectManager.GetEffects().First((Effect o) => o is ParanoiaEffect);
-								ApplyEffectToPlayer(playerController2, effect2, ((SimulationBehaviour)this).Runner, 0.1f);
+								ApplyEffectToPlayer(playerController2, effect2, ((SimulationBehaviour)this).Runner, 1f, 10f);
 								break;
 							}
 							case "Speed":
 							{
 								Effect effect = EffectManager.GetEffects().First((Effect o) => o is SpeedEffect);
-								ApplyEffectToPlayer(playerController2, effect, ((SimulationBehaviour)this).Runner, 0.15f);
+								ApplyEffectToPlayer(playerController2, effect, ((SimulationBehaviour)this).Runner, 1f, 8f);
 								break;
 							}
 							}
@@ -6574,49 +6662,49 @@ public class PlayerCustom : NetworkBehaviour
 						{
 						case ChaosEffect.ChaosPossibleEffect.CreateTraps:
 						{
-							TrapItem val7 = (TrapItem)Traverse.Create((object)GameManager.Instance).Field<Item[]>("spawnableItemPrefabs").Value.First((Item o) => o is TrapItem);
-							Trap value4 = Traverse.Create((object)val7).Field<Trap>("trapPrefab").Value;
+							TrapItem val8 = (TrapItem)Traverse.Create((object)GameManager.Instance).Field<Item[]>("spawnableItemPrefabs").Value.First((Item o) => o is TrapItem);
+							Trap value5 = Traverse.Create((object)val8).Field<Trap>("trapPrefab").Value;
 							int num2 = Random.RandomRangeInt(1, 4);
-							Vector3 val8 = default(Vector3);
-							OnBeforeSpawned val11 = default(OnBeforeSpawned);
+							Vector3 val9 = default(Vector3);
+							OnBeforeSpawned val12 = default(OnBeforeSpawned);
 							for (int num3 = 0; num3 < num2; num3++)
 							{
-								((Vector3)(ref val8))._002Ector(((Component)player).transform.position.x + Random.Range(-2f, 2f), ((Component)player).transform.position.y + 0.026f, ((Component)player).transform.position.z + Random.Range(-2f, 2f));
-								GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("TRAP_DROP"), val8, 10f, 0.5f);
+								((Vector3)(ref val9))._002Ector(((Component)player).transform.position.x + Random.Range(-2f, 2f), ((Component)player).transform.position.y + 0.026f, ((Component)player).transform.position.z + Random.Range(-2f, 2f));
+								GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("TRAP_DROP"), val9, 10f, 0.5f);
 								NetworkRunner runner = ((SimulationBehaviour)this).Runner;
-								Vector3? val9 = val8;
-								Quaternion? val10 = Quaternion.identity;
-								OnBeforeSpawned obj = val11;
+								Vector3? val10 = val9;
+								Quaternion? val11 = Quaternion.identity;
+								OnBeforeSpawned obj = val12;
 								if (obj == null)
 								{
-									OnBeforeSpawned val12 = delegate(NetworkRunner _, NetworkObject no)
+									OnBeforeSpawned val13 = delegate(NetworkRunner _, NetworkObject no)
 									{
 										//IL_000d: Unknown result type (might be due to invalid IL or missing references)
 										((Component)no).GetComponent<Trap>().Init(player.Ref);
 									};
-									OnBeforeSpawned val13 = val12;
-									val11 = val12;
-									obj = val13;
+									OnBeforeSpawned val14 = val13;
+									val12 = val13;
+									obj = val14;
 								}
-								runner.Spawn<Trap>(value4, val9, val10, (PlayerRef?)null, obj, (NetworkObjectPredictionKey?)null, true);
+								runner.Spawn<Trap>(value5, val10, val11, (PlayerRef?)null, obj, (NetworkObjectPredictionKey?)null, true);
 							}
 							break;
 						}
 						case ChaosEffect.ChaosPossibleEffect.CreateGrenade:
 						{
-							Vector3 value3 = default(Vector3);
-							((Vector3)(ref value3))._002Ector(((Component)player).transform.position.x + Random.Range(-2f, 2f), ((Component)player).transform.position.y + 1f, ((Component)player).transform.position.z + Random.Range(-2f, 2f));
-							NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemGrenadeActive");
-							NetworkObject val6 = ((SimulationBehaviour)this).Runner.Spawn(networkObject, (Vector3?)value3, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
-							((Component)val6).GetComponent<GrenadeActive>().Init(Vector3.zero);
-							((Component)val6).GetComponent<GrenadeActive>().CreatedByChaosEffect = true;
+							Vector3 value4 = default(Vector3);
+							((Vector3)(ref value4))._002Ector(((Component)player).transform.position.x + Random.Range(-2f, 2f), ((Component)player).transform.position.y + 1f, ((Component)player).transform.position.z + Random.Range(-2f, 2f));
+							NetworkPrefabId networkObject2 = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemGrenadeActive");
+							NetworkObject val7 = ((SimulationBehaviour)this).Runner.Spawn(networkObject2, (Vector3?)value4, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+							((Component)val7).GetComponent<GrenadeActive>().Init(Vector3.zero);
+							((Component)val7).GetComponent<GrenadeActive>().CreatedByChaosEffect = true;
 							break;
 						}
 						case ChaosEffect.ChaosPossibleEffect.UseScrollOnNearbyPlayer:
 						{
 							PlayerCustom playerCustom3 = CollectionsUtil.Grab<PlayerCustom>(list5, 1).First();
 							Effect randomEffectWithPonderation = MagicScrollItem.GetRandomEffectWithPonderation();
-							float value2 = Traverse.Create((object)randomEffectWithPonderation).Field<float>("duration").Value;
+							float value3 = Traverse.Create((object)randomEffectWithPonderation).Field<float>("duration").Value;
 							ApplyEffectToPlayer(playerCustom3.PlayerController, randomEffectWithPonderation, ((SimulationBehaviour)this).Runner, 0.75f);
 							Rpc_Effect_On_Player(((SimulationBehaviour)this).Runner, playerCustom3.Index, 1);
 							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("SUCCESS_SHOT"), ((Component)playerCustom3.PlayerController).transform.position, 15f, 0.5f);
@@ -6629,34 +6717,34 @@ public class PlayerCustom : NetworkBehaviour
 						}
 						case ChaosEffect.ChaosPossibleEffect.LockNearbyDoor:
 						{
-							Door val4 = CollectionsUtil.Grab<Door>(source.Where((Door o) => !NetworkBool.op_Implicit(o.IsLocked)).ToList(), 1).First();
-							if (NetworkBool.op_Implicit(val4.IsOpen))
+							Door val5 = CollectionsUtil.Grab<Door>(source.Where((Door o) => !NetworkBool.op_Implicit(o.IsLocked)).ToList(), 1).First();
+							if (NetworkBool.op_Implicit(val5.IsOpen))
 							{
-								val4.IsMoving = NetworkBool.op_Implicit(true);
-								val4.IsOpen = NetworkBool.op_Implicit(false);
-								Traverse.Create((object)val4).Field<Animator>("_animator").Value.SetBool(Animator.StringToHash("Open"), false);
+								val5.IsMoving = NetworkBool.op_Implicit(true);
+								val5.IsOpen = NetworkBool.op_Implicit(false);
+								Traverse.Create((object)val5).Field<Animator>("_animator").Value.SetBool(Animator.StringToHash("Open"), false);
 							}
 							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("LOCK_PLACE"), ((Component)this).transform.position, 25f, 1f);
-							val4.IsLocked = NetworkBool.op_Implicit(true);
+							val5.IsLocked = NetworkBool.op_Implicit(true);
 							break;
 						}
 						case ChaosEffect.ChaosPossibleEffect.UnlockNearbyDoor:
 						{
-							Door val5 = CollectionsUtil.Grab<Door>(source.Where((Door o) => NetworkBool.op_Implicit(o.IsLocked)).ToList(), 1).First();
-							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("LOCK_BREAK"), ((Component)val5).transform.position, 50f, 1f);
-							val5.IsLocked = NetworkBool.op_Implicit(false);
+							Door val6 = CollectionsUtil.Grab<Door>(source.Where((Door o) => NetworkBool.op_Implicit(o.IsLocked)).ToList(), 1).First();
+							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("LOCK_BREAK"), ((Component)val6).transform.position, 50f, 1f);
+							val6.IsLocked = NetworkBool.op_Implicit(false);
 							break;
 						}
 						case ChaosEffect.ChaosPossibleEffect.CreateSmoke:
 						{
-							SmokeItem val2 = (SmokeItem)Traverse.Create((object)GameManager.Instance).Field<Item[]>("spawnableItemPrefabs").Value.First((Item o) => o is SmokeItem);
-							GameObject value = Traverse.Create((object)val2).Field<GameObject>("smokePrefab").Value;
-							NetworkObject val3 = ((SimulationBehaviour)this).Runner.Spawn(value, (Vector3?)Vector3.zero, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
+							SmokeItem val3 = (SmokeItem)Traverse.Create((object)GameManager.Instance).Field<Item[]>("spawnableItemPrefabs").Value.First((Item o) => o is SmokeItem);
+							GameObject value2 = Traverse.Create((object)val3).Field<GameObject>("smokePrefab").Value;
+							NetworkObject val4 = ((SimulationBehaviour)this).Runner.Spawn(value2, (Vector3?)Vector3.zero, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
 							{
 								//IL_0012: Unknown result type (might be due to invalid IL or missing references)
 								((Component)no).GetComponent<Smoke>().Init(((Component)player).transform.position);
 							}, (NetworkObjectPredictionKey?)null, true);
-							Traverse.Create((object)((Component)val3).GetComponent<Smoke>()).Property<TickTimer>("SmokeTimer", (object[])null).Value = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 8f);
+							Traverse.Create((object)((Component)val4).GetComponent<Smoke>()).Property<TickTimer>("SmokeTimer", (object[])null).Value = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 8f);
 							break;
 						}
 						case ChaosEffect.ChaosPossibleEffect.UseDiamondOnNearbyPlayer:
@@ -6664,6 +6752,16 @@ public class PlayerCustom : NetworkBehaviour
 							PlayerCustom playerCustom2 = CollectionsUtil.Grab<PlayerCustom>(list5, 1).First();
 							ApplyEffectToPlayer(playerCustom2.PlayerController, "LycansNewRoles.EffectPhasing", ((SimulationBehaviour)this).Runner);
 							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("DiamondEffect"), ((Component)playerCustom2.PlayerController).transform.position, 20f, 0.2f);
+							break;
+						}
+						case ChaosEffect.ChaosPossibleEffect.CreateRadar:
+						{
+							Vector3 value = default(Vector3);
+							((Vector3)(ref value))._002Ector(((Component)player).transform.position.x + Random.Range(-2f, 2f), ((Component)player).transform.position.y + 1f, ((Component)player).transform.position.z + Random.Range(-2f, 2f));
+							NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemRadarActive");
+							NetworkObject val2 = ((SimulationBehaviour)this).Runner.Spawn(networkObject, (Vector3?)value, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+							((Component)val2).GetComponent<RadarActive>().Init(Vector3.zero, !NetworkBool.op_Implicit(player.IsWolf));
+							((Component)val2).GetComponent<RadarActive>().CreatedByChaosEffect = true;
 							break;
 						}
 						}
@@ -6786,7 +6884,7 @@ public class PlayerCustom : NetworkBehaviour
 				}
 				if (NetworkBool.op_Implicit(PlayerController.IsWolf))
 				{
-					bool flag = (int)PlayerController.Role == 1 && !NetworkBool.op_Implicit(PlayerController.IsMoving) && PlayerController.MovementAction == 0 && CanMoveCustom() && NetworkBool.op_Implicit(PlayerController.CanMoveAnimation) && !NetworkBool.op_Implicit(PlayerController.IsDead) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive);
+					bool flag = (int)PlayerController.Role == 1 && !NetworkBool.op_Implicit(PlayerController.IsMoving) && PlayerController.MovementAction == 0 && !RecuperateDisabled && CanMoveCustom() && NetworkBool.op_Implicit(PlayerController.CanMoveAnimation) && !NetworkBool.op_Implicit(PlayerController.IsDead) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive);
 					if (!NetworkBool.op_Implicit(Recuperating))
 					{
 						if (!WolfRecuperateStopwatch.IsRunning)
@@ -6800,23 +6898,27 @@ public class PlayerCustom : NetworkBehaviour
 						{
 							WolfRecuperateStopwatch.Reset();
 						}
-						else if (WolfRecuperateStopwatch.ElapsedMilliseconds >= 4000)
+						else if (WolfRecuperateStopwatch.ElapsedMilliseconds >= 3000)
 						{
 							ApplyEffectToPlayer(PlayerController, "LycansNewRoles.EffectRecuperating", ((SimulationBehaviour)this).Runner, 1f, 3600f);
 						}
 					}
 					if (NetworkBool.op_Implicit(Recuperating) && !flag)
 					{
-						Effect val14 = PlayerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is RecuperatingEffect);
-						if ((Object)(object)val14 != (Object)null)
+						Effect val15 = PlayerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is RecuperatingEffect);
+						if ((Object)(object)val15 != (Object)null)
 						{
-							PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val14).Object.Id);
+							PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val15).Object.Id);
 						}
 					}
 				}
 				if (Accessory is AccessoryBackpack accessoryBackpack)
 				{
 					accessoryBackpack.TransferItemToRegularSlotIfNeeded();
+				}
+				if (NetworkBool.op_Implicit(Tracked) && (NetworkBool.op_Implicit(Kidnapped) || NetworkBool.op_Implicit(PlayerController.IsDead)))
+				{
+					Tracked = NetworkBool.op_Implicit(false);
 				}
 			}
 			val = PrimaryRolePowerCooldownTimer;
@@ -6882,6 +6984,11 @@ public class PlayerCustom : NetworkBehaviour
 			case PlayerPrimaryRolePower.Host:
 				playersWithSpecificColor.AddRange(from o in PlayerCustomRegistry
 					where NetworkBool.op_Implicit(o.Parasite)
+					select o.Ref);
+				break;
+			case PlayerPrimaryRolePower.Tracker:
+				playersWithSpecificColor.AddRange(from o in PlayerCustomRegistry
+					where NetworkBool.op_Implicit(o.Tracked)
 					select o.Ref);
 				break;
 			case PlayerPrimaryRolePower.Investigator:
@@ -6955,7 +7062,7 @@ public class PlayerCustom : NetworkBehaviour
 				ItemCustom.DisableInventorScrap(PlayerController.Item);
 				PlayerController.Item.DestroyItem();
 			}
-			if (Random.value > 0.4f)
+			if (Random.value > 0.5f)
 			{
 				Potion value = Traverse.Create((object)GameManager.Instance).Field<Potion>("potionPrefab").Value;
 				List<Effect> value2 = Traverse.Create((object)GameManager.Instance).Field<List<Effect>>("_potionEffects").Value;
@@ -7001,7 +7108,7 @@ public class PlayerCustom : NetworkBehaviour
 			List<Item> list = value.Where((Item o) => Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)]).ToList();
 			if (list.Count != 0)
 			{
-				Item prefab = CollectionsUtil.Grab<Item>(list.Where((Item o) => o is SmokeItem || o is GrenadeItem || o is SleepingGasItem || o is RadarItem).ToList(), 1).First();
+				Item prefab = CollectionsUtil.Grab<Item>(list.Where((Item o) => o is SmokeItem || o is GrenadeItem || o is SleepingGasItem || o is PhasingDiamondItem).ToList(), 1).First();
 				Item val = ItemUtility.SpawnItem(prefab, Vector3.zero, Quaternion.identity, ((SimulationBehaviour)this).Runner);
 				val.Rpc_ClaimItem(Ref);
 			}
@@ -7081,9 +7188,10 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0348: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0355: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0362: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0390: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c3: Unknown result type (might be due to invalid IL or missing references)
 		PrimaryRoleTargetRef = PlayerRef.None;
 		SecondaryRoleTargetRef = PlayerRef.None;
 		RoleDeathUniqueBool = NetworkBool.op_Implicit(false);
@@ -7151,12 +7259,13 @@ public class PlayerCustom : NetworkBehaviour
 		LootCorpseTimer = TickTimer.None;
 		LootCorpseTarget = PlayerRef.None;
 		PurifierBurn = NetworkBool.op_Implicit(false);
-		Tracked = NetworkBool.op_Implicit(false);
+		Detected = NetworkBool.op_Implicit(false);
 		Kidnapped = NetworkBool.op_Implicit(false);
 		CapturedByCultist = NetworkBool.op_Implicit(false);
 		Hidden = NetworkBool.op_Implicit(false);
 		Parasite = NetworkBool.op_Implicit(false);
 		Immune = NetworkBool.op_Implicit(false);
+		AlreadyAngeledToday = false;
 		LootCollectedTodayDuringDay = 0;
 		MoleWarningIssued = false;
 		SoloRoleHalfDayProgress = 0f;
@@ -7165,6 +7274,10 @@ public class PlayerCustom : NetworkBehaviour
 		Strengthened = NetworkBool.op_Implicit(false);
 		HasZombieColor = false;
 		InventorDeviceRef = PlayerRef.None;
+		BombGiverRef = PlayerRef.None;
+		RecuperateDisabled = false;
+		GhostImmuneToWolf = false;
+		TransformationTimer.Reset();
 		NewPrimaryRole = PlayerNewPrimaryRole.None;
 		SecondaryRole = PlayerSecondaryRole.None;
 		PrimaryRolePower = PlayerPrimaryRolePower.None;
@@ -7279,16 +7392,16 @@ public class PlayerCustom : NetworkBehaviour
 	[Preserve]
 	public static void PrimaryRolePowerRemainingUsesChanged(Changed<PlayerCustom> changed)
 	{
-		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0120: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
 		//IL_004c: Invalid comparison between Unknown and I4
 		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0054: Invalid comparison between Unknown and I4
-		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e6: Invalid comparison between Unknown and I4
-		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ee: Invalid comparison between Unknown and I4
+		//IL_00e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ea: Invalid comparison between Unknown and I4
+		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f2: Invalid comparison between Unknown and I4
 		try
 		{
 			PlayerCustom behaviour = changed.Behaviour;
@@ -8617,13 +8730,13 @@ public class PlayerCustom : NetworkBehaviour
 						BulletItem value8 = Traverse.Create((object)GameManager.Instance).Field<BulletItem>("bulletPrefab").Value;
 						Vector3? val2 = Vector3.zero;
 						Quaternion? val3 = Quaternion.identity;
-						object obj2 = _003C_003Ec._003C_003E9__562_5;
+						object obj2 = _003C_003Ec._003C_003E9__565_5;
 						if (obj2 == null)
 						{
 							OnBeforeSpawned val4 = delegate
 							{
 							};
-							_003C_003Ec._003C_003E9__562_5 = val4;
+							_003C_003Ec._003C_003E9__565_5 = val4;
 							obj2 = (object)val4;
 						}
 						((Item)runner.Spawn<BulletItem>(value8, val2, val3, (PlayerRef?)null, (OnBeforeSpawned)obj2, (NetworkObjectPredictionKey?)null, true)).Rpc_ClaimItem(playerController.Ref);
@@ -9099,120 +9212,122 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0043: Invalid comparison between Unknown and I4
 		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0902: Unknown result type (might be due to invalid IL or missing references)
 		//IL_09c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0266: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0470: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_090f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e30: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a38: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a45: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b54: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c97: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d4b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d58: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0474: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0914: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e5b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a3d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a4a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b59: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c9c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0208: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0353: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0523: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05d7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_063c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0728: Unknown result type (might be due to invalid IL or missing references)
-		//IL_072d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0741: Unknown result type (might be due to invalid IL or missing references)
-		//IL_075b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_077c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_079c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07d6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0818: Unknown result type (might be due to invalid IL or missing references)
-		//IL_081d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0840: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0861: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0868: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0879: Unknown result type (might be due to invalid IL or missing references)
-		//IL_088e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e19: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eb9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e48: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ad8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0afa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b12: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b1e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b24: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a93: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ca1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0357: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0527: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0640: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_072c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0731: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0745: Unknown result type (might be due to invalid IL or missing references)
+		//IL_075f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0780: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_081c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0821: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0844: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0865: Unknown result type (might be due to invalid IL or missing references)
+		//IL_086c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_087e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0893: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e44: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ee4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e73: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0add: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b17: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b23: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b29: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a98: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a9d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cb2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0286: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0960: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aa2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cb7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0223: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0965: Unknown result type (might be due to invalid IL or missing references)
-		//IL_092d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a02: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a0f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cd2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cfc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d0d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d22: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0242: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0316: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0324: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_060d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0668: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0980: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0997: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ea2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f76: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f05: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ba3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_096a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0932: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f18: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a07: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a14: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cd7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d01: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d12: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d27: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0246: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0254: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0328: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0603: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0611: Unknown result type (might be due to invalid IL or missing references)
+		//IL_066c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0985: Unknown result type (might be due to invalid IL or missing references)
+		//IL_099c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ecd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fa1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f30: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0ba8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bbc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bad: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bc1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bc7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bd9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0be3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c15: Expected O, but got Unknown
-		//IL_0c20: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c42: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c5a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03fe: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0414: Expected O, but got Unknown
-		//IL_041f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0441: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0459: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f5f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fd3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fe1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bc6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bcc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bde: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0be8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c04: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c1a: Expected O, but got Unknown
+		//IL_0c25: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c47: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c5f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0402: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0418: Expected O, but got Unknown
+		//IL_0423: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0445: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f8a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ffe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_100c: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -9399,7 +9514,7 @@ public class PlayerCustom : NetworkBehaviour
 					NetworkObject val3 = runner.Spawn(networkObject3, (Vector3?)value, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 					Vector3 forward = ((Component)customPlayer.PlayerController.LocalCameraHandler.LocalCamera).transform.forward;
 					forward.y = Mathf.Min(1f, ((Component)customPlayer.PlayerController.LocalCameraHandler.LocalCamera).transform.forward.y + 0.1f);
-					((Component)val3).GetComponent<PurifierActive>().Init(forward * 25f);
+					((Component)val3).GetComponent<PurifierActive>().Init(forward * 25f, boosted: true);
 					GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("GrenadeThrow"), ((Component)customPlayer.PlayerController).transform.position, 15f, 0.8f);
 					customPlayer.PlayerController.UpdateAnimation(Animator.StringToHash("Attacking"), true);
 					((MonoBehaviour)customPlayer.PlayerController).StartCoroutine("WaitAndResetAttackAnimation");
@@ -9490,6 +9605,9 @@ public class PlayerCustom : NetworkBehaviour
 					}
 					break;
 				}
+				case PlayerPrimaryRolePower.Tracker:
+					customPlayer.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(!NetworkBool.op_Implicit(customPlayer.NewPrimaryRoleUniqueBool));
+					break;
 				}
 				switch (customPlayer.NewPrimaryRole)
 				{
@@ -9583,127 +9701,136 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0047: Invalid comparison between Unknown and I4
 		//IL_0090: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03fc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
-		//IL_030c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cf0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cf5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1024: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1035: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03fe: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0404: Invalid comparison between Unknown and I4
-		//IL_0870: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0875: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d3b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d40: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_110c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0416: Invalid comparison between Unknown and I4
+		//IL_088e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0893: Unknown result type (might be due to invalid IL or missing references)
 		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0323: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a68: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a75: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ad6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c3a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c65: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c8a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d06: Unknown result type (might be due to invalid IL or missing references)
-		//IL_104d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_111a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11f8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0407: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0882: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0335: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09e3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bc0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ae3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d1e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0414: Unknown result type (might be due to invalid IL or missing references)
-		//IL_053c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_050c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0519: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0526: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a9b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aa8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b09: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c6d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c98: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cbd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d51: Unknown result type (might be due to invalid IL or missing references)
+		//IL_107c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1198: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1332: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1338: Invalid comparison between Unknown and I4
+		//IL_0419: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0901: Unknown result type (might be due to invalid IL or missing references)
-		//IL_088f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0347: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a16: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a1b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bf3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b16: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d69: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0426: Unknown result type (might be due to invalid IL or missing references)
+		//IL_054e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0507: Unknown result type (might be due to invalid IL or missing references)
+		//IL_051e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0538: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0908: Unknown result type (might be due to invalid IL or missing references)
+		//IL_091f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ea: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01dc: Invalid comparison between Unknown and I4
 		//IL_022d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_034c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a08: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a25: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a32: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b07: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b0d: Invalid comparison between Unknown and I4
-		//IL_0ca4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d4d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_108d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1134: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1225: Unknown result type (might be due to invalid IL or missing references)
-		//IL_125b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1261: Invalid comparison between Unknown and I4
-		//IL_0443: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0452: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0482: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0426: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0698: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_070b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0716: Unknown result type (might be due to invalid IL or missing references)
-		//IL_073f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0744: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0627: Unknown result type (might be due to invalid IL or missing references)
-		//IL_062c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0630: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0635: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a3b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a58: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a65: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b3a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b40: Invalid comparison between Unknown and I4
+		//IL_0cd7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d98: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_120b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_137c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1382: Invalid comparison between Unknown and I4
+		//IL_0455: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0464: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0494: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0438: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0729: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0734: Unknown result type (might be due to invalid IL or missing references)
+		//IL_075d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0762: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0639: Unknown result type (might be due to invalid IL or missing references)
+		//IL_063e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0642: Unknown result type (might be due to invalid IL or missing references)
-		//IL_064e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0655: Unknown result type (might be due to invalid IL or missing references)
-		//IL_066e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_155e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0647: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0654: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0660: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0667: Unknown result type (might be due to invalid IL or missing references)
+		//IL_068c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1635: Unknown result type (might be due to invalid IL or missing references)
 		//IL_021b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0290: Unknown result type (might be due to invalid IL or missing references)
-		//IL_036c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b1b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dc8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dd9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dfa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0558: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0756: Unknown result type (might be due to invalid IL or missing references)
-		//IL_075b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0799: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0379: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12ab: Invalid comparison between Unknown and I4
-		//IL_0565: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_156c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08d2: Invalid comparison between Unknown and I4
-		//IL_157a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ee2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ef3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13e5: Invalid comparison between Unknown and I4
-		//IL_12be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0802: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c21: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b4e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e13: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e24: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e45: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_056a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0774: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0779: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0577: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1643: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14bc: Invalid comparison between Unknown and I4
+		//IL_1395: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08f0: Invalid comparison between Unknown and I4
+		//IL_14ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1651: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f2d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f3e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0810: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0820: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1035: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -9761,6 +9888,7 @@ public class PlayerCustom : NetworkBehaviour
 						break;
 					case 1:
 						player.BombDormant = NetworkBool.op_Implicit(true);
+						player.BombGiverRef = customPlayer.Ref;
 						customPlayer.PrimaryRolePowerRemainingUses--;
 						customPlayer.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(runner, (float)BalancingValues.VillageIdiotBombCooldown);
 						break;
@@ -9819,10 +9947,11 @@ public class PlayerCustom : NetworkBehaviour
 					}
 					if (NetworkBool.op_Implicit(targetPlayer.IsWolf))
 					{
-						ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectDowned", ((SimulationBehaviour)targetPlayer).Runner, 1f, 7f);
+						ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectDowned", ((SimulationBehaviour)targetPlayer).Runner, 1f, 6f);
 						Vector3 forward = ((Component)customPlayer.PlayerController).transform.forward;
 						Vector3 normalized = ((Vector3)(ref forward)).normalized;
 						((Component)targetPlayer).GetComponent<KnockbackComponent>().Init(new Vector3(normalized.x, 0f, normalized.z), 7f, 7f);
+						player.GrantResilience(18f);
 						playerController.Rpc_Kill(PlayerRef.None);
 						break;
 					}
@@ -9924,6 +10053,7 @@ public class PlayerCustom : NetworkBehaviour
 						return;
 					}
 					player.BombDormant = NetworkBool.op_Implicit(true);
+					player.BombGiverRef = customPlayer.Ref;
 					customPlayer.PrimaryRolePowerRemainingUses--;
 					customPlayer.ReduceMaterialAfterPowerUse();
 					break;
@@ -9967,6 +10097,19 @@ public class PlayerCustom : NetworkBehaviour
 					}
 					break;
 				}
+				case PlayerPrimaryRolePower.Tracker:
+					if (!NetworkBool.op_Implicit(playerController.IsWolf) && !NetworkBool.op_Implicit(targetPlayer.IsWolf) && !NetworkBool.op_Implicit(targetPlayer.IsDead) && !NetworkBool.op_Implicit(player.Dying))
+					{
+						if (NetworkBool.op_Implicit(player.Tracked))
+						{
+							player.Tracked = NetworkBool.op_Implicit(false);
+						}
+						else
+						{
+							player.Tracked = NetworkBool.op_Implicit(true);
+						}
+					}
+					break;
 				case PlayerPrimaryRolePower.Investigator:
 					if (customPlayer.PrimaryRoleTargetRef != targetPlayer.Ref || NetworkBool.op_Implicit(targetPlayer.IsWolf))
 					{
@@ -10030,7 +10173,7 @@ public class PlayerCustom : NetworkBehaviour
 					{
 						List<string> list2 = new List<string> { "LycansNewRoles.EffectNearsighted", "LycansNewRoles.EffectDeafness" };
 						string effectName = CollectionsUtil.Grab<string>(list2, 1).First();
-						ApplyEffectToPlayer(targetPlayer, effectName, runner, 1f, 15f);
+						ApplyEffectToPlayer(targetPlayer, effectName, runner, 1f, 12f);
 						customPlayer.PrimaryRolePowerRemainingUses--;
 						customPlayer.TriggerPrimaryRolePowerCooldown(((SimulationBehaviour)targetPlayer).Runner);
 					}
@@ -10174,18 +10317,18 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0497: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04a1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04b1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0505: Unknown result type (might be due to invalid IL or missing references)
-		//IL_051b: Expected O, but got Unknown
-		//IL_0526: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0539: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0521: Expected O, but got Unknown
+		//IL_052c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02eb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0244: Unknown result type (might be due to invalid IL or missing references)
 		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
@@ -10200,89 +10343,103 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0312: Unknown result type (might be due to invalid IL or missing references)
 		//IL_013f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_064a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0650: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0654: Unknown result type (might be due to invalid IL or missing references)
+		//IL_065a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03f5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0401: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0716: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09c4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b37: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0731: Unknown result type (might be due to invalid IL or missing references)
-		//IL_073e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_074b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06b0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c69: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c6e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c78: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c7d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c88: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c90: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c9a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cb6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ccc: Expected O, but got Unknown
-		//IL_0cd7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d1b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d20: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d22: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d26: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dba: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e25: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e2a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e34: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0720: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c55: Unknown result type (might be due to invalid IL or missing references)
+		//IL_073b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0748: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0755: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d87: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d8c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d96: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d9b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0da6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0db8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dd4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dea: Expected O, but got Unknown
+		//IL_0df5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e08: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0e39: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e3e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e40: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0e44: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e4c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e56: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e72: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e88: Expected O, but got Unknown
-		//IL_0e93: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ea6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ed7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0edc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ede: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ee2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f5c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fc0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fc5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fcf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fd4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fdf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fe7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ff1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_100d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1023: Expected O, but got Unknown
-		//IL_102e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1041: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b60: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bb3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bd0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0776: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ae3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a4b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a50: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a6c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a7a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ed8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f43: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f48: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f52: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f57: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f62: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f6a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f74: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f90: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fa6: Expected O, but got Unknown
+		//IL_0fb1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fc4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ff5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ffa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ffc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_107a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1105: Unknown result type (might be due to invalid IL or missing references)
+		//IL_110f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_112b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1141: Expected O, but got Unknown
+		//IL_114c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_115f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0901: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c7e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cd1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0780: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a55: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a5a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a76: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a84: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aa0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ab6: Expected O, but got Unknown
-		//IL_0ac1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_078e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_079c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0811: Unknown result type (might be due to invalid IL or missing references)
-		//IL_081f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0836: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0844: Unknown result type (might be due to invalid IL or missing references)
-		//IL_087c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0888: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a8e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aaa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac0: Expected O, but got Unknown
+		//IL_0acb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0798: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_081b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0829: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0840: Unknown result type (might be due to invalid IL or missing references)
+		//IL_084e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0886: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0892: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0807: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c01: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b32: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b3e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b48: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b4d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b52: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b61: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b66: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b72: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b76: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b80: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b9c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bb2: Expected O, but got Unknown
+		//IL_0bbd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bdf: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PrimaryRoleActionTimer = TickTimer.None;
@@ -10370,7 +10527,7 @@ public class PlayerCustom : NetworkBehaviour
 					PrimaryRolePowerRemainingUses--;
 					PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, BalancingValues.CultistSkullCreationCooldown(CultistSkull.AllSkulls.Count + 1));
 					NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.GameObjectCultistSkull");
-					Vector3 position = new Vector3(((Component)playerController).transform.position.x, ((Component)playerController).transform.position.y, ((Component)playerController).transform.position.z);
+					Vector3 position = new Vector3(((Component)playerController).transform.position.x, ((Component)playerController).transform.position.y + 0.25f, ((Component)playerController).transform.position.z);
 					NetworkObject val = ((SimulationBehaviour)this).Runner.Spawn(networkObject, (Vector3?)position, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
 					{
 						//IL_0008: Unknown result type (might be due to invalid IL or missing references)
@@ -10508,6 +10665,21 @@ public class PlayerCustom : NetworkBehaviour
 						((Component)no).transform.position = ((Component)chosenTeleporter).transform.position;
 					}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 					((Component)val6).GetComponent<DeceiverIllusionComponent>().SetCreatorRef(playerController4.Ref);
+				}
+				List<PlayerCustom> list2 = PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld && !NetworkBool.op_Implicit(o.PlayerController.IsWolf) && o.NewPrimaryRole != PlayerNewPrimaryRole.Zombie).ToList();
+				if (list2.Any())
+				{
+					PlayerCustom playerCustom = CollectionsUtil.Grab<PlayerCustom>(list2, 1).First();
+					Vector3 position7 = ((Component)playerCustom).transform.position + ((Component)playerCustom).transform.forward * 2f;
+					NetworkPrefabId networkObject6 = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.GameObjectWolfIllusion");
+					NetworkObject val7 = ((SimulationBehaviour)GameManager.Instance).Runner.Spawn(networkObject6, (Vector3?)position7, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
+					{
+						//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+						((Component)no).transform.position = position7;
+					}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+					((Component)val7).transform.position = position7;
+					((Component)val7).GetComponent<WolfIllusion>().Init(3);
+					((Component)val7).GetComponent<WolfIllusion>().SetCreatorRef(playerCustom.Ref);
 				}
 				PrimaryRoleActionTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, Random.Range(15f, 30f));
 				break;
@@ -11065,21 +11237,21 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01c4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0308: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0250: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0255: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0259: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_026e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0361: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0298: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02ab: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0282: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0289: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0239: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0242: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0247: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
+		//IL_034a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0281: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0294: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0272: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0277: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -11137,7 +11309,7 @@ public class PlayerCustom : NetworkBehaviour
 					if (NetworkBool.op_Implicit(playerController2.IsWolf))
 					{
 						ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectDowned", ((SimulationBehaviour)playerController2).Runner, 1f, 6f);
-						ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)playerController2).Runner, 1f, 9f);
+						player2.GrantResilience(15f);
 						Vector3 forward = ((Component)playerController).transform.forward;
 						Vector3 val = ((Vector3)(ref forward)).normalized;
 						if (player2.NewPrimaryRole == PlayerNewPrimaryRole.Beast && NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
@@ -11253,7 +11425,8 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_017e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027a: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -11305,6 +11478,10 @@ public class PlayerCustom : NetworkBehaviour
 				}
 				float value = (NetworkBool.op_Implicit(playerController2.IsWolf) ? 7f : 30f);
 				ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectPetrified", ((SimulationBehaviour)playerController2).Runner, 1f, value);
+				if (NetworkBool.op_Implicit(playerController2.IsWolf))
+				{
+					player2.GrantResilience(16f);
+				}
 				Effect val2 = playerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is MidasEffect);
 				if ((Object)(object)val2 != (Object)null)
 				{
@@ -11454,22 +11631,24 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0063: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
 		Color color = Color.cyan;
 		switch (NewPrimaryRole)
 		{
@@ -11508,6 +11687,9 @@ public class PlayerCustom : NetworkBehaviour
 			break;
 		case PlayerPrimaryRolePower.Host:
 			color = PlayerColorInListForHost;
+			break;
+		case PlayerPrimaryRolePower.Tracker:
+			color = PlayerColorInListForTracker;
 			break;
 		case PlayerPrimaryRolePower.Investigator:
 			color = PlayerColorInListForInvestigator;
@@ -12401,14 +12583,11 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0106: Unknown result type (might be due to invalid IL or missing references)
 		//IL_011f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0154: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0186: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0208: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c8: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom behaviour = changed.Behaviour;
@@ -12438,8 +12617,6 @@ public class PlayerCustom : NetworkBehaviour
 				{
 					return;
 				}
-				PlayerCustom specificPrimaryRolePower = PlayerCustomRegistry.GetSpecificPrimaryRolePower(PlayerPrimaryRolePower.Bomber);
-				PlayerRef val = (((Object)(object)specificPrimaryRolePower != (Object)null) ? specificPrimaryRolePower.Ref : PlayerRef.None);
 				Rpc_Effect_On_Player(((SimulationBehaviour)behaviour).Runner, behaviour.Index, 11);
 				if (NetworkBool.op_Implicit(behaviour.Petrified))
 				{
@@ -12449,7 +12626,7 @@ public class PlayerCustom : NetworkBehaviour
 				if ((double)playerController.Hunger / (double)GameManager.Instance.MaxHunger < (double)num)
 				{
 					behaviour.Stats.UpdateDeathType("BOMB");
-					playerController.Rpc_Kill(val);
+					playerController.Rpc_Kill(behaviour.BombGiverRef);
 					return;
 				}
 				playerController.Hunger -= num * (float)GameManager.Instance.MaxHunger;
@@ -12471,11 +12648,8 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0041: Invalid comparison between Unknown and I4
 		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0134: Invalid comparison between Unknown and I4
-		//IL_0177: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017d: Invalid comparison between Unknown and I4
-		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022c: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -12513,20 +12687,14 @@ public class PlayerCustom : NetworkBehaviour
 			PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(targetIndex);
 			PlayerController playerController = player.PlayerController;
 			PlayerController playerController2 = player2.PlayerController;
-			if (NetworkBool.op_Implicit(playerController2.IsDead) || !(player.Accessory is AccessoryCrystalBall { Available: not false } accessoryCrystalBall))
+			if (NetworkBool.op_Implicit(playerController2.IsDead))
 			{
 				return;
 			}
-			bool flag = (int)playerController.Role == 1 || player.NewPrimaryRole != PlayerNewPrimaryRole.None;
-			bool flag2 = player2.PrimaryRolePower == AllJobs[powerIndex];
-			if (runner.IsServer && flag2)
+			bool flag = player2.PrimaryRolePower == AllJobs[powerIndex];
+			if (player.PrimaryRolePower == PlayerPrimaryRolePower.Tracker && player.PrimaryRolePowerRemainingUses > 0)
 			{
-				if ((int)playerController2.Role == 1 || player2.NewPrimaryRole == PlayerNewPrimaryRole.Traitor)
-				{
-					player2.GivePrimaryRolePower(PlayerPrimaryRolePower.None);
-					ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectWeakened", runner, 1f, 3600f);
-				}
-				else
+				if (runner.IsServer && flag)
 				{
 					player2.Stats.UpdateDeathType("SEER");
 					Rpc_Effect_On_Player(runner, player2.Index, 9);
@@ -12534,8 +12702,27 @@ public class PlayerCustom : NetworkBehaviour
 					player2.PlayerController.Rpc_Kill(player.Ref);
 					GameManager.Rpc_DisplayDeadPlayers(runner);
 				}
+				player.PrimaryRolePowerRemainingUses--;
 			}
-			accessoryCrystalBall.Available = false;
+			else if (player.Accessory is AccessoryCrystalBall { Available: not false } accessoryCrystalBall)
+			{
+				accessoryCrystalBall.Available = false;
+				if (runner.IsServer)
+				{
+					if (flag)
+					{
+						player2.Stats.UpdateDeathType("SEER");
+						Rpc_Effect_On_Player(runner, player2.Index, 9);
+						player2.PlayerController.IdVoted = -1;
+						player2.PlayerController.Rpc_Kill(player.Ref);
+						GameManager.Rpc_DisplayDeadPlayers(runner);
+					}
+					else if (!flag && Random.value < 0.5f)
+					{
+						((Item)player.Accessory).DestroyItem();
+					}
+				}
+			}
 			if (((SimulationBehaviour)player).HasInputAuthority)
 			{
 				UIManager.GenericChoicePanel.Hide();
@@ -12590,13 +12777,13 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_028e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0295: Unknown result type (might be due to invalid IL or missing references)
 		//IL_029a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e0: Expected O, but got Unknown
+		//IL_0386: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0390: Unknown result type (might be due to invalid IL or missing references)
+		//IL_039a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cb: Expected O, but got Unknown
 		//IL_02f7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02fc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02ff: Unknown result type (might be due to invalid IL or missing references)
@@ -12686,7 +12873,7 @@ public class PlayerCustom : NetworkBehaviour
 					((Component)no).GetComponent<CustomEffect>().InitWithSpecificDuration(targetPlayer, 3f);
 				}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 				((Component)targetPlayer).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 900f, 700f);
-				ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectResilience", runner, 1f, 3f);
+				player2.GrantResilience(8f);
 			}
 			else
 			{
@@ -12875,9 +13062,9 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
 		//IL_003d: Invalid comparison between Unknown and I4
 		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
-		//IL_022f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0206: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0217: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0218: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0200: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -12935,10 +13122,6 @@ public class PlayerCustom : NetworkBehaviour
 			if (effect is NearsightedEffect)
 			{
 				value = 25f;
-			}
-			if (effect is StunnedEffect)
-			{
-				value = 10f;
 			}
 			foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
 			{
@@ -13840,7 +14023,7 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01f1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_021d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_017b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02b3: Unknown result type (might be due to invalid IL or missing references)
@@ -13854,45 +14037,45 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02e6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0587: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0622: Unknown result type (might be due to invalid IL or missing references)
-		//IL_054a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_056d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_053a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_030f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_031b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0322: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02fa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0301: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0306: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0643: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0648: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0654: Unknown result type (might be due to invalid IL or missing references)
-		//IL_065e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0685: Unknown result type (might be due to invalid IL or missing references)
+		//IL_061f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0624: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0630: Unknown result type (might be due to invalid IL or missing references)
+		//IL_063a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0365: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03f8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0404: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0676: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0824: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0467: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0835: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_073b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0746: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0869: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0877: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0892: Unknown result type (might be due to invalid IL or missing references)
-		//IL_089f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_084d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_093e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_095f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0652: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0800: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0457: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0811: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0717: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0722: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0845: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0853: Unknown result type (might be due to invalid IL or missing references)
+		//IL_086e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_087b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0888: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0829: Unknown result type (might be due to invalid IL or missing references)
+		//IL_090d: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -13960,7 +14143,7 @@ public class PlayerCustom : NetworkBehaviour
 				}
 				((Component)playerController).GetComponent<KnockbackComponent>().Init(new Vector3(val2.x, 0f, val2.z), flag2 ? 4f : 6f, flag2 ? 2f : 3f);
 				((Component)playerController).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 4000f, 3000f);
-				ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectResilience", runner, 1f, 6f);
+				player.GrantResilience(14f);
 				GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerController).transform.position, BalancingValues.WolfKillSoundRangeByMap(GameManager.Instance.MapID), 1f);
 				GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("SurvivalistDying"), ((Component)playerController).transform.position, BalancingValues.WolfKillSoundRangeByMap(GameManager.Instance.MapID), 1f);
 				player2.ProtectedPriest = NetworkBool.op_Implicit(false);
@@ -13986,7 +14169,7 @@ public class PlayerCustom : NetworkBehaviour
 				{
 					ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectMoleClock", runner, 1f, 3600f);
 					playerController2.Killer = playerController.Ref;
-					playerController.Feed(GameManager.Instance.MaxHunger);
+					player.HealWolfAfterKill();
 				}
 				return;
 			}
@@ -13999,7 +14182,7 @@ public class PlayerCustom : NetworkBehaviour
 				}
 				else
 				{
-					playerController.Feed(GameManager.Instance.MaxHunger);
+					player.HealWolfAfterKill();
 				}
 			}
 			GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerController2).transform.position, BalancingValues.WolfKillSoundRangeByMap(GameManager.Instance.MapID), 1f);
@@ -14010,7 +14193,7 @@ public class PlayerCustom : NetworkBehaviour
 					PlayerRef primaryRoleTargetRef = player.PrimaryRoleTargetRef;
 					if (!((PlayerRef)(ref primaryRoleTargetRef)).IsNone && NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(player.PrimaryRoleTargetRef).Possessed))
 					{
-						goto IL_06a8;
+						goto IL_0684;
 					}
 				}
 				if (!NetworkBool.op_Implicit(player.ResurrectedByNecromancer))
@@ -14018,8 +14201,8 @@ public class PlayerCustom : NetworkBehaviour
 					ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectReverting", runner);
 				}
 			}
-			goto IL_06a8;
-			IL_06a8:
+			goto IL_0684;
+			IL_0684:
 			if (NetworkBool.op_Implicit(player2.Stinking))
 			{
 				ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectPoisoned", runner);
@@ -14056,10 +14239,6 @@ public class PlayerCustom : NetworkBehaviour
 			}
 			else
 			{
-				if (player2.PrimaryRolePower == PlayerPrimaryRolePower.Purifier)
-				{
-					ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectPurifierBurn", runner, 1f, 15f);
-				}
 				player2.Stats.UpdateDeathType(NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) ? "BY_BEAST" : "BY_WOLF");
 				playerController2.Rpc_Kill(playerController.Ref);
 			}
@@ -14085,51 +14264,47 @@ public class PlayerCustom : NetworkBehaviour
 		Rpc_Wolf_Attack(runner, playerIndex, targetPlayerIndex);
 	}
 
+	private void HealWolfAfterKill()
+	{
+		PlayerController.Feed(GameManager.Instance.MaxHunger);
+	}
+
 	[Rpc]
 	public unsafe static void Rpc_Spirit_Attack(NetworkRunner runner, int playerIndex, int targetPlayerIndex)
 	{
 		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0041: Invalid comparison between Unknown and I4
 		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
-		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0321: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0152: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0326: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_021d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0229: Unknown result type (might be due to invalid IL or missing references)
-		//IL_022e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0233: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
-		//IL_023c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0241: Unknown result type (might be due to invalid IL or missing references)
-		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0256: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_034f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0333: Unknown result type (might be due to invalid IL or missing references)
-		//IL_061b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0620: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0664: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0671: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_062d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_063a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ee: Invalid comparison between Unknown and I4
-		//IL_059a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c1: Invalid comparison between Unknown and I4
-		//IL_047a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0480: Invalid comparison between Unknown and I4
-		//IL_05da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_030a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_063b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0648: Unknown result type (might be due to invalid IL or missing references)
+		//IL_067c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0604: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0373: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0611: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0384: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c5: Invalid comparison between Unknown and I4
+		//IL_0571: Unknown result type (might be due to invalid IL or missing references)
+		//IL_057d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0592: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0598: Invalid comparison between Unknown and I4
+		//IL_0451: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0457: Invalid comparison between Unknown and I4
+		//IL_05b1: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -14169,29 +14344,43 @@ public class PlayerCustom : NetworkBehaviour
 			switch (player.PrimaryRolePower)
 			{
 			case PlayerPrimaryRolePower.Ghost:
-				if (!runner.IsServer || !((Object)(object)player.SummonedSpirit != (Object)null))
+			{
+				if (!runner.IsServer || !LycansUtility.GameActuallyInPlay || !((Object)(object)player.SummonedSpirit != (Object)null))
 				{
 					break;
 				}
 				attackCooldown = player.SummonedSpirit.AttackCooldown;
-				if (!((TickTimer)(ref attackCooldown)).IsRunning && NetworkBool.op_Implicit(playerController2.IsWolf) && !NetworkBool.op_Implicit(playerController2.IsDead) && !playerController2.IsStarving())
+				if (((TickTimer)(ref attackCooldown)).IsRunning || NetworkBool.op_Implicit(playerController2.IsWolf) || NetworkBool.op_Implicit(playerController2.IsDead) || NetworkBool.op_Implicit(player2.Dying))
 				{
-					if (playerController2.PlayerEffectManager.GetActiveEffects().Any((Effect o) => o is SpiritResistanceEffect))
-					{
-						return;
-					}
-					GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("PredatorKill"), ((Component)playerController2).transform.position, BalancingValues.WolfKillSoundRangeByMap(GameManager.Instance.MapID), 1f);
-					playerController2.Hunger = Mathf.Max((float)GameManager.Instance.MaxHunger * 0.25f, playerController2.Hunger - (float)GameManager.Instance.MaxHunger * 0.05f);
-					Vector3 val = ((Component)player.SummonedSpirit).transform.position - ((Component)playerController2).transform.position;
-					Vector3 val2 = -((Vector3)(ref val)).normalized;
-					((Component)playerController2).GetComponent<KnockbackComponent>().Init(new Vector3(val2.x, 0f, val2.z), 15f, 21f);
-					ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectWounded", runner, 1f, 6f);
-					ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectResilience", runner, 1f, 5f);
-					player.SummonedSpirit.AttackCooldown = TickTimer.CreateFromSeconds(runner, 5f);
-					ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectParalyzed", runner, 1f, 3f);
-					ApplyEffectToPlayer(playerController2, "LycansNewRoles.EffectSpiritResistance", runner, 1f, 20f);
+					break;
 				}
+				GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("AngelHeal"), ((Component)playerController2).transform.position, BalancingValues.WolfKillSoundRangeByMap(GameManager.Instance.MapID), 1f);
+				Rpc_Effect_On_Player(runner, targetPlayerIndex, 0);
+				player2.IncreaseHealth((float)GameManager.Instance.MaxHunger * 0.2f);
+				string text4 = CollectionsUtil.Grab<string>(BalancingValues.GhostBuffPossibleEffectsAndDuration.Keys.ToList(), 1).First();
+				float value2 = BalancingValues.GhostBuffPossibleEffectsAndDuration[text4];
+				string text5 = text4;
+				string text6 = text5;
+				if (!(text6 == "NightVision"))
+				{
+					if (text6 == "Speed")
+					{
+						Effect effect3 = EffectManager.GetEffects().First((Effect o) => o is SpeedEffect);
+						ApplyEffectToPlayer(playerController2, effect3, runner, 1f, value2);
+					}
+					else
+					{
+						ApplyEffectToPlayer(playerController2, text4, runner, 1f, value2);
+					}
+				}
+				else
+				{
+					Effect effect4 = EffectManager.GetEffects().First((Effect o) => o is NightVision);
+					ApplyEffectToPlayer(playerController2, effect4, runner, 1f, value2);
+				}
+				player.SummonedSpirit.AttackCooldown = TickTimer.CreateFromSeconds(runner, 45f);
 				break;
+			}
 			case PlayerPrimaryRolePower.Specter:
 			{
 				if (!runner.IsServer || !((Object)(object)player.SummonedSpirit != (Object)null))
@@ -14287,45 +14476,33 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0043: Invalid comparison between Unknown and I4
 		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0113: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0195: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0205: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0219: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0222: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0236: Unknown result type (might be due to invalid IL or missing references)
-		//IL_023f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0253: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0270: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0279: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0296: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_030a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_032d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0332: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0335: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0347: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0351: Unknown result type (might be due to invalid IL or missing references)
-		//IL_036c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0382: Expected O, but got Unknown
-		//IL_0391: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0193: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0115: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0405: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0201: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0428: Unknown result type (might be due to invalid IL or missing references)
+		//IL_042d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0430: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0442: Unknown result type (might be due to invalid IL or missing references)
+		//IL_044c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0467: Unknown result type (might be due to invalid IL or missing references)
+		//IL_047d: Expected O, but got Unknown
+		//IL_048c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032f: Expected O, but got Unknown
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -14356,7 +14533,7 @@ public class PlayerCustom : NetworkBehaviour
 				}
 			}
 			PlayerCustom customPlayer = PlayerCustomRegistry.GetPlayer(playerIndex);
-			if (!runner.IsServer || !((Object)(object)customPlayer.SummonedSpirit != (Object)null) || !NetworkBool.op_Implicit(customPlayer.SummonedSpirit.HasFocus))
+			if (!runner.IsServer || !LycansUtility.GameActuallyInPlay || !((Object)(object)customPlayer.SummonedSpirit != (Object)null) || !NetworkBool.op_Implicit(customPlayer.SummonedSpirit.HasFocus))
 			{
 				return;
 			}
@@ -14369,26 +14546,47 @@ public class PlayerCustom : NetworkBehaviour
 			{
 			case PlayerPrimaryRolePower.Ghost:
 			{
-				PlayerController val2 = (from o in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && !NetworkBool.op_Implicit(o.IsDead) && Vector3.Distance(((Component)o).transform.position, ((Component)customPlayer.SummonedSpirit).transform.position) <= 20f))
-					orderby Vector3.Distance(((Component)o).transform.position, ((Component)customPlayer.SummonedSpirit).transform.position)
-					select o).FirstOrDefault();
-				if ((Object)(object)val2 != (Object)null)
+				Vector3 val2 = ((Component)customPlayer.SummonedSpirit).transform.position + ((Component)customPlayer.SummonedSpirit).transform.forward / 3f;
+				if (Random.value < 0.3f)
 				{
-					Vector3 forward = ((Component)val2).transform.forward;
-					forward.y = 0f;
-					Vector3 position = ((Component)val2).transform.position + forward * 15f;
-					float num3 = (float)(((double)Random.value - 0.5) * 32.0);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 + 8f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 + 16f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 + 24f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 + 32f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 - 8f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 - 16f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 - 24f);
-					CreateSpiritSpellEffect(runner, position, ((Component)val2).transform.position, num3 - 32f);
-					customPlayer.SummonedSpirit.SpellCooldown = TickTimer.CreateFromSeconds(runner, 20f);
+					List<Accessory> list = GameManagerCustom.SpawnableAccessories.Where((Accessory o) => Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)]).ToList();
+					if (list.Count > 0)
+					{
+						Item prefab = ((IEnumerable<Item>)CollectionsUtil.Grab<Accessory>(list.ToList(), 1)).First();
+						Item val3 = ItemUtility.SpawnItem(prefab, val2, Quaternion.identity, runner);
+					}
 				}
+				else if (Random.value < 0.5f)
+				{
+					Potion value = Traverse.Create((object)GameManager.Instance).Field<Potion>("potionPrefab").Value;
+					List<Effect> value2 = Traverse.Create((object)GameManager.Instance).Field<List<Effect>>("_potionEffects").Value;
+					if (value2.Count == 0)
+					{
+						break;
+					}
+					Effect randomEffect = CollectionsUtil.Grab<Effect>(value2.Select((Effect e) => e).ToList(), 1).First();
+					Effect item = value2.First((Effect o) => ((object)o).GetType() == ((object)randomEffect).GetType());
+					int localEffectIndex = value2.IndexOf(item);
+					if ((Object)(object)randomEffect != (Object)null)
+					{
+						runner.Spawn<Potion>(value, (Vector3?)val2, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
+						{
+							((Component)no).GetComponent<Potion>().Init(localEffectIndex, EffectManager.GetEffectIndex(randomEffect));
+						}, (NetworkObjectPredictionKey?)null, true);
+					}
+				}
+				else
+				{
+					Item[] value3 = Traverse.Create((object)GameManager.Instance).Field<Item[]>("spawnableItemPrefabs").Value;
+					List<Item> list2 = value3.Where((Item o) => Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)]).ToList();
+					if (list2.Count == 0)
+					{
+						break;
+					}
+					Item prefab2 = CollectionsUtil.Grab<Item>(list2.Where((Item o) => o is LockItem || o is TrapItem || o is SmokeItem || o is SpyglassItem || o is MagicScrollItem || o is PhasingDiamondItem || o is GrenadeItem || o is SleepingGasItem || o is MolotovItem || o is RadarItem).ToList(), 1).First();
+					Item val4 = ItemUtility.SpawnItem(prefab2, val2, Quaternion.identity, runner);
+				}
+				customPlayer.SummonedSpirit.SpellCooldown = TickTimer.CreateFromSeconds(runner, 90f);
 				break;
 			}
 			case PlayerPrimaryRolePower.Specter:
@@ -14454,15 +14652,15 @@ public class PlayerCustom : NetworkBehaviour
 	{
 		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0041: Invalid comparison between Unknown and I4
-		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0113: Unknown result type (might be due to invalid IL or missing references)
-		//IL_015c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
 		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -14501,7 +14699,7 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectExorcismActive", runner, 1f, 15f);
 				player2.Exorciser = player.Ref;
-				ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectResilience", runner, 1f, 5f);
+				player2.GrantResilience(12f);
 				ApplyEffectToPlayer(playerController, "LycansNewRoles.EffectBlind", runner, 1f, 1.5f);
 				GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("Exorcism"), ((Component)playerController).transform.position, 20f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID), 1f);
 			}
@@ -15183,12 +15381,12 @@ public class PlayerCustom : NetworkBehaviour
 	[Preserve]
 	public static void NewPrimaryRoleUniqueBoolChanged(Changed<PlayerCustom> changed)
 	{
-		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom behaviour = changed.Behaviour;
@@ -15230,6 +15428,7 @@ public class PlayerCustom : NetworkBehaviour
 				break;
 			case PlayerPrimaryRolePower.Necromancer:
 			case PlayerPrimaryRolePower.Sneak:
+			case PlayerPrimaryRolePower.Tracker:
 			case PlayerPrimaryRolePower.Avatar:
 				if (behaviour.IsCurrentlyPlayedOrObserved)
 				{
@@ -15343,17 +15542,17 @@ public class PlayerCustom : NetworkBehaviour
 	[Preserve]
 	public static void PrimaryRoleActionTimerChanged(Changed<PlayerCustom> changed)
 	{
-		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
-		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0143: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom behaviour = changed.Behaviour;
@@ -15630,14 +15829,14 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ef: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0106: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0200: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -15936,17 +16135,18 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0473: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0488: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0588: Unknown result type (might be due to invalid IL or missing references)
-		//IL_058d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_059c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05e9: Expected O, but got Unknown
-		//IL_05f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0607: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05fd: Expected O, but got Unknown
+		//IL_0608: Unknown result type (might be due to invalid IL or missing references)
+		//IL_061b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_062b: Unknown result type (might be due to invalid IL or missing references)
 		if (PowerMaterialsInfo != null)
 		{
 			PrimaryRolePowerRemainingUses = 0;
@@ -16084,6 +16284,9 @@ public class PlayerCustom : NetworkBehaviour
 			}
 			break;
 		}
+		case PlayerPrimaryRolePower.Tracker:
+			NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(true);
+			break;
 		}
 	}
 
@@ -16172,25 +16375,21 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0022: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
 		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c4: Invalid comparison between Unknown and I4
-		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0208: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0231: Unknown result type (might be due to invalid IL or missing references)
-		//IL_023e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_026a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0209: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0216: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0235: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0242: Unknown result type (might be due to invalid IL or missing references)
 		PlayerController povPlayer = PlayerController.Local.LocalCameraHandler.PovPlayer;
 		if ((Object)(object)povPlayer == (Object)null)
 		{
@@ -16214,7 +16413,7 @@ public class PlayerCustom : NetworkBehaviour
 				switch (PrimaryRolePower)
 				{
 				case PlayerPrimaryRolePower.Ghost:
-					visible = NetworkBool.op_Implicit(povPlayer.IsDead) || (NetworkBool.op_Implicit(povPlayer.IsWolf) && (int)povPlayer.Role == 1);
+					visible = true;
 					break;
 				case PlayerPrimaryRolePower.Specter:
 					visible = NetworkBool.op_Implicit(povPlayer.IsDead);
@@ -16509,7 +16708,7 @@ public class PlayerCustom : NetworkBehaviour
 		{
 			return;
 		}
-		bool flag = NetworkBool.op_Implicit(Tracked) || (NetworkBool.op_Implicit(povPlayerCustom.Spotter) && NetworkBool.op_Implicit(PlayerController.IsWolf)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && NetworkBool.op_Implicit(PlayerController.PlayerEffectManager.Glowing)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Scout && ScoutRadar.AssociatedRadars.Any((ScoutRadar o) => o.CreatorRef == povPlayerCustom.Ref && o.WolvesInRange.Any((PlayerRef j) => j == Ref))) || (povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(Parasite) && (int)GameManager.LocalGameState != 4 && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f);
+		bool flag = NetworkBool.op_Implicit(Detected) || (NetworkBool.op_Implicit(povPlayerCustom.Spotter) && NetworkBool.op_Implicit(PlayerController.IsWolf)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && NetworkBool.op_Implicit(PlayerController.PlayerEffectManager.Glowing)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Scout && ScoutRadar.AssociatedRadars.Any((ScoutRadar o) => o.CreatorRef == povPlayerCustom.Ref && o.WolvesInRange.Any((PlayerRef j) => j == Ref))) || (povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(Parasite) && (int)GameManager.LocalGameState != 4 && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f);
 		if (!flag && NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Runemaster && povPlayerCustom.AssociatedRunes.Any((RunemasterRune o) => Vector3.Distance(((Component)o).transform.position, ((Component)PlayerController).transform.position) <= 10f))
 		{
 			flag = true;
@@ -16842,6 +17041,17 @@ public class PlayerCustom : NetworkBehaviour
 		return false;
 	}
 
+	public void GrantResilience(float duration)
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		if (NetworkBool.op_Implicit(Resilience))
+		{
+			duration *= 0.5f;
+		}
+		ApplyEffectToPlayer(PlayerController, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)this).Runner, 1f, duration);
+		ApplyEffectToPlayer(PlayerController, "LycansNewRoles.EffectEndurance", ((SimulationBehaviour)this).Runner, 1f, duration * 0.5f);
+	}
+
 	public void UpdateMoveSpeed()
 	{
 		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
@@ -16876,14 +17086,13 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0485: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04a0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04bb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04fa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0515: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0530: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0542: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0527: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0545: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0560: Unknown result type (might be due to invalid IL or missing references)
-		//IL_057b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0592: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05a3: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController playerController = PlayerController;
@@ -16893,11 +17102,11 @@ public class PlayerCustom : NetworkBehaviour
 			float num2 = 0f;
 			if (NetworkBool.op_Implicit(Empowered) && NetworkBool.op_Implicit(PlayerController.IsWolf))
 			{
-				num2 += 0.14999998f;
+				num2 += 0.120000005f;
 			}
 			if (NetworkBool.op_Implicit(Portal))
 			{
-				num2 += 0.20000005f;
+				num2 += 0.14999998f;
 			}
 			if (NetworkBool.op_Implicit(Predator))
 			{
@@ -16981,7 +17190,7 @@ public class PlayerCustom : NetworkBehaviour
 			}
 			if (NetworkBool.op_Implicit(Disease))
 			{
-				num *= 0.85f;
+				num *= 0.88f;
 			}
 			if (NetworkBool.op_Implicit(Wounded))
 			{
@@ -16994,10 +17203,6 @@ public class PlayerCustom : NetworkBehaviour
 			if (NetworkBool.op_Implicit(Nauseated))
 			{
 				num *= 0.85f;
-			}
-			if (NetworkBool.op_Implicit(Stunned))
-			{
-				num *= 0.5f;
 			}
 			if (NetworkBool.op_Implicit(Panic))
 			{
@@ -17026,7 +17231,7 @@ public class PlayerCustom : NetworkBehaviour
 			}
 			if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Eclipse && NetworkBool.op_Implicit(PlayerController.IsWolf) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
 			{
-				num *= 0.86f;
+				num *= 0.9f;
 			}
 			value.maxSpeed = num;
 		}
@@ -17092,18 +17297,11 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
 		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
-		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0160: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019b: Expected O, but got Unknown
-		//IL_01bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0205: Expected O, but got Unknown
+		//IL_015c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0198: Expected O, but got Unknown
 		//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
 		NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject(effectName);
@@ -17131,14 +17329,6 @@ public class PlayerCustom : NetworkBehaviour
 		{
 			FinalizeEffect(runner, player, ((Component)no).GetComponent<Effect>(), durationMultiplier, specificBaseDuration);
 		}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
-		if (effectName == "LycansNewRoles.EffectResilience")
-		{
-			networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.EffectSpiritResistance");
-			runner.Spawn(networkObject, (Vector3?)Vector3.zero, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
-			{
-				FinalizeEffect(runner, player, ((Component)no).GetComponent<Effect>(), 1f, specificBaseDuration * durationMultiplier * 1.5f);
-			}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
-		}
 	}
 
 	public static void ApplyEffectToPlayer(PlayerController player, Effect effect, NetworkRunner runner, float durationMultiplier = 1f, float? specificBaseDuration = null)
@@ -17198,24 +17388,25 @@ public class PlayerCustom : NetworkBehaviour
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0079: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007f: Invalid comparison between Unknown and I4
-		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0265: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0217: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0112: Invalid comparison between Unknown and I4
-		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0154: Invalid comparison between Unknown and I4
-		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012d: Invalid comparison between Unknown and I4
-		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0177: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017d: Invalid comparison between Unknown and I4
-		//IL_01a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a6: Invalid comparison between Unknown and I4
+		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Invalid comparison between Unknown and I4
+		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0152: Invalid comparison between Unknown and I4
+		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0194: Invalid comparison between Unknown and I4
+		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016d: Invalid comparison between Unknown and I4
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bd: Invalid comparison between Unknown and I4
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e6: Invalid comparison between Unknown and I4
 		PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(player.Ref);
 		float num = (specificBaseDuration.HasValue ? specificBaseDuration.Value : Traverse.Create((object)effect).Field<float>("duration").Value);
 		if (NetworkBool.op_Implicit(player.IsWolf) && !specificBaseDuration.HasValue)
@@ -17237,6 +17428,10 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				num = durationOnZombie.Value;
 			}
+		}
+		if (NetworkBool.op_Implicit(player2.Resilience) && (effect is GiantEffect || effect is CustomEffect { ReducedByResilience: not false }))
+		{
+			num *= 0.5f;
 		}
 		num *= durationMultiplier;
 		if (!(effect is CustomEffect { DurationAffectedByModifiers: false }))
@@ -17311,31 +17506,31 @@ public class PlayerCustom : NetworkBehaviour
 	public bool CanBeHeardByObservedPlayer()
 	{
 		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
-		//IL_015c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0180: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0177: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)PlayerController.Local == (Object)null || (Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer == (Object)null)
 		{
 			return false;
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if (PrimaryRolePower == PlayerPrimaryRolePower.Specter)
+		if (PrimaryRolePower == PlayerPrimaryRolePower.Ghost || PrimaryRolePower == PlayerPrimaryRolePower.Specter)
 		{
 			return false;
 		}
-		if (NetworkBool.op_Implicit(PlayerController.IsDead) && (!NetworkBool.op_Implicit(PlayerController.IsDeadChannel) || !NetworkBool.op_Implicit(PlayerController.Local.IsDead) || !NetworkBool.op_Implicit(PlayerController.Local.IsDeadChannel) || Local.PrimaryRolePower == PlayerPrimaryRolePower.Specter))
+		if (NetworkBool.op_Implicit(PlayerController.IsDead) && (!NetworkBool.op_Implicit(PlayerController.IsDeadChannel) || !NetworkBool.op_Implicit(PlayerController.Local.IsDead) || !NetworkBool.op_Implicit(PlayerController.Local.IsDeadChannel) || Local.PrimaryRolePower == PlayerPrimaryRolePower.Ghost || Local.PrimaryRolePower == PlayerPrimaryRolePower.Specter))
 		{
 			return false;
 		}

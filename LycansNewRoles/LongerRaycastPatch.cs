@@ -26,10 +26,10 @@ internal class LongerRaycastPatch
 		//IL_00af: Invalid comparison between Unknown and I4
 		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0174: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0132: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			Camera value = Traverse.Create((object)__instance).Field<Camera>("_camera").Value;
@@ -54,9 +54,10 @@ internal class LongerRaycastPatch
 			}
 			bool flag = true;
 			RaycastHit val3 = default(RaycastHit);
-			if (NetworkBool.op_Implicit(value2.IsWolf) && Physics.Raycast(val, ref val3) && (Object)(object)((Component)((RaycastHit)(ref val3)).collider).gameObject.GetComponent<MagicianIllusion>() != (Object)null)
+			if (NetworkBool.op_Implicit(value2.IsWolf) && Physics.Raycast(val, ref val3, 10f) && (Object)(object)((Component)((RaycastHit)(ref val3)).collider).gameObject.GetComponentInParent<MagicianIllusion>() != (Object)null)
 			{
-				value2.UpdateRayCast(((Component)((RaycastHit)(ref val3)).collider).gameObject, ((RaycastHit)(ref val3)).distance);
+				GameObject gameObject = ((Component)((Component)((RaycastHit)(ref val3)).collider).gameObject.GetComponentInParent<MagicianIllusion>()).gameObject;
+				value2.UpdateRayCast(gameObject, ((RaycastHit)(ref val3)).distance);
 				flag = false;
 			}
 			if (flag)

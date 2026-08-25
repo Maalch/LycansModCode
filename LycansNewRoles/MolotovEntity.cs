@@ -9,28 +9,41 @@ namespace LycansNewRoles;
 
 public class MolotovEntity : MonoBehaviour
 {
+	public enum FireType
+	{
+		RegularMolotov,
+		PurifierStandard,
+		PurifierBoosted
+	}
+
 	[Serializable]
 	[CompilerGenerated]
 	private sealed class _003C_003Ec
 	{
 		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		public static OnBeforeSpawned _003C_003E9__12_0;
+		public static OnBeforeSpawned _003C_003E9__16_0;
 
-		public static OnBeforeSpawned _003C_003E9__12_1;
+		public static OnBeforeSpawned _003C_003E9__16_1;
 
-		internal void _003CUpdate_003Eb__12_0(NetworkRunner _, NetworkObject no)
+		public static OnBeforeSpawned _003C_003E9__16_2;
+
+		internal void _003CUpdate_003Eb__16_0(NetworkRunner _, NetworkObject no)
 		{
 		}
 
-		internal void _003CUpdate_003Eb__12_1(NetworkRunner _, NetworkObject no)
+		internal void _003CUpdate_003Eb__16_1(NetworkRunner _, NetworkObject no)
+		{
+		}
+
+		internal void _003CUpdate_003Eb__16_2(NetworkRunner _, NetworkObject no)
 		{
 		}
 	}
 
 	public static GameObject MolotovEntityPrefab;
 
-	private bool _purifierEntity = false;
+	private FireType _type;
 
 	private Stopwatch _disappearWatch = new Stopwatch();
 
@@ -38,15 +51,21 @@ public class MolotovEntity : MonoBehaviour
 
 	private const float _molotovMoveSpeed = 1.25f;
 
-	private const float _purifierMoveSpeed = 2.5f;
+	private const float _purifierStandardMoveSpeed = 1.75f;
+
+	private const float _purifierBoostedMoveSpeed = 2.5f;
 
 	private const int _molotovCreateFireDelayMilliseconds = 1000;
 
-	private const int _purifierCreateFireDelayMilliseconds = 500;
+	private const int _purifierStandardCreateFireDelayMilliseconds = 750;
+
+	private const int _purifierBoostedCreateFireDelayMilliseconds = 500;
 
 	private const int _molotovEntityDurationMilliseconds = 6000;
 
-	private const int _purifierEntityDurationMilliseconds = 3000;
+	private const int _purifierStandardEntityDurationMilliseconds = 4000;
+
+	private const int _purifierBoostedEntityDurationMilliseconds = 4500;
 
 	private void Awake()
 	{
@@ -55,9 +74,9 @@ public class MolotovEntity : MonoBehaviour
 		_createFireWatch.Start();
 	}
 
-	public void Init(bool purifierEntity)
+	public void Init(FireType type)
 	{
-		_purifierEntity = purifierEntity;
+		_type = type;
 	}
 
 	private void Update()
@@ -70,36 +89,51 @@ public class MolotovEntity : MonoBehaviour
 		//IL_000d: Invalid comparison between Unknown and I4
 		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0013: Invalid comparison between Unknown and I4
-		//IL_01ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0217: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0268: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0270: Unknown result type (might be due to invalid IL or missing references)
-		//IL_027a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0076: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0368: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0372: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0377: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0229: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0233: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0238: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02ad: Expected O, but got Unknown
-		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012d: Expected O, but got Unknown
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0269: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_027a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0282: Unknown result type (might be due to invalid IL or missing references)
+		//IL_028c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0400: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0136: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Expected O, but got Unknown
+		//IL_02b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02bf: Expected O, but got Unknown
+		//IL_0432: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0437: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043d: Expected O, but got Unknown
 		bool flag = false;
 		EGameState localGameState = GameManager.LocalGameState;
 		EGameState val = localGameState;
@@ -112,8 +146,73 @@ public class MolotovEntity : MonoBehaviour
 			Object.Destroy((Object)(object)((Component)this).gameObject);
 			return;
 		}
-		if (_purifierEntity)
+		switch (_type)
 		{
+		case FireType.RegularMolotov:
+			((Component)this).GetComponent<CharacterController>().Move(((Component)this).transform.forward * 1.25f * Time.deltaTime);
+			if (!((Component)this).GetComponent<CharacterController>().isGrounded)
+			{
+				((Component)this).GetComponent<CharacterController>().Move(new Vector3(0f, -1f, 0f) * Time.deltaTime);
+			}
+			if (_createFireWatch.ElapsedMilliseconds >= 1000)
+			{
+				NetworkPrefabId networkObject3 = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemMolotovFire");
+				NetworkRunner runner3 = ((SimulationBehaviour)GameManager.Instance).Runner;
+				Vector3? val10 = ((Component)this).transform.position;
+				Quaternion? val11 = Quaternion.identity;
+				object obj3 = _003C_003Ec._003C_003E9__16_0;
+				if (obj3 == null)
+				{
+					OnBeforeSpawned val12 = delegate
+					{
+					};
+					_003C_003Ec._003C_003E9__16_0 = val12;
+					obj3 = (object)val12;
+				}
+				NetworkObject val13 = runner3.Spawn(networkObject3, val10, val11, (PlayerRef?)null, (OnBeforeSpawned)obj3, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+				float num3 = Mathf.InverseLerp(0f, 6f, (float)_disappearWatch.ElapsedMilliseconds);
+				float burnDuration3 = Mathf.Lerp(2f, 8f, num3);
+				((Component)val13).GetComponent<MolotovFire>().Init(12000, burnDuration3);
+				_createFireWatch.Restart();
+			}
+			if (_disappearWatch.ElapsedMilliseconds >= 6000)
+			{
+				Object.Destroy((Object)(object)((Component)this).gameObject);
+			}
+			break;
+		case FireType.PurifierStandard:
+			((Component)this).GetComponent<CharacterController>().Move(((Component)this).transform.forward * 1.75f * Time.deltaTime);
+			if (!((Component)this).GetComponent<CharacterController>().isGrounded)
+			{
+				((Component)this).GetComponent<CharacterController>().Move(new Vector3(0f, -1f, 0f) * Time.deltaTime);
+			}
+			if (_createFireWatch.ElapsedMilliseconds >= 750)
+			{
+				NetworkPrefabId networkObject2 = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemPurifierFire");
+				NetworkRunner runner2 = ((SimulationBehaviour)GameManager.Instance).Runner;
+				Vector3? val6 = ((Component)this).transform.position;
+				Quaternion? val7 = Quaternion.identity;
+				object obj2 = _003C_003Ec._003C_003E9__16_1;
+				if (obj2 == null)
+				{
+					OnBeforeSpawned val8 = delegate
+					{
+					};
+					_003C_003Ec._003C_003E9__16_1 = val8;
+					obj2 = (object)val8;
+				}
+				NetworkObject val9 = runner2.Spawn(networkObject2, val6, val7, (PlayerRef?)null, (OnBeforeSpawned)obj2, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+				float num2 = Mathf.InverseLerp(0f, 5f, (float)_disappearWatch.ElapsedMilliseconds);
+				float burnDuration2 = Mathf.Lerp(3f, 7f, num2);
+				((Component)val9).GetComponent<PurifierFire>().Init(8000, burnDuration2);
+				_createFireWatch.Restart();
+			}
+			if (_disappearWatch.ElapsedMilliseconds >= 4000)
+			{
+				Object.Destroy((Object)(object)((Component)this).gameObject);
+			}
+			break;
+		case FireType.PurifierBoosted:
 			((Component)this).GetComponent<CharacterController>().Move(((Component)this).transform.forward * 2.5f * Time.deltaTime);
 			if (!((Component)this).GetComponent<CharacterController>().isGrounded)
 			{
@@ -125,56 +224,26 @@ public class MolotovEntity : MonoBehaviour
 				NetworkRunner runner = ((SimulationBehaviour)GameManager.Instance).Runner;
 				Vector3? val2 = ((Component)this).transform.position;
 				Quaternion? val3 = Quaternion.identity;
-				object obj = _003C_003Ec._003C_003E9__12_0;
+				object obj = _003C_003Ec._003C_003E9__16_2;
 				if (obj == null)
 				{
 					OnBeforeSpawned val4 = delegate
 					{
 					};
-					_003C_003Ec._003C_003E9__12_0 = val4;
+					_003C_003Ec._003C_003E9__16_2 = val4;
 					obj = (object)val4;
 				}
 				NetworkObject val5 = runner.Spawn(networkObject, val2, val3, (PlayerRef?)null, (OnBeforeSpawned)obj, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 				float num = Mathf.InverseLerp(0f, 5f, (float)_disappearWatch.ElapsedMilliseconds);
 				float burnDuration = Mathf.Lerp(3f, 7f, num);
-				((Component)val5).GetComponent<PurifierFire>().Init(9000, burnDuration);
+				((Component)val5).GetComponent<PurifierFire>().Init(12000, burnDuration);
 				_createFireWatch.Restart();
 			}
-			if (_disappearWatch.ElapsedMilliseconds >= 3000)
+			if (_disappearWatch.ElapsedMilliseconds >= 4500)
 			{
 				Object.Destroy((Object)(object)((Component)this).gameObject);
 			}
-			return;
-		}
-		((Component)this).GetComponent<CharacterController>().Move(((Component)this).transform.forward * 1.25f * Time.deltaTime);
-		if (!((Component)this).GetComponent<CharacterController>().isGrounded)
-		{
-			((Component)this).GetComponent<CharacterController>().Move(new Vector3(0f, -1f, 0f) * Time.deltaTime);
-		}
-		if (_createFireWatch.ElapsedMilliseconds >= 1000)
-		{
-			NetworkPrefabId networkObject2 = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemMolotovFire");
-			NetworkRunner runner2 = ((SimulationBehaviour)GameManager.Instance).Runner;
-			Vector3? val6 = ((Component)this).transform.position;
-			Quaternion? val7 = Quaternion.identity;
-			object obj2 = _003C_003Ec._003C_003E9__12_1;
-			if (obj2 == null)
-			{
-				OnBeforeSpawned val8 = delegate
-				{
-				};
-				_003C_003Ec._003C_003E9__12_1 = val8;
-				obj2 = (object)val8;
-			}
-			NetworkObject val9 = runner2.Spawn(networkObject2, val6, val7, (PlayerRef?)null, (OnBeforeSpawned)obj2, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
-			float num2 = Mathf.InverseLerp(0f, 6f, (float)_disappearWatch.ElapsedMilliseconds);
-			float burnDuration2 = Mathf.Lerp(2f, 8f, num2);
-			((Component)val9).GetComponent<MolotovFire>().Init(12000, burnDuration2);
-			_createFireWatch.Restart();
-		}
-		if (_disappearWatch.ElapsedMilliseconds >= 6000)
-		{
-			Object.Destroy((Object)(object)((Component)this).gameObject);
+			break;
 		}
 	}
 }

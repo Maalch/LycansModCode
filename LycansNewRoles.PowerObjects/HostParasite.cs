@@ -255,8 +255,11 @@ public class HostParasite : NetworkBehaviour
 					runner.SendRpc(ptr);
 				}
 			}
-			HostParasite component = ((Component)runner.FindObject(parasiteId)).GetComponent<HostParasite>();
-			((SimulationBehaviour)component).Runner.Despawn(((Component)component).GetComponent<NetworkObject>(), false);
+			NetworkObject val = runner.FindObject(parasiteId);
+			if ((Object)(object)val != (Object)null)
+			{
+				runner.Despawn(((Component)val).GetComponent<NetworkObject>(), false);
+			}
 		}
 		catch (Exception ex)
 		{

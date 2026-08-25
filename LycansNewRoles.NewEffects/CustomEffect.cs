@@ -30,6 +30,8 @@ public abstract class CustomEffect : Effect
 
 	public virtual bool DurationAffectedByModifiers => true;
 
+	public virtual bool ReducedByResilience => false;
+
 	public void InitWithSpecificDuration(PlayerController targetPlayer, float duration)
 	{
 		//IL_001f: Unknown result type (might be due to invalid IL or missing references)

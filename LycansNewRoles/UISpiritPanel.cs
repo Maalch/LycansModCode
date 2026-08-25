@@ -78,7 +78,7 @@ public class UISpiritPanel : MonoBehaviour
 			switch (PlayerCustom.Local.PrimaryRolePower)
 			{
 			case PlayerCustom.PlayerPrimaryRolePower.Ghost:
-				num = 5f;
+				num = 45f;
 				break;
 			case PlayerCustom.PlayerPrimaryRolePower.Specter:
 				num = (((int)GameManager.LocalGameState == 4) ? 40f : 25f);
@@ -111,7 +111,7 @@ public class UISpiritPanel : MonoBehaviour
 				((Graphic)_spellFill).color = ColorCooldown;
 				Image spellFill2 = _spellFill;
 				val = summonedSpirit.SpellCooldown;
-				spellFill2.fillAmount = (20f - ((TickTimer)(ref val)).RemainingTime(((SimulationBehaviour)PlayerCustom.Local).Runner).Value) / 20f;
+				spellFill2.fillAmount = (90f - ((TickTimer)(ref val)).RemainingTime(((SimulationBehaviour)PlayerCustom.Local).Runner).Value) / 90f;
 			}
 			else
 			{

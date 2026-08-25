@@ -48,6 +48,9 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		//IL_06fc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0702: Invalid comparison between Unknown and I4
 		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_072b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0731: Invalid comparison between Unknown and I4
+		//IL_073e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
 		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0363: Unknown result type (might be due to invalid IL or missing references)
@@ -61,6 +64,8 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		//IL_03a4: Invalid comparison between Unknown and I4
 		//IL_031d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d1: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)_playerCustom != (Object)null && NetworkBool.op_Implicit(_playerCustom.Confused))
 		{
 			if (!_confusedWatch.IsRunning)
@@ -172,6 +177,16 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		if (_playerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Inventor && (int)GameManager.LocalGameState == 2)
 		{
 			_playerCustom.InventorDeviceInfo.CheckAlert();
+		}
+		if ((int)_playerCustom.PlayerController.Role == 1 && NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf))
+		{
+			foreach (PlayerCustom item8 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost))
+			{
+				if ((Object)(object)item8.SummonedSpirit != (Object)null && !item8.GhostImmuneToWolf && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)item8.SummonedSpirit).transform.position) <= 2f)
+				{
+					item8.GivePrimaryRolePower(PlayerCustom.PlayerPrimaryRolePower.None);
+				}
+			}
 		}
 		_fiveTimesPerSecondWatch.Restart();
 	}

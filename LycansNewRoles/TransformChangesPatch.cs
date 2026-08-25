@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Fusion;
 using HarmonyLib;
+using LycansNewRoles.NewEffects;
 using LycansNewRoles.NewPrimaryRoles;
 using LycansNewRoles.PowerObjects;
 using LycansNewRoles.Stats;
@@ -79,7 +80,8 @@ internal class TransformChangesPatch
 		//IL_01cb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0225: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0288: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0251: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)__instance).Object.HasStateAuthority)
 		{
 			return;
@@ -112,6 +114,11 @@ internal class TransformChangesPatch
 			NetworkString<_32> username = __instance.PlayerData.Username;
 			LycansUtility.AddLogOnlyForMe("Adding detransformation from regular wolf at date: " + text + ", player: " + ((object)username/*cast due to constrained. prefix*/).ToString());
 			GameManagerCustom.Instance.AddDetransformation();
+			Effect val2 = __instance.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is DetectedEffect);
+			if ((Object)(object)val2 != (Object)null)
+			{
+				__instance.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val2).Object.Id);
+			}
 			playerCustom.Stats.AddAction(new PlayerStats.PlayerAction
 			{
 				ActionType = "Untransform"

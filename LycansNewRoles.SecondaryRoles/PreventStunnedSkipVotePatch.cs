@@ -13,11 +13,10 @@ internal class PreventStunnedSkipVotePatch
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
-			if (NetworkBool.op_Implicit(player.Stunned) || NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Kidnapped))
+			if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Kidnapped))
 			{
 				return false;
 			}

@@ -61,10 +61,10 @@ public class UIRoleDescription : MonoBehaviour
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c5c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c61: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cd0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cd5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cc0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cc5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d34: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d39: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -149,6 +149,14 @@ public class UIRoleDescription : MonoBehaviour
 					{
 						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
 						2f.ToString()
+					};
+					break;
+				case PlayerCustom.PlayerPrimaryRolePower.Tracker:
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
+						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", ""),
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "")
 					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Exorcist:

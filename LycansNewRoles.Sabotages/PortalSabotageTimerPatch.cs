@@ -29,7 +29,7 @@ internal class PortalSabotageTimerPatch
 				}
 				else
 				{
-					__instance.ActivationTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 10f);
+					__instance.ActivationTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 15f);
 				}
 			}
 			return false;

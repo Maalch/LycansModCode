@@ -16,6 +16,8 @@ public class JumpEffect : CustomEffect
 
 	public override bool CanBeDispelled => false;
 
+	public override bool DurationAffectedByModifiers => false;
+
 	protected override void ApplyEffectToPlayerSpecific(PlayerRef targetPlayer)
 	{
 		//IL_000c: Unknown result type (might be due to invalid IL or missing references)

@@ -14,9 +14,15 @@ public class MolotovActive : NetworkBehaviour
 	{
 		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		public static OnBeforeSpawned _003C_003E9__8_0;
+		public static OnBeforeSpawned _003C_003E9__9_0;
 
-		internal void _003COnCollisionEnter_003Eb__8_0(NetworkRunner _, NetworkObject no)
+		public static OnBeforeSpawned _003C_003E9__9_1;
+
+		internal void _003COnCollisionEnter_003Eb__9_0(NetworkRunner _, NetworkObject no)
+		{
+		}
+
+		internal void _003COnCollisionEnter_003Eb__9_1(NetworkRunner _, NetworkObject no)
 		{
 		}
 	}
@@ -27,14 +33,19 @@ public class MolotovActive : NetworkBehaviour
 
 	public bool CreatedByChaosEffect = false;
 
+	private PlayerRef _creatorRef;
+
 	private void Awake()
 	{
 		_rigidbody = ((Component)this).GetComponent<Rigidbody>();
 	}
 
-	public void Init(Vector3 velocity)
+	public void Init(PlayerRef creatorRef, Vector3 velocity)
 	{
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		_creatorRef = creatorRef;
 		((Component)this).GetComponent<Rigidbody>().velocity = velocity;
 	}
 
@@ -98,42 +109,84 @@ public class MolotovActive : NetworkBehaviour
 		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0113: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011e: Expected O, but got Unknown
-		if (((SimulationBehaviour)this).HasStateAuthority)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0135: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0162: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Expected O, but got Unknown
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f7: Expected O, but got Unknown
+		if (!((SimulationBehaviour)this).HasStateAuthority)
 		{
-			GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("SleepingGasBreak"), ((Component)this).transform.position, 20f, 0.4f);
-			GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("InquisitorFire"), ((Component)this).transform.position, 20f, 0.4f);
-			for (int i = 0; i < 16; i++)
+			return;
+		}
+		GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("SleepingGasBreak"), ((Component)this).transform.position, 20f, 0.4f);
+		GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("InquisitorFire"), ((Component)this).transform.position, 20f, 0.4f);
+		MolotovEntity.FireType fireType = MolotovEntity.FireType.RegularMolotov;
+		if (PlayerCustomRegistry.HasPlayer(_creatorRef) && PlayerCustomRegistry.GetPlayer(_creatorRef).PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Purifier)
+		{
+			fireType = MolotovEntity.FireType.PurifierStandard;
+		}
+		for (int i = 0; i < 16; i++)
+		{
+			GameObject val = Object.Instantiate<GameObject>(MolotovEntity.MolotovEntityPrefab, ((Component)this).transform.position, Quaternion.Euler(0f, (float)i * 22.5f, 0f), (Transform)null);
+			val.SetActive(true);
+			val.GetComponent<MolotovEntity>().Init(fireType);
+		}
+		switch (fireType)
+		{
+		case MolotovEntity.FireType.RegularMolotov:
+		{
+			NetworkPrefabId networkObject2 = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemMolotovFire");
+			NetworkRunner runner2 = ((SimulationBehaviour)GameManager.Instance).Runner;
+			Vector3? val6 = ((Component)this).transform.position;
+			Quaternion? val7 = Quaternion.identity;
+			object obj2 = _003C_003Ec._003C_003E9__9_0;
+			if (obj2 == null)
 			{
-				GameObject val = Object.Instantiate<GameObject>(MolotovEntity.MolotovEntityPrefab, ((Component)this).transform.position, Quaternion.Euler(0f, (float)i * 22.5f, 0f), (Transform)null);
-				val.SetActive(true);
-				val.GetComponent<MolotovEntity>().Init(purifierEntity: false);
+				OnBeforeSpawned val8 = delegate
+				{
+				};
+				_003C_003Ec._003C_003E9__9_0 = val8;
+				obj2 = (object)val8;
 			}
-			NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemMolotovFire");
+			NetworkObject val9 = runner2.Spawn(networkObject2, val6, val7, (PlayerRef?)null, (OnBeforeSpawned)obj2, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+			((Component)val9).GetComponent<MolotovFire>().Init(12000, 2f);
+			break;
+		}
+		case MolotovEntity.FireType.PurifierStandard:
+		{
+			NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemPurifierFire");
 			NetworkRunner runner = ((SimulationBehaviour)GameManager.Instance).Runner;
 			Vector3? val2 = ((Component)this).transform.position;
 			Quaternion? val3 = Quaternion.identity;
-			object obj = _003C_003Ec._003C_003E9__8_0;
+			object obj = _003C_003Ec._003C_003E9__9_1;
 			if (obj == null)
 			{
 				OnBeforeSpawned val4 = delegate
 				{
 				};
-				_003C_003Ec._003C_003E9__8_0 = val4;
+				_003C_003Ec._003C_003E9__9_1 = val4;
 				obj = (object)val4;
 			}
 			NetworkObject val5 = runner.Spawn(networkObject, val2, val3, (PlayerRef?)null, (OnBeforeSpawned)obj, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
-			((Component)val5).GetComponent<MolotovFire>().Init(12000, 2f);
-			((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
+			((Component)val5).GetComponent<PurifierFire>().Init(8000, 3f);
+			break;
 		}
+		}
+		((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
 	}
 }

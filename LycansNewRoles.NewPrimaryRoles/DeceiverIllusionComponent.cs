@@ -106,9 +106,10 @@ public class DeceiverIllusionComponent : NetworkBehaviour
 	public static void CreatorRefChanged(Changed<DeceiverIllusionComponent> changed)
 	{
 		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
 		Illusions.Add(changed.Behaviour);
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(changed.Behaviour.CreatorRef);
 		switch (player.PrimaryRolePower)
@@ -122,7 +123,7 @@ public class DeceiverIllusionComponent : NetworkBehaviour
 			break;
 		}
 		case PlayerCustom.PlayerPrimaryRolePower.Specter:
-			if (!NetworkBool.op_Implicit(PlayerController.Local.IsWolf))
+			if (!NetworkBool.op_Implicit(PlayerController.Local.IsWolf) || NetworkBool.op_Implicit(PlayerController.Local.IsDead))
 			{
 				AudioManager.PlayAndFollow("WOLF_TRANSFORM", ((Component)changed.Behaviour).transform, (MixerTarget)2, 30f, 1f);
 				GameObject val = Object.Instantiate<GameObject>(((Component)Traverse.Create((object)player.PlayerController).Field<ParticleSystem>("smokeParticleSystem").Value).gameObject, ((Component)changed.Behaviour).transform);

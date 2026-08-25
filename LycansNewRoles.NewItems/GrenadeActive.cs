@@ -100,8 +100,8 @@ public class GrenadeActive : NetworkBehaviour
 		//IL_01e6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0236: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0247: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0430: Unknown result type (might be due to invalid IL or missing references)
-		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0459: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0464: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02e9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0347: Unknown result type (might be due to invalid IL or missing references)
@@ -114,6 +114,7 @@ public class GrenadeActive : NetworkBehaviour
 		//IL_037e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_038a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0391: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040f: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)this).HasStateAuthority)
 		{
 			return;
@@ -186,6 +187,10 @@ public class GrenadeActive : NetworkBehaviour
 					num6 *= 0.5f;
 				}
 				PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectDisoriented", ((SimulationBehaviour)this).Runner, 1f, num6);
+				if (NetworkBool.op_Implicit(item.PlayerController.IsWolf))
+				{
+					item.GrantResilience(14f * num3);
+				}
 			}
 		}
 		GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("GrenadeEffect"), ((Component)this).transform.position, 30f, 0.4f);

@@ -30,8 +30,6 @@ public static class GlobalManager
 
 	public const string ChasingEffectName = "LycansNewRoles.EffectChasing";
 
-	public const string StunnedEffectName = "LycansNewRoles.EffectStunned";
-
 	public const string SprintingEffectName = "LycansNewRoles.EffectSprinting";
 
 	public const string RevertingEffectName = "LycansNewRoles.EffectReverting";
@@ -53,8 +51,6 @@ public static class GlobalManager
 	public const string DisguisedEffectName = "LycansNewRoles.EffectDisguised";
 
 	public const string DiseasedEffectName = "LycansNewRoles.EffectDiseased";
-
-	public const string CursedEffectName = "LycansNewRoles.EffectCursed";
 
 	public const string PossessedEffectName = "LycansNewRoles.EffectPossessed";
 
@@ -140,6 +136,8 @@ public static class GlobalManager
 
 	public const string ResilienceEffectName = "LycansNewRoles.EffectResilience";
 
+	public const string EnduranceEffectName = "LycansNewRoles.EffectEndurance";
+
 	public const string EscapingEffectName = "LycansNewRoles.EffectEscaping";
 
 	public const string TransformationEffectName = "LycansNewRoles.EffectTransformation";
@@ -158,7 +156,7 @@ public static class GlobalManager
 
 	public const string PurifierBurnEffectName = "LycansNewRoles.EffectPurifierBurn";
 
-	public const string TrackedEffectName = "LycansNewRoles.EffectTracked";
+	public const string DetectedEffectName = "LycansNewRoles.EffectDetected";
 
 	public const string KidnapperSilenceEffectName = "LycansNewRoles.EffectKidnapperSilence";
 
@@ -221,6 +219,8 @@ public static class GlobalManager
 	public const string InventorSmokeName = "LycansNewRoles.GameObjectInventorSmoke";
 
 	public const string InventorScrapName = "LycansNewRoles.GameObjectInventorScrap";
+
+	public const string WolfIllusionName = "LycansNewRoles.GameObjectWolfIllusion";
 
 	public const string ItemMagicScrollName = "LycansNewRoles.ItemMagicScroll";
 

@@ -5,7 +5,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
-    <LangVersion>14.0</LangVersion>
+    <LangVersion>15.0</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
@@ -36,8 +36,8 @@
     <Reference Include="UnityEngine.UIModule" />
     <Reference Include="Unity.RenderPipelines.Universal.Runtime" />
     <Reference Include="DynamicSmokeSystem" />
-    <Reference Include="Fusion.Common" />
     <Reference Include="Newtonsoft.Json" />
+    <Reference Include="Fusion.Common" />
     <Reference Include="PhotonVoice.Fusion" />
   </ItemGroup>
 </Project>

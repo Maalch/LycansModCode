@@ -14,12 +14,12 @@ internal class OnCharacterChangedPatch
 	{
 		//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0233: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
 		//IL_019f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01f8: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController behaviour = changed.Behaviour;
@@ -33,25 +33,20 @@ internal class OnCharacterChangedPatch
 				{
 					behaviour.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
 				}
-				Effect val2 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is CursedEffect);
+				Effect val2 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is ExorcismEffect);
 				if ((Object)(object)val2 != (Object)null)
 				{
 					behaviour.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val2).Object.Id);
 				}
-				Effect val3 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is ExorcismEffect);
+				Effect val3 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is TenacityEffect);
 				if ((Object)(object)val3 != (Object)null)
 				{
 					behaviour.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val3).Object.Id);
 				}
-				Effect val4 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is TenacityEffect);
+				Effect val4 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is HubrisEffect);
 				if ((Object)(object)val4 != (Object)null)
 				{
 					behaviour.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val4).Object.Id);
-				}
-				Effect val5 = behaviour.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is HubrisEffect);
-				if ((Object)(object)val5 != (Object)null)
-				{
-					behaviour.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val5).Object.Id);
 				}
 			}
 			if (player.IsCurrentlyPlayedOrObserved)
@@ -70,6 +65,14 @@ internal class OnCharacterChangedPatch
 			if (player2.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Scientist)
 			{
 				player2.UpdateTargetArrowComponent();
+			}
+			if (NetworkBool.op_Implicit(behaviour.IsWolf))
+			{
+				player.TransformationTimer.Restart();
+			}
+			else
+			{
+				player.TransformationTimer.Reset();
 			}
 		}
 		catch (Exception ex)

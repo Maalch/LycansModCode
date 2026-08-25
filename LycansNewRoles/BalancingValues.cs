@@ -35,8 +35,6 @@ public static class BalancingValues
 		public float? DurationOnZombie = durationOnZombie;
 	}
 
-	public const float EffectDurationStunned = 5f;
-
 	public const float EffectDurationChasing = 3f;
 
 	public const float EffectDurationSprinting = 5f;
@@ -167,6 +165,8 @@ public static class BalancingValues
 
 	public const float DeceiverDrunkStunDurationOutsideMeetings = 2f;
 
+	public const int DeceiverWolfIllusionDuration = 3;
+
 	public const int VillageIdiotStartingBoredom = 2500;
 
 	public const int VillageIdiotBoredomIncreasePerSecond = 200;
@@ -293,11 +293,13 @@ public static class BalancingValues
 
 	public const float ZombieKillRange = 2.5f;
 
-	public const float ZombieAttackOnWolfDownedDuration = 7f;
+	public const float ZombieAttackOnWolfDownedDuration = 6f;
 
 	public const float ZombieAttackOnWolfKnockbackPower = 7f;
 
 	public const float ZombieAttackOnWolfKnockbackReductionPerSecond = 7f;
+
+	public const float ZombieAttackOnWolfResilienceDuration = 18f;
 
 	public const float ZombieKillVoodooCooldownMultiplication = 0.3f;
 
@@ -327,7 +329,7 @@ public static class BalancingValues
 
 	public const float KidnapperKidnappedPlayersVolumeWithoutSilence = 0.4f;
 
-	public const float KidnapperKidnappedPlayersVolumeWithSilence = 0.18f;
+	public const float KidnapperKidnappedPlayersVolumeWithSilence = 0.15f;
 
 	public const float KidnapperKidnappedPlayersVolumeForOtherKidnappedPlayers = 0.35f;
 
@@ -466,8 +468,6 @@ public static class BalancingValues
 
 	public const float RitualistNearsightedDuration = 25f;
 
-	public const float RitualistStunnedDuration = 10f;
-
 	public const float PredatorScaryEffectRangeNotCrouched = 30f;
 
 	public const float PredatorScaryEffectRangeCrouched = 5f;
@@ -512,6 +512,14 @@ public static class BalancingValues
 
 	public const bool AcrobatCanJumpInHumanForm = false;
 
+	public const int TrackerTrackerMaximum = 2;
+
+	public const float TrackerTrackerInteractionRange = 3f;
+
+	public const float TrackerTrackerMinimapRadius = 15f;
+
+	public const float TrackerTrackerSpeechRadius = 15f;
+
 	public static Dictionary<int, List<AcrobatSpotData>> AcrobatSpotsByMapId = new Dictionary<int, List<AcrobatSpotData>>
 	{
 		{
@@ -543,7 +551,7 @@ public static class BalancingValues
 					KnockbackPower = 25f,
 					GravityDuringJump = -15f,
 					JumpDuration = 1.6f,
-					FallSpeedDuringJump = 20f
+					FallSpeedDuringJump = 18f
 				},
 				new AcrobatSpotData
 				{
@@ -552,7 +560,7 @@ public static class BalancingValues
 					KnockbackPower = 23.5f,
 					GravityDuringJump = -15f,
 					JumpDuration = 1.6f,
-					FallSpeedDuringJump = 20f
+					FallSpeedDuringJump = 18f
 				},
 				new AcrobatSpotData
 				{
@@ -798,7 +806,7 @@ public static class BalancingValues
 
 	public const float CarabineerForcedRotationReductionPerSecond = 700f;
 
-	public const float CarabineerResilienceDuration = 3f;
+	public const float CarabineerResilienceDuration = 8f;
 
 	public const float CarabineerKnockdownDurationOnHuman = 4f;
 
@@ -862,7 +870,7 @@ public static class BalancingValues
 
 	public const float ExorcistBlindDuration = 1.5f;
 
-	public const float ExorcistResilienceDuration = 5f;
+	public const float ExorcistResilienceDuration = 12f;
 
 	public const int ExorcistFogEndDistance = 20;
 
@@ -978,61 +986,7 @@ public static class BalancingValues
 
 	public const float PriestProtectionEliteFleeingDuration = 4f;
 
-	public const float PriestResilienceDuration = 6f;
-
-	public const float AngelHealPercentage = 0.2f;
-
-	public const float AngelEffectWolfOnMinimapRadius = 40f;
-
-	public const float AngelDebuffOnWolfDuration = 15f;
-
-	public const float GhostMoveSpeed = 1.3f;
-
-	public const float SpecterMoveSpeed = 1.8f;
-
-	public const float SpecterInteractionRange = 2.5f;
-
-	public const float SpecterLeftClickCooldown = 25f;
-
-	public const float SpecterLeftClickCooldownInMeetings = 40f;
-
-	public const float SpecterRightClickCooldown = 120f;
-
-	public const float SpecterPowerOnWolfDuration = 15f;
-
-	public const float SpecterDebuffOnVillagerDuration = 25f;
-
-	public const float SpecterDebuffOnVillagerDurationInMeetings = 8f;
-
-	public const float SpecterDebuffOnVillagerImmunityDuration = 50f;
-
-	public const float SummonerSpiritAttackKnockbackPower = 15f;
-
-	public const float SummonerSpiritAttackKnockbackReductionPerSecond = 21f;
-
-	public const float SummonerSpiritAttackDamagePercentage = 0.05f;
-
-	public const float SummonerSpiritAttackWoundedDuration = 6f;
-
-	public const float SummonerSpiritAttackCooldown = 5f;
-
-	public const float SummonerSpiritAttackResilienceDuration = 5f;
-
-	public const float SummonerSpiritAttackResistanceDuration = 20f;
-
-	public const float SummonerSpiritSpellMaximumRange = 20f;
-
-	public const float SummonerSpiritSpellDamagePercentage = 0.05f;
-
-	public const float SummonerSpiritSpellWoundedDuration = 6f;
-
-	public const float SummonerSpiritSpellCooldown = 20f;
-
-	public const float SummonerSpiritSpellResilienceDuration = 5f;
-
-	public const float SummonerSpiritSpellResistanceDuration = 20f;
-
-	public const float SummonerInteractionRange = 2.5f;
+	public const float PriestResilienceDuration = 14f;
 
 	public const float ScoutPlaceRadarCastTime = 2f;
 
@@ -1122,7 +1076,7 @@ public static class BalancingValues
 
 	public const float RunemasterRuneExplosionEffectDurationAdditionalMultiplierPerExtraWolf = 0.25f;
 
-	public const float RunemasterRuneExplosionBaseResilienceDuration = 8f;
+	public const float RunemasterRuneExplosionBaseResilienceDurationWithOneWolf = 12f;
 
 	public const float RunemasterWolfDetectionRange = 10f;
 
@@ -1138,11 +1092,59 @@ public static class BalancingValues
 
 	public const float InventorDeviceActivationDisorientDuration = 1.5f;
 
-	public const int InventorScrapLifetimeSeconds = 180;
+	public const int InventorScrapLifetimeSeconds = 120;
 
-	public const int InventorScrapChargePerLivingInventor = 30;
+	public const int InventorScrapChargePerLivingInventor = 25;
 
-	public const int InventorScrapChargeForSelfItemUsage = 30;
+	public const int InventorScrapChargeForSelfItemUsage = 25;
+
+	public const float AngelHealPercentage = 0.2f;
+
+	public const float AngelEffectWolfOnMinimapRadius = 40f;
+
+	public const float AngelDebuffOnWolfDuration = 12f;
+
+	public const float GhostMinimumTransformationTimerSeconds = 15f;
+
+	public const float GhostMoveSpeed = 1.5f;
+
+	public const float GhostInteractionRange = 2.5f;
+
+	public const float GhostHelpCooldown = 45f;
+
+	public const float GhostHelpHealPercentage = 0.2f;
+
+	public static Dictionary<string, float> GhostBuffPossibleEffectsAndDuration = new Dictionary<string, float>
+	{
+		{ "NightVision", 40f },
+		{ "Speed", 10f },
+		{ "LycansNewRoles.EffectClairvoyance", 15f },
+		{ "LycansNewRoles.EffectStealthing", 20f }
+	};
+
+	public const float GhostCreateItemCooldown = 90f;
+
+	public const float GhostCreateItemChanceForAccessory = 0.3f;
+
+	public const float GhostCreateItemChanceForPotion = 0.5f;
+
+	public const float SpecterMoveSpeed = 1.8f;
+
+	public const float SpecterInteractionRange = 2.5f;
+
+	public const float SpecterLeftClickCooldown = 25f;
+
+	public const float SpecterLeftClickCooldownInMeetings = 40f;
+
+	public const float SpecterRightClickCooldown = 120f;
+
+	public const float SpecterPowerOnWolfDuration = 15f;
+
+	public const float SpecterDebuffOnVillagerDuration = 25f;
+
+	public const float SpecterDebuffOnVillagerDurationInMeetings = 8f;
+
+	public const float SpecterDebuffOnVillagerImmunityDuration = 50f;
 
 	public const float AvatarWolfOnMinimapRadius = 40f;
 
@@ -1180,7 +1182,9 @@ public static class BalancingValues
 
 	public const float PurifierMovementReductionPercentagePerSecond = 0.5f;
 
-	public const int PurifierFireDurationMilliseconds = 9000;
+	public const int PurifierStandardFireDurationMilliseconds = 8000;
+
+	public const int PurifierBoostedFireDurationMilliseconds = 12000;
 
 	public const float PurifierEntityExistenceMillisecondsForMaximumBurnDuration = 5f;
 
@@ -1201,8 +1205,6 @@ public static class BalancingValues
 	public static Color PurifierBurnFogColor = Color.green;
 
 	public const float PurifierBurnFogMaximumDistance = 25f;
-
-	public const float PurifierBurnDurationIfKilledByWolf = 15f;
 
 	public static int VillageIdiotTrapItemCooldown = 75;
 
@@ -1290,6 +1292,20 @@ public static class BalancingValues
 		}
 	};
 
+	public const float HauntedEffectDisorientedDuration = 5f;
+
+	public const float HauntedEffectBlindDuration = 3f;
+
+	public const float HauntedEffectClairvoyanceDuration = 10f;
+
+	public const float HauntedEffectFlatulencesDuration = 8f;
+
+	public const float HauntedEffectInvisibilityDuration = 8f;
+
+	public const float HauntedEffectParanoiaDuration = 10f;
+
+	public const float HauntedEffectSpeedDuration = 8f;
+
 	public const int NearsightedFogEndDistance = 12;
 
 	public static Color NearsightedFogColor = new Color(0f, 0f, 0.1f, 1f);
@@ -1302,7 +1318,7 @@ public static class BalancingValues
 
 	public const float AssassinOnWolfKnockbackReductionPerSecond = 6f;
 
-	public const float AssassinResilienceDuration = 9f;
+	public const float AssassinResilienceDuration = 15f;
 
 	public const float MidasPetrifyRange = 3f;
 
@@ -1310,11 +1326,11 @@ public static class BalancingValues
 
 	public const float MidasDurationOnWolf = 7f;
 
+	public const float MidasResilienceDurationOnWolf = 16f;
+
 	public static Color PetrifiedFogColor = new Color(0.75f, 0.75f, 0f, 1f);
 
 	public const float DisorientedMovementSpeed = 0.5f;
-
-	public const float StunnedMovementSpeed = 0.5f;
 
 	public const float StinkingEffectRadiusOnNonWolf = 5f;
 
@@ -1348,6 +1364,10 @@ public static class BalancingValues
 		},
 		{
 			ChaosEffect.ChaosPossibleEffect.CreateGrenade,
+			4
+		},
+		{
+			ChaosEffect.ChaosPossibleEffect.CreateRadar,
 			4
 		},
 		{
@@ -1388,6 +1408,8 @@ public static class BalancingValues
 
 	public const float ChaosGrenadeKnockbackMultiplier = 0.7f;
 
+	public const float ChaosRadarDuration = 10f;
+
 	public const float TruesightItemLightIntensity = 2f;
 
 	public const float TruesightItemLightRange = 2f;
@@ -1410,7 +1432,9 @@ public static class BalancingValues
 
 	public const float ConfusionMovementSpeedMultiplier = 0.9f;
 
-	public const float ResilienceHungerMultiplier = 0.25f;
+	public const float EnduranceHungerMultiplier = 0.2f;
+
+	public const float ResilienceEffectsDurationMultiplier = 0.5f;
 
 	public const float LoverVillagerHungerRateBase = 0.5f;
 
@@ -1431,6 +1455,8 @@ public static class BalancingValues
 	public const float WolfKillRange = 1.75f;
 
 	public const float LootCorpseCastTime = 3f;
+
+	public const float ResilienceDurationOnGiantWolf = 14f;
 
 	public const float MagicScrollDurationMultiplier = 0.75f;
 
@@ -1459,6 +1485,8 @@ public static class BalancingValues
 	public const float GrenadeMaximumDisorientedDuration = 8f;
 
 	public const float GrenadeDisorientedDurationMultiplierAtMaximumDistance = 0.4f;
+
+	public const float GrenadeResilienceDurationOnWolf = 14f;
 
 	public const float MolotovYAngleIncrease = 0.1f;
 
@@ -1580,6 +1608,8 @@ public static class BalancingValues
 
 	public const float CrystalBallWolfDetectionRange = 20f;
 
+	public const float CrystalBallBreakChanceOnFailedGuess = 0.5f;
+
 	public const float SpellbookCooldown = 30f;
 
 	public const float SpellbookNegativeEffectsDurationMultiplier = 0.7f;
@@ -1610,7 +1640,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Petrified,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 10f,
+				Duration = 8f,
 				Ponderation = 2
 			}
 		},
@@ -1618,7 +1648,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Giant,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 10f,
+				Duration = 8f,
 				Ponderation = 2
 			}
 		},
@@ -1626,7 +1656,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.FlatulencesWithMegaFart,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 15f,
+				Duration = 12f,
 				Ponderation = 2
 			}
 		},
@@ -1634,7 +1664,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Blind,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 8f,
+				Duration = 6f,
 				Ponderation = 2
 			}
 		},
@@ -1650,7 +1680,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Asleep,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 20f,
+				Duration = 15f,
 				Ponderation = 2
 			}
 		},
@@ -1666,7 +1696,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Burning,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 9f,
+				Duration = 8f,
 				Ponderation = 2
 			}
 		},
@@ -1690,7 +1720,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.ConfusionAndForcedRotation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 15f,
+				Duration = 20f,
 				Ponderation = 2
 			}
 		},
@@ -1706,7 +1736,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Camouflage,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 60f,
+				Duration = 40f,
 				Ponderation = 3
 			}
 		},
@@ -1779,18 +1809,10 @@ public static class BalancingValues
 			}
 		},
 		{
-			AccessorySpellbook.PossibleEffects.Bomb,
-			new AccessorySpellbook.SpellbookEffectDetails
-			{
-				Duration = 20f,
-				Ponderation = 1
-			}
-		},
-		{
 			AccessorySpellbook.PossibleEffects.Burning,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 8f,
+				Duration = 7f,
 				Ponderation = 2
 			}
 		},
@@ -1806,7 +1828,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Teleportation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 10f,
+				Duration = 7f,
 				Ponderation = 2
 			}
 		},
@@ -1830,7 +1852,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Camouflage,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 40f,
+				Duration = 30f,
 				Ponderation = 3
 			}
 		},
@@ -1838,33 +1860,47 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.ConfusionAndForcedRotation,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 8f,
+				Duration = 15f,
 				Ponderation = 2
 			}
 		}
 	};
 
+	public const int AccessoryChanceBoots = 1;
+
+	public const int AccessoryChanceHorn = 1;
+
+	public const int AccessoryChanceRing = 1;
+
+	public const int AccessoryChanceMagnifier = 1;
+
+	public const int AccessoryChanceCrystalBall = 1;
+
+	public const int AccessoryChanceBackpack = 1;
+
+	public const int AccessoryChanceSpellbook = 2;
+
 	public const float SabotageObjectRaycastRange = 7f;
 
 	public const float SabotageSubtlyDurationMultiplier = 4f;
 
-	public const float DiseaseEffectHealthDecrease = 0.3f;
+	public const float DiseaseEffectHealthDecrease = 0.25f;
 
-	public const float DiseaseMoveSpeedMultiplier = 0.85f;
+	public const float DiseaseMoveSpeedMultiplier = 0.88f;
 
-	public const float EmpoweredWolfHungerMultiplier = 0.75f;
+	public const float EmpoweredWolfHungerMultiplier = 0.8f;
 
-	public const float EmpoweredMovementSpeed = 1.15f;
+	public const float EmpoweredMovementSpeed = 1.12f;
 
 	public const float PortalSabotageStayActiveTime = 120f;
 
-	public const float PortalSabotageReactivateTime = 10f;
+	public const float PortalSabotageReactivateTime = 15f;
 
-	public const float PortalBonusMovementSpeed = 1.2f;
+	public const float PortalBonusMovementSpeed = 1.15f;
 
-	public const float PortalMaximumHealthGainOnPass = 0.35f;
+	public const float PortalMaximumHealthGainOnPass = 0.25f;
 
-	public const float CursedNightFogEndDistanceMultiplier = 0.65f;
+	public const float CursedNightFogEndDistanceMultiplier = 0.75f;
 
 	public const float CursedNightDefaultCurseCooldown = 100f;
 
@@ -1908,11 +1944,13 @@ public static class BalancingValues
 
 	public const float EventSpellstormFogMaximumDistance = 70f;
 
-	public const float EventEclipseWolfMoveSpeedMultiplier = 0.86f;
+	public const float EventEclipseWolfAdditionalTransformationTime = 2f;
 
-	public const float EventEclipseTimeSpeedMultiplier = 1.5f;
+	public const float EventEclipseWolfMoveSpeedMultiplier = 0.9f;
 
-	public const float EventEclipseLootHealMultiplier = 2f;
+	public const float EventEclipseTimeSpeedMultiplier = 1.4f;
+
+	public const float EventEclipseLootHealMultiplier = 1.65f;
 
 	public static Color EventEclipseFogColor = new Color(0f, 0f, 0f, 0.1f);
 
@@ -1966,13 +2004,15 @@ public static class BalancingValues
 
 	public const float MaxSpeedBase = 1.5f;
 
-	public const int WolfRecuperateMillisecondsToStart = 4000;
+	public const int WolfRecuperateMillisecondsToStart = 3000;
 
-	public const float WolfRecuperateHealthIncrease = 2f;
+	public const float WolfRecuperateHealthIncrease = 3f;
 
 	public const float VillagerRecuperateHealthIncrease = 1.2f;
 
 	public const float WolfHealthPercentageAfterShotByHunter = 0.125f;
+
+	public const float WolfResilienceDurationAfterShotByHunter = 10f;
 
 	public const float WolfTenacityMaximumRatio = 0.16f;
 
@@ -2610,17 +2650,25 @@ public static class BalancingValues
 		{
 			return new ModifiedEffectData(6, 120, 0f, 0f);
 		}
-		if (effect is StinkingEffect)
-		{
-			return new ModifiedEffectData(7, 60, null, null);
-		}
 		if (effect is ClairvoyanceEffect)
 		{
 			return new ModifiedEffectData(8, 75, 30f, 45f);
 		}
+		if (effect is CamouflageEffect)
+		{
+			return new ModifiedEffectData(22, 75, null, null);
+		}
+		if (effect is EnergizedEffect)
+		{
+			return new ModifiedEffectData(21, 75, null, null);
+		}
+		if (effect is StinkingEffect)
+		{
+			return new ModifiedEffectData(7, 60, null, null);
+		}
 		if (effect is GiantEffect)
 		{
-			return new ModifiedEffectData(9, 90, 10f, 20f);
+			return new ModifiedEffectData(9, 90, 7f, 20f);
 		}
 		if (effect is TeleportationEffect)
 		{
@@ -2641,6 +2689,10 @@ public static class BalancingValues
 		if (effect is ChaosEffect)
 		{
 			return new ModifiedEffectData(14, 75, null, null);
+		}
+		if (effect is ImmuneEffect)
+		{
+			return new ModifiedEffectData(24, 60, null, null);
 		}
 		if (effect is FlatulenceEffect)
 		{
@@ -2666,21 +2718,9 @@ public static class BalancingValues
 		{
 			return new ModifiedEffectData(20, 60, null, null);
 		}
-		if (effect is EnergizedEffect)
-		{
-			return new ModifiedEffectData(21, 75, null, null);
-		}
-		if (effect is CamouflageEffect)
-		{
-			return new ModifiedEffectData(22, 75, null, null);
-		}
 		if (effect is ConfusedEffect)
 		{
 			return new ModifiedEffectData(23, 75, 15f, null);
-		}
-		if (effect is ImmuneEffect)
-		{
-			return new ModifiedEffectData(24, 60, null, null);
 		}
 		return new ModifiedEffectData(99, 60, null, null);
 	}

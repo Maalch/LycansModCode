@@ -105,6 +105,7 @@ public class RunemasterRune : NetworkBehaviour
 		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
 		if (!NetworkBool.op_Implicit(Triggered) || !((float)_explosionWatch.ElapsedMilliseconds >= 2500f))
 		{
@@ -141,7 +142,8 @@ public class RunemasterRune : NetworkBehaviour
 				float num10 = 10f * num4 * num8;
 				num10 = Mathf.Min(num10, 10f);
 				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, num10);
-				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectResilience", ((SimulationBehaviour)this).Runner, 1f, num10);
+				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(item.Ref);
+				player2.GrantResilience(12f * num4 * num8);
 			}
 		}
 		((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);

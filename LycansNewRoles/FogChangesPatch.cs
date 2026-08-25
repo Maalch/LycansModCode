@@ -100,7 +100,7 @@ public class FogChangesPatch
 				}
 				if (SabotageManager.Instance.IsSabotageActive(SabotageManager.SabotageIds.CursedNight))
 				{
-					num2 *= 0.65f;
+					num2 *= 0.75f;
 				}
 				switch (GameManagerCustom.Instance.EventsManager.CurrentEvent)
 				{

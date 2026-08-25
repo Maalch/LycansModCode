@@ -16,6 +16,8 @@ public class NearsightedEffect : CustomEffect
 
 	public override bool CanBeDispelled => true;
 
+	public override bool ReducedByResilience => true;
+
 	protected override void ApplyEffectToPlayerSpecific(PlayerRef targetPlayer)
 	{
 		//IL_000c: Unknown result type (might be due to invalid IL or missing references)

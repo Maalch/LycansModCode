@@ -247,7 +247,7 @@ internal class CheckHungerPatch
 							}
 							if (NetworkBool.op_Implicit(player.Disease))
 							{
-								num2 += 0.3f;
+								num2 += 0.25f;
 							}
 							if (NetworkBool.op_Implicit(player.Poison))
 							{
@@ -315,11 +315,11 @@ internal class CheckHungerPatch
 					}
 					if (NetworkBool.op_Implicit(player.Empowered))
 					{
-						num3 *= 0.75f;
+						num3 *= 0.8f;
 					}
-					if (NetworkBool.op_Implicit(player.Resilience))
+					if (NetworkBool.op_Implicit(player.Endurance))
 					{
-						num3 *= 0.25f;
+						num3 *= 0.2f;
 					}
 					if (NetworkBool.op_Implicit(player.Tenacity))
 					{
@@ -345,7 +345,7 @@ internal class CheckHungerPatch
 					{
 						if (!NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
 						{
-							float num4 = 2f * ((SimulationBehaviour)__instance).Runner.DeltaTime;
+							float num4 = 3f * ((SimulationBehaviour)__instance).Runner.DeltaTime;
 							if (NetworkBool.op_Implicit(player.Tenacity))
 							{
 								num4 *= 2f;

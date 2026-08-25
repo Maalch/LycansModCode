@@ -22,7 +22,7 @@ internal class SoloRolesMoreFeedPatch
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
 		if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Eclipse)
 		{
-			value = Mathf.RoundToInt((float)value * 2f);
+			value = Mathf.RoundToInt((float)value * 1.65f);
 		}
 		else if (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothMetabolic && (int)__instance.Role != 1)
 		{

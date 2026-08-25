@@ -30,7 +30,7 @@ internal class DestroyItemPatch
 				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(player.Ref);
 				if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Inventor)
 				{
-					player2.AddMaterials(30);
+					player2.AddMaterials(25);
 				}
 				else
 				{

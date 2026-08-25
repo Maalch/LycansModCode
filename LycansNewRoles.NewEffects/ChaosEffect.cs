@@ -14,7 +14,8 @@ public class ChaosEffect : CustomEffect
 		LockNearbyDoor,
 		UnlockNearbyDoor,
 		CreateSmoke,
-		UseDiamondOnNearbyPlayer
+		UseDiamondOnNearbyPlayer,
+		CreateRadar
 	}
 
 	public override string CustomEffectName => "LycansNewRoles.EffectChaos";

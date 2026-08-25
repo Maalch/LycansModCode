@@ -49,7 +49,7 @@ internal class LightingManagerFixedUpdateNetworkPatch
 			}
 			else if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Eclipse)
 			{
-				num2 *= 1.5f;
+				num2 *= 1.4f;
 			}
 			else if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.FullMoon && NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 			{

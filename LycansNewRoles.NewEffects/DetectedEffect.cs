@@ -4,19 +4,17 @@ using UnityEngine;
 namespace LycansNewRoles.NewEffects;
 
 [NetworkBehaviourWeaved(3)]
-public class BurningEffect : CustomEffect
+public class DetectedEffect : CustomEffect
 {
-	public override string CustomEffectName => "LycansNewRoles.EffectBurning";
+	public override string CustomEffectName => "LycansNewRoles.EffectDetected";
 
-	public override string TranslateKey => "NALES_EFFECT_BURNING";
+	public override string TranslateKey => "NALES_EFFECT_DETECTED";
 
 	public override Color Color => Color.red;
 
 	public override EffectType CustomEffectType => (EffectType)2;
 
 	public override bool CanBeDispelled => true;
-
-	public override bool ReducedByResilience => true;
 
 	protected override void ApplyEffectToPlayerSpecific(PlayerRef targetPlayer)
 	{
@@ -28,7 +26,7 @@ public class BurningEffect : CustomEffect
 			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
 			if ((Object)(object)player != (Object)null)
 			{
-				PlayerCustomRegistry.GetPlayer(targetPlayer).Burning = NetworkBool.op_Implicit(true);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).Detected = NetworkBool.op_Implicit(true);
 			}
 		}
 	}
@@ -43,7 +41,7 @@ public class BurningEffect : CustomEffect
 			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
 			if ((Object)(object)player != (Object)null)
 			{
-				PlayerCustomRegistry.GetPlayer(targetPlayer).Burning = NetworkBool.op_Implicit(false);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).Detected = NetworkBool.op_Implicit(false);
 			}
 		}
 	}

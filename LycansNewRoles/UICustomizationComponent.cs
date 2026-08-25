@@ -39,6 +39,8 @@ public class UICustomizationComponent : MonoBehaviour
 		_choiceHat.Init("NALES_UI_CUSTOMIZATION_HAT", CustomizationOptionComponent.CustomizationOptionType.Hat);
 		_choiceColor.Init("NALES_UI_CUSTOMIZATION_COLOR", CustomizationOptionComponent.CustomizationOptionType.Color);
 		_choicePet.Init("NALES_UI_CUSTOMIZATION_PET", CustomizationOptionComponent.CustomizationOptionType.Pet);
+		((Component)_parent.transform.Find("Choices").Find("ChoiceSkin")).gameObject.SetActive(false);
+		((Component)_parent.transform.Find("Choices").Find("ChoiceSkinColor")).gameObject.SetActive(false);
 		Hide();
 	}
 

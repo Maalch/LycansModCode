@@ -9,7 +9,7 @@ public class SessionStats
 {
 	public static SessionStats Stats = new SessionStats
 	{
-		ModVersion = "0.337",
+		ModVersion = "0.344",
 		Filename = ((object)PlayerController.Local.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "-" + LycansUtility.GetCurrentDateTimeUtcForId,
 		Key = "N8W0_QJ7Z5"
 	};
@@ -29,7 +29,7 @@ public class SessionStats
 	{
 		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
 		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01dc: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			LycansUtility.AddLogOnlyForMe("Stats: New game now");
@@ -66,12 +66,10 @@ public class SessionStats
 				Id = ((object)PlayerController.Local.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "-" + LycansUtility.GetCurrentDateTimeUtcForId,
 				StartDate = LycansUtility.GetFormattedCurrentDateTimeUtc,
 				MapName = mapName,
-				HarvestGoal = GameManager.Instance.MaxScore
+				HarvestGoal = GameManager.Instance.MaxScore,
+				IsBattleRoyale = NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale)
 			};
-			if (!NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
-			{
-				GameStats.Add(CurrentGame);
-			}
+			GameStats.Add(CurrentGame);
 		}
 		catch (Exception ex)
 		{

@@ -113,14 +113,14 @@ public class CultistSkull : NetworkBehaviour
 		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
 		//IL_003f: Invalid comparison between Unknown and I4
 		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0088: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -152,8 +152,12 @@ public class CultistSkull : NetworkBehaviour
 					runner.SendRpc(ptr);
 				}
 			}
-			CultistSkull component = ((Component)runner.FindObject(skullId)).GetComponent<CultistSkull>();
-			((SimulationBehaviour)component).Runner.Despawn(((Component)component).GetComponent<NetworkObject>(), false);
+			NetworkObject val = runner.FindObject(skullId);
+			if ((Object)(object)val == (Object)null)
+			{
+				return;
+			}
+			val.Runner.Despawn(((Component)val).GetComponent<NetworkObject>(), false);
 			PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Cultist);
 			if ((Object)(object)specificNewPrimaryRole != (Object)null)
 			{

@@ -24,14 +24,15 @@ internal class RpcDamagePatch
 		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0407: Unknown result type (might be due to invalid IL or missing references)
+		//IL_040c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03fe: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0413: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0424: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0439: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0372: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0280: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0287: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02e2: Unknown result type (might be due to invalid IL or missing references)
@@ -116,6 +117,11 @@ internal class RpcDamagePatch
 				{
 					player.Stats.UpdateDeathType("BULLET_WOLF");
 					__instance.Rpc_Kill(attacker);
+				}
+				player.RecuperateDisabled = true;
+				if (NetworkBool.op_Implicit(__instance.IsWolf))
+				{
+					player.GrantResilience(10f);
 				}
 			}
 			if (((SimulationBehaviour)__instance).Object.HasInputAuthority)

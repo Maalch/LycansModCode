@@ -14,6 +14,8 @@ namespace LycansNewRoles.Sabotages;
 [NetworkBehaviourWeaved(20)]
 public class SabotageSingle : NetworkBehaviour
 {
+	public bool CanActivate = false;
+
 	[Networked]
 	[NetworkedWeaved(0, 1)]
 	public unsafe int SabotageId
@@ -138,6 +140,7 @@ public class SabotageSingle : NetworkBehaviour
 	public void AddStep()
 	{
 		AmountCurrent++;
+		CanActivate = true;
 	}
 
 	public void RemoveStep()
@@ -145,14 +148,21 @@ public class SabotageSingle : NetworkBehaviour
 		AmountCurrent--;
 	}
 
+	public void ResetSteps()
+	{
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		AmountCurrent = 0;
+		foreach (SabotageObject item in SabotageManager.Instance.SabotageObjectsByIndex.Values.Where((SabotageObject o) => o.SabotageId == SabotageId))
+		{
+			item.Completed = NetworkBool.op_Implicit(false);
+		}
+	}
+
 	[Preserve]
 	public static void ActiveChanged(Changed<SabotageSingle> changed)
 	{
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0294: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBool.op_Implicit(changed.Behaviour.Active))
@@ -213,14 +223,12 @@ public class SabotageSingle : NetworkBehaviour
 				{
 					SessionStats.Stats.CurrentGame.AddEvent(GameEvent.GameEventType.SabotageActive, ((SabotageManager.SabotageIds)changed.Behaviour.SabotageId/*cast due to constrained. prefix*/).ToString());
 				}
-				return;
 			}
-			changed.Behaviour.AmountCurrent = 0;
-			foreach (SabotageObject item2 in SabotageManager.Instance.SabotageObjectsByIndex.Values.Where((SabotageObject o) => o.SabotageId == changed.Behaviour.SabotageId))
+			else
 			{
-				item2.Completed = NetworkBool.op_Implicit(false);
+				changed.Behaviour.ResetSteps();
+				changed.Behaviour.RemoveSabotageEffects();
 			}
-			changed.Behaviour.RemoveSabotageEffects();
 		}
 		catch (Exception ex)
 		{

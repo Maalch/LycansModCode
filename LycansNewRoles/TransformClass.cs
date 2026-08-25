@@ -36,13 +36,12 @@ public class TransformClass
 		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0266: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0274: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0348: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0312: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03e8: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
 		if ((Object)(object)player != (Object)null && NetworkBool.op_Implicit(player.IsWolfPup))
 		{
@@ -95,27 +94,29 @@ public class TransformClass
 				player2.IsClimbing = NetworkBool.op_Implicit(false);
 				player2.PlayerEffectManager.ClearEffects();
 				PlayerCustom.ApplyEffectToPlayer(player2, "LycansNewRoles.EffectPossessed", ((SimulationBehaviour)__instance).Runner);
-				goto IL_0384;
+				goto IL_037a;
 			}
 		}
 		bool flag = player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Sneak && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool);
 		if (((SimulationBehaviour)__instance).Object.HasStateAuthority)
 		{
+			float num = GameManager.Instance.TransformationTime;
 			if (flag)
 			{
-				Traverse.Create((object)__instance).Property("WolfDelay", (object[])null).SetValue((object)TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, (float)GameManager.Instance.TransformationTime * 2f));
+				num *= 2f;
 			}
-			else
+			if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Eclipse)
 			{
-				Traverse.Create((object)__instance).Property("WolfDelay", (object[])null).SetValue((object)TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, (float)GameManager.Instance.TransformationTime));
+				num += 2f;
 			}
+			Traverse.Create((object)__instance).Property("WolfDelay", (object[])null).SetValue((object)TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, num));
 		}
 		if (!flag)
 		{
 			AudioManager.PlayAndFollow("WOLF_TRANSFORM", ((Component)__instance).transform, (MixerTarget)2, 30f, 1f);
 		}
-		goto IL_0384;
-		IL_0384:
+		goto IL_037a;
+		IL_037a:
 		Traverse.Create((object)__instance).Field<ParticleSystem>("smokeParticleSystem").Value.Play();
 		__instance.TransformedNight = NetworkBool.op_Implicit(true);
 		__instance.IsWolf = NetworkBool.op_Implicit(true);

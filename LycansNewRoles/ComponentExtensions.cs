@@ -50,7 +50,7 @@ public static class ComponentExtensions
 		for (int j = 0; j < gameObject.transform.childCount; j++)
 		{
 			Transform child = gameObject.transform.GetChild(j);
-			Plugin.Logger.LogInfo((object)(((Object)gameObject).name + " Child: " + ((object)child)?.ToString() + ", position: " + ((object)child.position/*cast due to constrained. prefix*/).ToString()));
+			Plugin.Logger.LogInfo((object)(((Object)gameObject).name + " Child: " + ((object)child)?.ToString() + ", position: " + ((object)child.position/*cast due to constrained. prefix*/).ToString() + ", active: " + ((Component)child).gameObject.activeSelf));
 			Component[] components2 = ((Component)child).gameObject.GetComponents<Component>();
 			foreach (Component val2 in components2)
 			{
@@ -59,7 +59,7 @@ public static class ComponentExtensions
 			for (int l = 0; l < child.childCount; l++)
 			{
 				Transform child2 = child.GetChild(l);
-				Plugin.Logger.LogInfo((object)(((object)child)?.ToString() + " Child: " + ((object)child2)?.ToString() + " / " + ((Object)((Component)child2).gameObject).name));
+				Plugin.Logger.LogInfo((object)(((object)child)?.ToString() + " Child: " + ((object)child2)?.ToString() + " / " + ((Object)((Component)child2).gameObject).name + ", active: " + ((Component)child2).gameObject.activeSelf));
 				Component[] components3 = ((Component)child2).gameObject.GetComponents<Component>();
 				foreach (Component val3 in components3)
 				{
@@ -68,7 +68,7 @@ public static class ComponentExtensions
 				for (int n = 0; n < child2.childCount; n++)
 				{
 					Transform child3 = child2.GetChild(n);
-					Plugin.Logger.LogInfo((object)(((object)child2)?.ToString() + " Child: " + ((object)child3)?.ToString() + " / " + ((Object)((Component)child3).gameObject).name));
+					Plugin.Logger.LogInfo((object)(((object)child2)?.ToString() + " Child: " + ((object)child3)?.ToString() + " / " + ((Object)((Component)child3).gameObject).name + ", active: " + ((Component)child3).gameObject.activeSelf));
 					Component[] components4 = ((Component)child3).gameObject.GetComponents<Component>();
 					foreach (Component val4 in components4)
 					{
@@ -77,7 +77,7 @@ public static class ComponentExtensions
 					for (int num2 = 0; num2 < child3.childCount; num2++)
 					{
 						Transform child4 = child3.GetChild(num2);
-						Plugin.Logger.LogInfo((object)(((object)child3)?.ToString() + " Child: " + ((object)child4)?.ToString() + " / " + ((Object)((Component)child4).gameObject).name));
+						Plugin.Logger.LogInfo((object)(((object)child3)?.ToString() + " Child: " + ((object)child4)?.ToString() + " / " + ((Object)((Component)child4).gameObject).name + ", active: " + ((Component)child4).gameObject.activeSelf));
 						Component[] components5 = ((Component)child4).gameObject.GetComponents<Component>();
 						foreach (Component val5 in components5)
 						{

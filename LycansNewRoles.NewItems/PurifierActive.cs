@@ -14,9 +14,9 @@ public class PurifierActive : NetworkBehaviour
 	{
 		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-		public static OnBeforeSpawned _003C_003E9__7_0;
+		public static OnBeforeSpawned _003C_003E9__8_0;
 
-		internal void _003COnCollisionEnter_003Eb__7_0(NetworkRunner _, NetworkObject no)
+		internal void _003COnCollisionEnter_003Eb__8_0(NetworkRunner _, NetworkObject no)
 		{
 		}
 	}
@@ -25,15 +25,18 @@ public class PurifierActive : NetworkBehaviour
 
 	private Rigidbody _rigidbody;
 
+	private bool _boosted;
+
 	private void Awake()
 	{
 		_rigidbody = ((Component)this).GetComponent<Rigidbody>();
 	}
 
-	public void Init(Vector3 velocity)
+	public void Init(Vector3 velocity, bool boosted)
 	{
 		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 		((Component)this).GetComponent<Rigidbody>().velocity = velocity;
+		_boosted = boosted;
 	}
 
 	public override void Spawned()
@@ -98,14 +101,14 @@ public class PurifierActive : NetworkBehaviour
 		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
 		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0113: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011e: Expected O, but got Unknown
+		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Expected O, but got Unknown
 		if (((SimulationBehaviour)this).HasStateAuthority)
 		{
 			GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("SleepingGasBreak"), ((Component)this).transform.position, 20f, 0.4f);
@@ -114,23 +117,23 @@ public class PurifierActive : NetworkBehaviour
 			{
 				GameObject val = Object.Instantiate<GameObject>(MolotovEntity.MolotovEntityPrefab, ((Component)this).transform.position, Quaternion.Euler(0f, (float)i * 22.5f, 0f), (Transform)null);
 				val.SetActive(true);
-				val.GetComponent<MolotovEntity>().Init(purifierEntity: true);
+				val.GetComponent<MolotovEntity>().Init((!_boosted) ? MolotovEntity.FireType.PurifierStandard : MolotovEntity.FireType.PurifierBoosted);
 			}
 			NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.ItemPurifierFire");
 			NetworkRunner runner = ((SimulationBehaviour)GameManager.Instance).Runner;
 			Vector3? val2 = ((Component)this).transform.position;
 			Quaternion? val3 = Quaternion.identity;
-			object obj = _003C_003Ec._003C_003E9__7_0;
+			object obj = _003C_003Ec._003C_003E9__8_0;
 			if (obj == null)
 			{
 				OnBeforeSpawned val4 = delegate
 				{
 				};
-				_003C_003Ec._003C_003E9__7_0 = val4;
+				_003C_003Ec._003C_003E9__8_0 = val4;
 				obj = (object)val4;
 			}
 			NetworkObject val5 = runner.Spawn(networkObject, val2, val3, (PlayerRef?)null, (OnBeforeSpawned)obj, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
-			((Component)val5).GetComponent<PurifierFire>().Init(9000, 3f);
+			((Component)val5).GetComponent<PurifierFire>().Init(8000, 3f);
 			((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
 		}
 	}

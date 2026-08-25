@@ -18,6 +18,8 @@ public class WoundedEffect : CustomEffect
 
 	public override bool CanBeDispelled => true;
 
+	public override bool ReducedByResilience => true;
+
 	public override void Spawned()
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)

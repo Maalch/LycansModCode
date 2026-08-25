@@ -1,5 +1,7 @@
+using System.Linq;
 using Fusion;
 using HarmonyLib;
+using LycansNewRoles.NewEffects;
 using UnityEngine;
 
 namespace LycansNewRoles;
@@ -10,7 +12,14 @@ public class KnockbackComponent : MonoBehaviour
 
 	private Vector3 _knockbackReductionPerSecond;
 
+	private PlayerController _playerController;
+
 	public Vector3? Knockback => _knockback;
+
+	private void Awake()
+	{
+		_playerController = ((Component)this).GetComponent<PlayerController>();
+	}
 
 	public void Init(Vector3 direction, float power, float reductionPerSecond, int animationIndex = 9, bool heavyGravity = true)
 	{
@@ -45,21 +54,19 @@ public class KnockbackComponent : MonoBehaviour
 			float num3 = Mathf.Abs(val.y) / num;
 			float num4 = Mathf.Abs(val.z) / num;
 			_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
-			PlayerController component = ((Component)this).GetComponent<PlayerController>();
-			PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)component).Runner, component.Index, animationIndex);
+			PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)_playerController).Runner, _playerController.Index, animationIndex);
 			if (heavyGravity)
 			{
-				Traverse.Create((object)component.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.gravity = -400f * BalancingValues.GravityMultiplier(GameManager.Instance.MapID);
+				Traverse.Create((object)_playerController.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.gravity = -400f * BalancingValues.GravityMultiplier(GameManager.Instance.MapID);
 			}
 		}
 	}
 
 	public void StopKnockback()
 	{
-		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		_knockback = null;
-		PlayerController component = ((Component)this).GetComponent<PlayerController>();
-		PlayerCustom player = PlayerCustomRegistry.GetPlayer(component.Ref);
+		PlayerCustom player = PlayerCustomRegistry.GetPlayer(_playerController.Ref);
 		player.ResetGravity();
 	}
 
@@ -76,6 +83,11 @@ public class KnockbackComponent : MonoBehaviour
 		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01b4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0230: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0301: Unknown result type (might be due to invalid IL or missing references)
 		if (!_knockback.HasValue)
 		{
 			return;
@@ -115,6 +127,20 @@ public class KnockbackComponent : MonoBehaviour
 		else
 		{
 			_knockback = new Vector3(num, num2, num3);
+		}
+		PlayerCustom player = PlayerCustomRegistry.GetPlayer(_playerController.Ref);
+		if (!NetworkBool.op_Implicit(player.Jump) || !Traverse.Create((object)_playerController.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.Controller.isGrounded)
+		{
+			return;
+		}
+		Effect val = _playerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is JumpEffect);
+		if ((Object)(object)val != (Object)null)
+		{
+			CustomTickTimer effectTimer = val.EffectTimer;
+			if (((CustomTickTimer)(ref effectTimer)).NormalizedValue(((SimulationBehaviour)_playerController).Runner) >= 0.25f)
+			{
+				_playerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
+			}
 		}
 	}
 }

@@ -4,19 +4,23 @@ using UnityEngine;
 namespace LycansNewRoles.NewEffects;
 
 [NetworkBehaviourWeaved(3)]
-public class BurningEffect : CustomEffect
+public class EnduranceEffect : CustomEffect
 {
-	public override string CustomEffectName => "LycansNewRoles.EffectBurning";
+	public static Color EffectColor = new Color(0f, 0.5f, 0f);
 
-	public override string TranslateKey => "NALES_EFFECT_BURNING";
+	public override string CustomEffectName => "LycansNewRoles.EffectEndurance";
 
-	public override Color Color => Color.red;
+	public override string TranslateKey => "NALES_EFFECT_ENDURANCE";
 
-	public override EffectType CustomEffectType => (EffectType)2;
+	public override Color Color => EffectColor;
 
-	public override bool CanBeDispelled => true;
+	public override EffectType CustomEffectType => (EffectType)0;
 
-	public override bool ReducedByResilience => true;
+	public override bool CanBeDispelled => false;
+
+	public override DisplayPerRoleType DisplayType => DisplayPerRoleType.Nobody;
+
+	public override bool DurationAffectedByModifiers => false;
 
 	protected override void ApplyEffectToPlayerSpecific(PlayerRef targetPlayer)
 	{
@@ -28,7 +32,7 @@ public class BurningEffect : CustomEffect
 			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
 			if ((Object)(object)player != (Object)null)
 			{
-				PlayerCustomRegistry.GetPlayer(targetPlayer).Burning = NetworkBool.op_Implicit(true);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).Endurance = NetworkBool.op_Implicit(true);
 			}
 		}
 	}
@@ -43,7 +47,7 @@ public class BurningEffect : CustomEffect
 			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
 			if ((Object)(object)player != (Object)null)
 			{
-				PlayerCustomRegistry.GetPlayer(targetPlayer).Burning = NetworkBool.op_Implicit(false);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).Endurance = NetworkBool.op_Implicit(false);
 			}
 		}
 	}

@@ -119,7 +119,7 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 		if ((Object)(object)specificNewPrimaryRole3 != (Object)null && source.Contains(specificNewPrimaryRole3))
 		{
 			((Component)_textBeast).gameObject.SetActive(true);
-			((TMP_Text)_textBeast).text = TranslationManager.Instance.GetTranslation("NALES_ROLE_BEAST") + " : " + PlayerCustomRegistry.CountWhere((PlayerCustom o) => NetworkBool.op_Implicit(o.BeastMark) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)) + " / " + PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
+			((TMP_Text)_textBeast).text = TranslationManager.Instance.GetTranslation("NALES_ROLE_BEAST") + " : ? / " + PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead));
 		}
 		else
 		{

@@ -16,7 +16,7 @@ internal class EffectDespawnedPatch
 			return;
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.EffectPlayer);
-		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is ResistanceEffect) && !(__instance is SneakyEffect) && !(__instance is TrackedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect))
+		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is ResistanceEffect) && !(__instance is SneakyEffect) && !(__instance is DetectedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect))
 		{
 			if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
 			{
@@ -53,7 +53,7 @@ internal class EffectDespawnedPatch
 		{
 			player.UpdateVisibility();
 		}
-		if (!(__instance is StunnedEffect) && !(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
+		if (!(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
 		{
 			if (__instance is BurningEffect || __instance is PurifierBurnEffect)
 			{

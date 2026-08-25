@@ -21,6 +21,8 @@ public class GameStats
 
 	public string EndTiming;
 
+	public bool IsBattleRoyale;
+
 	public List<PlayerStats> PlayerStats = new List<PlayerStats>();
 
 	public List<GameEvent> GameEvents = new List<GameEvent>();

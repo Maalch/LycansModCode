@@ -130,16 +130,23 @@ internal class VoiceEffectPatch
 		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0461: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0521: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0511: Unknown result type (might be due to invalid IL or missing references)
-		//IL_053f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0534: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0551: Unknown result type (might be due to invalid IL or missing references)
-		//IL_055f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_059b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0650: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0508: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0645: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0635: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0663: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0658: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0675: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0683: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0567: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0572: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0608: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0610: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0774: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0720: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((int)GameManager.LocalGameState == 0)
@@ -270,6 +277,27 @@ internal class VoiceEffectPatch
 			{
 				value2.maxDistance = 0f;
 				value2.mute = true;
+			}
+			if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Tracker && NetworkBool.op_Implicit(player2.NewPrimaryRoleUniqueBool))
+			{
+				float num4 = 99f;
+				foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.Tracked)))
+				{
+					num4 = Mathf.Min(num4, Vector3.Distance(((Component)item).transform.position, ((Component)value).transform.position));
+				}
+				if (num4 <= 15f)
+				{
+					float num5 = Vector3.Distance(((Component)value).transform.position, ((Component)povPlayer).transform.position);
+					if (num5 > value2.maxDistance * 0.8f)
+					{
+						value2.maxDistance = num5 * 1.5f;
+						value2.mute = false;
+						value2.spatialBlend = 0f;
+						reverb = (AudioReverbPreset)23;
+						player.CustomAudio.UpdateReverbIfNeeded(reverb);
+						return;
+					}
+				}
 			}
 			if ((Object)(object)player2.AstralSpirit != (Object)null)
 			{

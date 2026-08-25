@@ -259,7 +259,7 @@ public class AccessorySpellbook : Accessory
 			PlayerCustom.ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectBurning", runner, 1f, spellbookEffectDetails.Duration);
 			break;
 		case PossibleEffects.Detected:
-			PlayerCustom.ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectTracked", runner, 1f, spellbookEffectDetails.Duration);
+			PlayerCustom.ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectDetected", runner, 1f, spellbookEffectDetails.Duration);
 			break;
 		case PossibleEffects.Teleportation:
 		{

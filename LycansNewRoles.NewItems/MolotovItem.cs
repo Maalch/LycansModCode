@@ -60,11 +60,12 @@ public class MolotovItem : CustomItem
 		//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0231: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0236: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_026f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_027f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0302: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0258: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0264: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0275: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0285: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0308: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -124,7 +125,7 @@ public class MolotovItem : CustomItem
 				NetworkObject val = runner.Spawn(networkObject, (Vector3?)value, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)null, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 				Vector3 forward = ((Component)player.PlayerController.LocalCameraHandler.LocalCamera).transform.forward;
 				forward.y = Mathf.Min(1f, angleY + 0.1f);
-				((Component)val).GetComponent<MolotovActive>().Init(forward * 25f);
+				((Component)val).GetComponent<MolotovActive>().Init(player.Ref, forward * 25f);
 				GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("GrenadeThrow"), ((Component)player.PlayerController).transform.position, 15f, 0.8f);
 				player.PlayerController.UpdateAnimation(Animator.StringToHash("Attacking"), true);
 				((MonoBehaviour)player.PlayerController).StartCoroutine("WaitAndResetAttackAnimation");

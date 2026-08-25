@@ -203,8 +203,11 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 		switch (changed.Behaviour._playerCustom.PrimaryRolePower)
 		{
 		case PlayerCustom.PlayerPrimaryRolePower.Ghost:
-			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = 1.3f;
+		{
+			float maxSpeed = 1.5f;
+			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = maxSpeed;
 			break;
+		}
 		case PlayerCustom.PlayerPrimaryRolePower.Specter:
 			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = 1.8f;
 			break;
@@ -383,15 +386,16 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 		//IL_0177: Unknown result type (might be due to invalid IL or missing references)
 		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0158: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_022b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_020d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0285: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0293: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0220: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0261: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0298: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)((SimulationBehaviour)this).Runner == (Object)null)
 		{
 			return;
@@ -431,10 +435,11 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 				return;
 			}
 			PlayerController componentInParent = gameObject.GetComponentInParent<PlayerController>();
+			PlayerCustom player = PlayerCustomRegistry.GetPlayer(componentInParent.Ref);
 			switch (_playerCustom.PrimaryRolePower)
 			{
 			case PlayerCustom.PlayerPrimaryRolePower.Ghost:
-				if (NetworkBool.op_Implicit(componentInParent.IsWolf) && !NetworkBool.op_Implicit(componentInParent.IsDead) && !componentInParent.IsStarving())
+				if (!NetworkBool.op_Implicit(componentInParent.IsWolf) && !NetworkBool.op_Implicit(componentInParent.IsDead) && !NetworkBool.op_Implicit(player.Dying))
 				{
 					GameManager.Instance.gameUI.UpdateInteraction("NALES_UI_ACTION_SPIRIT_ATTACK", Color.red, (InputActionName)3, Array.Empty<object>());
 					TooltipTarget = componentInParent;
@@ -450,14 +455,10 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 			}
 			PlayerCustom.PlayerNewPrimaryRole newPrimaryRole = _playerCustom.NewPrimaryRole;
 			PlayerCustom.PlayerNewPrimaryRole playerNewPrimaryRole = newPrimaryRole;
-			if (playerNewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Cultist)
+			if (playerNewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Cultist && !NetworkBool.op_Implicit(componentInParent.IsDead) && !NetworkBool.op_Implicit(player.CapturedByCultist))
 			{
-				PlayerCustom player = PlayerCustomRegistry.GetPlayer(componentInParent.Ref);
-				if (!NetworkBool.op_Implicit(componentInParent.IsDead) && !NetworkBool.op_Implicit(player.CapturedByCultist))
-				{
-					GameManager.Instance.gameUI.UpdateInteraction("NALES_UI_ACTION_CULTIST_CAPTURE", Color.red, (InputActionName)3, Array.Empty<object>());
-					TooltipTarget = componentInParent;
-				}
+				GameManager.Instance.gameUI.UpdateInteraction("NALES_UI_ACTION_CULTIST_CAPTURE", Color.red, (InputActionName)3, Array.Empty<object>());
+				TooltipTarget = componentInParent;
 			}
 		}
 		else

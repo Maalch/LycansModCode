@@ -180,7 +180,7 @@ public class RadarActive : NetworkBehaviour
 			float num2 = Vector3.Distance(((Component)this).transform.position, ((Component)item.PlayerController).transform.position);
 			if (num2 < num && item.SecondaryRole != PlayerCustom.PlayerSecondaryRole.BothEngineer)
 			{
-				PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectTracked", ((SimulationBehaviour)this).Runner, 1f, 3f);
+				PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectDetected", ((SimulationBehaviour)this).Runner, 1f, 3f);
 			}
 		}
 		GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("GrenadeEffect"), ((Component)this).transform.position, 30f, 0.4f);

@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.337")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.344")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -248,12 +248,12 @@ public class Plugin : BaseUnityPlugin
 		//IL_01ba: Expected O, but got Unknown
 		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01eb: Expected O, but got Unknown
-		//IL_20c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_20e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_2110: Unknown result type (might be due to invalid IL or missing references)
-		//IL_212c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3081: Unknown result type (might be due to invalid IL or missing references)
-		//IL_30c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_30a9: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -309,7 +309,6 @@ public class Plugin : BaseUnityPlugin
 			val12.AddComponent<NetworkTransform>();
 			val12.AddComponent<ItemCustom>();
 			RegisterGameObject(val12, "LycansNewRoles.ItemCustom");
-			AddEffectToList("LycansNewRoles.EffectStunned", typeof(StunnedEffect), 5f);
 			AddEffectToList("LycansNewRoles.EffectChasing", typeof(ChasingEffect), 3f);
 			AddEffectToList("LycansNewRoles.EffectSprinting", typeof(SprintEffect), 5f);
 			AddEffectToList("LycansNewRoles.EffectReverting", typeof(RevertingEffect), 15f);
@@ -320,7 +319,6 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectIllusion", typeof(IllusionEffect), 15f);
 			AddEffectToList("LycansNewRoles.EffectDisguised", typeof(DisguisedEffect), 300f);
 			AddEffectToList("LycansNewRoles.EffectDiseased", typeof(DiseasedEffect), 300f);
-			AddEffectToList("LycansNewRoles.EffectCursed", typeof(CursedEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectPossessed", typeof(PossessedEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectDowned", typeof(DownedEffect), 10f);
 			AddEffectToList("LycansNewRoles.EffectWounded", typeof(WoundedEffect), 30f);
@@ -350,6 +348,7 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectIsolation", typeof(IsolationEffect), 1f);
 			AddEffectToList("LycansNewRoles.EffectSneaky", typeof(SneakyEffect), 7f);
 			AddEffectToList("LycansNewRoles.EffectResilience", typeof(ResilienceEffect), 8f);
+			AddEffectToList("LycansNewRoles.EffectEndurance", typeof(EnduranceEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectEscaping", typeof(EscapingEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectBanished", typeof(BanishedEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectRecuperating", typeof(RecuperatingEffect), 3600f);
@@ -358,7 +357,7 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectHubris", typeof(HubrisEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectSpotter", typeof(SpotterEffect), 20f);
 			AddEffectToList("LycansNewRoles.EffectPurifierBurn", typeof(PurifierBurnEffect), 8f);
-			AddEffectToList("LycansNewRoles.EffectTracked", typeof(TrackedEffect), 3f);
+			AddEffectToList("LycansNewRoles.EffectDetected", typeof(DetectedEffect), 3f);
 			AddEffectToList("LycansNewRoles.EffectKidnapperSilence", typeof(KidnapperSilenceEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectCaptured", typeof(CapturedEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectHidden", typeof(HiddenEffect), 2f);
@@ -1023,9 +1022,6 @@ public class Plugin : BaseUnityPlugin
 		GameObject val = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
 		MagicianIllusion magicianIllusion = val.AddComponent<MagicianIllusion>();
 		SkinnedMeshRenderer value = Traverse.Create((object)val.GetComponent<PlayerController>()).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value;
-		((Component)val.GetComponent<PlayerController>().FindVillagerHandLeft()).gameObject.ListComponentsAndChildren();
-		((Component)val.GetComponent<PlayerController>().FindVillagerHandRight()).gameObject.ListComponentsAndChildren();
-		val.GetComponent<PlayerController>().hatsContainer.ListComponentsAndChildren();
 		DestroyComponentIfExists<PlayerController>(val);
 		DestroyComponentIfExists<PlayerInteract>(val);
 		DestroyComponentIfExists<AudioListener>(val);
@@ -1079,52 +1075,59 @@ public class Plugin : BaseUnityPlugin
 			Object.DestroyImmediate((Object)(object)val2);
 		}
 		RegisterGameObject(val, "LycansNewRoles.GameObjectMagicianIllusionName");
-		GameObject val3 = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
-		MolotovEntity molotovEntity = val3.AddComponent<MolotovEntity>();
-		Object.DestroyImmediate((Object)(object)((Component)val3.GetComponent<PlayerController>().FindVillagerHandLeft().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
-		Object.DestroyImmediate((Object)(object)((Component)val3.GetComponent<PlayerController>().FindVillagerHandRight().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
-		Object.DestroyImmediate((Object)(object)((Component)val3.GetComponent<PlayerController>().hatsContainer.transform.parent.Find("TruesightParticleSystem(Clone)(Clone)")).gameObject);
-		DestroyComponentIfExists<PlayerController>(val3);
-		DestroyComponentIfExists<PlayerInteract>(val3);
-		DestroyComponentIfExists<AudioListener>(val3);
-		DestroyComponentIfExists<VoiceNetworkObject>(val3);
-		DestroyComponentIfExists<CharacterInputHandler>(val3);
-		DestroyComponentIfExists<CharacterMovementHandler>(val3);
-		DestroyComponentIfExists<NetworkCharacterControllerPrototypeCustom>(val3);
-		DestroyComponentIfExists<PlayerEffectsManager>(val3);
-		DestroyComponentIfExists<PlayerGroundDetection>(val3);
-		DestroyComponentIfExists<PlayerFootstepsComponent>(val3);
-		DestroyComponentIfExists<PlayerPhasingComponent>(val3);
-		DestroyComponentIfExists<PlayerBombTickingComponent>(val3);
-		DestroyComponentIfExists<PlayerBombIconComponent>(val3);
-		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val3);
-		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val3);
-		DestroyComponentIfExists<PlayerHeldItemComponent>(val3);
-		DestroyComponentIfExists<PlayerPredatorComponent>(val3);
-		DestroyComponentIfExists<PlayerAngelIconComponent>(val3);
-		DestroyComponentIfExists<PlayerResurrectedComponent>(val3);
-		DestroyComponentIfExists<PlayerSpotterLightComponent>(val3);
-		DestroyComponentIfExists<PlayerDyingComponent>(val3);
-		DestroyComponentIfExists<PlayerTargetArrowComponent>(val3);
-		DestroyComponentIfExists<KnockbackComponent>(val3);
-		DestroyComponentIfExists<ForcedRotationComponent>(val3);
-		DestroyComponentIfExists<GravityComponent>(val3);
-		DestroyComponentIfExists<PlayerNewAnimationsComponent>(val3);
-		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val3);
-		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val3);
+		GameObject val3 = Object.Instantiate<GameObject>(val);
+		DestroyComponentIfExists<MagicianIllusion>(val3);
+		((Component)val3.transform.Find("Body").Find("Villager")).gameObject.SetActive(false);
+		((Component)val3.transform.Find("Body").Find("Werewolf")).gameObject.SetActive(true);
+		((Component)val3.transform.Find("Body").Find("Werewolf").Find("WerewolfModel")).gameObject.SetActive(true);
+		WolfIllusion wolfIllusion = val3.AddComponent<WolfIllusion>();
+		RegisterGameObject(val3, "LycansNewRoles.GameObjectWolfIllusion");
+		GameObject val4 = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
+		MolotovEntity molotovEntity = val4.AddComponent<MolotovEntity>();
+		Object.DestroyImmediate((Object)(object)((Component)val4.GetComponent<PlayerController>().FindVillagerHandLeft().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
+		Object.DestroyImmediate((Object)(object)((Component)val4.GetComponent<PlayerController>().FindVillagerHandRight().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
+		Object.DestroyImmediate((Object)(object)((Component)val4.GetComponent<PlayerController>().hatsContainer.transform.parent.Find("TruesightParticleSystem(Clone)(Clone)")).gameObject);
+		DestroyComponentIfExists<PlayerController>(val4);
+		DestroyComponentIfExists<PlayerInteract>(val4);
+		DestroyComponentIfExists<AudioListener>(val4);
+		DestroyComponentIfExists<VoiceNetworkObject>(val4);
+		DestroyComponentIfExists<CharacterInputHandler>(val4);
+		DestroyComponentIfExists<CharacterMovementHandler>(val4);
+		DestroyComponentIfExists<NetworkCharacterControllerPrototypeCustom>(val4);
+		DestroyComponentIfExists<PlayerEffectsManager>(val4);
+		DestroyComponentIfExists<PlayerGroundDetection>(val4);
+		DestroyComponentIfExists<PlayerFootstepsComponent>(val4);
+		DestroyComponentIfExists<PlayerPhasingComponent>(val4);
+		DestroyComponentIfExists<PlayerBombTickingComponent>(val4);
+		DestroyComponentIfExists<PlayerBombIconComponent>(val4);
+		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val4);
+		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val4);
+		DestroyComponentIfExists<PlayerHeldItemComponent>(val4);
+		DestroyComponentIfExists<PlayerPredatorComponent>(val4);
+		DestroyComponentIfExists<PlayerAngelIconComponent>(val4);
+		DestroyComponentIfExists<PlayerResurrectedComponent>(val4);
+		DestroyComponentIfExists<PlayerSpotterLightComponent>(val4);
+		DestroyComponentIfExists<PlayerDyingComponent>(val4);
+		DestroyComponentIfExists<PlayerTargetArrowComponent>(val4);
+		DestroyComponentIfExists<KnockbackComponent>(val4);
+		DestroyComponentIfExists<ForcedRotationComponent>(val4);
+		DestroyComponentIfExists<GravityComponent>(val4);
+		DestroyComponentIfExists<PlayerNewAnimationsComponent>(val4);
+		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val4);
+		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val4);
 		list = new List<GameObject>();
-		for (int j = 0; j < val3.transform.childCount; j++)
+		for (int j = 0; j < val4.transform.childCount; j++)
 		{
-			Transform child2 = val3.transform.GetChild(j);
+			Transform child2 = val4.transform.GetChild(j);
 			list.Add(((Component)child2).gameObject);
 		}
 		for (int num2 = list.Count - 1; num2 >= 0; num2--)
 		{
-			GameObject val4 = list[num2];
-			Object.DestroyImmediate((Object)(object)val4);
+			GameObject val5 = list[num2];
+			Object.DestroyImmediate((Object)(object)val5);
 		}
-		val3.SetActive(false);
-		MolotovEntity.MolotovEntityPrefab = val3;
+		val4.SetActive(false);
+		MolotovEntity.MolotovEntityPrefab = val4;
 		PlayerCustom.RegularVillagerShader = ((Renderer)Traverse.Create((object)PlayerController.Local).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.shader;
 		PlayerCustom.RegularWolfShader = ((Renderer)Traverse.Create((object)PlayerController.Local).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.shader;
 		PlayerIllusionCreated = true;
@@ -1144,6 +1147,29 @@ public class Plugin : BaseUnityPlugin
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 		prefab.SetActive(false);
 		NetworkObjectService.Instance.RegisterNetworkObject(prefab, name);
+	}
+
+	private static NetworkObject CreateObjectInCenter(string name)
+	{
+		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008a: Expected O, but got Unknown
+		//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+		Vector3 position = Traverse.Create((object)GameManager.Instance).Field<Transform[]>("mapSpawns").Value[GameManager.Instance.MapID - 1].position;
+		NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject(name);
+		NetworkObject val = ((SimulationBehaviour)GameManager.Instance).Runner.Spawn(networkObject, (Vector3?)position, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
+		{
+			//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+			((Component)no).transform.position = position;
+		}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+		((Component)val).transform.position = position;
+		return val;
 	}
 
 	private static void AddSoundIfNeeded(string assetName)
