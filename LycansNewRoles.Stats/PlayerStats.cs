@@ -139,6 +139,10 @@ public class PlayerStats
 
 	public string Hat;
 
+	public int SkinIndex;
+
+	public int SkinColorIndex;
+
 	public string MainRoleInitial;
 
 	public List<MainRoleChangeEvent> MainRoleChanges = new List<MainRoleChangeEvent>();

@@ -173,18 +173,19 @@ public class InventorSmoke : NetworkBehaviour
 		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002c: Invalid comparison between Unknown and I4
-		//IL_00ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0030: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0032: Invalid comparison between Unknown and I4
-		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Invalid comparison between Unknown and I4
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
 		if (((SimulationBehaviour)this).HasStateAuthority && (Object)(object)_creatorCustom != (Object)null)
 		{
 			bool flag = false;
 			EGameState localGameState = GameManager.LocalGameState;
 			EGameState val = localGameState;
-			if ((int)val <= 1 || (int)val == 5)
+			if ((int)val <= 1 || val - 4 <= 1)
 			{
 				flag = true;
 			}

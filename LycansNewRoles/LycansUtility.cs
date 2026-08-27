@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using BepInEx.Logging;
 using Fusion;
 using HarmonyLib;
 using Managers;
@@ -144,6 +146,97 @@ public static class LycansUtility
 		if (PlayerController.Local.PlayerData.ID == "76561197973106144")
 		{
 			Plugin.Logger.LogInfo((object)log);
+		}
+	}
+
+	public static SkinnedMeshRenderer UpdateVillagerSkin(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, PlayerController playerController)
+	{
+		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		try
+		{
+			Plugin.Logger.LogInfo((object)("Update villager skin with skin index " + skinIndex + " with stacktrace " + new StackTrace()));
+			if ((Object)(object)playerController != (Object)null)
+			{
+				ManualLogSource logger = Plugin.Logger;
+				NetworkString<_32> username = playerController.PlayerData.Username;
+				logger.LogInfo((object)("For player: " + ((object)username/*cast due to constrained. prefix*/).ToString()));
+			}
+		}
+		catch (Exception ex)
+		{
+			Plugin.Logger.LogInfo((object)("Error logging skin update: " + ex));
+		}
+		bool activeSelf = ((Component)villagerMeshRenderer).gameObject.activeSelf;
+		GameObject gameObject = ((Component)((Component)villagerMeshRenderer).transform.parent.Find("metarig")).gameObject;
+		CharacterSkin characterSkin = Plugin.Skins[skinIndex];
+		GameObject val = Object.Instantiate<GameObject>(characterSkin.SkinMeshRenderer, ((Component)villagerMeshRenderer).transform.parent);
+		val.SetActive(true);
+		SkinnedMeshRenderer component = val.GetComponent<SkinnedMeshRenderer>();
+		Transform[] bones = component.bones;
+		Transform[] componentsInChildren = gameObject.GetComponentsInChildren<Transform>(false);
+		Dictionary<string, Transform> dictionary = new Dictionary<string, Transform>();
+		Transform[] array = componentsInChildren;
+		foreach (Transform val2 in array)
+		{
+			if (!dictionary.ContainsKey(((Object)val2).name))
+			{
+				dictionary[((Object)val2).name] = ((Component)val2).transform;
+			}
+		}
+		Transform[] array2 = (Transform[])(object)new Transform[bones.Length];
+		for (int j = 0; j < bones.Length; j++)
+		{
+			array2[j] = dictionary[((Object)bones[j]).name];
+		}
+		component.bones = array2;
+		component.rootBone = dictionary[((Object)component.rootBone).name];
+		Object.DestroyImmediate((Object)(object)((Component)villagerMeshRenderer).gameObject);
+		if ((Object)(object)playerController != (Object)null)
+		{
+			Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value = val.GetComponent<SkinnedMeshRenderer>();
+			Traverse.Create((object)playerController.PlayerEffectManager).Field<SkinnedMeshRenderer>("skinnedMeshRenderer").Value = val.GetComponent<SkinnedMeshRenderer>();
+			playerController.ShowThirdPersonModels(activeSelf);
+		}
+		Plugin.Logger.LogInfo((object)("Skin updated, returning SkinnedMeshRenderer: " + (object)val));
+		return val.GetComponent<SkinnedMeshRenderer>();
+	}
+
+	public static void UpdateVillagerSkinColor(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, int skinColorIndex, int playerColorIndex)
+	{
+		if (skinIndex == 0)
+		{
+			((Renderer)villagerMeshRenderer).material.mainTexture = ColorManager.GetTexture(playerColorIndex);
+			return;
+		}
+		skinColorIndex = Mathf.Min(skinColorIndex, Plugin.Skins[skinIndex].SkinTextures.Count - 1);
+		((Renderer)villagerMeshRenderer).material.SetTexture("_SkinTexture", Plugin.Skins[skinIndex].SkinTextures[skinColorIndex]);
+		int index = Mathf.Min(playerColorIndex, Plugin.Skins[skinIndex].TopTextures.Count - 1);
+		((Renderer)villagerMeshRenderer).material.SetTexture("_TopTexture", Plugin.Skins[skinIndex].TopTextures[index]);
+	}
+
+	public static void UpdateVillagerHat(SkinnedMeshRenderer villagerMeshRenderer, int hatIndex)
+	{
+		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
+		Transform val = ((Component)villagerMeshRenderer).transform.parent.Find("metarig").Find("spine").Find("spine.001")
+			.Find("spine.002")
+			.Find("spine.003")
+			.Find("spine.004")
+			.Find("spine.005")
+			.Find("spine.006")
+			.Find("HatsContainer")
+			.Find("Hats");
+		int childCount = ((Component)val).transform.childCount;
+		foreach (object item in ((Component)val).transform)
+		{
+			((Component)(Transform)item).gameObject.SetActive(false);
+		}
+		if (hatIndex >= 0 && hatIndex < childCount)
+		{
+			((Component)((Component)val).transform.GetChild(hatIndex)).gameObject.SetActive(true);
+			((Component)val).gameObject.SetActive(true);
+			((Component)val.parent).gameObject.SetActive(true);
 		}
 	}
 }

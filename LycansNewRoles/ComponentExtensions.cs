@@ -150,8 +150,19 @@ public static class ComponentExtensions
 			.Find("spine.003");
 	}
 
+	public static Transform FindVillagerMetarig(this PlayerController playerController)
+	{
+		return ((Component)playerController).transform.Find("Body").Find("Villager").Find("metarig");
+	}
+
 	public static Transform FindVillagerItem(this PlayerController playerController)
 	{
 		return playerController.FindVillagerHandRight().Find("Item");
+	}
+
+	public static void ClearAndStop(this ParticleSystem particleSystem)
+	{
+		particleSystem.Clear();
+		particleSystem.Stop();
 	}
 }

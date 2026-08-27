@@ -288,11 +288,11 @@ internal class VoiceEffectPatch
 				if (num4 <= 15f)
 				{
 					float num5 = Vector3.Distance(((Component)value).transform.position, ((Component)povPlayer).transform.position);
-					if (num5 > value2.maxDistance * 0.8f)
+					if (num5 > value2.maxDistance * 1f)
 					{
-						value2.maxDistance = num5 * 1.5f;
+						value2.maxDistance = num5 * 1.1f;
 						value2.mute = false;
-						value2.spatialBlend = 0f;
+						value2.spatialBlend = 1f;
 						reverb = (AudioReverbPreset)23;
 						player.CustomAudio.UpdateReverbIfNeeded(reverb);
 						return;

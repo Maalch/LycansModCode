@@ -165,8 +165,7 @@ public class SleepingGasPlaced : NetworkBehaviour
 	{
 		_rigidbody = ((Component)this).GetComponent<Rigidbody>();
 		_particleSystem = ((Component)this).GetComponentInChildren<ParticleSystem>();
-		_particleSystem.Clear();
-		_particleSystem.Stop();
+		_particleSystem.ClearAndStop();
 	}
 
 	public void Init(SleepingGasItem.RemoteGadgetType type, PlayerRef creatorRef)

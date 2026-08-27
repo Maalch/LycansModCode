@@ -111,7 +111,7 @@ public class MagicianIllusion : NetworkBehaviour
 
 	private void Awake()
 	{
-		_villagerMeshRenderer = ((Component)((Component)this).transform.Find("Body").Find("Villager").Find("VillagerModel")).GetComponent<SkinnedMeshRenderer>();
+		_villagerMeshRenderer = ((Component)((Component)this).transform.Find("Body").Find("Villager")).GetComponentInChildren<SkinnedMeshRenderer>();
 		_hats = ((Component)this).transform.Find("Body").Find("Villager").Find("metarig")
 			.Find("spine")
 			.Find("spine.001")
@@ -257,23 +257,14 @@ public class MagicianIllusion : NetworkBehaviour
 	public static void TargetRefChanged(Changed<MagicianIllusion> changed)
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006d: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(changed.Behaviour.TargetRef);
-			((Renderer)changed.Behaviour._villagerMeshRenderer).material.mainTexture = ColorManager.GetTexture(player.ColorIndex);
-			int childCount = changed.Behaviour._hats.childCount;
-			foreach (object item in ((Component)changed.Behaviour._hats).transform)
-			{
-				((Component)(Transform)item).gameObject.SetActive(false);
-			}
-			int num = (int)Traverse.Create((object)player.PlayerController).Property("HatIndex", (object[])null).GetValue();
-			if (num >= 0 && num < childCount)
-			{
-				((Component)((Component)changed.Behaviour._hats).transform.GetChild(num)).gameObject.SetActive(true);
-				((Component)changed.Behaviour._hats).gameObject.SetActive(true);
-				((Component)changed.Behaviour._hats.parent).gameObject.SetActive(true);
-			}
+			SkinnedMeshRenderer villagerMeshRenderer = LycansUtility.UpdateVillagerSkin(changed.Behaviour._villagerMeshRenderer, player.SkinIndex, null);
+			changed.Behaviour._villagerMeshRenderer = villagerMeshRenderer;
+			LycansUtility.UpdateVillagerSkinColor(changed.Behaviour._villagerMeshRenderer, player.SkinIndex, player.SkinColorIndex, player.ColorIndex);
+			int hatIndex = (int)Traverse.Create((object)player.PlayerController).Property("HatIndex", (object[])null).GetValue();
+			LycansUtility.UpdateVillagerHat(changed.Behaviour._villagerMeshRenderer, hatIndex);
 			changed.Behaviour.UpdateVisibility();
 		}
 		catch (Exception ex)

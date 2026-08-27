@@ -10,7 +10,9 @@ public class CustomizationOptionComponent : MonoBehaviour
 	{
 		Hat,
 		Color,
-		Pet
+		Pet,
+		Skin,
+		SkinColor
 	}
 
 	private static Color ColorInactive = new Color(0.8f, 0.8f, 0.8f, 1f);

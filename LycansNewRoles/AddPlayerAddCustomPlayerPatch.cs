@@ -68,6 +68,10 @@ internal class AddPlayerAddCustomPlayerPatch
 			{
 				GameObject val2 = Object.Instantiate<GameObject>(newHat, __instance.hats.transform);
 			}
+			if (((SimulationBehaviour)__instance).HasInputAuthority)
+			{
+				Plugin.AddOriginalSkin(__instance);
+			}
 		}
 		catch (Exception ex)
 		{

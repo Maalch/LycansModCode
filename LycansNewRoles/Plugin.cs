@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.344")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.346")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -32,9 +32,13 @@ public class Plugin : BaseUnityPlugin
 
 	public static List<GameObject> NewHats = new List<GameObject>();
 
-	public static List<AssetBundle> PetsBundles = new List<AssetBundle>();
+	public static List<AssetBundle> PetBundles = new List<AssetBundle>();
 
 	public static List<string> PetNames = new List<string>();
+
+	public static List<AssetBundle> SkinBundles = new List<AssetBundle>();
+
+	public static List<CharacterSkin> Skins = new List<CharacterSkin>();
 
 	public static AssetBundle NewRolesCoreBundle;
 
@@ -194,25 +198,31 @@ public class Plugin : BaseUnityPlugin
 			List<string> source = Directory.EnumerateFiles(path).ToList();
 			int num = 3;
 			NewMapPathById.Clear();
-			foreach (string item3 in source.Where((string o) => !o.Contains(".json")))
+			foreach (string item4 in source.Where((string o) => !o.Contains(".json")))
 			{
-				string text3 = item3.Split('/').Last();
+				string text3 = item4.Split('/').Last();
 				if (text3.ToLower().StartsWith("map_"))
 				{
 					NewMapPathById.Add(num, text3.ToLower());
 					num++;
 				}
-				else if (item3.ToLower().Contains("/hats_"))
+				else if (item4.ToLower().Contains("/hats_"))
 				{
-					Logger.LogInfo((object)("Adding hats bundle: " + item3));
+					Logger.LogInfo((object)("Adding hats bundle: " + item4));
 					AssetBundle item = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
 					NewHatsBundles.Add(item);
 				}
-				else if (item3.ToLower().Contains("/pets_"))
+				else if (item4.ToLower().Contains("/pets_"))
 				{
-					Logger.LogInfo((object)("Adding pets bundle: " + item3));
+					Logger.LogInfo((object)("Adding pets bundle: " + item4));
 					AssetBundle item2 = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
-					PetsBundles.Add(item2);
+					PetBundles.Add(item2);
+				}
+				else if (item4.ToLower().Contains("/skins_"))
+				{
+					Logger.LogInfo((object)("Adding skins bundle: " + item4));
+					AssetBundle item3 = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
+					SkinBundles.Add(item3);
 				}
 			}
 		}
@@ -966,14 +976,14 @@ public class Plugin : BaseUnityPlugin
 				}
 			}
 			PetNames.Clear();
-			foreach (AssetBundle petsBundle in PetsBundles)
+			foreach (AssetBundle petBundle in PetBundles)
 			{
-				string[] allAssetNames2 = petsBundle.GetAllAssetNames();
+				string[] allAssetNames2 = petBundle.GetAllAssetNames();
 				string[] array2 = allAssetNames2;
 				foreach (string text2 in array2)
 				{
 					Logger.LogInfo((object)("Load pet: " + text2));
-					GameObject val72 = petsBundle.LoadAsset<GameObject>(text2);
+					GameObject val72 = petBundle.LoadAsset<GameObject>(text2);
 					Logger.LogInfo((object)("Loaded pet: " + (object)val72));
 					GameObject val73 = Object.Instantiate<GameObject>(val72);
 					val73.AddComponent<NetworkObject>();
@@ -996,6 +1006,55 @@ public class Plugin : BaseUnityPlugin
 					Logger.LogInfo((object)("Added pet: " + ((object)val73)?.ToString() + " with name " + text3));
 				}
 			}
+			foreach (CharacterSkin skin in Skins)
+			{
+				Object.Destroy((Object)(object)skin.SkinMeshRenderer);
+				Object.Destroy((Object)(object)skin.Metarig);
+			}
+			Skins.Clear();
+			Skins.Add(new CharacterSkin());
+			if ((Object)(object)PlayerController.Local != (Object)null)
+			{
+				AddOriginalSkin(PlayerController.Local);
+			}
+			foreach (AssetBundle skinBundle in SkinBundles)
+			{
+				string[] allAssetNames3 = skinBundle.GetAllAssetNames();
+				foreach (string item in allAssetNames3.Where((string o) => o.EndsWith(".prefab")))
+				{
+					Logger.LogInfo((object)("Load skin: " + item));
+					GameObject val75 = skinBundle.LoadAsset<GameObject>(item);
+					Logger.LogInfo((object)("Loaded skin: " + (object)val75));
+					CharacterSkin characterSkin = new CharacterSkin();
+					characterSkin.SkinMeshRenderer = Object.Instantiate<GameObject>(((Component)val75.transform.Find("SkinnedMeshRenderer")).gameObject);
+					characterSkin.DefaultShader = ((Renderer)characterSkin.SkinMeshRenderer.GetComponent<SkinnedMeshRenderer>()).material.shader;
+					characterSkin.Metarig = Object.Instantiate<GameObject>(((Component)val75.transform.Find("metarig")).gameObject);
+					characterSkin.Avatar = val75.GetComponent<Animator>().avatar;
+					characterSkin.IsOriginalSkin = false;
+					characterSkin.SkinMeshRenderer.SetActive(true);
+					characterSkin.Metarig.SetActive(true);
+					string assetTexturePrefix = item.Replace(".prefab", "");
+					foreach (string item2 in allAssetNames3.Where((string o) => o.StartsWith(assetTexturePrefix + "_skin_")))
+					{
+						characterSkin.SkinTextures.Add(skinBundle.LoadAsset<Texture>(item2));
+						Logger.LogInfo((object)("Added skin texture: " + item2));
+					}
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_blue.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_green.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_yellow.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_red.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_cyan.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_pink.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_orange.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_gray.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_purple.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_brown.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_lemon.png"));
+					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_darkblue.png"));
+					Skins.Add(characterSkin);
+					Logger.LogInfo((object)("Added skin: " + ((object)characterSkin.SkinMeshRenderer)?.ToString() + " as index " + Skins.IndexOf(characterSkin)));
+				}
+			}
 			List<Transform> list2 = Traverse.Create((object)GameManager.Instance).Field<Transform[]>("mapSpawns").Value.ToList();
 			foreach (int key in NewMapPathById.Keys)
 			{
@@ -1013,6 +1072,24 @@ public class Plugin : BaseUnityPlugin
 		}
 	}
 
+	public static void AddOriginalSkin(PlayerController playerController)
+	{
+		if (!Skins.Any((CharacterSkin o) => o.IsOriginalSkin))
+		{
+			if (!Skins.Any())
+			{
+				Skins.Add(new CharacterSkin());
+			}
+			CharacterSkin characterSkin = new CharacterSkin();
+			characterSkin.SkinMeshRenderer = Object.Instantiate<GameObject>(((Component)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).gameObject);
+			characterSkin.DefaultShader = ((Renderer)characterSkin.SkinMeshRenderer.GetComponent<SkinnedMeshRenderer>()).material.shader;
+			characterSkin.Metarig = Object.Instantiate<GameObject>(((Component)playerController.FindVillagerMetarig()).gameObject);
+			characterSkin.Avatar = ((Component)((Component)playerController.FindVillagerMetarig()).transform.parent).GetComponent<Animator>().avatar;
+			characterSkin.IsOriginalSkin = true;
+			Skins[0] = characterSkin;
+		}
+	}
+
 	public static void CreatePlayerIllusionIfNeeded()
 	{
 		if (PlayerIllusionCreated)
@@ -1020,8 +1097,10 @@ public class Plugin : BaseUnityPlugin
 			return;
 		}
 		GameObject val = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
-		MagicianIllusion magicianIllusion = val.AddComponent<MagicianIllusion>();
 		SkinnedMeshRenderer value = Traverse.Create((object)val.GetComponent<PlayerController>()).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value;
+		Object.DestroyImmediate((Object)(object)((Component)val.GetComponent<PlayerController>().FindVillagerHandLeft().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
+		Object.DestroyImmediate((Object)(object)((Component)val.GetComponent<PlayerController>().FindVillagerHandRight().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
+		Object.DestroyImmediate((Object)(object)((Component)val.GetComponent<PlayerController>().hatsContainer.transform.parent.Find("TruesightParticleSystem(Clone)(Clone)")).gameObject);
 		DestroyComponentIfExists<PlayerController>(val);
 		DestroyComponentIfExists<PlayerInteract>(val);
 		DestroyComponentIfExists<AudioListener>(val);
@@ -1067,68 +1146,74 @@ public class Plugin : BaseUnityPlugin
 				list.Add(((Component)child).gameObject);
 			}
 		}
+		ParticleSystem[] componentsInChildren = val.GetComponentsInChildren<ParticleSystem>();
+		foreach (ParticleSystem val2 in componentsInChildren)
+		{
+			val2.Stop();
+		}
 		((Component)value).gameObject.SetActive(true);
 		((Renderer)value).enabled = true;
 		for (int num = list.Count - 1; num >= 0; num--)
 		{
-			GameObject val2 = list[num];
-			Object.DestroyImmediate((Object)(object)val2);
+			GameObject val3 = list[num];
+			Object.DestroyImmediate((Object)(object)val3);
 		}
+		val.AddComponent<MagicianIllusion>();
 		RegisterGameObject(val, "LycansNewRoles.GameObjectMagicianIllusionName");
-		GameObject val3 = Object.Instantiate<GameObject>(val);
-		DestroyComponentIfExists<MagicianIllusion>(val3);
-		((Component)val3.transform.Find("Body").Find("Villager")).gameObject.SetActive(false);
-		((Component)val3.transform.Find("Body").Find("Werewolf")).gameObject.SetActive(true);
-		((Component)val3.transform.Find("Body").Find("Werewolf").Find("WerewolfModel")).gameObject.SetActive(true);
-		WolfIllusion wolfIllusion = val3.AddComponent<WolfIllusion>();
-		RegisterGameObject(val3, "LycansNewRoles.GameObjectWolfIllusion");
-		GameObject val4 = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
-		MolotovEntity molotovEntity = val4.AddComponent<MolotovEntity>();
-		Object.DestroyImmediate((Object)(object)((Component)val4.GetComponent<PlayerController>().FindVillagerHandLeft().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
-		Object.DestroyImmediate((Object)(object)((Component)val4.GetComponent<PlayerController>().FindVillagerHandRight().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
-		Object.DestroyImmediate((Object)(object)((Component)val4.GetComponent<PlayerController>().hatsContainer.transform.parent.Find("TruesightParticleSystem(Clone)(Clone)")).gameObject);
-		DestroyComponentIfExists<PlayerController>(val4);
-		DestroyComponentIfExists<PlayerInteract>(val4);
-		DestroyComponentIfExists<AudioListener>(val4);
-		DestroyComponentIfExists<VoiceNetworkObject>(val4);
-		DestroyComponentIfExists<CharacterInputHandler>(val4);
-		DestroyComponentIfExists<CharacterMovementHandler>(val4);
-		DestroyComponentIfExists<NetworkCharacterControllerPrototypeCustom>(val4);
-		DestroyComponentIfExists<PlayerEffectsManager>(val4);
-		DestroyComponentIfExists<PlayerGroundDetection>(val4);
-		DestroyComponentIfExists<PlayerFootstepsComponent>(val4);
-		DestroyComponentIfExists<PlayerPhasingComponent>(val4);
-		DestroyComponentIfExists<PlayerBombTickingComponent>(val4);
-		DestroyComponentIfExists<PlayerBombIconComponent>(val4);
-		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val4);
-		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val4);
-		DestroyComponentIfExists<PlayerHeldItemComponent>(val4);
-		DestroyComponentIfExists<PlayerPredatorComponent>(val4);
-		DestroyComponentIfExists<PlayerAngelIconComponent>(val4);
-		DestroyComponentIfExists<PlayerResurrectedComponent>(val4);
-		DestroyComponentIfExists<PlayerSpotterLightComponent>(val4);
-		DestroyComponentIfExists<PlayerDyingComponent>(val4);
-		DestroyComponentIfExists<PlayerTargetArrowComponent>(val4);
-		DestroyComponentIfExists<KnockbackComponent>(val4);
-		DestroyComponentIfExists<ForcedRotationComponent>(val4);
-		DestroyComponentIfExists<GravityComponent>(val4);
-		DestroyComponentIfExists<PlayerNewAnimationsComponent>(val4);
-		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val4);
-		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val4);
+		GameObject val4 = Object.Instantiate<GameObject>(val);
+		DestroyComponentIfExists<MagicianIllusion>(val4);
+		((Component)val4.transform.Find("Body").Find("Villager")).gameObject.SetActive(false);
+		((Component)val4.transform.Find("Body").Find("Werewolf")).gameObject.SetActive(true);
+		((Component)val4.transform.Find("Body").Find("Werewolf").Find("WerewolfModel")).gameObject.SetActive(true);
+		WolfIllusion wolfIllusion = val4.AddComponent<WolfIllusion>();
+		RegisterGameObject(val4, "LycansNewRoles.GameObjectWolfIllusion");
+		GameObject val5 = Object.Instantiate<GameObject>(((Component)PlayerController.Local).gameObject);
+		MolotovEntity molotovEntity = val5.AddComponent<MolotovEntity>();
+		Object.DestroyImmediate((Object)(object)((Component)val5.GetComponent<PlayerController>().FindVillagerHandLeft().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
+		Object.DestroyImmediate((Object)(object)((Component)val5.GetComponent<PlayerController>().FindVillagerHandRight().Find("MidasParticleSystem(Clone)(Clone)")).gameObject);
+		Object.DestroyImmediate((Object)(object)((Component)val5.GetComponent<PlayerController>().hatsContainer.transform.parent.Find("TruesightParticleSystem(Clone)(Clone)")).gameObject);
+		DestroyComponentIfExists<PlayerController>(val5);
+		DestroyComponentIfExists<PlayerInteract>(val5);
+		DestroyComponentIfExists<AudioListener>(val5);
+		DestroyComponentIfExists<VoiceNetworkObject>(val5);
+		DestroyComponentIfExists<CharacterInputHandler>(val5);
+		DestroyComponentIfExists<CharacterMovementHandler>(val5);
+		DestroyComponentIfExists<NetworkCharacterControllerPrototypeCustom>(val5);
+		DestroyComponentIfExists<PlayerEffectsManager>(val5);
+		DestroyComponentIfExists<PlayerGroundDetection>(val5);
+		DestroyComponentIfExists<PlayerFootstepsComponent>(val5);
+		DestroyComponentIfExists<PlayerPhasingComponent>(val5);
+		DestroyComponentIfExists<PlayerBombTickingComponent>(val5);
+		DestroyComponentIfExists<PlayerBombIconComponent>(val5);
+		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val5);
+		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val5);
+		DestroyComponentIfExists<PlayerHeldItemComponent>(val5);
+		DestroyComponentIfExists<PlayerPredatorComponent>(val5);
+		DestroyComponentIfExists<PlayerAngelIconComponent>(val5);
+		DestroyComponentIfExists<PlayerResurrectedComponent>(val5);
+		DestroyComponentIfExists<PlayerSpotterLightComponent>(val5);
+		DestroyComponentIfExists<PlayerDyingComponent>(val5);
+		DestroyComponentIfExists<PlayerTargetArrowComponent>(val5);
+		DestroyComponentIfExists<KnockbackComponent>(val5);
+		DestroyComponentIfExists<ForcedRotationComponent>(val5);
+		DestroyComponentIfExists<GravityComponent>(val5);
+		DestroyComponentIfExists<PlayerNewAnimationsComponent>(val5);
+		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val5);
+		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val5);
 		list = new List<GameObject>();
-		for (int j = 0; j < val4.transform.childCount; j++)
+		for (int k = 0; k < val5.transform.childCount; k++)
 		{
-			Transform child2 = val4.transform.GetChild(j);
+			Transform child2 = val5.transform.GetChild(k);
 			list.Add(((Component)child2).gameObject);
 		}
 		for (int num2 = list.Count - 1; num2 >= 0; num2--)
 		{
-			GameObject val5 = list[num2];
-			Object.DestroyImmediate((Object)(object)val5);
+			GameObject val6 = list[num2];
+			Object.DestroyImmediate((Object)(object)val6);
 		}
-		val4.SetActive(false);
-		MolotovEntity.MolotovEntityPrefab = val4;
-		PlayerCustom.RegularVillagerShader = ((Renderer)Traverse.Create((object)PlayerController.Local).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.shader;
+		val5.SetActive(false);
+		MolotovEntity.MolotovEntityPrefab = val5;
+		PlayerCustom.HatShader = ((Renderer)((Component)PlayerController.Local.hats.transform.GetChild(0)).GetComponentInChildren<MeshRenderer>()).material.shader;
 		PlayerCustom.RegularWolfShader = ((Renderer)Traverse.Create((object)PlayerController.Local).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.shader;
 		PlayerIllusionCreated = true;
 	}

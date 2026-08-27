@@ -851,7 +851,7 @@ internal class GiveNewRolesPatch
 				{
 					allPlayer6.ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
 					allPlayer6.HasZombieColor = false;
-					allPlayer6.UpdateSkinColor();
+					allPlayer6.UpdateSkinColoration();
 					allPlayer6.UpdateVisibility();
 					allPlayer6.UpdateScaleAndPitch();
 				}

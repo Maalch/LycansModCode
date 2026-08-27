@@ -68,7 +68,7 @@ public class WolfIllusion : NetworkBehaviour
 
 	private void Awake()
 	{
-		_wolfMeshRenderer = ((Component)((Component)this).transform.Find("Body").Find("Werewolf").Find("WerewolfModel")).GetComponent<SkinnedMeshRenderer>();
+		_wolfMeshRenderer = ((Component)((Component)this).transform.Find("Body").Find("Werewolf")).GetComponentInChildren<SkinnedMeshRenderer>();
 		UpdateVisible(visible: false);
 	}
 
