@@ -203,17 +203,78 @@ public static class LycansUtility
 		return val.GetComponent<SkinnedMeshRenderer>();
 	}
 
-	public static void UpdateVillagerSkinColor(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, int skinColorIndex, int playerColorIndex)
+	public static void UpdateVillagerSkinColor(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, int skinColorIndex, int playerColorIndex, PlayerCustom playerCustom)
 	{
+		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0353: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0322: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
 		if (skinIndex == 0)
 		{
 			((Renderer)villagerMeshRenderer).material.mainTexture = ColorManager.GetTexture(playerColorIndex);
+			if ((Object)(object)playerCustom != (Object)null)
+			{
+				if (NetworkBool.op_Implicit(playerCustom.Petrified))
+				{
+					((Renderer)villagerMeshRenderer).material.color = PlayerCustom.SkinColorPetrified;
+					((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = PlayerCustom.SkinColorPetrified;
+				}
+				else if (playerCustom.HasZombieColor)
+				{
+					((Renderer)villagerMeshRenderer).material.color = PlayerCustom.SkinColorZombieHuman;
+					((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = PlayerCustom.SkinColorZombieWolf;
+				}
+				else if (NetworkBool.op_Implicit(playerCustom.Poison))
+				{
+					((Renderer)villagerMeshRenderer).material.color = PlayerCustom.SkinColorPoison;
+					((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = PlayerCustom.SkinColorPoison;
+				}
+				else
+				{
+					((Renderer)villagerMeshRenderer).material.color = Color.white;
+					((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = playerCustom.WolfColor;
+				}
+			}
 			return;
 		}
 		skinColorIndex = Mathf.Min(skinColorIndex, Plugin.Skins[skinIndex].SkinTextures.Count - 1);
 		((Renderer)villagerMeshRenderer).material.SetTexture("_SkinTexture", Plugin.Skins[skinIndex].SkinTextures[skinColorIndex]);
 		int index = Mathf.Min(playerColorIndex, Plugin.Skins[skinIndex].TopTextures.Count - 1);
 		((Renderer)villagerMeshRenderer).material.SetTexture("_TopTexture", Plugin.Skins[skinIndex].TopTextures[index]);
+		if ((Object)(object)playerCustom != (Object)null)
+		{
+			if (NetworkBool.op_Implicit(playerCustom.Petrified))
+			{
+				((Renderer)villagerMeshRenderer).material.SetTexture("_SkinTexture", Plugin.Skins[skinIndex].SkinPetrified);
+				((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = PlayerCustom.SkinColorPetrified;
+			}
+			else if (playerCustom.HasZombieColor)
+			{
+				((Renderer)villagerMeshRenderer).material.SetTexture("_SkinTexture", Plugin.Skins[skinIndex].SkinZombified);
+				((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = PlayerCustom.SkinColorZombieWolf;
+			}
+			else if (NetworkBool.op_Implicit(playerCustom.Poison))
+			{
+				((Renderer)villagerMeshRenderer).material.SetTexture("_SkinTexture", Plugin.Skins[skinIndex].SkinPoisoned);
+				((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = PlayerCustom.SkinColorPoison;
+			}
+			else
+			{
+				((Renderer)Traverse.Create((object)playerCustom.PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = playerCustom.WolfColor;
+			}
+		}
 	}
 
 	public static void UpdateVillagerHat(SkinnedMeshRenderer villagerMeshRenderer, int hatIndex)
@@ -228,7 +289,7 @@ public static class LycansUtility
 			.Find("HatsContainer")
 			.Find("Hats");
 		int childCount = ((Component)val).transform.childCount;
-		foreach (object item in ((Component)val).transform)
+		foreach (object? item in ((Component)val).transform)
 		{
 			((Component)(Transform)item).gameObject.SetActive(false);
 		}

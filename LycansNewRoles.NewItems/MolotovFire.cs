@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Fusion;
+using HarmonyLib;
 using UnityEngine;
 
 namespace LycansNewRoles.NewItems;
@@ -79,8 +80,10 @@ public class MolotovFire : NetworkBehaviour
 		//IL_00d1: Invalid comparison between Unknown and I4
 		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d9: Invalid comparison between Unknown and I4
-		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
 		if ((int)GameManager.LocalGameState == 5 || (int)GameManager.LocalGameState == 1 || (int)GameManager.LocalGameState == 0)
 		{
 			((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
@@ -104,10 +107,14 @@ public class MolotovFire : NetworkBehaviour
 				IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.Phasing));
 				foreach (PlayerCustom item in enumerable)
 				{
-					float num2 = Vector3.Distance(((Component)this).transform.position, ((Component)item.PlayerController).transform.position);
-					if (num2 <= 2f)
+					TickTimer value = Traverse.Create((object)item.PlayerController).Property<TickTimer>("WolfDelay", (object[])null).Value;
+					if (!((TickTimer)(ref value)).IsRunning)
 					{
-						PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectBurning", ((SimulationBehaviour)this).Runner, 1f, _burnDuration);
+						float num2 = Vector3.Distance(((Component)this).transform.position, ((Component)item.PlayerController).transform.position);
+						if (num2 <= 2f)
+						{
+							PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectBurning", ((SimulationBehaviour)this).Runner, 1f, _burnDuration);
+						}
 					}
 				}
 			}

@@ -38,7 +38,8 @@ internal class LightingManagerFixedUpdateNetworkPatch
 		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
 		if (!NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(DraftManager.Instance.Active) && ((SimulationBehaviour)__instance).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.Instance.IsFinished) && (int)GameManager.State.Current == 2 && !NetworkBool.op_Implicit(__instance.IsTransition))
 		{
 			float num = (NetworkBool.op_Implicit(__instance.IsNight) ? GameManager.Instance.NightDuration : GameManager.Instance.DayDuration);
@@ -46,6 +47,10 @@ internal class LightingManagerFixedUpdateNetworkPatch
 			if (NetworkBool.op_Implicit(VoodooManager.Instance.VoodooActive))
 			{
 				num2 *= 0.5f;
+			}
+			else if (NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
+			{
+				num2 *= 1.2f;
 			}
 			else if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Eclipse)
 			{

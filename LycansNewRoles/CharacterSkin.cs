@@ -17,5 +17,11 @@ public class CharacterSkin
 
 	public List<Texture> SkinTextures = new List<Texture>();
 
+	public Texture SkinPetrified;
+
+	public Texture SkinZombified;
+
+	public Texture SkinPoisoned;
+
 	public List<Texture> TopTextures = new List<Texture>();
 }

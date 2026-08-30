@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.346")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.348")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -264,6 +264,8 @@ public class Plugin : BaseUnityPlugin
 		//IL_2112: Unknown result type (might be due to invalid IL or missing references)
 		//IL_3067: Unknown result type (might be due to invalid IL or missing references)
 		//IL_30a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3737: Unknown result type (might be due to invalid IL or missing references)
+		//IL_37bd: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -1039,6 +1041,9 @@ public class Plugin : BaseUnityPlugin
 						characterSkin.SkinTextures.Add(skinBundle.LoadAsset<Texture>(item2));
 						Logger.LogInfo((object)("Added skin texture: " + item2));
 					}
+					characterSkin.SkinPetrified = skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_petrified.png");
+					characterSkin.SkinZombified = skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_zombie.png");
+					characterSkin.SkinPoisoned = skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_poison.png");
 					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_blue.png"));
 					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_green.png"));
 					characterSkin.TopTextures.Add(skinBundle.LoadAsset<Texture>(assetTexturePrefix + "_yellow.png"));
@@ -1054,6 +1059,18 @@ public class Plugin : BaseUnityPlugin
 					Skins.Add(characterSkin);
 					Logger.LogInfo((object)("Added skin: " + ((object)characterSkin.SkinMeshRenderer)?.ToString() + " as index " + Skins.IndexOf(characterSkin)));
 				}
+			}
+			if (!MapManager.NewMapsByIdInfo.ContainsKey(1))
+			{
+				GameObject val76 = NewMapsCoreBundle.LoadAsset<GameObject>("minimap1");
+				val76.SetActive(true);
+				MapManager.NewMapsByIdInfo[1] = new CustomMap(1, "map_1", val76.transform.Find("OffsetMultiplier"), val76.transform.Find("CameraOffset"), val76.transform.Find("Rotation"), val76.transform.localScale);
+			}
+			if (!MapManager.NewMapsByIdInfo.ContainsKey(2))
+			{
+				GameObject val77 = NewMapsCoreBundle.LoadAsset<GameObject>("minimap2");
+				val77.SetActive(true);
+				MapManager.NewMapsByIdInfo[2] = new CustomMap(2, "map_2", val77.transform.Find("OffsetMultiplier"), val77.transform.Find("CameraOffset"), val77.transform.Find("Rotation"), val77.transform.localScale);
 			}
 			List<Transform> list2 = Traverse.Create((object)GameManager.Instance).Field<Transform[]>("mapSpawns").Value.ToList();
 			foreach (int key in NewMapPathById.Keys)

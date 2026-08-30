@@ -39,7 +39,7 @@ public class GameUIAwakePatch
 		try
 		{
 			TextMeshProUGUI value = Traverse.Create((object)__instance).Field<TextMeshProUGUI>("mmVersionText").Value;
-			((TMP_Text)value).text = ((TMP_Text)value).text + Environment.NewLine + "New Roles 0.346";
+			((TMP_Text)value).text = ((TMP_Text)value).text + Environment.NewLine + "New Roles 0.348";
 			GameObject value2 = Traverse.Create((object)__instance).Field<GameObject>("playersContainer").Value;
 			value2.transform.position = new Vector3(value2.transform.position.x, value2.transform.position.y + 250f, value2.transform.position.z);
 			GameObject val = Plugin.NewRolesCoreBundle.LoadAsset<GameObject>("Timer");
@@ -160,6 +160,7 @@ public class GameUIAwakePatch
 			UILastGameSummaryKill.DeathTypeSpriteZombie = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("DeathZombie");
 			UILastGameSummaryKill.DeathTypeSpriteInquisitorBurn = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("DeathInquisitorGuess");
 			UILastGameSummaryKill.DeathTypeSpriteAssassin = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("DeathAssassin");
+			RefreshItemUIPatch.UnknownItemSprite = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("UnknownItemSprite");
 			UIManager.KidnappedPlayerIcon = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("KidnapperIcon");
 		}
 		catch (Exception ex)

@@ -404,12 +404,13 @@ public class DraftManager : NetworkBehaviour
 		//IL_0243: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d3: Invalid comparison between Unknown and I4
-		//IL_090d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0912: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0677: Unknown result type (might be due to invalid IL or missing references)
-		//IL_091e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0923: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0964: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0981: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0986: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0992: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0997: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09d8: Unknown result type (might be due to invalid IL or missing references)
 		PlayerDraftData playerDraftData = PlayersDraftDataByPlayerIndex[playerIndex];
 		playerDraftData.SelectionDone = true;
 		PlayerCustom playerCustom = PlayerCustomRegistry.GetPlayer(playerIndex);
@@ -467,7 +468,13 @@ public class DraftManager : NetworkBehaviour
 			}
 			else
 			{
-				playerDraftData.SelectedSecondaryRole = PlayerCustom.PlayerSecondaryRole.None;
+				List<PlayerCustom.PlayerSecondaryRole> list2 = (from o in PlayerCustom.GetAvailableSecondaryRoles(playerCustom.PlayerController.Role, playerCustom.NewPrimaryRole, playerCustom.PrimaryRolePower)
+					where Plugin.CustomConfig.SecondaryRoleActive[o]
+					select o).ToList();
+				if (list2.Any())
+				{
+					playerDraftData.SelectedSecondaryRole = CollectionsUtil.Grab<PlayerCustom.PlayerSecondaryRole>(list2, 1).First();
+				}
 			}
 		}
 		playerCustom.GiveSecondaryRole(playerDraftData.SelectedSecondaryRole);

@@ -22,7 +22,7 @@ public class UIMayorPanelForOthers : MonoBehaviour
 	{
 		_panel = ((Component)((Component)this).transform.Find("Panel")).gameObject;
 		((TMP_Text)((Component)_panel.transform.Find("VoteText")).GetComponent<TextMeshProUGUI>()).text = TranslationManager.Instance.GetTranslation("NALES_MAYOR_VOTE").Replace("{0}", LycansUtility.GetInputDisplayCustom(InputManagerExtra.Instance.GetAction("SECONDARYROLEPOWER")).Replace(" -", ""));
-		_textMayor = ((Component)_panel.transform.Find("MayorText")).GetComponent<TextMeshProUGUI>();
+		_textMayor = ((Component)_panel.transform.Find("MayorPanel").Find("MayorText")).GetComponent<TextMeshProUGUI>();
 		_textCurrentVote = ((Component)_panel.transform.Find("CurrentVoteText")).GetComponent<TextMeshProUGUI>();
 		_textDestitutionCount = ((Component)_panel.transform.Find("DestitutionCountText")).GetComponent<TextMeshProUGUI>();
 		_textDifferentCount = ((Component)_panel.transform.Find("DifferentCountText")).GetComponent<TextMeshProUGUI>();

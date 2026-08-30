@@ -216,7 +216,7 @@ public class PlayerSummonedSpiritComponent : NetworkBehaviour
 		PlayerCustom.PlayerNewPrimaryRole playerNewPrimaryRole = newPrimaryRole;
 		if (playerNewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Cultist)
 		{
-			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = 1.75f;
+			((NetworkCharacterControllerPrototypeCustom)((Component)changed.Behaviour).GetComponent<PlayerSummonedSpiritNetworkCharacterController>()).maxSpeed = 1.8f;
 		}
 		changed.Behaviour._playerCustom.SummonedSpirit = changed.Behaviour;
 		changed.Behaviour.SetFocus(focus: true);

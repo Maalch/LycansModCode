@@ -262,7 +262,7 @@ public class MagicianIllusion : NetworkBehaviour
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(changed.Behaviour.TargetRef);
 			SkinnedMeshRenderer villagerMeshRenderer = LycansUtility.UpdateVillagerSkin(changed.Behaviour._villagerMeshRenderer, player.SkinIndex, null);
 			changed.Behaviour._villagerMeshRenderer = villagerMeshRenderer;
-			LycansUtility.UpdateVillagerSkinColor(changed.Behaviour._villagerMeshRenderer, player.SkinIndex, player.SkinColorIndex, player.ColorIndex);
+			LycansUtility.UpdateVillagerSkinColor(changed.Behaviour._villagerMeshRenderer, player.SkinIndex, player.SkinColorIndex, player.ColorIndex, null);
 			int hatIndex = (int)Traverse.Create((object)player.PlayerController).Property("HatIndex", (object[])null).GetValue();
 			LycansUtility.UpdateVillagerHat(changed.Behaviour._villagerMeshRenderer, hatIndex);
 			changed.Behaviour.UpdateVisibility();

@@ -337,9 +337,7 @@ public static class BalancingValues
 
 	public const int CultistGoal = 10000;
 
-	public const float CultistChargeGainPerSecondPerSkull = 15f;
-
-	public const float CultistSpiritMoveSpeed = 1.75f;
+	public const float CultistSpiritMoveSpeed = 1.8f;
 
 	public const float CultistSpiritCaptureCooldown = 2f;
 
@@ -353,9 +351,9 @@ public static class BalancingValues
 
 	public const float CultistInvokedSkullLifetime = 45f;
 
-	public const float CultistInvokedSkullMoveSpeed = 3.6f;
+	public const float CultistInvokedSkullMoveSpeed = 3f;
 
-	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1.3f;
+	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1f;
 
 	public const float CultistInvokedSkullSlowDuration = 2f;
 
@@ -368,6 +366,8 @@ public static class BalancingValues
 	public const float CultistSkullDestructionCooldownMultiplication = 0.5f;
 
 	public const float CultistFreeCastTime = 2f;
+
+	public const float CultistHuntTimeSpeedMultiplier = 1.2f;
 
 	public const float CultistSkullForbiddenAreaRadius = 10f;
 
@@ -2134,6 +2134,19 @@ public static class BalancingValues
 		return Mathf.Min(num, num2);
 	}
 
+	public static float CultistChargeGainForSkullsCount(int skullsCount)
+	{
+		return skullsCount switch
+		{
+			0 => 0f, 
+			1 => 20f, 
+			2 => 33f, 
+			3 => 42f, 
+			4 => 50f, 
+			_ => 56f, 
+		};
+	}
+
 	public static float CultistSkullCreationCooldown(int currentSkulls)
 	{
 		return currentSkulls switch
@@ -2740,7 +2753,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => 200, 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Runemaster => 2, 
-			PlayerCustom.PlayerPrimaryRolePower.Inventor => 3, 
+			PlayerCustom.PlayerPrimaryRolePower.Inventor => 2, 
 			PlayerCustom.PlayerPrimaryRolePower.Spotter => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Purifier => 3, 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => 100, 

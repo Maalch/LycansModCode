@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Fusion;
+using HarmonyLib;
 using UnityEngine;
 
 namespace LycansNewRoles.NewItems;
@@ -81,7 +82,9 @@ public class PurifierFire : NetworkBehaviour
 		//IL_00d9: Invalid comparison between Unknown and I4
 		//IL_0174: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0204: Unknown result type (might be due to invalid IL or missing references)
 		if ((int)GameManager.LocalGameState == 5 || (int)GameManager.LocalGameState == 1 || (int)GameManager.LocalGameState == 0)
 		{
 			((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
@@ -106,7 +109,12 @@ public class PurifierFire : NetworkBehaviour
 				foreach (PlayerCustom item in enumerable)
 				{
 					float num2 = Vector3.Distance(((Component)this).transform.position, ((Component)item.PlayerController).transform.position);
-					if (num2 <= 2f)
+					if (!(num2 <= 2f))
+					{
+						continue;
+					}
+					TickTimer value = Traverse.Create((object)item.PlayerController).Property<TickTimer>("WolfDelay", (object[])null).Value;
+					if (!((TickTimer)(ref value)).IsRunning)
 					{
 						PlayerCustom.ApplyEffectToPlayer(item.PlayerController, "LycansNewRoles.EffectPurifierBurn", ((SimulationBehaviour)this).Runner, 1f, _burnDuration);
 						if (NetworkBool.op_Implicit(item.PlayerController.IsWolf))

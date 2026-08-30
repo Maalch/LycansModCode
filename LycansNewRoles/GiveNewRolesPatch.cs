@@ -851,7 +851,7 @@ internal class GiveNewRolesPatch
 				{
 					allPlayer6.ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
 					allPlayer6.HasZombieColor = false;
-					allPlayer6.UpdateSkinColoration();
+					allPlayer6.UpdateSkinColor();
 					allPlayer6.UpdateVisibility();
 					allPlayer6.UpdateScaleAndPitch();
 				}
@@ -1002,15 +1002,15 @@ internal class GiveNewRolesPatch
 			//IL_007d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0571: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06ff: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0714: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0720: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0735: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06b1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_06d2: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0165: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0347: Unknown result type (might be due to invalid IL or missing references)
-			//IL_064e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_066f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0434: Unknown result type (might be due to invalid IL or missing references)
@@ -1113,16 +1113,26 @@ internal class GiveNewRolesPatch
 				{
 					if (NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 					{
-						List<SabotageSingle> list = SabotageManager.Instance.Sabotages.Values.Where((SabotageSingle o) => o.CanActivate).ToList();
+						List<SabotageSingle> list = SabotageManager.Instance.Sabotages.Values.Where((SabotageSingle o) => o.CanActivate || o.Completed).ToList();
 						List<SabotageSingle> list2 = new List<SabotageSingle>();
 						foreach (SabotageSingle item16 in list)
 						{
-							float num = (float)item16.AmountCurrent / (float)item16.AmountRequired;
-							if (Random.value < num)
+							if (item16.Completed)
 							{
 								list2.Add(item16);
 							}
-							item16.CanActivate = false;
+							else
+							{
+								float num = (float)item16.AmountCurrent / (float)item16.AmountRequired;
+								if (Random.value < num)
+								{
+									list2.Add(item16);
+								}
+								else
+								{
+									item16.CanActivate = false;
+								}
+							}
 						}
 						if (list2.Any())
 						{

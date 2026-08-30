@@ -1,3 +1,4 @@
+using Fusion;
 using HarmonyLib;
 using LycansNewRoles.NewItems;
 using LycansNewRoles.NewItems.Accessories;
@@ -9,77 +10,93 @@ namespace LycansNewRoles;
 [HarmonyPatch(typeof(PlayerController), "RefreshItemUI")]
 internal class RefreshItemUIPatch
 {
+	public static Sprite UnknownItemSprite;
+
 	private static void Postfix(PlayerController __instance)
 	{
-		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008d: Unknown result type (might be due to invalid IL or missing references)
-		if ((int)GameManager.LocalGameState == 0 || !((Object)(object)PlayerController.Local != (Object)null) || !((Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer == (Object)(object)__instance))
+		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0068: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		if (NetworkBool.op_Implicit(PlayerCustom.Local.Possessed))
 		{
-			return;
+			GameUI gameUI = GameManager.Instance.gameUI;
+			gameUI.UpdateItemSprite(UnknownItemSprite);
+			gameUI.UpdateItemQuantity(0);
+			gameUI.UpdateItemTimer(-1);
+			UIManager.ItemDetailsPanel.Hide();
+			UIManager.ItemSecondaryPanel.Hide();
+			((Component)UIManager.SecondItemPanel).gameObject.SetActive(false);
 		}
-		if ((Object)(object)__instance.Item != (Object)null)
+		else
 		{
-			string itemDetails = GetItemDetails(__instance.Item);
-			if (itemDetails != null)
+			if ((int)GameManager.LocalGameState == 0 || !((Object)(object)PlayerController.Local != (Object)null) || !((Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer == (Object)(object)__instance))
 			{
-				UIManager.ItemDetailsPanel.Show(itemDetails);
+				return;
+			}
+			if ((Object)(object)__instance.Item != (Object)null)
+			{
+				string itemDetails = GetItemDetails(__instance.Item);
+				if (itemDetails != null)
+				{
+					UIManager.ItemDetailsPanel.Show(itemDetails);
+				}
+				else
+				{
+					UIManager.ItemDetailsPanel.Hide();
+				}
 			}
 			else
 			{
 				UIManager.ItemDetailsPanel.Hide();
 			}
-		}
-		else
-		{
-			UIManager.ItemDetailsPanel.Hide();
-		}
-		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
-		if ((Object)(object)player.PlacedSleepingGas != (Object)null && !player.PlacedSleepingGas.Detonated)
-		{
-			UIManager.ItemSecondaryPanel.Show(LycansUtility.GetInputDisplayCustom(InputManagerExtra.Instance.Actions["ITEMSECONDARY"]));
-		}
-		else
-		{
-			UIManager.ItemSecondaryPanel.Hide();
-		}
-		UIManager.AccessoryPanel.UpdateAccessory(player);
-		if (player.Accessory is AccessoryBackpack accessoryBackpack)
-		{
-			((Component)UIManager.SecondItemPanel).gameObject.SetActive(true);
-			if ((Object)(object)accessoryBackpack.ItemInside != (Object)null)
+			PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
+			if ((Object)(object)player.PlacedSleepingGas != (Object)null && !player.PlacedSleepingGas.Detonated)
 			{
-				((Behaviour)UIManager.SecondItemPanel.Image).enabled = true;
-				UIManager.SecondItemPanel.Image.sprite = accessoryBackpack.ItemInside.Sprite();
-				if (accessoryBackpack.ItemInside.ItemQuantity > 1)
+				UIManager.ItemSecondaryPanel.Show(LycansUtility.GetInputDisplayCustom(InputManagerExtra.Instance.Actions["ITEMSECONDARY"]));
+			}
+			else
+			{
+				UIManager.ItemSecondaryPanel.Hide();
+			}
+			UIManager.AccessoryPanel.UpdateAccessory(player);
+			if (player.Accessory is AccessoryBackpack accessoryBackpack)
+			{
+				((Component)UIManager.SecondItemPanel).gameObject.SetActive(true);
+				if ((Object)(object)accessoryBackpack.ItemInside != (Object)null)
 				{
-					((TMP_Text)UIManager.SecondItemPanel.Quantity).text = "x" + accessoryBackpack.ItemInside.ItemQuantity;
-					((Behaviour)UIManager.SecondItemPanel.Quantity).enabled = true;
+					((Behaviour)UIManager.SecondItemPanel.Image).enabled = true;
+					UIManager.SecondItemPanel.Image.sprite = accessoryBackpack.ItemInside.Sprite();
+					if (accessoryBackpack.ItemInside.ItemQuantity > 1)
+					{
+						((TMP_Text)UIManager.SecondItemPanel.Quantity).text = "x" + accessoryBackpack.ItemInside.ItemQuantity;
+						((Behaviour)UIManager.SecondItemPanel.Quantity).enabled = true;
+					}
+					else
+					{
+						((Behaviour)UIManager.SecondItemPanel.Quantity).enabled = false;
+					}
+					string itemDetails2 = GetItemDetails(accessoryBackpack.ItemInside);
+					if (itemDetails2 != null)
+					{
+						((Behaviour)UIManager.SecondItemPanel.DetailsText).enabled = true;
+						((TMP_Text)UIManager.SecondItemPanel.DetailsText).text = itemDetails2;
+					}
+					else
+					{
+						((Behaviour)UIManager.SecondItemPanel.DetailsText).enabled = false;
+					}
 				}
 				else
 				{
+					((Behaviour)UIManager.SecondItemPanel.Image).enabled = false;
 					((Behaviour)UIManager.SecondItemPanel.Quantity).enabled = false;
-				}
-				string itemDetails2 = GetItemDetails(accessoryBackpack.ItemInside);
-				if (itemDetails2 != null)
-				{
-					((Behaviour)UIManager.SecondItemPanel.DetailsText).enabled = true;
-					((TMP_Text)UIManager.SecondItemPanel.DetailsText).text = itemDetails2;
-				}
-				else
-				{
 					((Behaviour)UIManager.SecondItemPanel.DetailsText).enabled = false;
 				}
 			}
 			else
 			{
-				((Behaviour)UIManager.SecondItemPanel.Image).enabled = false;
-				((Behaviour)UIManager.SecondItemPanel.Quantity).enabled = false;
-				((Behaviour)UIManager.SecondItemPanel.DetailsText).enabled = false;
+				((Component)UIManager.SecondItemPanel).gameObject.SetActive(false);
 			}
-		}
-		else
-		{
-			((Component)UIManager.SecondItemPanel).gameObject.SetActive(false);
 		}
 	}
 

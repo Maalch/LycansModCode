@@ -27,7 +27,7 @@ public class UIMayorPanelForMayor : MonoBehaviour
 	private void Start()
 	{
 		_panel = ((Component)((Component)this).transform.Find("Panel")).gameObject;
-		_textMayor = ((Component)_panel.transform.Find("MayorText")).GetComponent<TextMeshProUGUI>();
+		_textMayor = ((Component)_panel.transform.Find("MayorPanel").Find("MayorText")).GetComponent<TextMeshProUGUI>();
 		((TMP_Text)((Component)_panel.transform.Find("ChangeActionText")).GetComponent<TextMeshProUGUI>()).text = TranslationManager.Instance.GetTranslation("NALES_MAYOR_CHANGE_ACTION").Replace("{0}", LycansUtility.GetInputDisplayCustom((InputActionName)11).Replace(" -", ""));
 		_actionsContainer = ((Component)_panel.transform.Find("ActionsContainer")).gameObject;
 		_textCooldown = ((Component)_panel.transform.Find("CooldownText")).GetComponent<TextMeshProUGUI>();

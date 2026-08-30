@@ -42,7 +42,12 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 	public void PlaceDevice(PlayerRef inventorRef)
 	{
 		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		_playerCustom.InventorDeviceRef = inventorRef;
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		if (_playerCustom.InventorDeviceRef == PlayerRef.None)
+		{
+			_playerCustom.InventorDeviceRef = inventorRef;
+		}
 		_destructionWatch.Reset();
 		_nextSmokeWatch.Reset();
 	}
