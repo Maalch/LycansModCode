@@ -157,7 +157,7 @@ public class MerchantOffer
 		}
 		case MerchantOfferType.PriestProtection:
 			merchantOffer.TypeIndex = null;
-			merchantOffer.Price = 20;
+			merchantOffer.Price = 15;
 			break;
 		case MerchantOfferType.Heal:
 			merchantOffer.TypeIndex = null;

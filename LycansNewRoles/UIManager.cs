@@ -97,6 +97,10 @@ public static class UIManager
 
 	public static UISecondItemPanel SecondItemPanel;
 
+	public static UISpectatorPanel SpectatorPanel;
+
+	public static UISpectatorChoicePanel SpectatorChoicePanel;
+
 	public static Sprite DefaultDeadPlayerIcon;
 
 	public static Sprite KidnappedPlayerIcon;
@@ -174,6 +178,7 @@ public static class UIManager
 		MayorPanelForMayor.Hide();
 		MayorPanelForOthers.Hide();
 		DeadRolePanel.Hide();
+		SpectatorChoicePanel.Hide();
 		if (Cursor.visible)
 		{
 			GameManager.Instance.gameUI.UpdateCursor(false);

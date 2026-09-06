@@ -58,7 +58,7 @@ internal class TransformChangesPatch
 	private static void Postfix(PlayerController __instance)
 	{
 		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
 		//IL_009f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
@@ -67,21 +67,15 @@ internal class TransformChangesPatch
 		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f9: Expected O, but got Unknown
 		//IL_0108: Unknown result type (might be due to invalid IL or missing references)
-		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0150: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0155: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0169: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0172: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0288: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0251: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0161: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0265: Unknown result type (might be due to invalid IL or missing references)
+		//IL_022e: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)__instance).Object.HasStateAuthority)
 		{
 			return;
@@ -99,13 +93,7 @@ internal class TransformChangesPatch
 			}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 			((Component)val).GetComponent<DeceiverIllusionComponent>().SetCreatorRef(__instance.Ref);
 			DiscipleAnchor discipleAnchor = Object.FindObjectsOfType<DiscipleAnchor>().FirstOrDefault((DiscipleAnchor o) => o.CreatorRef == playerCustom.Ref);
-			CharacterMovementHandler characterMovementHandler = __instance.CharacterMovementHandler;
-			NetworkTeleportData secondaryRoleTeleportData = playerCustom.SecondaryRoleTeleportData;
-			Vector3 position = ((NetworkTeleportData)(ref secondaryRoleTeleportData)).Position;
-			secondaryRoleTeleportData = playerCustom.SecondaryRoleTeleportData;
-			Quaternion rotation = ((NetworkTeleportData)(ref secondaryRoleTeleportData)).Rotation;
-			secondaryRoleTeleportData = playerCustom.SecondaryRoleTeleportData;
-			characterMovementHandler.TeleportData = new NetworkTeleportData(position, rotation, ((NetworkTeleportData)(ref secondaryRoleTeleportData)).ResetLook);
+			__instance.CharacterMovementHandler.TeleportData = new NetworkTeleportData(((Component)discipleAnchor).transform.position, ((Component)discipleAnchor).transform.rotation, false);
 			__instance.IsClimbing = NetworkBool.op_Implicit(false);
 		}
 		if (!NetworkBool.op_Implicit(__instance.IsWolf))

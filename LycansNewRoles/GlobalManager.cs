@@ -176,6 +176,8 @@ public static class GlobalManager
 
 	public const string StrengthenedEffectName = "LycansNewRoles.EffectStrengthened";
 
+	public const string SanctuaryEffectName = "LycansNewRoles.EffectSanctuary";
+
 	public const string DeceiverIllusionName = "LycansNewRoles.GameObjectDeceiverIllusion";
 
 	public const string AstralSpiritName = "LycansNewRoles.GameObjectAstralSpirit";

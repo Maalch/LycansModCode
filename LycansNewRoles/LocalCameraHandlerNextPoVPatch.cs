@@ -10,7 +10,7 @@ internal class LocalCameraHandlerNextPoVPatch
 {
 	private static bool Prefix(LocalCameraHandler __instance, bool forward)
 	{
-		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost || PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Specter)
+		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost || PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Specter || UIManager.SpectatorChoicePanel.Active)
 		{
 			return false;
 		}

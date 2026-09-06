@@ -91,6 +91,11 @@ internal class LocalCameraHandlerSwitchPoVPatch
 				UIManager.DetectivePanel.Hide();
 				GameManager.Instance.gameUI.UpdateCursor(false);
 			}
+			if (UIManager.SpectatorChoicePanel.Active)
+			{
+				UIManager.SpectatorChoicePanel.Hide();
+				GameManager.Instance.gameUI.UpdateCursor(false);
+			}
 		}
 		catch (Exception ex)
 		{

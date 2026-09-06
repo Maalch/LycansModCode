@@ -25,7 +25,7 @@ public class GameManagerCustom : NetworkBehaviour
 
 	public float SoloRoleDifficulty = 1f;
 
-	public int GhostsCreated = 0;
+	public int GhostsDestroyed = 0;
 
 	public Dictionary<int, int> TransformationsAmountByDay = new Dictionary<int, int>();
 
@@ -156,7 +156,7 @@ public class GameManagerCustom : NetworkBehaviour
 	{
 		CurrentDay = 0;
 		SoloRoleDifficulty = 1f;
-		GhostsCreated = 0;
+		GhostsDestroyed = 0;
 	}
 
 	public void NewGame()
@@ -177,27 +177,45 @@ public class GameManagerCustom : NetworkBehaviour
 		{
 			foreach (DeceiverIllusionComponent illusion in DeceiverIllusionComponent.Illusions)
 			{
-				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)illusion).GetComponent<NetworkObject>(), false);
+				if (!((Object)(object)illusion == (Object)null))
+				{
+					((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)illusion).GetComponent<NetworkObject>(), false);
+				}
 			}
 			foreach (MerchantCoin allCoin in MerchantCoin.AllCoins)
 			{
-				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allCoin).GetComponent<NetworkObject>(), false);
+				if (!((Object)(object)allCoin == (Object)null))
+				{
+					((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allCoin).GetComponent<NetworkObject>(), false);
+				}
 			}
 			foreach (InvestigatorHint allHint in InvestigatorHint.AllHints)
 			{
-				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHint).GetComponent<NetworkObject>(), false);
+				if (!((Object)(object)allHint == (Object)null))
+				{
+					((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHint).GetComponent<NetworkObject>(), false);
+				}
 			}
 			foreach (SurvivalistHint allHint2 in SurvivalistHint.AllHints)
 			{
-				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHint2).GetComponent<NetworkObject>(), false);
+				if (!((Object)(object)allHint2 == (Object)null))
+				{
+					((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHint2).GetComponent<NetworkObject>(), false);
+				}
 			}
 			foreach (HermitHideout allHideout in HermitHideout.AllHideouts)
 			{
-				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHideout).GetComponent<NetworkObject>(), false);
+				if (!((Object)(object)allHideout == (Object)null))
+				{
+					((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allHideout).GetComponent<NetworkObject>(), false);
+				}
 			}
 			foreach (InventorScrap allScrap in InventorScrap.AllScraps)
 			{
-				((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allScrap).GetComponent<NetworkObject>(), false);
+				if (!((Object)(object)allScrap == (Object)null))
+				{
+					((SimulationBehaviour)GameManager.Instance).Runner.Despawn(((Component)allScrap).GetComponent<NetworkObject>(), false);
+				}
 			}
 		}
 		DeceiverIllusionComponent.Illusions.Clear();
@@ -1116,6 +1134,68 @@ public class GameManagerCustom : NetworkBehaviour
 		num += 4;
 		NetworkBehaviourUtils.InvokeRpc = true;
 		Rpc_Mayor_Action(runner, playerIndex, targetPlayerIndex, actionIndex);
+	}
+
+	[Rpc]
+	public unsafe static void Rpc_Ask_For_Speech(NetworkRunner runner, int playerIndex)
+	{
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Invalid comparison between Unknown and I4
+		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0136: Unknown result type (might be due to invalid IL or missing references)
+		if (NetworkBehaviourUtils.InvokeRpc)
+		{
+			NetworkBehaviourUtils.InvokeRpc = false;
+		}
+		else
+		{
+			if ((Object)(object)runner == (Object)null)
+			{
+				throw new ArgumentNullException("runner");
+			}
+			if ((int)runner.Stage == 4)
+			{
+				return;
+			}
+			if (runner.HasAnyActiveConnections())
+			{
+				int num = 12;
+				SimulationMessage* ptr = SimulationMessage.Allocate(runner.Simulation, num);
+				byte* data = SimulationMessage.GetData(ptr);
+				int num2 = RpcHeader.Write(RpcHeader.Create(NetworkBehaviourUtils.GetRpcStaticIndexOrThrow("System.Void LycansNewRoles.GameManagerCustom::Rpc_Ask_For_Speech(Fusion.NetworkRunner,System.Int32)")), data);
+				*(int*)(data + num2) = playerIndex;
+				num2 += 4;
+				((SimulationMessage)ptr).Offset = num2 * 8;
+				((SimulationMessage)ptr).SetStatic();
+				runner.SendRpc(ptr);
+			}
+		}
+		PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerIndex);
+		if (!player.AskForSpeechActive && !player.AskForSpeechUsedThisMeeting && !(Instance.CurrentMayor == player.Ref))
+		{
+			player.AskForSpeechActive = true;
+			player.AskForSpeechUsedThisMeeting = true;
+			player.UpdateIconAbovePlayer(visible: true);
+			if (player.IsCurrentlyPlayedOrObserved)
+			{
+				UIManager.MayorPanelForOthers.UpdateAskForSpeech(available: false);
+			}
+			AudioManager.PlayPosition("VILLAGER", ((Component)player.PlayerController).transform.position, (MixerTarget)2, 50f, 1f);
+		}
+	}
+
+	[NetworkRpcStaticWeavedInvoker("System.Void LycansNewRoles.GameManagerCustom::Rpc_Ask_For_Speech(Fusion.NetworkRunner,System.Int32)")]
+	[Preserve]
+	protected unsafe static void Rpc_Ask_For_Speech_0040Invoker(NetworkRunner runner, SimulationMessage* message)
+	{
+		byte* data = SimulationMessage.GetData(message);
+		int num = (RpcHeader.ReadSize(data) + 3) & -4;
+		int playerIndex = *(int*)(data + num);
+		num += 4;
+		NetworkBehaviourUtils.InvokeRpc = true;
+		Rpc_Ask_For_Speech(runner, playerIndex);
 	}
 
 	[Rpc(/*Could not decode attribute arguments.*/)]

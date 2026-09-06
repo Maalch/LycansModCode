@@ -860,7 +860,7 @@ public static class BalancingValues
 
 	public const float TinkererCrystalBallTruesightDurationWolfForm = 45f;
 
-	public const int MerchantPriestProtectionCost = 20;
+	public const int MerchantPriestProtectionCost = 15;
 
 	public const int MerchantHealCost = 20;
 
@@ -966,27 +966,13 @@ public static class BalancingValues
 
 	public const float PriestProtectRange = 2.5f;
 
-	public const float PriestProtectDownedDuration = 2f;
+	public const float PriestHungerPercentageWhenAttacked = 0.395f;
 
-	public const float PriestProtectEliteDownedDuration = 1f;
+	public const float PriestSanctuaryDurationForNonElites = 8f;
 
-	public const float PriestProtectionKnockbackPower = 6f;
+	public const float PriestSanctuaryDurationForElites = 5f;
 
-	public const float PriestProtectionKnockbackReductionPerSecond = 3f;
-
-	public const float PriestProtectionEliteKnockbackPower = 4f;
-
-	public const float PriestProtectionEliteKnockbackReductionPerSecond = 2f;
-
-	public const float PriestProtectionForcedRotationPower = 4000f;
-
-	public const float PriestProtectionForcedRotationReductionPerSecond = 3000f;
-
-	public const float PriestProtectionFleeingDuration = 6f;
-
-	public const float PriestProtectionEliteFleeingDuration = 4f;
-
-	public const float PriestResilienceDuration = 14f;
+	public const float PriestSanctuaryMovementSpeedMultiplier = 1.65f;
 
 	public const float ScoutPlaceRadarCastTime = 2f;
 
@@ -1746,6 +1732,14 @@ public static class BalancingValues
 			{
 				Duration = 600f,
 				Ponderation = 2
+			}
+		},
+		{
+			AccessorySpellbook.PossibleEffects.WolfIllusion,
+			new AccessorySpellbook.SpellbookEffectDetails
+			{
+				Duration = 3f,
+				Ponderation = 1
 			}
 		}
 	};
@@ -2583,7 +2577,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(30, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(100, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(80, 2.5f, 1.556f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => new PowerMaterialsInfo(100, 2f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Survivalist => new PowerMaterialsInfo(10000, 1.5f, 1.306f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Scout => new PowerMaterialsInfo(120, 1.5f, 1.256f, gainsMaterialsOnCollect: true, 0f), 

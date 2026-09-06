@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.348")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.350")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -258,14 +258,14 @@ public class Plugin : BaseUnityPlugin
 		//IL_01ba: Expected O, but got Unknown
 		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01eb: Expected O, but got Unknown
-		//IL_20ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_20c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_20f6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_2112: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3067: Unknown result type (might be due to invalid IL or missing references)
-		//IL_30a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3737: Unknown result type (might be due to invalid IL or missing references)
-		//IL_37bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2110: Unknown result type (might be due to invalid IL or missing references)
+		//IL_212c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_30cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_310d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_379b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3821: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -378,6 +378,7 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectMoleClock", typeof(MoleClockEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectJump", typeof(JumpEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectStrengthened", typeof(StrenghtenedEffect), 30f);
+			AddEffectToList("LycansNewRoles.EffectSanctuary", typeof(SanctuaryEffect), 3600f);
 			GameObject val13 = AddEffectToList("LycansNewRoles.EffectDeafness", typeof(DeafnessEffect), 60f);
 			GameObject val14 = AddEffectToList("LycansNewRoles.EffectMidas", typeof(MidasEffect), 60f);
 			GameObject val15 = AddEffectToList("LycansNewRoles.EffectVampire", typeof(VampireEffect), 35f);
@@ -758,6 +759,10 @@ public class Plugin : BaseUnityPlugin
 			RunemasterRune.ActivationParticleSystemPrefab.SetActive(false);
 			PlayerCustom.ConfusedParticleSystemPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("ConfusedParticleSystem"));
 			PlayerCustom.ConfusedParticleSystemPrefab.SetActive(false);
+			UISpectatorChoicePanel.SpectatorChoiceButtonPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("SpectatorChoicePanelPlayer"));
+			UISpectatorChoicePanel.SpectatorChoiceButtonPrefab.SetActive(false);
+			PlayerAskForSpeechIconComponent.AskForSpeechIconPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("AskForSpeechIcon"));
+			PlayerAskForSpeechIconComponent.AskForSpeechIconPrefab.SetActive(false);
 			MinimapPlayerComponent.MinimapPlayerPrefab = Object.Instantiate<GameObject>(NewMapsCoreBundle.LoadAsset<GameObject>("MinimapPlayer"));
 			MinimapPlayerComponent.MinimapPlayerPrefab.AddComponent<MinimapPlayerComponent>();
 			MinimapPlayerComponent.MinimapPlayerPrefab.SetActive(false);
@@ -1147,6 +1152,7 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val);
 		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val);
 		DestroyComponentIfExists<PlayerLocalEachSecondTimerComponent>(val);
+		DestroyComponentIfExists<PlayerAskForSpeechIconComponent>(val);
 		PlayerIllusionNetworkCharacterController playerIllusionNetworkCharacterController = val.AddComponent<PlayerIllusionNetworkCharacterController>();
 		((NetworkCharacterControllerPrototypeCustom)playerIllusionNetworkCharacterController).acceleration = 500f;
 		((NetworkCharacterControllerPrototypeCustom)playerIllusionNetworkCharacterController).braking = 500f;
@@ -1217,6 +1223,7 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerNewAnimationsComponent>(val5);
 		DestroyComponentIfExists<PlayerGlowingChangesComponent>(val5);
 		DestroyComponentIfExists<PlayerHeartSeethroughComponent>(val5);
+		DestroyComponentIfExists<PlayerAskForSpeechIconComponent>(val5);
 		list = new List<GameObject>();
 		for (int k = 0; k < val5.transform.childCount; k++)
 		{

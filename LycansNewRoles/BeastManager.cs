@@ -276,7 +276,7 @@ public class BeastManager : NetworkBehaviour
 		try
 		{
 			BeastManager behaviour = changed.Behaviour;
-			if (NetworkBool.op_Implicit(behaviour.BeastActive) && ((SimulationBehaviour)behaviour).Runner.IsServer && behaviour.BeastKills >= behaviour.BeastKillsObjective)
+			if (NetworkBool.op_Implicit(behaviour.BeastActive) && ((SimulationBehaviour)behaviour).Runner.IsServer && (behaviour.BeastKills >= behaviour.BeastKillsObjective || PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead)) == 1))
 			{
 				PlayerCustom.Rpc_End_Game(((SimulationBehaviour)behaviour).Runner, PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Beast).Index);
 			}

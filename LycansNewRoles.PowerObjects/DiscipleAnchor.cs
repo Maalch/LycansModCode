@@ -57,16 +57,9 @@ public class DiscipleAnchor : NetworkBehaviour
 	public static void CreatorRefChanged(Changed<DiscipleAnchor> changed)
 	{
 		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			changed.Behaviour._creatorCustom = PlayerCustomRegistry.GetPlayer(changed.Behaviour.CreatorRef);
-			if (changed.Behaviour._creatorCustom.IsCurrentlyPlayedOrObserved)
-			{
-				changed.Behaviour._creatorCustom.SecondaryRoleTeleportData = new NetworkTeleportData(((Component)changed.Behaviour).transform.position, ((Component)changed.Behaviour).transform.rotation, true);
-			}
 			changed.Behaviour.UpdateVisibility();
 		}
 		catch (Exception ex)

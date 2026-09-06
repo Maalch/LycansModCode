@@ -33,7 +33,8 @@ public class AccessorySpellbook : Accessory
 		Regeneration,
 		Satiated,
 		Camouflage,
-		TransformWolf
+		TransformWolf,
+		WolfIllusion
 	}
 
 	public class SpellbookEffectDetails
@@ -193,11 +194,25 @@ public class AccessorySpellbook : Accessory
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03fb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_040b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0406: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0416: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0511: Unknown result type (might be due to invalid IL or missing references)
+		//IL_051d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0521: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0547: Unknown result type (might be due to invalid IL or missing references)
+		//IL_055d: Expected O, but got Unknown
+		//IL_0568: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0589: Unknown result type (might be due to invalid IL or missing references)
 		Dictionary<PossibleEffects, SpellbookEffectDetails> dictionary = (NetworkBool.op_Implicit(targetPlayer.IsWolf) ? BalancingValues.SpellbookPossibleEffectsAndDurationsOnWolves : BalancingValues.SpellbookPossibleEffectsAndDurationsOnHumans);
 		List<PossibleEffects> list = new List<PossibleEffects>();
 		foreach (KeyValuePair<PossibleEffects, SpellbookEffectDetails> item in dictionary)
@@ -287,6 +302,20 @@ public class AccessorySpellbook : Accessory
 		case PossibleEffects.TransformWolf:
 			PlayerCustom.Rpc_Forced_Transform(runner, targetPlayerCustom.Index, 1);
 			break;
+		case PossibleEffects.WolfIllusion:
+		{
+			Vector3 position = ((Component)targetPlayer).transform.position + ((Component)targetPlayer).transform.forward * 2f;
+			NetworkPrefabId networkObject = NetworkObjectService.Instance.GetNetworkObject("LycansNewRoles.GameObjectWolfIllusion");
+			NetworkObject val = ((SimulationBehaviour)GameManager.Instance).Runner.Spawn(networkObject, (Vector3?)position, (Quaternion?)Quaternion.identity, (PlayerRef?)null, (OnBeforeSpawned)delegate(NetworkRunner _, NetworkObject no)
+			{
+				//IL_0008: Unknown result type (might be due to invalid IL or missing references)
+				((Component)no).transform.position = position;
+			}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
+			((Component)val).transform.position = position;
+			((Component)val).GetComponent<WolfIllusion>().Init(3);
+			((Component)val).GetComponent<WolfIllusion>().SetCreatorRef(targetPlayer.Ref);
+			break;
+		}
 		}
 		PlayerCustom.Rpc_Effect_On_Player(runner, targetPlayerCustom.Index, 1);
 		GameManager.Rpc_BroadcastFollowSound(runner, NetworkString<_16>.op_Implicit("SUCCESS_SHOT"), ((Component)targetPlayer).transform.position, 15f, 0.5f);

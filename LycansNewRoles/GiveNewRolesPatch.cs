@@ -456,8 +456,8 @@ internal class GiveNewRolesPatch
 		obj2.onEnter = (Action<EGameState>)Delegate.Combine(obj2.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04d3: Unknown result type (might be due to invalid IL or missing references)
-			//IL_053e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04e7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0552: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0077: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
@@ -468,15 +468,16 @@ internal class GiveNewRolesPatch
 			//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
-			//IL_042f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0432: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0135: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0476: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0480: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0440: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0445: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0456: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0465: Unknown result type (might be due to invalid IL or missing references)
+			//IL_048a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0494: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0443: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0448: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0459: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0143: Unknown result type (might be due to invalid IL or missing references)
+			//IL_046a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0479: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02fc: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01f8: Unknown result type (might be due to invalid IL or missing references)
@@ -566,7 +567,7 @@ internal class GiveNewRolesPatch
 						}
 						GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)__instance).Runner, 0);
 					}
-					else if ((NetworkBool.op_Implicit(Plugin.CustomConfig.AllowMayor) && (GameManagerCustom.Instance.CurrentMayor == PlayerRef.None || NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(GameManagerCustom.Instance.CurrentMayor).PlayerController.IsDead))) || NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(GameManagerCustom.Instance.CurrentMayor).Kidnapped))
+					else if ((NetworkBool.op_Implicit(Plugin.CustomConfig.AllowMayor) && (GameManagerCustom.Instance.CurrentMayor == PlayerRef.None || !PlayerCustomRegistry.HasPlayer(GameManagerCustom.Instance.CurrentMayor) || NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(GameManagerCustom.Instance.CurrentMayor).PlayerController.IsDead))) || NetworkBool.op_Implicit(PlayerCustomRegistry.GetPlayer(GameManagerCustom.Instance.CurrentMayor).Kidnapped))
 					{
 						GameManagerCustom.Instance.PickRandomMayor();
 					}
@@ -810,6 +811,9 @@ internal class GiveNewRolesPatch
 							player2.LootCollectedTodayDuringDay = 0;
 							player2.RecuperateDisabled = false;
 							player2.GhostImmuneToWolf = false;
+							player2.AskForSpeechActive = false;
+							player2.AskForSpeechUsedThisMeeting = false;
+							player2.UpdateIconAbovePlayer(visible: true);
 						}
 					});
 					if ((int)state == 2)
@@ -997,31 +1001,32 @@ internal class GiveNewRolesPatch
 		obj7.onExit = (Action<EGameState>)Delegate.Combine(obj7.onExit, (Action<EGameState>)delegate
 		{
 			//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0541: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0552: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0563: Unknown result type (might be due to invalid IL or missing references)
 			//IL_007d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0571: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0720: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0735: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0582: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0731: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0746: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06d2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_06e3: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0165: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0347: Unknown result type (might be due to invalid IL or missing references)
-			//IL_066f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_034c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0680: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03c0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_037c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01fc: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0434: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0442: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03d3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0453: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03e4: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0216: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04a8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0464: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04bb: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04cc: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03a6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03b9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03cc: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04c5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02d9: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02de: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
@@ -1079,18 +1084,6 @@ internal class GiveNewRolesPatch
 							val2.Rpc_ClaimItem(player.Ref);
 						}
 					}
-					LycansUtility.AddLogOnlyForMe("Zombie rez");
-					PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
-					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead))
-					{
-						foreach (PlayerCustom item15 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
-						{
-							item15.PlayerController.IsDead = NetworkBool.op_Implicit(false);
-							item15.PlayerController.IsAiming = NetworkBool.op_Implicit(false);
-							item15.PlayerController.IsDeadChannel = NetworkBool.op_Implicit(false);
-							item15.PlayerController.Hunger = GameManager.Instance.MaxHunger;
-						}
-					}
 					LycansUtility.AddLogOnlyForMe("Deceiver illusion timer");
 					PlayerCustom specificPrimaryRolePower = PlayerCustomRegistry.GetSpecificPrimaryRolePower(PlayerCustom.PlayerPrimaryRolePower.Deceiver);
 					if ((Object)(object)specificPrimaryRolePower != (Object)null && !NetworkBool.op_Implicit(specificPrimaryRolePower.PlayerController.IsDead))
@@ -1102,6 +1095,18 @@ internal class GiveNewRolesPatch
 					if (Object.op_Implicit((Object)(object)beastCustom) && !NetworkBool.op_Implicit(beastCustom.PlayerController.IsDead) && !NetworkBool.op_Implicit(beastCustom.Kidnapped) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive) && PlayerCustomRegistry.AllPlayers.All((PlayerCustom o) => o.Ref == beastCustom.Ref || NetworkBool.op_Implicit(o.PlayerController.IsDead) || o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie || NetworkBool.op_Implicit(o.BeastMark) || NetworkBool.op_Implicit(o.Kidnapped)))
 					{
 						BeastManager.Instance.ActivateBeast();
+					}
+					LycansUtility.AddLogOnlyForMe("Zombie rez");
+					PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
+					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
+					{
+						foreach (PlayerCustom item15 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
+						{
+							item15.PlayerController.IsDead = NetworkBool.op_Implicit(false);
+							item15.PlayerController.IsAiming = NetworkBool.op_Implicit(false);
+							item15.PlayerController.IsDeadChannel = NetworkBool.op_Implicit(false);
+							item15.PlayerController.Hunger = GameManager.Instance.MaxHunger;
+						}
 					}
 					if (GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.None)
 					{

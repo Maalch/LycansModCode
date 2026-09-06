@@ -22,7 +22,14 @@ internal class EffectDespawnedPatch
 			{
 				if (!(__instance is SpotterEffect))
 				{
-					if (__instance is JumpEffect)
+					if (!(__instance is JumpEffect))
+					{
+						if (__instance is BlindEffect && player.IsCurrentlyPlayedOrObserved)
+						{
+							ColorAdjustmentManager.UpdateColorAdjustment();
+						}
+					}
+					else
 					{
 						((Component)player.PlayerController).gameObject.layer = 3;
 						player.ResetGravity();
@@ -55,7 +62,7 @@ internal class EffectDespawnedPatch
 		}
 		if (!(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
 		{
-			if (__instance is BurningEffect || __instance is PurifierBurnEffect)
+			if (__instance is BurningEffect || __instance is PurifierBurnEffect || __instance is SanctuaryEffect)
 			{
 				player.UpdateMoveSpeed();
 				player.UpdateVisibility();

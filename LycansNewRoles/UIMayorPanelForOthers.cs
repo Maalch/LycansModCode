@@ -1,6 +1,7 @@
 using Fusion;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LycansNewRoles;
 
@@ -16,16 +17,19 @@ public class UIMayorPanelForOthers : MonoBehaviour
 
 	private TextMeshProUGUI _textDifferentCount;
 
+	private TextMeshProUGUI _textAskForSpeech;
+
 	public bool Active = false;
 
 	private void Start()
 	{
 		_panel = ((Component)((Component)this).transform.Find("Panel")).gameObject;
-		((TMP_Text)((Component)_panel.transform.Find("VoteText")).GetComponent<TextMeshProUGUI>()).text = TranslationManager.Instance.GetTranslation("NALES_MAYOR_VOTE").Replace("{0}", LycansUtility.GetInputDisplayCustom(InputManagerExtra.Instance.GetAction("SECONDARYROLEPOWER")).Replace(" -", ""));
+		((TMP_Text)((Component)_panel.transform.Find("VoteText")).GetComponent<TextMeshProUGUI>()).text = TranslationManager.Instance.GetTranslation("NALES_MAYOR_VOTE").Replace("{0}", LycansUtility.GetInputDisplayCustom(InputManagerExtra.Instance.GetAction("MAYORACTION")).Replace(" -", ""));
 		_textMayor = ((Component)_panel.transform.Find("MayorPanel").Find("MayorText")).GetComponent<TextMeshProUGUI>();
 		_textCurrentVote = ((Component)_panel.transform.Find("CurrentVoteText")).GetComponent<TextMeshProUGUI>();
 		_textDestitutionCount = ((Component)_panel.transform.Find("DestitutionCountText")).GetComponent<TextMeshProUGUI>();
 		_textDifferentCount = ((Component)_panel.transform.Find("DifferentCountText")).GetComponent<TextMeshProUGUI>();
+		_textAskForSpeech = ((Component)_panel.transform.Find("AskForSpeechText")).GetComponent<TextMeshProUGUI>();
 		_panel.SetActive(false);
 	}
 
@@ -119,10 +123,19 @@ public class UIMayorPanelForOthers : MonoBehaviour
 		}
 	}
 
+	public void UpdateAskForSpeech(bool available)
+	{
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		((TMP_Text)_textAskForSpeech).text = TranslationManager.Instance.GetTranslationForStats("NALES_MAYOR_ASK_FOR_SPEECH").Replace("{0}", LycansUtility.GetInputDisplayCustom(InputManagerExtra.Instance.Actions["ITEMSECONDARY"]).Replace(" -", ""));
+		((Graphic)_textAskForSpeech).color = (available ? Color.white : Color.gray);
+	}
+
 	public void Show()
 	{
 		_panel.SetActive(true);
 		Active = true;
+		UpdateAskForSpeech(!PlayerCustom.Local.AskForSpeechUsedThisMeeting);
 	}
 
 	public void Hide()
