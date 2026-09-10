@@ -1182,7 +1182,7 @@ public class GameManagerCustom : NetworkBehaviour
 			{
 				UIManager.MayorPanelForOthers.UpdateAskForSpeech(available: false);
 			}
-			AudioManager.PlayPosition("VILLAGER", ((Component)player.PlayerController).transform.position, (MixerTarget)2, 50f, 1f);
+			AudioManager.PlayPosition("VILLAGER", ((Component)player.PlayerController).transform.position, (MixerTarget)2, 50f, 0.6f);
 		}
 	}
 

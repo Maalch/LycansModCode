@@ -2577,7 +2577,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(30, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(80, 2.5f, 1.556f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(80, 1.75f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => new PowerMaterialsInfo(100, 2f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Survivalist => new PowerMaterialsInfo(10000, 1.5f, 1.306f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Scout => new PowerMaterialsInfo(120, 1.5f, 1.256f, gainsMaterialsOnCollect: true, 0f), 

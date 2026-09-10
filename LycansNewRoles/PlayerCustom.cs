@@ -5011,7 +5011,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	public bool IsCurrentlyPlayedOrObserved => (!NetworkBool.op_Implicit(PlayerController.Local.IsDead) && PlayerController.Local.Ref == Ref) || (NetworkBool.op_Implicit(PlayerController.Local.IsDead) && PlayerController.Local.LocalCameraHandler.PovPlayer.Ref == Ref);
 
-	public bool IsOutOfTheWorld => NetworkBool.op_Implicit(Possessed) || NetworkBool.op_Implicit(Kidnapped) || NetworkBool.op_Implicit(Sanctuary) || (NetworkBool.op_Implicit(CultistManager.Instance.CultistActive) && NewPrimaryRole == PlayerNewPrimaryRole.Cultist);
+	public bool IsOutOfTheWorld => NetworkBool.op_Implicit(Possessed) || NetworkBool.op_Implicit(Kidnapped) || (NetworkBool.op_Implicit(CultistManager.Instance.CultistActive) && NewPrimaryRole == PlayerNewPrimaryRole.Cultist);
 
 	public PowerMaterialsInfo? PowerMaterialsInfo => BalancingValues.GetMaterialsInfoForPrimaryRolePower(PrimaryRolePower);
 
@@ -6155,11 +6155,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.350", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.352", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.350", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.352", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -13964,9 +13964,9 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c2: Unknown result type (might be due to invalid IL or missing references)
 		if (!((PlayerRef)(ref SurvivalistSaveTargetPlayerRef)).IsValid || NetworkBool.op_Implicit(PlayerController.IsDead) || NetworkBool.op_Implicit(Dying) || NetworkBool.op_Implicit(CapturedByCultist))
 		{
 			return;
@@ -13988,6 +13988,7 @@ public class PlayerCustom : NetworkBehaviour
 			if ((Object)(object)val != (Object)null)
 			{
 				playerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
+				CultistManager.Instance.CultistCaptures--;
 			}
 			playerController.MovementAction = 0;
 			player.UpdateCanMoveAnimation();

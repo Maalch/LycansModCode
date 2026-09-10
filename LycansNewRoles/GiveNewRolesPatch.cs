@@ -607,6 +607,7 @@ internal class GiveNewRolesPatch
 			//IL_000e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00db: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0058: Unknown result type (might be due to invalid IL or missing references)
 			//IL_005e: Invalid comparison between Unknown and I4
 			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
@@ -811,9 +812,6 @@ internal class GiveNewRolesPatch
 							player2.LootCollectedTodayDuringDay = 0;
 							player2.RecuperateDisabled = false;
 							player2.GhostImmuneToWolf = false;
-							player2.AskForSpeechActive = false;
-							player2.AskForSpeechUsedThisMeeting = false;
-							player2.UpdateIconAbovePlayer(visible: true);
 						}
 					});
 					if ((int)state == 2)
@@ -832,6 +830,15 @@ internal class GiveNewRolesPatch
 				}
 			}
 			LycansUtility.AddLogOnlyForMe("Other stuff after meeting");
+			if (!NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
+			{
+				foreach (PlayerCustom allPlayer6 in PlayerCustomRegistry.AllPlayers)
+				{
+					allPlayer6.AskForSpeechActive = false;
+					allPlayer6.AskForSpeechUsedThisMeeting = false;
+					allPlayer6.UpdateIconAbovePlayer(visible: true);
+				}
+			}
 			if (UIManager.GenericChoicePanel.Active)
 			{
 				UIManager.GenericChoicePanel.Hide();
@@ -851,13 +858,13 @@ internal class GiveNewRolesPatch
 				CultistManager.Instance.Reset();
 				VoodooManager.Instance.Reset();
 				GameManagerCustom.Instance.Reset();
-				foreach (PlayerCustom allPlayer6 in PlayerCustomRegistry.AllPlayers)
+				foreach (PlayerCustom allPlayer7 in PlayerCustomRegistry.AllPlayers)
 				{
-					allPlayer6.ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
-					allPlayer6.HasZombieColor = false;
-					allPlayer6.UpdateSkinColor();
-					allPlayer6.UpdateVisibility();
-					allPlayer6.UpdateScaleAndPitch();
+					allPlayer7.ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
+					allPlayer7.HasZombieColor = false;
+					allPlayer7.UpdateSkinColor();
+					allPlayer7.UpdateVisibility();
+					allPlayer7.UpdateScaleAndPitch();
 				}
 				if (((SimulationBehaviour)gameState).Runner.IsServer)
 				{
@@ -884,9 +891,9 @@ internal class GiveNewRolesPatch
 			{
 				try
 				{
-					foreach (PlayerCustom allPlayer7 in PlayerCustomRegistry.AllPlayers)
+					foreach (PlayerCustom allPlayer8 in PlayerCustomRegistry.AllPlayers)
 					{
-						allPlayer7.Reset();
+						allPlayer8.Reset();
 					}
 					BeastManager.Instance.Reset();
 					CultistManager.Instance.Reset();
@@ -903,11 +910,11 @@ internal class GiveNewRolesPatch
 					Plugin.Logger.LogError((object)("Pregame onEnter error: " + ex));
 				}
 			}
-			foreach (PlayerCustom allPlayer8 in PlayerCustomRegistry.AllPlayers)
+			foreach (PlayerCustom allPlayer9 in PlayerCustomRegistry.AllPlayers)
 			{
-				allPlayer8.UpdateVisibility();
-				((Component)allPlayer8.PlayerController).GetComponent<PlayerResurrectedComponent>()?.UpdateState();
-				((Component)allPlayer8.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
+				allPlayer9.UpdateVisibility();
+				((Component)allPlayer9.PlayerController).GetComponent<PlayerResurrectedComponent>()?.UpdateState();
+				((Component)allPlayer9.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
 			}
 		});
 		StateHooks<EGameState> obj6 = value[(EGameState)3];

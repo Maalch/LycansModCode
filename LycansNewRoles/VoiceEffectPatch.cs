@@ -20,14 +20,13 @@ internal class VoiceEffectPatch
 			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_003c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0049: Unknown result type (might be due to invalid IL or missing references)
-			//IL_006c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0056: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0092: Unknown result type (might be due to invalid IL or missing references)
+			//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0085: Unknown result type (might be due to invalid IL or missing references)
+			//IL_009c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
 			if ((int)GameManager.LocalGameState == 0 || (int)GameManager.LocalGameState == 1)
 			{
 				return;
@@ -37,7 +36,7 @@ internal class VoiceEffectPatch
 			{
 				return;
 			}
-			if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Sanctuary) || NetworkBool.op_Implicit(player.Petrified))
+			if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Petrified))
 			{
 				talking = false;
 			}
@@ -126,29 +125,28 @@ internal class VoiceEffectPatch
 		//IL_0414: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
 		//IL_042e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0454: Unknown result type (might be due to invalid IL or missing references)
 		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0461: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0448: Unknown result type (might be due to invalid IL or missing references)
-		//IL_046e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0515: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0652: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0642: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0670: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0665: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0682: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0690: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0574: Unknown result type (might be due to invalid IL or missing references)
-		//IL_057f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0615: Unknown result type (might be due to invalid IL or missing references)
-		//IL_061d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0781: Unknown result type (might be due to invalid IL or missing references)
-		//IL_072d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0508: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0645: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0635: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0663: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0658: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0675: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0683: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0567: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0572: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0608: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0610: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0774: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0720: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((int)GameManager.LocalGameState == 0)
@@ -265,7 +263,7 @@ internal class VoiceEffectPatch
 				value2.mute = true;
 				return;
 			}
-			if (NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Phasing) || NetworkBool.op_Implicit(player.Petrified) || NetworkBool.op_Implicit(player.Sanctuary) || (NetworkBool.op_Implicit(player.Isolation) && !NetworkBool.op_Implicit(povPlayer.IsWolf) && player2.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie) || (NetworkBool.op_Implicit(player2.Isolation) && !NetworkBool.op_Implicit(value.IsWolf)))
+			if (NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Phasing) || NetworkBool.op_Implicit(player.Petrified) || (NetworkBool.op_Implicit(player.Isolation) && !NetworkBool.op_Implicit(povPlayer.IsWolf) && player2.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Zombie) || (NetworkBool.op_Implicit(player2.Isolation) && !NetworkBool.op_Implicit(value.IsWolf)))
 			{
 				value2.maxDistance = 0f;
 				value2.mute = true;
