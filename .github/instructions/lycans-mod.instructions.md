@@ -20,6 +20,30 @@ applyTo: "**/*.cs"
 | `LycansNewRoles.Sabotages/` | Sabotage logic |
 | `LycansNewRoles.Stats/` | Stats tracking |
 
+## Game Design Reference
+
+Full gameplay descriptions, translation keys, and balancing context live in `gameReference.json` (project root). It is hand-maintained, **not auto-generated from code** — cross-check its `legacy`/`replacedBy` claims and treat gaps as suspect (see caveats below) rather than assuming it's authoritative.
+
+### Game loop & state
+The game repeats a 3-phase day loop — **Day → Night → Meeting (conseil)** — mapped in code to `GameManager.LocalGameState`:
+- `2` = Day, `3` = Night, `4` = Meeting/vote, `5` = end/post-game (guards `NewDay()`/event rolls in `GiveNewRolesPatch.cs`)
+
+Villagers win by eliminating all wolves or hitting the Harvest goal; wolves win by reaching parity/majority at a meeting or eliminating all villagers; each solo role has its own independent win condition.
+
+### Role enum ↔ gameReference.json mapping
+`PlayerCustom.PlayerNewPrimaryRole` (solo roles) ↔ `mainRoles`: VillageIdiot=Idiot du Village, Agent=Agent, Spy=Espion, Scientist=Scientifique, Lover=Amoureux, Beast=La Bête, Mercenary=Mercenaire, Voodoo=Vaudou, Kidnapper=Kidnappeur, Cultist=Cultiste, Traitor=Traître (wolf camp), Zombie=Zombie (deadRoles, granted by Voodoo).
+
+`PlayerCustom.PlayerPrimaryRolePower` ↔ `wolfPowers`/`villagerPowers`/`elitePowers`/`deadRoles`:
+- Wolf powers: Necromancer=Nécromancien, Deceiver=Dupeur, Saboteur=Saboteur, Warlock=Sorcier, Possessor=Possesseur, Bomber=Artificier, Host=Hôte, Ritualist=Ritualiste, Sneak=Sournois, Acrobat=Acrobate.
+- Villager powers: Investigator=Détective, Survivalist=Survivaliste, Priest=Prêtre, Scout=Éclaireur, Magician=Magicien, Shadow=Ombre, Hermit=Ermite, Runemaster=Runiste, Inventor=Inventeur, Avatar=Avatar, Exorcist=Exorciste.
+- Elite powers: Hunter=Chasseur, Alchemist=Alchimiste, Spotter=Guetteur, Purifier=Purificateur.
+- Dead roles (granted post-death, not drafted): Angel=Ange gardien, Ghost=Fantôme, Specter=Spectre.
+
+`PlayerCustom.PlayerSecondaryRole` (`Both*`) ↔ `secondaryRoles`: BothAlcoholic=Brasseur, BothSprinter=Coureur, BothInfected=Infecté, BothTeleporter=Téléporteur, BothEngineer=Ingénieur, BothPolitician=Politicien, BothMetabolic=Métabolique, BothIllusionist=Illusionniste, BothSherif=Shérif, BothGambler=Farceur, BothMedium=Voyant, BothAstral=Astral, BothScavenger=Charognard, BothBlueMage=Mage bleu, BothActor=Acteur, BothScribe=Scribe, BothCarabineer=Carabinier, BothForger=Faussaire, BothImitator=Imitateur, BothMerchant=Marchand, BothTinkerer=Bricoleur, BothTelepath=Télépathe.
+
+### Caveats when consulting gameReference.json
+- Before trusting a gameReference claim about a role/power being legacy, grep `PlayerPrimaryRolePower.<Name>` usage and check `PlayerCustom.GetPrimaryRolePowerString` + `GiveNewRolesPatch`/`UpdateRoleUtility` switches — if it has live cases there, it's active regardless of what gameReference says.
+
 ## Harmony Patches
 
 - Attribute: `[HarmonyPatch(typeof(TargetClass), "MethodName")]`
