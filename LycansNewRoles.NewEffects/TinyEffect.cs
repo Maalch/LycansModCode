@@ -42,22 +42,15 @@ public class TinyEffect : CustomEffect
 	protected override void RemoveEffectFromPlayerSpecific(PlayerRef targetPlayer)
 	{
 		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0069: Unknown result type (might be due to invalid IL or missing references)
-		if (!((SimulationBehaviour)this).HasStateAuthority)
+		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		if (((SimulationBehaviour)this).HasStateAuthority)
 		{
-			return;
-		}
-		PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
-		if ((Object)(object)player != (Object)null)
-		{
-			Effect val = player.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is GiantEffect);
-			if ((Object)(object)val != (Object)null)
+			PlayerController player = PlayerRegistry.GetPlayer(targetPlayer);
+			if ((Object)(object)player != (Object)null)
 			{
-				player.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
+				PlayerCustomRegistry.GetPlayer(targetPlayer).Tiny = NetworkBool.op_Implicit(false);
 			}
-			PlayerCustomRegistry.GetPlayer(targetPlayer).Tiny = NetworkBool.op_Implicit(false);
 		}
 	}
 }

@@ -10,8 +10,8 @@ internal class OnPlayerDataChangedColorPatch
 {
 	private static void Postfix(Changed<PlayerController> changed)
 	{
-		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController behaviour = changed.Behaviour;
@@ -23,8 +23,8 @@ internal class OnPlayerDataChangedColorPatch
 				}
 				else
 				{
-					int num = Mathf.Min(11, (int)behaviour.Index);
-					PlayerCustom.Rpc_Change_Color(((SimulationBehaviour)behaviour).Runner, behaviour.Index, behaviour.Index);
+					int colorIndex = Mathf.Min(11, (int)behaviour.Index);
+					PlayerCustom.Rpc_Change_Color(((SimulationBehaviour)behaviour).Runner, behaviour.Index, colorIndex);
 				}
 				if (PlayerPrefs.HasKey("FavoritePet"))
 				{

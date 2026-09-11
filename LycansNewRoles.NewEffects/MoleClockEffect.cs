@@ -6,7 +6,7 @@ namespace LycansNewRoles.NewEffects;
 [NetworkBehaviourWeaved(3)]
 public class MoleClockEffect : CustomEffect
 {
-	public override string CustomEffectName => "LycansNewRoles.EffectResistance";
+	public override string CustomEffectName => "LycansNewRoles.EffectMoleClock";
 
 	public override string TranslateKey => "NALES_EFFECT_MOLE_CLOCK";
 
