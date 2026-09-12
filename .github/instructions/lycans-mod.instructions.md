@@ -25,8 +25,18 @@ applyTo: "**/*.cs"
 Full gameplay descriptions, translation keys, and balancing context live in `gameReference.json` (project root). It is hand-maintained, **not auto-generated from code** — cross-check its `legacy`/`replacedBy` claims and treat gaps as suspect (see caveats below) rather than assuming it's authoritative.
 
 ### Game loop & state
-The game repeats a 3-phase day loop — **Day → Night → Meeting (conseil)** — mapped in code to `GameManager.LocalGameState`:
-- `2` = Day, `3` = Night, `4` = Meeting/vote, `5` = end/post-game (guards `NewDay()`/event rolls in `GiveNewRolesPatch.cs`)
+The game state enum is mapped in code to `GameManager.LocalGameState` as follows:
+- `0` = `EGameState.Off`
+- `1` = `EGameState.Pregame`
+- `2` = `EGameState.Play`
+- `3` = `EGameState.Transition`
+- `4` = `EGameState.Meeting`
+- `5` = `EGameState.EndGame`
+
+The game loop uses `Play`, `Transition`, and `Meeting`; `NewDay()`/event rolls are guarded against `EndGame` in `GiveNewRolesPatch.cs`.
+
+### Reading decompiled game-state range checks
+Decompiled code may show a condition such as `(int)val <= 1 || val - 4 <= 1`. The second comparison is commonly an unsigned IL range check whose lost cast should be read as `(uint)(val - 4) <= 1`. With the enum values above, the condition is true for states `0`, `1`, `4`, and `5`: `Off`, `Pregame`, `Meeting`, and `EndGame`. It is false for `Play` and `Transition`. In `CultistSkullSpirit.FixedUpdateNetwork`, this means the spirit is despawned outside active play, when its creator is missing/dead, or when the game is in `Off`, `Pregame`, `Meeting`, or `EndGame`.
 
 Villagers win by eliminating all wolves or hitting the Harvest goal; wolves win by reaching parity/majority at a meeting or eliminating all villagers; each solo role has its own independent win condition.
 
