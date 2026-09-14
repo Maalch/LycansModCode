@@ -64,8 +64,9 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		//IL_03a4: Invalid comparison between Unknown and I4
 		//IL_031d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d9: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)_playerCustom != (Object)null && NetworkBool.op_Implicit(_playerCustom.Confused))
 		{
 			if (!_confusedWatch.IsRunning)
@@ -182,10 +183,9 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		{
 			foreach (PlayerCustom item8 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost))
 			{
-				if ((Object)(object)item8.SummonedSpirit != (Object)null && !item8.GhostImmuneToWolf && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)item8.SummonedSpirit).transform.position) <= 2f)
+				if ((Object)(object)item8.SummonedSpirit != (Object)null && !NetworkBool.op_Implicit(item8.NewPrimaryRoleUniqueBool) && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)item8.SummonedSpirit).transform.position) <= 2f)
 				{
-					item8.GivePrimaryRolePower(PlayerCustom.PlayerPrimaryRolePower.None);
-					GameManagerCustom.Instance.GhostsDestroyed++;
+					PlayerCustom.Rpc_Spirit_Attack(((SimulationBehaviour)item8).Runner, _playerCustom.Index, item8.Index);
 				}
 			}
 		}

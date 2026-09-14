@@ -55,7 +55,10 @@ public class KnockbackComponent : MonoBehaviour
 			float num3 = Mathf.Abs(val.y) / num;
 			float num4 = Mathf.Abs(val.z) / num;
 			_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
-			PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)_playerController).Runner, _playerController.Index, animationIndex);
+			if (animationIndex > -1)
+			{
+				PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)_playerController).Runner, _playerController.Index, animationIndex);
+			}
 			if (heavyGravity)
 			{
 				Traverse.Create((object)_playerController.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.gravity = -400f * BalancingValues.GravityMultiplier(GameManager.Instance.MapID);

@@ -8,10 +8,22 @@ namespace LycansNewRoles;
 [HarmonyPatch(typeof(PlayerController), "OnPlayerDataChanged")]
 internal class OnPlayerDataChangedColorPatch
 {
+	private static bool Prefix(Changed<PlayerController> changed)
+	{
+		PlayerController behaviour = changed.Behaviour;
+		SkinnedMeshRenderer value = Traverse.Create((object)behaviour).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value;
+		GameManager.Instance.gameUI.AddPlayerDisplay(behaviour);
+		if ((Object)(object)behaviour != (Object)(object)PlayerController.Local)
+		{
+			GameManager.Instance.gameUI.AddPlayerVolume(behaviour);
+		}
+		return false;
+	}
+
 	private static void Postfix(Changed<PlayerController> changed)
 	{
 		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d2: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController behaviour = changed.Behaviour;
@@ -58,8 +70,7 @@ internal class OnPlayerDataChangedColorPatch
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(behaviour.Ref);
 			if ((Object)(object)player != (Object)null)
 			{
-				player.UpdateSkin();
-				player.UpdateColor();
+				player.UpdateModelIfNeeded();
 			}
 			if (((SimulationBehaviour)behaviour).Runner.IsServer)
 			{

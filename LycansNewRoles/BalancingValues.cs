@@ -3049,7 +3049,7 @@ public static class BalancingValues
 																					{
 																						if (effect is ConfusedEffect)
 																						{
-																							return 1;
+																							return 2;
 																						}
 																						return 1;
 																					}

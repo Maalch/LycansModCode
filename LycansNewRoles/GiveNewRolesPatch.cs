@@ -413,7 +413,7 @@ internal class GiveNewRolesPatch
 						allPlayer3.MercenaryTargetsAlreadyHit.Clear();
 						allPlayer3.InitialPower = allPlayer3.PrimaryRolePower;
 						allPlayer3.AlreadyPossessed = false;
-						allPlayer3.UpdateColor();
+						allPlayer3.UpdateDisplayColor();
 						allPlayer3.UpdatePet();
 						allPlayer3.ResetGravity();
 						allPlayer3.PlacedSleepingGas = null;
@@ -634,32 +634,33 @@ internal class GiveNewRolesPatch
 						//IL_01d0: Unknown result type (might be due to invalid IL or missing references)
 						//IL_020e: Unknown result type (might be due to invalid IL or missing references)
 						//IL_024c: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0591: Unknown result type (might be due to invalid IL or missing references)
-						//IL_04e0: Unknown result type (might be due to invalid IL or missing references)
-						//IL_04e6: Invalid comparison between Unknown and I4
-						//IL_05a6: Unknown result type (might be due to invalid IL or missing references)
-						//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
-						//IL_05bc: Unknown result type (might be due to invalid IL or missing references)
-						//IL_05cf: Unknown result type (might be due to invalid IL or missing references)
-						//IL_05d4: Unknown result type (might be due to invalid IL or missing references)
-						//IL_052e: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0534: Invalid comparison between Unknown and I4
-						//IL_05e0: Unknown result type (might be due to invalid IL or missing references)
-						//IL_05e5: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0518: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0537: Unknown result type (might be due to invalid IL or missing references)
-						//IL_06b1: Unknown result type (might be due to invalid IL or missing references)
-						//IL_06b7: Invalid comparison between Unknown and I4
-						//IL_06ba: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0676: Unknown result type (might be due to invalid IL or missing references)
-						//IL_067c: Invalid comparison between Unknown and I4
-						//IL_0642: Unknown result type (might be due to invalid IL or missing references)
-						//IL_06c7: Unknown result type (might be due to invalid IL or missing references)
-						//IL_067f: Unknown result type (might be due to invalid IL or missing references)
-						//IL_06fb: Unknown result type (might be due to invalid IL or missing references)
-						//IL_073e: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0720: Unknown result type (might be due to invalid IL or missing references)
-						//IL_0731: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0542: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0548: Invalid comparison between Unknown and I4
+						//IL_054b: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0588: Unknown result type (might be due to invalid IL or missing references)
+						//IL_05b4: Unknown result type (might be due to invalid IL or missing references)
+						//IL_04f4: Unknown result type (might be due to invalid IL or missing references)
+						//IL_04fa: Invalid comparison between Unknown and I4
+						//IL_05c9: Unknown result type (might be due to invalid IL or missing references)
+						//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
+						//IL_05df: Unknown result type (might be due to invalid IL or missing references)
+						//IL_05f2: Unknown result type (might be due to invalid IL or missing references)
+						//IL_05f7: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0603: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0608: Unknown result type (might be due to invalid IL or missing references)
+						//IL_052c: Unknown result type (might be due to invalid IL or missing references)
+						//IL_06d4: Unknown result type (might be due to invalid IL or missing references)
+						//IL_06da: Invalid comparison between Unknown and I4
+						//IL_06dd: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0699: Unknown result type (might be due to invalid IL or missing references)
+						//IL_069f: Invalid comparison between Unknown and I4
+						//IL_0665: Unknown result type (might be due to invalid IL or missing references)
+						//IL_06ea: Unknown result type (might be due to invalid IL or missing references)
+						//IL_06a2: Unknown result type (might be due to invalid IL or missing references)
+						//IL_071e: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0761: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0743: Unknown result type (might be due to invalid IL or missing references)
+						//IL_0754: Unknown result type (might be due to invalid IL or missing references)
 						if ((Object)(object)player != (Object)null)
 						{
 							PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(player.Ref);
@@ -762,6 +763,9 @@ internal class GiveNewRolesPatch
 							case PlayerCustom.PlayerPrimaryRolePower.Predator:
 								player2.PrimaryRolePowerRemainingUses = 1;
 								break;
+							case PlayerCustom.PlayerPrimaryRolePower.Ghost:
+								player2.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(false);
+								break;
 							}
 							switch (player2.NewPrimaryRole)
 							{
@@ -811,7 +815,6 @@ internal class GiveNewRolesPatch
 							player2.MayorVoteTarget = PlayerRef.None;
 							player2.LootCollectedTodayDuringDay = 0;
 							player2.RecuperateDisabled = false;
-							player2.GhostImmuneToWolf = false;
 						}
 					});
 					if ((int)state == 2)
@@ -850,7 +853,7 @@ internal class GiveNewRolesPatch
 		obj4.onEnter = (Action<EGameState>)Delegate.Combine(obj4.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
 			try
 			{
 				SabotageManager.Instance.Clean();
@@ -862,7 +865,7 @@ internal class GiveNewRolesPatch
 				{
 					allPlayer7.ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
 					allPlayer7.HasZombieColor = false;
-					allPlayer7.UpdateSkinColor();
+					allPlayer7.UpdateModelIfNeeded();
 					allPlayer7.UpdateVisibility();
 					allPlayer7.UpdateScaleAndPitch();
 				}

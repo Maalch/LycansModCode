@@ -60,11 +60,12 @@ public class UIRoleDescription : MonoBehaviour
 	{
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cd3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d42: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d47: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ce9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d5d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d62: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -73,7 +74,7 @@ public class UIRoleDescription : MonoBehaviour
 				return;
 			}
 		}
-		if (ShowRoleDescriptionPatch.ShowingExplanation)
+		if (NetworkBool.op_Implicit(PlayerCustom.Local.Possessed) || ShowRoleDescriptionPatch.ShowingExplanation)
 		{
 			return;
 		}
