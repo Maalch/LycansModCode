@@ -25,7 +25,7 @@ applyTo: "**/*.cs"
 Full gameplay descriptions, translation keys, and balancing context live in `gameReference.json` (project root). It is hand-maintained, **not auto-generated from code** — cross-check its `legacy`/`replacedBy` claims and treat gaps as suspect (see caveats below) rather than assuming it's authoritative.
 
 ### Game loop & state
-The game state enum is mapped in code to `GameManager.LocalGameState` as follows:
+The game state enum is mapped in code to `GameManager.LocalGameState` as follows (unsigned int):
 - `0` = `EGameState.Off`
 - `1` = `EGameState.Pregame`
 - `2` = `EGameState.Play`
