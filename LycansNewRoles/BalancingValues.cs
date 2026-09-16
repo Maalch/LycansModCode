@@ -1731,7 +1731,7 @@ public static class BalancingValues
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
 				Duration = 600f,
-				Ponderation = 2
+				Ponderation = 2000
 			}
 		},
 		{

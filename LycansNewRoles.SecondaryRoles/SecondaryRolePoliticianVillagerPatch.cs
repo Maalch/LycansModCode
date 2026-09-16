@@ -16,28 +16,28 @@ internal class SecondaryRolePoliticianVillagerPatch
 	{
 		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0335: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ed: Invalid comparison between Unknown and I4
-		//IL_0294: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0211: Invalid comparison between Unknown and I4
+		//IL_0325: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0382: Unknown result type (might be due to invalid IL or missing references)
+		//IL_067c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0441: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0457: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0467: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0482: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0408: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0537: Unknown result type (might be due to invalid IL or missing references)
-		//IL_053c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0541: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0566: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0577: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0593: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0606: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0617: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0633: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0654: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -73,12 +73,57 @@ internal class SecondaryRolePoliticianVillagerPatch
 				}).FirstOrDefault();
 				if ((Object)(object)playerController != (Object)null)
 				{
-					PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerController.Ref);
-					if (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothPolitician)
+					PlayerCustom playerCustom = PlayerCustomRegistry.GetPlayer(playerController.Ref);
+					if (playerCustom.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothPolitician)
 					{
-						if ((int)playerController.Role != 1 && player.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Traitor)
+						if ((int)playerController.Role != 1 && playerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Traitor)
 						{
-							playerController = CollectionsUtil.Grab<PlayerCustom>(list.Where((PlayerCustom o) => o.Ref != playerController.Ref && !NetworkBool.op_Implicit(o.Kidnapped)).ToList(), 1).First().PlayerController;
+							if (list.Any(delegate(PlayerCustom o)
+							{
+								//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+								//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+								//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+								//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+								//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+								int result;
+								if (o.Ref != playerController.Ref && !NetworkBool.op_Implicit(o.Kidnapped))
+								{
+									int idVoted = o.PlayerController.IdVoted;
+									PlayerRef val3 = playerCustom.Ref;
+									result = ((idVoted == ((PlayerRef)(ref val3)).PlayerId) ? 1 : 0);
+								}
+								else
+								{
+									result = 0;
+								}
+								return (byte)result != 0;
+							}))
+							{
+								playerController = CollectionsUtil.Grab<PlayerCustom>(list.Where(delegate(PlayerCustom o)
+								{
+									//IL_0001: Unknown result type (might be due to invalid IL or missing references)
+									//IL_0011: Unknown result type (might be due to invalid IL or missing references)
+									//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+									//IL_003b: Unknown result type (might be due to invalid IL or missing references)
+									//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+									int result;
+									if (o.Ref != playerController.Ref && !NetworkBool.op_Implicit(o.Kidnapped))
+									{
+										int idVoted = o.PlayerController.IdVoted;
+										PlayerRef val3 = playerCustom.Ref;
+										result = ((idVoted == ((PlayerRef)(ref val3)).PlayerId) ? 1 : 0);
+									}
+									else
+									{
+										result = 0;
+									}
+									return (byte)result != 0;
+								}).ToList(), 1).First().PlayerController;
+							}
+							else
+							{
+								playerController = CollectionsUtil.Grab<PlayerCustom>(list.Where((PlayerCustom o) => o.Ref != playerController.Ref && !NetworkBool.op_Implicit(o.Kidnapped)).ToList(), 1).First().PlayerController;
+							}
 						}
 						else
 						{
@@ -98,14 +143,14 @@ internal class SecondaryRolePoliticianVillagerPatch
 					}
 				}
 			}
-			PlayerCustom playerCustom = PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Mole && o.PlayerController.PlayerEffectManager.GetActiveEffects().Any((Effect val3) => val3 is MoleClockEffect) && o.PlayerController.Killer != PlayerRef.None).FirstOrDefault();
-			if ((Object)(object)playerCustom != (Object)null && !NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(playerCustom.PlayerController.Killer).IsDead))
+			PlayerCustom playerCustom2 = PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Mole && o.PlayerController.PlayerEffectManager.GetActiveEffects().Any((Effect val3) => val3 is MoleClockEffect) && o.PlayerController.Killer != PlayerRef.None).FirstOrDefault();
+			if ((Object)(object)playerCustom2 != (Object)null && !NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(playerCustom2.PlayerController.Killer).IsDead))
 			{
-				Effect val2 = playerCustom.PlayerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is MoleClockEffect);
-				playerCustom.PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val2).Object.Id);
-				GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)__instance).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerCustom.PlayerController).transform.position, 50f, 0.8f);
-				PlayerCustomRegistry.GetPlayer(playerCustom.PlayerController.Ref).Stats.UpdateDeathType("MOLE");
-				playerCustom.PlayerController.Rpc_Kill(playerCustom.PlayerController.Killer);
+				Effect val2 = playerCustom2.PlayerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is MoleClockEffect);
+				playerCustom2.PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val2).Object.Id);
+				GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)__instance).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerCustom2.PlayerController).transform.position, 50f, 0.8f);
+				PlayerCustomRegistry.GetPlayer(playerCustom2.PlayerController.Ref).Stats.UpdateDeathType("MOLE");
+				playerCustom2.PlayerController.Rpc_Kill(playerCustom2.PlayerController.Killer);
 				GameManager.Rpc_DisplayDeadPlayers(((SimulationBehaviour)__instance).Runner);
 			}
 			LycansUtility.AddLogOnlyForMe("EndVote event: " + GameManagerCustom.Instance.EventsManager.CurrentEvent);
@@ -118,12 +163,12 @@ internal class SecondaryRolePoliticianVillagerPatch
 					LycansUtility.AddLogOnlyForMe("Valid villagers count: " + list2.Count);
 					if (list2.Any())
 					{
-						PlayerCustom playerCustom2 = CollectionsUtil.Grab<PlayerCustom>(list2, 1).First();
-						NetworkString<_32> username = playerCustom2.PlayerController.PlayerData.Username;
+						PlayerCustom playerCustom3 = CollectionsUtil.Grab<PlayerCustom>(list2, 1).First();
+						NetworkString<_32> username = playerCustom3.PlayerController.PlayerData.Username;
 						LycansUtility.AddLogOnlyForMe("Victim: " + ((object)username/*cast due to constrained. prefix*/).ToString());
-						GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)__instance).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerCustom2.PlayerController).transform.position, 50f, 0.8f);
-						PlayerCustomRegistry.GetPlayer(playerCustom2.PlayerController.Ref).Stats.UpdateDeathType("VENGEANCE");
-						playerCustom2.PlayerController.Rpc_Kill(PlayerRef.None);
+						GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)__instance).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)playerCustom3.PlayerController).transform.position, 50f, 0.8f);
+						PlayerCustomRegistry.GetPlayer(playerCustom3.PlayerController.Ref).Stats.UpdateDeathType("VENGEANCE");
+						playerCustom3.PlayerController.Rpc_Kill(PlayerRef.None);
 						GameManager.Rpc_DisplayDeadPlayers(((SimulationBehaviour)__instance).Runner);
 					}
 				}

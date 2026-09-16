@@ -191,273 +191,273 @@ public class PlayerCustom : NetworkBehaviour
 
 		public static Func<PlayerPrimaryRolePower, bool> _003C_003E9__91_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__548_0;
+		public static Predicate<PlayerCustom> _003C_003E9__549_0;
 
-		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__551_0;
+		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__552_0;
 
-		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__551_1;
+		public static Predicate<HauntedEffect.HauntedPossibleEffect> _003C_003E9__552_1;
 
-		public static Func<Effect, bool> _003C_003E9__551_2;
+		public static Func<Effect, bool> _003C_003E9__552_2;
 
-		public static Func<Effect, bool> _003C_003E9__551_3;
+		public static Func<Effect, bool> _003C_003E9__552_3;
 
-		public static Func<Effect, bool> _003C_003E9__551_4;
+		public static Func<Effect, bool> _003C_003E9__552_4;
 
-		public static Func<Effect, bool> _003C_003E9__551_5;
+		public static Func<Effect, bool> _003C_003E9__552_5;
 
-		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__551_7;
+		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__552_7;
 
-		public static Func<Door, bool> _003C_003E9__551_11;
+		public static Func<Door, bool> _003C_003E9__552_11;
 
-		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__551_9;
+		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__552_9;
 
-		public static Func<Door, bool> _003C_003E9__551_12;
+		public static Func<Door, bool> _003C_003E9__552_12;
 
-		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__551_10;
+		public static Predicate<ChaosEffect.ChaosPossibleEffect> _003C_003E9__552_10;
 
-		public static Func<Item, bool> _003C_003E9__551_13;
+		public static Func<Item, bool> _003C_003E9__552_13;
 
-		public static Func<Door, bool> _003C_003E9__551_14;
+		public static Func<Door, bool> _003C_003E9__552_14;
 
-		public static Func<Door, bool> _003C_003E9__551_15;
+		public static Func<Door, bool> _003C_003E9__552_15;
 
-		public static Func<Item, bool> _003C_003E9__551_16;
+		public static Func<Item, bool> _003C_003E9__552_16;
 
-		public static Func<Effect, bool> _003C_003E9__551_20;
+		public static Func<Effect, bool> _003C_003E9__552_20;
 
-		public static Predicate<PlayerCustom> _003C_003E9__551_22;
+		public static Predicate<PlayerCustom> _003C_003E9__552_22;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__551_23;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__552_23;
 
-		public static Predicate<PlayerCustom> _003C_003E9__551_24;
+		public static Predicate<PlayerCustom> _003C_003E9__552_24;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__551_25;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__552_25;
 
-		public static Predicate<PlayerCustom> _003C_003E9__551_26;
+		public static Predicate<PlayerCustom> _003C_003E9__552_26;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__551_27;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__552_27;
 
-		public static Predicate<PlayerCustom> _003C_003E9__551_28;
+		public static Predicate<PlayerCustom> _003C_003E9__552_28;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__551_29;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__552_29;
 
-		public static Predicate<PlayerCustom> _003C_003E9__551_30;
+		public static Predicate<PlayerCustom> _003C_003E9__552_30;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__551_31;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__552_31;
 
-		public static Func<PlayerRef, bool> _003C_003E9__551_33;
+		public static Func<PlayerRef, bool> _003C_003E9__552_33;
 
-		public static Func<Effect, Effect> _003C_003E9__558_0;
+		public static Func<Effect, Effect> _003C_003E9__559_0;
 
-		public static Func<Item, bool> _003C_003E9__558_3;
+		public static Func<Item, bool> _003C_003E9__559_3;
 
-		public static Func<Item, bool> _003C_003E9__558_4;
+		public static Func<Item, bool> _003C_003E9__559_4;
 
-		public static Func<Item, bool> _003C_003E9__559_0;
+		public static Func<Item, bool> _003C_003E9__560_0;
 
-		public static Func<Item, bool> _003C_003E9__559_1;
+		public static Func<Item, bool> _003C_003E9__560_1;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__570_0;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__571_0;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__570_1;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__571_1;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__570_2;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__571_2;
 
-		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__570_3;
+		public static Predicate<PlayerDetectiveIntel.PlayerDetectiveIntelType> _003C_003E9__571_3;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_16;
+		public static Predicate<PlayerCustom> _003C_003E9__571_16;
 
-		public static Predicate<PlayerController> _003C_003E9__570_17;
+		public static Predicate<PlayerController> _003C_003E9__571_17;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__570_18;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__571_18;
 
-		public static Func<PlayerCustom, bool> _003C_003E9__570_20;
+		public static Func<PlayerCustom, bool> _003C_003E9__571_20;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_7;
+		public static Predicate<PlayerCustom> _003C_003E9__571_7;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_8;
+		public static Predicate<PlayerCustom> _003C_003E9__571_8;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_9;
+		public static Predicate<PlayerCustom> _003C_003E9__571_9;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_10;
+		public static Predicate<PlayerCustom> _003C_003E9__571_10;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_12;
+		public static Predicate<PlayerCustom> _003C_003E9__571_12;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_13;
+		public static Predicate<PlayerCustom> _003C_003E9__571_13;
 
-		public static Predicate<PlayerCustom> _003C_003E9__570_14;
+		public static Predicate<PlayerCustom> _003C_003E9__571_14;
 
-		public static Func<Effect, bool> _003C_003E9__577_9;
+		public static Func<Effect, bool> _003C_003E9__578_9;
 
-		public static Func<Item, bool> _003C_003E9__577_3;
+		public static Func<Item, bool> _003C_003E9__578_3;
 
-		public static Func<Item, bool> _003C_003E9__577_10;
+		public static Func<Item, bool> _003C_003E9__578_10;
 
-		public static Func<Effect, bool> _003C_003E9__577_11;
+		public static Func<Effect, bool> _003C_003E9__578_11;
 
-		public static Func<PlayerCustom, bool> _003C_003E9__577_12;
+		public static Func<PlayerCustom, bool> _003C_003E9__578_12;
 
-		public static OnBeforeSpawned _003C_003E9__579_5;
+		public static OnBeforeSpawned _003C_003E9__580_5;
 
-		public static Func<Effect, bool> _003C_003E9__579_7;
+		public static Func<Effect, bool> _003C_003E9__580_7;
 
-		public static Func<Effect, bool> _003C_003E9__579_8;
+		public static Func<Effect, bool> _003C_003E9__580_8;
 
-		public static Func<Effect, bool> _003C_003E9__579_9;
+		public static Func<Effect, bool> _003C_003E9__580_9;
 
-		public static Func<Effect, bool> _003C_003E9__579_10;
+		public static Func<Effect, bool> _003C_003E9__580_10;
 
-		public static Func<PlayerCustom, PlayerRef> _003C_003E9__581_1;
+		public static Func<PlayerCustom, PlayerRef> _003C_003E9__582_1;
 
-		public static Predicate<PlayerController> _003C_003E9__581_2;
+		public static Predicate<PlayerController> _003C_003E9__582_2;
 
-		public static Func<Item, bool> _003C_003E9__581_4;
+		public static Func<Item, bool> _003C_003E9__582_4;
 
-		public static Func<Item, bool> _003C_003E9__581_8;
+		public static Func<Item, bool> _003C_003E9__582_8;
 
-		public static Func<Item, bool> _003C_003E9__581_9;
+		public static Func<Item, bool> _003C_003E9__582_9;
 
-		public static Func<Item, bool> _003C_003E9__581_10;
+		public static Func<Item, bool> _003C_003E9__582_10;
 
-		public static Func<Item, bool> _003C_003E9__581_11;
+		public static Func<Item, bool> _003C_003E9__582_11;
 
-		public static Func<Item, bool> _003C_003E9__581_12;
+		public static Func<Item, bool> _003C_003E9__582_12;
 
-		public static Func<Item, bool> _003C_003E9__581_13;
+		public static Func<Item, bool> _003C_003E9__582_13;
 
-		public static Func<Item, bool> _003C_003E9__581_14;
+		public static Func<Item, bool> _003C_003E9__582_14;
 
-		public static Func<Item, bool> _003C_003E9__581_15;
+		public static Func<Item, bool> _003C_003E9__582_15;
 
-		public static Func<Item, bool> _003C_003E9__581_16;
+		public static Func<Item, bool> _003C_003E9__582_16;
 
-		public static Func<Effect, bool> _003C_003E9__582_5;
+		public static Func<Effect, bool> _003C_003E9__583_5;
 
-		public static Func<Effect, bool> _003C_003E9__582_6;
+		public static Func<Effect, bool> _003C_003E9__583_6;
 
-		public static Predicate<PlayerCustom> _003C_003E9__584_0;
+		public static Predicate<PlayerCustom> _003C_003E9__585_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__584_1;
+		public static Predicate<PlayerCustom> _003C_003E9__585_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__588_0;
+		public static Predicate<PlayerCustom> _003C_003E9__589_0;
 
-		public static Predicate<PlayerController> _003C_003E9__588_1;
+		public static Predicate<PlayerController> _003C_003E9__589_1;
 
-		public static Func<Effect, bool> _003C_003E9__588_4;
+		public static Func<Effect, bool> _003C_003E9__589_4;
 
-		public static Func<Teleporter, bool> _003C_003E9__588_5;
+		public static Func<Teleporter, bool> _003C_003E9__589_5;
 
-		public static Predicate<PlayerCustom> _003C_003E9__588_6;
+		public static Predicate<PlayerCustom> _003C_003E9__589_6;
 
-		public static Func<Effect, bool> _003C_003E9__603_0;
+		public static Func<Effect, bool> _003C_003E9__604_0;
 
-		public static Func<Effect, bool> _003C_003E9__606_0;
+		public static Func<Effect, bool> _003C_003E9__607_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__620_0;
+		public static Predicate<PlayerCustom> _003C_003E9__621_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__623_0;
+		public static Predicate<PlayerCustom> _003C_003E9__624_0;
 
-		public static Func<Effect, bool> _003C_003E9__624_0;
+		public static Func<Effect, bool> _003C_003E9__625_0;
 
-		public static Func<Effect, bool> _003C_003E9__631_0;
+		public static Func<Effect, bool> _003C_003E9__632_0;
 
-		public static Func<Effect, bool> _003C_003E9__633_0;
+		public static Func<Effect, bool> _003C_003E9__634_0;
 
-		public static Func<Effect, bool> _003C_003E9__635_0;
+		public static Func<Effect, bool> _003C_003E9__636_0;
 
-		public static Func<Effect, bool> _003C_003E9__635_1;
+		public static Func<Effect, bool> _003C_003E9__636_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__645_0;
+		public static Predicate<PlayerCustom> _003C_003E9__646_0;
 
-		public static Func<Effect, bool> _003C_003E9__663_0;
+		public static Func<Effect, bool> _003C_003E9__664_0;
 
-		public static Func<Effect, bool> _003C_003E9__665_1;
+		public static Func<Effect, bool> _003C_003E9__666_1;
 
-		public static Func<Effect, bool> _003C_003E9__665_0;
+		public static Func<Effect, bool> _003C_003E9__666_0;
 
-		public static Func<Effect, bool> _003C_003E9__669_0;
+		public static Func<Effect, bool> _003C_003E9__670_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__669_1;
+		public static Predicate<PlayerCustom> _003C_003E9__670_1;
 
-		public static Func<Effect, bool> _003C_003E9__672_0;
+		public static Func<Effect, bool> _003C_003E9__673_0;
 
-		public static Func<Effect, bool> _003C_003E9__672_1;
+		public static Func<Effect, bool> _003C_003E9__673_1;
 
-		public static Func<Effect, bool> _003C_003E9__672_2;
+		public static Func<Effect, bool> _003C_003E9__673_2;
 
-		public static Func<Effect, bool> _003C_003E9__672_3;
+		public static Func<Effect, bool> _003C_003E9__673_3;
 
-		public static Func<Effect, bool> _003C_003E9__672_4;
+		public static Func<Effect, bool> _003C_003E9__673_4;
 
-		public static Func<Accessory, bool> _003C_003E9__674_1;
+		public static Func<Accessory, bool> _003C_003E9__675_1;
 
-		public static Func<Effect, Effect> _003C_003E9__674_2;
+		public static Func<Effect, Effect> _003C_003E9__675_2;
 
-		public static Func<Item, bool> _003C_003E9__674_5;
+		public static Func<Item, bool> _003C_003E9__675_5;
 
-		public static Func<Item, bool> _003C_003E9__674_6;
+		public static Func<Item, bool> _003C_003E9__675_6;
 
-		public static Func<Effect, bool> _003C_003E9__707_0;
+		public static Func<Effect, bool> _003C_003E9__708_0;
 
-		public static Func<Accessory, bool> _003C_003E9__707_1;
+		public static Func<Accessory, bool> _003C_003E9__708_1;
 
-		public static Predicate<PlayerController> _003C_003E9__720_0;
+		public static Predicate<PlayerController> _003C_003E9__721_0;
 
-		public static Func<Item, bool> _003C_003E9__721_0;
+		public static Func<Item, bool> _003C_003E9__722_0;
 
-		public static Func<Accessory, bool> _003C_003E9__721_1;
+		public static Func<Accessory, bool> _003C_003E9__722_1;
 
-		public static Func<Item, bool> _003C_003E9__721_2;
+		public static Func<Item, bool> _003C_003E9__722_2;
 
-		public static Func<Accessory, bool> _003C_003E9__721_3;
+		public static Func<Accessory, bool> _003C_003E9__722_3;
 
-		public static Predicate<PlayerCustom> _003C_003E9__721_4;
+		public static Predicate<PlayerCustom> _003C_003E9__722_4;
 
-		public static Predicate<PlayerCustom> _003C_003E9__721_5;
+		public static Predicate<PlayerCustom> _003C_003E9__722_5;
 
-		public static Predicate<PlayerCustom> _003C_003E9__721_6;
+		public static Predicate<PlayerCustom> _003C_003E9__722_6;
 
-		public static Func<Teleporter, bool> _003C_003E9__721_8;
+		public static Func<Teleporter, bool> _003C_003E9__722_8;
 
-		public static Predicate<PlayerCustom> _003C_003E9__725_1;
+		public static Predicate<PlayerCustom> _003C_003E9__726_1;
 
-		public static Func<Effect, bool> _003C_003E9__725_2;
+		public static Func<Effect, bool> _003C_003E9__726_2;
 
-		public static Func<Effect, bool> _003C_003E9__725_3;
+		public static Func<Effect, bool> _003C_003E9__726_3;
 
-		public static Func<Effect, bool> _003C_003E9__725_4;
+		public static Func<Effect, bool> _003C_003E9__726_4;
 
-		public static Func<Effect, bool> _003C_003E9__740_0;
+		public static Func<Effect, bool> _003C_003E9__741_0;
 
-		public static Func<Teleporter, bool> _003C_003E9__743_0;
+		public static Func<Teleporter, bool> _003C_003E9__744_0;
 
-		public static Action<PlayerController> _003C_003E9__754_0;
+		public static Action<PlayerController> _003C_003E9__755_0;
 
-		public static Predicate<PlayerCustom> _003C_003E9__754_1;
+		public static Predicate<PlayerCustom> _003C_003E9__755_1;
 
-		public static Predicate<PlayerCustom> _003C_003E9__754_2;
+		public static Predicate<PlayerCustom> _003C_003E9__755_2;
 
-		public static Func<PlayerCustom, bool> _003C_003E9__754_3;
+		public static Func<PlayerCustom, bool> _003C_003E9__755_3;
 
-		public static Predicate<PlayerCustom> _003C_003E9__754_6;
+		public static Predicate<PlayerCustom> _003C_003E9__755_6;
 
-		public static Predicate<PlayerCustom> _003C_003E9__754_7;
+		public static Predicate<PlayerCustom> _003C_003E9__755_7;
 
-		public static Func<PlayerCustom, PlayerController> _003C_003E9__754_8;
+		public static Func<PlayerCustom, PlayerController> _003C_003E9__755_8;
 
-		public static Func<PlayerCustom, PlayerController> _003C_003E9__754_4;
+		public static Func<PlayerCustom, PlayerController> _003C_003E9__755_4;
 
-		public static Predicate<PlayerCustom> _003C_003E9__754_5;
+		public static Predicate<PlayerCustom> _003C_003E9__755_5;
 
-		public static Predicate<PlayerController> _003C_003E9__754_9;
+		public static Predicate<PlayerController> _003C_003E9__755_9;
 
-		public static Predicate<PlayerController> _003C_003E9__754_10;
+		public static Predicate<PlayerController> _003C_003E9__755_10;
 
-		public static Predicate<PlayerController> _003C_003E9__754_11;
+		public static Predicate<PlayerController> _003C_003E9__755_11;
 
-		public static Predicate<PlayerController> _003C_003E9__754_12;
+		public static Predicate<PlayerController> _003C_003E9__755_12;
 
-		public static Predicate<PlayerController> _003C_003E9__754_13;
+		public static Predicate<PlayerController> _003C_003E9__755_13;
 
 		internal bool _003Cget_AllVillagerJobs_003Eb__89_0(PlayerPrimaryRolePower o)
 		{
@@ -469,260 +469,260 @@ public class PlayerCustom : NetworkBehaviour
 			return IsPrimaryRolePowerForWolves(o);
 		}
 
-		internal bool _003CDespawned_003Eb__548_0(PlayerCustom o)
+		internal bool _003CDespawned_003Eb__549_0(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Kidnapped);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_0(HauntedEffect.HauntedPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_0(HauntedEffect.HauntedPossibleEffect o)
 		{
 			return o == HauntedEffect.HauntedPossibleEffect.HealthGain;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_1(HauntedEffect.HauntedPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_1(HauntedEffect.HauntedPossibleEffect o)
 		{
 			return o == HauntedEffect.HauntedPossibleEffect.HealthLoss;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_2(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_2(Effect o)
 		{
 			return o is FlatulenceEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_3(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_3(Effect o)
 		{
 			return o is InvisibilityEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_4(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_4(Effect o)
 		{
 			return o is ParanoiaEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_5(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_5(Effect o)
 		{
 			return o is SpeedEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_7(ChaosEffect.ChaosPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_7(ChaosEffect.ChaosPossibleEffect o)
 		{
 			return o == ChaosEffect.ChaosPossibleEffect.UseScrollOnNearbyPlayer || o == ChaosEffect.ChaosPossibleEffect.UseDiamondOnNearbyPlayer;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_11(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_11(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_9(ChaosEffect.ChaosPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_9(ChaosEffect.ChaosPossibleEffect o)
 		{
 			return o == ChaosEffect.ChaosPossibleEffect.UnlockNearbyDoor;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_12(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_12(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_10(ChaosEffect.ChaosPossibleEffect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_10(ChaosEffect.ChaosPossibleEffect o)
 		{
 			return o == ChaosEffect.ChaosPossibleEffect.LockNearbyDoor;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_13(Item o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_13(Item o)
 		{
 			return o is TrapItem;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_14(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_14(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_15(Door o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_15(Door o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.IsLocked);
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_16(Item o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_16(Item o)
 		{
 			return o is SmokeItem;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_20(Effect o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_20(Effect o)
 		{
 			return o is RecuperatingEffect;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_22(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_22(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.BeastMark);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__551_23(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__552_23(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_24(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_24(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__551_25(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__552_25(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_26(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_26(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Kidnapped);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__551_27(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__552_27(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_28(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_28(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Parasite);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__551_29(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__552_29(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_30(PlayerCustom o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_30(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Tracked);
 		}
 
-		internal PlayerRef _003CFixedUpdateNetwork_003Eb__551_31(PlayerCustom o)
+		internal PlayerRef _003CFixedUpdateNetwork_003Eb__552_31(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CFixedUpdateNetwork_003Eb__551_33(PlayerRef o)
+		internal bool _003CFixedUpdateNetwork_003Eb__552_33(PlayerRef o)
 		{
 			//IL_0005: Unknown result type (might be due to invalid IL or missing references)
 			return !PlayersWithSpecificColor.Contains(o);
 		}
 
-		internal Effect _003CGiveRandomItem_003Eb__558_0(Effect e)
+		internal Effect _003CGiveRandomItem_003Eb__559_0(Effect e)
 		{
 			return e;
 		}
 
-		internal bool _003CGiveRandomItem_003Eb__558_3(Item o)
+		internal bool _003CGiveRandomItem_003Eb__559_3(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CGiveRandomItem_003Eb__558_4(Item o)
+		internal bool _003CGiveRandomItem_003Eb__559_4(Item o)
 		{
 			return o is LockItem || o is TrapItem || o is SmokeItem || o is SpyglassItem || o is MagicScrollItem || o is PhasingDiamondItem || o is GrenadeItem || o is SleepingGasItem || o is MolotovItem || o is RadarItem;
 		}
 
-		internal bool _003CGiveScientistGadget_003Eb__559_0(Item o)
+		internal bool _003CGiveScientistGadget_003Eb__560_0(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CGiveScientistGadget_003Eb__559_1(Item o)
+		internal bool _003CGiveScientistGadget_003Eb__560_1(Item o)
 		{
 			return o is SmokeItem || o is GrenadeItem || o is SleepingGasItem || o is PhasingDiamondItem;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_0(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_0(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.DifferentSides;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_1(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_1(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.OneIsEvil;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_2(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_2(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.TransformationsAndDetransformations;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_3(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_3(PlayerDetectiveIntel.PlayerDetectiveIntelType o)
 		{
 			return o == PlayerDetectiveIntel.PlayerDetectiveIntelType.WolvesAndSoloRolesRemaining;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_16(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_16(PlayerCustom o)
 		{
 			return o.SecondaryRole == PlayerSecondaryRole.BothTelepath;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_17(PlayerController o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_17(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsDead);
 		}
 
-		internal PlayerRef _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_18(PlayerCustom o)
+		internal PlayerRef _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_18(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_20(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_20(PlayerCustom o)
 		{
 			//IL_000e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0014: Invalid comparison between Unknown and I4
 			return o.NewPrimaryRole != PlayerNewPrimaryRole.None || (int)o.PlayerController.Role == 1;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_7(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_7(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Invalid comparison between Unknown and I4
 			return (int)o.PlayerController.Role == 1 || o.NewPrimaryRole == PlayerNewPrimaryRole.Traitor;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_8(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_8(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Lover;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_9(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_9(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Invalid comparison between Unknown and I4
 			return (int)o.PlayerController.Role != 1 && o.NewPrimaryRole == PlayerNewPrimaryRole.None;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_10(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_10(PlayerCustom o)
 		{
 			return o.SecondaryRole == PlayerSecondaryRole.BothTelepath;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_12(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_12(PlayerCustom o)
 		{
 			return o.SecondaryRole == PlayerSecondaryRole.BothTelepath;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_13(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_13(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0013: Unknown result type (might be due to invalid IL or missing references)
@@ -731,390 +731,390 @@ public class PlayerCustom : NetworkBehaviour
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.ResurrectedByNecromancer) && (int)o.PlayerController.Role == 1;
 		}
 
-		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__570_14(PlayerCustom o)
+		internal bool _003CPrimaryRolePowerCurrentMaterialsChanged_003Eb__571_14(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.NewPrimaryRole != PlayerNewPrimaryRole.None && o.NewPrimaryRole != PlayerNewPrimaryRole.Traitor && o.NewPrimaryRole != PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__577_9(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__578_9(Effect o)
 		{
 			return o is FlatulenceEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__577_3(Item o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__578_3(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__577_10(Item o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__578_10(Item o)
 		{
 			return o is MagicScrollItem;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__577_11(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__578_11(Effect o)
 		{
 			return o is TelepathyEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__577_12(PlayerCustom o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_Without_Target_003Eb__578_12(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.PlayerController.IsWolf);
 		}
 
-		internal void _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__579_5(NetworkRunner _, NetworkObject no)
+		internal void _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__580_5(NetworkRunner _, NetworkObject no)
 		{
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__579_7(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__580_7(Effect o)
 		{
 			return o is InvisibilityEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__579_8(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__580_8(Effect o)
 		{
 			return o is SpeedEffect;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__579_9(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__580_9(Effect o)
 		{
 			return o is NightVision;
 		}
 
-		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__579_10(Effect o)
+		internal bool _003CRpc_Activate_Secondary_Role_Power_With_Target_003Eb__580_10(Effect o)
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 			//IL_001e: Invalid comparison between Unknown and I4
 			return Plugin.CustomConfig.PotionsAvailability[o.GetTranslateKey()] && (int)o.GetEffectType() == 0;
 		}
 
-		internal PlayerRef _003CSecondaryRoleActionTimerExpired_003Eb__581_1(PlayerCustom o)
+		internal PlayerRef _003CSecondaryRoleActionTimerExpired_003Eb__582_1(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return o.Ref;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_2(PlayerController o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_2(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsDead);
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_4(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_4(Item o)
 		{
 			return o is MagicScrollItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_8(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_8(Item o)
 		{
 			return o is LockItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_9(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_9(Item o)
 		{
 			return o is TrapItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_10(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_10(Item o)
 		{
 			return o is SmokeItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_11(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_11(Item o)
 		{
 			return o is SpyglassItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_12(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_12(Item o)
 		{
 			return o is PhasingDiamondItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_13(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_13(Item o)
 		{
 			return o is GrenadeItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_14(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_14(Item o)
 		{
 			return o is SleepingGasItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_15(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_15(Item o)
 		{
 			return o is MolotovItem;
 		}
 
-		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__581_16(Item o)
+		internal bool _003CSecondaryRoleActionTimerExpired_003Eb__582_16(Item o)
 		{
 			return o is RadarItem;
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__582_5(Effect o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__583_5(Effect o)
 		{
 			return o is TelepathyEffect;
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__582_6(Effect o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_Without_Target_003Eb__583_6(Effect o)
 		{
 			return o is KidnapperSilenceEffect;
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__584_0(PlayerCustom o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__585_0(PlayerCustom o)
 		{
 			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && !NetworkBool.op_Implicit(o.PlayerController.IsDead);
 		}
 
-		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__584_1(PlayerCustom o)
+		internal bool _003CRpc_Activate_Primary_Role_Power_With_Target_003Eb__585_1(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return NetworkBool.op_Implicit(o.Parasite);
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__588_0(PlayerCustom o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__589_0(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__588_1(PlayerController o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__589_1(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.IsDead);
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__588_4(Effect o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__589_4(Effect o)
 		{
 			return o is DisguisedEffect;
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__588_5(Teleporter o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__589_5(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__588_6(PlayerCustom o)
+		internal bool _003CPrimaryRoleActionTimerExpired_003Eb__589_6(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0020: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld && !NetworkBool.op_Implicit(o.PlayerController.IsWolf) && o.NewPrimaryRole != PlayerNewPrimaryRole.Zombie;
 		}
 
-		internal bool _003CRpc_Assassinate_003Eb__603_0(Effect o)
+		internal bool _003CRpc_Assassinate_003Eb__604_0(Effect o)
 		{
 			return o is AssassinEffect;
 		}
 
-		internal bool _003CRpc_Petrify_003Eb__606_0(Effect o)
+		internal bool _003CRpc_Petrify_003Eb__607_0(Effect o)
 		{
 			return o is MidasEffect;
 		}
 
-		internal bool _003CKidnappedChanged_003Eb__620_0(PlayerCustom o)
+		internal bool _003CKidnappedChanged_003Eb__621_0(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Kidnapper;
 		}
 
-		internal bool _003CPossessedChanged_003Eb__623_0(PlayerCustom o)
+		internal bool _003CPossessedChanged_003Eb__624_0(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Possessor;
 		}
 
-		internal bool _003CRpc_Manipulate_Item_003Eb__624_0(Effect o)
+		internal bool _003CRpc_Manipulate_Item_003Eb__625_0(Effect o)
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 			//IL_001e: Invalid comparison between Unknown and I4
 			return Plugin.CustomConfig.PotionsAvailability[o.GetTranslateKey()] && (int)o.GetEffectType() == 0;
 		}
 
-		internal bool _003CUpdateIconAbovePlayer_003Eb__631_0(Effect o)
+		internal bool _003CUpdateIconAbovePlayer_003Eb__632_0(Effect o)
 		{
 			return o is SpiritResistanceEffect;
 		}
 
-		internal bool _003CRpc_Give_Bomb_003Eb__633_0(Effect o)
+		internal bool _003CRpc_Give_Bomb_003Eb__634_0(Effect o)
 		{
 			return o is BombEffect;
 		}
 
-		internal bool _003CBombActiveChanged_003Eb__635_0(Effect o)
+		internal bool _003CBombActiveChanged_003Eb__636_0(Effect o)
 		{
 			return o is FleeingEffect;
 		}
 
-		internal bool _003CBombActiveChanged_003Eb__635_1(Effect o)
+		internal bool _003CBombActiveChanged_003Eb__636_1(Effect o)
 		{
 			return o is GlowingEffect;
 		}
 
-		internal bool _003CRpc_Ritualist_Ritual_003Eb__645_0(PlayerCustom o)
+		internal bool _003CRpc_Ritualist_Ritual_003Eb__646_0(PlayerCustom o)
 		{
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 			return !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !NetworkBool.op_Implicit(o.PlayerController.IsWolf);
 		}
 
-		internal bool _003CRpc_Save_003Eb__663_0(Effect o)
+		internal bool _003CRpc_Save_003Eb__664_0(Effect o)
 		{
 			return o is DyingEffect;
 		}
 
-		internal bool _003CFinishSurvivalistSave_003Eb__665_1(Effect o)
+		internal bool _003CFinishSurvivalistSave_003Eb__666_1(Effect o)
 		{
 			return o is CapturedEffect;
 		}
 
-		internal bool _003CFinishSurvivalistSave_003Eb__665_0(Effect o)
+		internal bool _003CFinishSurvivalistSave_003Eb__666_0(Effect o)
 		{
 			return o is DyingEffect;
 		}
 
-		internal bool _003CRpc_Wolf_Attack_003Eb__669_0(Effect o)
+		internal bool _003CRpc_Wolf_Attack_003Eb__670_0(Effect o)
 		{
 			return o is MoleClockEffect;
 		}
 
-		internal bool _003CRpc_Wolf_Attack_003Eb__669_1(PlayerCustom o)
+		internal bool _003CRpc_Wolf_Attack_003Eb__670_1(PlayerCustom o)
 		{
 			//IL_0010: Unknown result type (might be due to invalid IL or missing references)
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && !NetworkBool.op_Implicit(o.PlayerController.IsDead);
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__672_0(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__673_0(Effect o)
 		{
 			return o is NightVision;
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__672_1(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__673_1(Effect o)
 		{
 			return o is SpeedEffect;
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__672_2(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__673_2(Effect o)
 		{
 			return o is SpiritResistanceEffect;
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__672_3(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__673_3(Effect o)
 		{
 			return o is ParanoiaEffect;
 		}
 
-		internal bool _003CRpc_Spirit_Attack_003Eb__672_4(Effect o)
+		internal bool _003CRpc_Spirit_Attack_003Eb__673_4(Effect o)
 		{
 			return o is FlatulenceEffect;
 		}
 
-		internal bool _003CRpc_Spirit_Spell_003Eb__674_1(Accessory o)
+		internal bool _003CRpc_Spirit_Spell_003Eb__675_1(Accessory o)
 		{
 			return Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)];
 		}
 
-		internal Effect _003CRpc_Spirit_Spell_003Eb__674_2(Effect e)
+		internal Effect _003CRpc_Spirit_Spell_003Eb__675_2(Effect e)
 		{
 			return e;
 		}
 
-		internal bool _003CRpc_Spirit_Spell_003Eb__674_5(Item o)
+		internal bool _003CRpc_Spirit_Spell_003Eb__675_5(Item o)
 		{
 			return Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CRpc_Spirit_Spell_003Eb__674_6(Item o)
+		internal bool _003CRpc_Spirit_Spell_003Eb__675_6(Item o)
 		{
 			return o is LockItem || o is TrapItem || o is SmokeItem || o is SpyglassItem || o is MagicScrollItem || o is PhasingDiamondItem || o is GrenadeItem || o is SleepingGasItem || o is MolotovItem || o is RadarItem;
 		}
 
-		internal bool _003CGiveSecondaryRole_003Eb__707_0(Effect o)
+		internal bool _003CGiveSecondaryRole_003Eb__708_0(Effect o)
 		{
 			return o is AuditionEffect || o is NightVision || o is StinkingEffect || o is HauntedEffect || o is FlatulenceEffect || o is DeafnessEffect;
 		}
 
-		internal bool _003CGiveSecondaryRole_003Eb__707_1(Accessory o)
+		internal bool _003CGiveSecondaryRole_003Eb__708_1(Accessory o)
 		{
 			return Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)];
 		}
 
-		internal bool _003CUpdatePrimaryRole_003Eb__720_0(PlayerController p)
+		internal bool _003CUpdatePrimaryRole_003Eb__721_0(PlayerController p)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0007: Invalid comparison between Unknown and I4
 			return (int)p.Role == 1;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_0(Item o)
+		internal bool _003CInitForGameStart_003Eb__722_0(Item o)
 		{
 			return (o is LockItem || o is PhasingDiamondItem || o is GrenadeItem) && Plugin.CustomConfig.GadgetsAvailability[ItemUtility.ItemToTranslateKey(o)];
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_1(Accessory o)
+		internal bool _003CInitForGameStart_003Eb__722_1(Accessory o)
 		{
 			return o is AccessorySpellbook;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_2(Item o)
+		internal bool _003CInitForGameStart_003Eb__722_2(Item o)
 		{
 			return o is MagicScrollItem;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_3(Accessory o)
+		internal bool _003CInitForGameStart_003Eb__722_3(Accessory o)
 		{
 			return Plugin.CustomConfig.AccessoriesAvailability[ItemUtility.ItemToTranslateKey((Item)(object)o)];
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_4(PlayerCustom o)
+		internal bool _003CInitForGameStart_003Eb__722_4(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Warlock;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_5(PlayerCustom o)
+		internal bool _003CInitForGameStart_003Eb__722_5(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Bomber;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_6(PlayerCustom o)
+		internal bool _003CInitForGameStart_003Eb__722_6(PlayerCustom o)
 		{
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Saboteur;
 		}
 
-		internal bool _003CInitForGameStart_003Eb__721_8(Teleporter o)
+		internal bool _003CInitForGameStart_003Eb__722_8(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal bool _003CUpdateVisible_003Eb__725_1(PlayerCustom o)
+		internal bool _003CUpdateVisible_003Eb__726_1(PlayerCustom o)
 		{
 			//IL_000b: Unknown result type (might be due to invalid IL or missing references)
 			return o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && NetworkBool.op_Implicit(o.NewPrimaryRoleUniqueBool);
 		}
 
-		internal bool _003CUpdateVisible_003Eb__725_2(Effect o)
+		internal bool _003CUpdateVisible_003Eb__726_2(Effect o)
 		{
 			return o is CamouflageEffect;
 		}
 
-		internal bool _003CUpdateVisible_003Eb__725_3(Effect o)
+		internal bool _003CUpdateVisible_003Eb__726_3(Effect o)
 		{
 			return o is VampireEffect;
 		}
 
-		internal bool _003CUpdateVisible_003Eb__725_4(Effect o)
+		internal bool _003CUpdateVisible_003Eb__726_4(Effect o)
 		{
 			return o is HauntedEffect;
 		}
 
-		internal bool _003CUpdateMoveSpeed_003Eb__740_0(Effect o)
+		internal bool _003CUpdateMoveSpeed_003Eb__741_0(Effect o)
 		{
 			return o is ChasingEffect;
 		}
 
-		internal bool _003CFindRandomTeleporter_003Eb__743_0(Teleporter o)
+		internal bool _003CFindRandomTeleporter_003Eb__744_0(Teleporter o)
 		{
 			return o.MapID == GameManager.Instance.MapID;
 		}
 
-		internal void _003CRpc_End_Game_003Eb__754_0(PlayerController pObj)
+		internal void _003CRpc_End_Game_003Eb__755_0(PlayerController pObj)
 		{
 			//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
@@ -1139,78 +1139,78 @@ public class PlayerCustom : NetworkBehaviour
 			}
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_1(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__755_1(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Agent;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_2(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__755_2(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Lover;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_3(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__755_3(PlayerCustom o)
 		{
 			//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0015: Invalid comparison between Unknown and I4
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Lover && (int)o.PlayerController.Role == 1;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_6(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__755_6(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Traitor;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_7(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__755_7(PlayerCustom o)
 		{
 			return o.NewPrimaryRole == PlayerNewPrimaryRole.Traitor;
 		}
 
-		internal PlayerController _003CRpc_End_Game_003Eb__754_8(PlayerCustom o)
+		internal PlayerController _003CRpc_End_Game_003Eb__755_8(PlayerCustom o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return PlayerRegistry.GetPlayer(o.Ref);
 		}
 
-		internal PlayerController _003CRpc_End_Game_003Eb__754_4(PlayerCustom o)
+		internal PlayerController _003CRpc_End_Game_003Eb__755_4(PlayerCustom o)
 		{
 			return o.PlayerController;
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_5(PlayerCustom o)
+		internal bool _003CRpc_End_Game_003Eb__755_5(PlayerCustom o)
 		{
 			return IsPrimaryRolePowerForEliteVillagers(o.InitialPower);
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_9(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__755_9(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561198034021995";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_10(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__755_10(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561198045789440";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_11(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__755_11(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561199060053791";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_12(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__755_12(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561197973106144";
 		}
 
-		internal bool _003CRpc_End_Game_003Eb__754_13(PlayerController o)
+		internal bool _003CRpc_End_Game_003Eb__755_13(PlayerController o)
 		{
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			return PlayerRef.op_Implicit(o.Ref) >= 1000;
@@ -1482,6 +1482,8 @@ public class PlayerCustom : NetworkBehaviour
 	public int? CurrentSkinColorIndex = null;
 
 	public int? CurrentColorIndex = null;
+
+	public bool IsFlashing = false;
 
 	public PlayerNewAnimationsComponent PlayerAnimations;
 
@@ -6158,11 +6160,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.354", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.355", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.354", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.355", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -7276,6 +7278,7 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_03a4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f1: Unknown result type (might be due to invalid IL or missing references)
 		PrimaryRoleTargetRef = PlayerRef.None;
 		SecondaryRoleTargetRef = PlayerRef.None;
 		RoleDeathUniqueBool = NetworkBool.op_Implicit(false);
@@ -7363,6 +7366,7 @@ public class PlayerCustom : NetworkBehaviour
 		TransformationTimer.Reset();
 		AskForSpeechActive = false;
 		AskForSpeechUsedThisMeeting = false;
+		Tracked = NetworkBool.op_Implicit(false);
 		NewPrimaryRole = PlayerNewPrimaryRole.None;
 		SecondaryRole = PlayerSecondaryRole.None;
 		PrimaryRolePower = PlayerPrimaryRolePower.None;
@@ -7475,11 +7479,9 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0105: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bb: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom playerCustom = PlayerVisualToShowForPovPlayer();
 		int num = ((!hasCamouflage) ? playerCustom.SkinIndex : 0);
 		if (num != CurrentSkinIndex)
@@ -7498,9 +7500,10 @@ public class PlayerCustom : NetworkBehaviour
 			LycansUtility.UpdateVillagerSkinColor(villagerMeshRenderer, playerCustom.SkinIndex, playerCustom.SkinColorIndex, playerCustom.ColorIndex, this);
 			CurrentSkinColorIndex = playerCustom.SkinColorIndex;
 			CurrentColorIndex = playerCustom.ColorIndex;
-			PlayerController.ShowThirdPersonModels(Ref != PlayerController.Local.Ref || GameManager.Instance.previewCamera.IsPreviewCameraActive);
+			UpdateModelCustom();
+			PlayerController.ShowThirdPersonModels(!IsCurrentlyPlayedOrObserved || GameManager.Instance.previewCamera.IsPreviewCameraActive);
 		}
-		if (!CurrentSkinColorIndex.HasValue || !CurrentColorIndex.HasValue || playerCustom.SkinColorIndex != CurrentSkinColorIndex || playerCustom.ColorIndex != CurrentColorIndex)
+		if (!CurrentSkinColorIndex.HasValue || !CurrentColorIndex.HasValue || playerCustom.SkinColorIndex != CurrentSkinColorIndex || playerCustom.ColorIndex != CurrentColorIndex || IsFlashing)
 		{
 			string[] obj2 = new string[6] { "Player ", null, null, null, null, null };
 			NetworkString<_32> username = PlayerController.PlayerData.Username;
@@ -7513,6 +7516,7 @@ public class PlayerCustom : NetworkBehaviour
 			LycansUtility.UpdateVillagerSkinColor(Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value, playerCustom.SkinIndex, playerCustom.SkinColorIndex, playerCustom.ColorIndex, this);
 			CurrentSkinColorIndex = playerCustom.SkinColorIndex;
 			CurrentColorIndex = playerCustom.ColorIndex;
+			IsFlashing = false;
 		}
 	}
 
@@ -8857,13 +8861,13 @@ public class PlayerCustom : NetworkBehaviour
 						BulletItem value8 = Traverse.Create((object)GameManager.Instance).Field<BulletItem>("bulletPrefab").Value;
 						Vector3? val2 = Vector3.zero;
 						Quaternion? val3 = Quaternion.identity;
-						object obj2 = _003C_003Ec._003C_003E9__579_5;
+						object obj2 = _003C_003Ec._003C_003E9__580_5;
 						if (obj2 == null)
 						{
 							OnBeforeSpawned val4 = delegate
 							{
 							};
-							_003C_003Ec._003C_003E9__579_5 = val4;
+							_003C_003Ec._003C_003E9__580_5 = val4;
 							obj2 = (object)val4;
 						}
 						((Item)runner.Spawn<BulletItem>(value8, val2, val3, (PlayerRef?)null, (OnBeforeSpawned)obj2, (NetworkObjectPredictionKey?)null, true)).Rpc_ClaimItem(playerController.Ref);
@@ -9833,9 +9837,10 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_09e1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d3b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d40: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1064: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10fb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_110c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_106f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1119: Unknown result type (might be due to invalid IL or missing references)
+		//IL_112a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0416: Invalid comparison between Unknown and I4
 		//IL_088e: Unknown result type (might be due to invalid IL or missing references)
@@ -9849,13 +9854,13 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0c98: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cbd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d51: Unknown result type (might be due to invalid IL or missing references)
-		//IL_107c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1124: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1198: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11f1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1332: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1338: Invalid comparison between Unknown and I4
+		//IL_1082: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1142: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_120f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1350: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1356: Invalid comparison between Unknown and I4
 		//IL_0419: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04c0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08a0: Unknown result type (might be due to invalid IL or missing references)
@@ -9867,7 +9872,7 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0bf3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b16: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d69: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1094: Unknown result type (might be due to invalid IL or missing references)
+		//IL_109a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0426: Unknown result type (might be due to invalid IL or missing references)
 		//IL_054e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0507: Unknown result type (might be due to invalid IL or missing references)
@@ -9893,13 +9898,13 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0cd7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0cef: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d98: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1164: Unknown result type (might be due to invalid IL or missing references)
-		//IL_120b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_137c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1382: Invalid comparison between Unknown and I4
+		//IL_10d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1182: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1229: Unknown result type (might be due to invalid IL or missing references)
+		//IL_131a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_139a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13a0: Invalid comparison between Unknown and I4
 		//IL_0455: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0464: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0494: Unknown result type (might be due to invalid IL or missing references)
@@ -9920,7 +9925,7 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0660: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0667: Unknown result type (might be due to invalid IL or missing references)
 		//IL_068c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1635: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1653: Unknown result type (might be due to invalid IL or missing references)
 		//IL_021b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ea: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
@@ -9930,8 +9935,9 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0e13: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0e24: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0e45: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10fb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10bf: Unknown result type (might be due to invalid IL or missing references)
 		//IL_056a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08d1: Unknown result type (might be due to invalid IL or missing references)
@@ -9941,16 +9947,16 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_038b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0577: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1643: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1661: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02ca: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_14bc: Invalid comparison between Unknown and I4
-		//IL_1395: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14da: Invalid comparison between Unknown and I4
+		//IL_13b3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08ea: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08f0: Invalid comparison between Unknown and I4
-		//IL_14ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1651: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_166f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0f2d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0f3e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0810: Unknown result type (might be due to invalid IL or missing references)
@@ -10223,7 +10229,7 @@ public class PlayerCustom : NetworkBehaviour
 					break;
 				}
 				case PlayerPrimaryRolePower.Tracker:
-					if (!NetworkBool.op_Implicit(playerController.IsWolf) && !NetworkBool.op_Implicit(targetPlayer.IsWolf) && !NetworkBool.op_Implicit(targetPlayer.IsDead) && !NetworkBool.op_Implicit(player.Dying))
+					if (targetPlayer.Ref != playerController.Ref && !NetworkBool.op_Implicit(playerController.IsWolf) && !NetworkBool.op_Implicit(targetPlayer.IsWolf) && !NetworkBool.op_Implicit(targetPlayer.IsDead) && !NetworkBool.op_Implicit(player.Dying))
 					{
 						if (NetworkBool.op_Implicit(player.Tracked))
 						{
@@ -15236,13 +15242,22 @@ public class PlayerCustom : NetworkBehaviour
 	public void FlashPlayer(Color color)
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
 		PlayerController playerController = PlayerController;
 		if (!NetworkBool.op_Implicit(playerController.IsDead))
 		{
-			((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.color = color;
+			if (CurrentSkinIndex == 0)
+			{
+				((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.color = color;
+			}
+			else
+			{
+				((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.SetColor("_SkinTexture", color);
+			}
 			((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = color;
+			IsFlashing = true;
 			((MonoBehaviour)this).StartCoroutine(WaitAndRemoveFlashPlayer(0.1f));
 		}
 	}

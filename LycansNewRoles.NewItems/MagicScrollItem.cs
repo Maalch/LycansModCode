@@ -134,12 +134,12 @@ public class MagicScrollItem : CustomItem
 		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0041: Invalid comparison between Unknown and I4
 		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0240: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0245: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0269: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0246: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026f: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -175,7 +175,7 @@ public class MagicScrollItem : CustomItem
 			PlayerController playerController = player.PlayerController;
 			PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(targetPlayerIndex);
 			PlayerController playerController2 = player2.PlayerController;
-			if ((Object)(object)playerController.Item != (Object)null && playerController.Item is MagicScrollItem magicScrollItem)
+			if ((Object)(object)playerController.Item != (Object)null && playerController.Item is MagicScrollItem magicScrollItem && playerIndex != targetPlayerIndex)
 			{
 				if (runner.IsServer)
 				{
