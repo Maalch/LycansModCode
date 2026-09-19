@@ -213,7 +213,7 @@ internal class GameConfigAddNewSettingsPatch
 			GameConfig.VillagerPowersChanceConfig = GameConfig.CreateAndAttachConfigDropdownWithPercentages(__instance, "NALES_CONFIG_ROLE_TYPE_MAIN_VILLAGER_COUNT", GameConfig.ConfigTypeEnum.RolesVillagers, GameConfig.ColorVillagerJob, 0, 100, 10);
 			GameConfig.FillPrimaryRoleVillagerPowersChanceDropdown();
 			List<PlayerCustom.PlayerPrimaryRolePower> list = (from PlayerCustom.PlayerPrimaryRolePower o in Enum.GetValues(typeof(PlayerCustom.PlayerPrimaryRolePower))
-				where o != PlayerCustom.PlayerPrimaryRolePower.None && PlayerCustom.IsPrimaryRolePowerForNormalVillagers(o) && !PlayerCustom.IsPrimaryRolePowerDisabled(o) && o != PlayerCustom.PlayerPrimaryRolePower.Avatar && o != PlayerCustom.PlayerPrimaryRolePower.Mole
+				where o != PlayerCustom.PlayerPrimaryRolePower.None && PlayerCustom.IsPrimaryRolePowerForNormalVillagers(o) && !PlayerCustom.IsPrimaryRolePowerDisabled(o) && !PlayerCustom.IsPrimaryRolePowerHidden(o) && o != PlayerCustom.PlayerPrimaryRolePower.Avatar && o != PlayerCustom.PlayerPrimaryRolePower.Mole
 				select o).ToList();
 			foreach (PlayerCustom.PlayerPrimaryRolePower item2 in list)
 			{
@@ -226,7 +226,7 @@ internal class GameConfigAddNewSettingsPatch
 			GameConfig.ElitesCountConfig = GameConfig.CreateAndAttachConfigDropdownWithMax(__instance, "NALES_CONFIG_ROLE_ELITES", 3, GameConfig.ConfigTypeEnum.RolesVillagers, GameConfig.ColorVillagerJob);
 			GameConfig.FillElitesCountDropdown();
 			List<PlayerCustom.PlayerPrimaryRolePower> list2 = (from PlayerCustom.PlayerPrimaryRolePower o in Enum.GetValues(typeof(PlayerCustom.PlayerPrimaryRolePower))
-				where o != PlayerCustom.PlayerPrimaryRolePower.None && !PlayerCustom.IsPrimaryRolePowerDisabled(o) && PlayerCustom.IsPrimaryRolePowerForEliteVillagers(o)
+				where o != PlayerCustom.PlayerPrimaryRolePower.None && !PlayerCustom.IsPrimaryRolePowerDisabled(o) && !PlayerCustom.IsPrimaryRolePowerHidden(o) && PlayerCustom.IsPrimaryRolePowerForEliteVillagers(o)
 				select o).ToList();
 			foreach (PlayerCustom.PlayerPrimaryRolePower item3 in list2)
 			{
@@ -252,7 +252,7 @@ internal class GameConfigAddNewSettingsPatch
 			GameConfig.WolfPowersCountConfig = GameConfig.CreateAndAttachConfigDropdownWithMax(__instance, "NALES_CONFIG_ROLE_TYPE_MAIN_WOLF_COUNT", 6, GameConfig.ConfigTypeEnum.RolesEnemies, GameConfig.ColorWolfPower);
 			GameConfig.FillPrimaryRolePowersCountDropdown();
 			List<PlayerCustom.PlayerPrimaryRolePower> list4 = (from PlayerCustom.PlayerPrimaryRolePower o in Enum.GetValues(typeof(PlayerCustom.PlayerPrimaryRolePower))
-				where o != PlayerCustom.PlayerPrimaryRolePower.None && PlayerCustom.IsPrimaryRolePowerForWolves(o) && !PlayerCustom.IsPrimaryRolePowerDisabled(o)
+				where o != PlayerCustom.PlayerPrimaryRolePower.None && PlayerCustom.IsPrimaryRolePowerForWolves(o) && !PlayerCustom.IsPrimaryRolePowerDisabled(o) && !PlayerCustom.IsPrimaryRolePowerHidden(o)
 				select o).ToList();
 			foreach (PlayerCustom.PlayerPrimaryRolePower item5 in list4)
 			{

@@ -119,7 +119,7 @@ public class DraftManager : NetworkBehaviour
 	public void Init()
 	{
 		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e0d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e47: Unknown result type (might be due to invalid IL or missing references)
 		PlayersDraftDataByPlayerIndex.Clear();
 		List<PlayerCustom> allPlayers = PlayerCustomRegistry.AllPlayers;
 		allPlayers.Shuffle();
@@ -138,6 +138,10 @@ public class DraftManager : NetworkBehaviour
 		List<PlayerCustom.PlayerPrimaryRolePower> list2 = (from o in Plugin.CustomConfig.PrimaryRolePowerActive
 			where o.Value && PlayerCustom.IsPrimaryRolePowerForWolves(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key) && PlayerCustom.IsPrimaryRolePowerAvailableForCurrentMap(o.Key)
 			select o.Key).ToList();
+		if (Random.value > 0.25f)
+		{
+			list2.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => o == PlayerCustom.PlayerPrimaryRolePower.Fartmaster);
+		}
 		List<PlayerCustom.PlayerPrimaryRolePower> list3 = (from o in Plugin.CustomConfig.PrimaryRolePowerActive
 			where o.Value && PlayerCustom.IsPrimaryRolePowerForEliteVillagers(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key) && PlayerCustom.IsPrimaryRolePowerAvailableForCurrentMap(o.Key)
 			select o.Key).ToList();

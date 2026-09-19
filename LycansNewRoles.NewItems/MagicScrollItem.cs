@@ -263,6 +263,8 @@ public class MagicScrollItem : CustomItem
 		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ab: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController player = PlayerRegistry.GetPlayer(((Item)this).Owner);
@@ -276,7 +278,7 @@ public class MagicScrollItem : CustomItem
 			if (Physics.Raycast(val, ref val2, 10f, LayerMask.op_Implicit(Traverse.Create((object)component).Field<LayerMask>("layerMask").Value)))
 			{
 				PlayerController componentInParent = ((Component)((RaycastHit)(ref val2)).collider).gameObject.GetComponentInParent<PlayerController>();
-				if ((Object)(object)componentInParent != (Object)null && !NetworkBool.op_Implicit(componentInParent.IsDead))
+				if ((Object)(object)componentInParent != (Object)null && !NetworkBool.op_Implicit(componentInParent.IsDead) && componentInParent.Ref != player.Ref)
 				{
 					return componentInParent;
 				}

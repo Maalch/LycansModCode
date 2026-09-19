@@ -24,13 +24,13 @@ internal class RpcCollectPatch
 		//IL_018d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0207: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02d9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0313: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0324: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0353: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0359: Invalid comparison between Unknown and I4
-		//IL_0388: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0220: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_032c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_036c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0372: Invalid comparison between Unknown and I4
+		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!((NetworkBehaviour)__instance).InvokeRpc)
@@ -78,7 +78,7 @@ internal class RpcCollectPatch
 				}
 				__instance.Available = NetworkBool.op_Implicit(false);
 				GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)__instance).Runner, NetworkString<_16>.op_Implicit("LOOT"), ((Component)__instance).transform.position, 8f, 0.5f);
-				if (player.PowerMaterialsInfo != null && player.PowerMaterialsInfo.GainsMaterialOnCollect)
+				if (player.PowerMaterialsInfo != null && player.PowerMaterialsInfo.GainsMaterialOnCollect && (player.PrimaryRolePower != PlayerCustom.PlayerPrimaryRolePower.Fartmaster || __instance.HungerValue > 0))
 				{
 					int scoreValue = __instance.ScoreValue;
 					scoreValue = Mathf.RoundToInt((float)(scoreValue * 2) / (float)GameManager.Instance.LootSpawnRate);

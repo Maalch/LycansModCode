@@ -384,16 +384,16 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
 		//IL_135d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1685: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1689: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15c5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15d9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15dd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15fa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1618: Unknown result type (might be due to invalid IL or missing references)
-		//IL_161e: Invalid comparison between Unknown and I4
+		//IL_161c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1622: Invalid comparison between Unknown and I4
 		//IL_0b2d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b32: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c79: Unknown result type (might be due to invalid IL or missing references)
@@ -838,6 +838,7 @@ public class GameManagerCustom : NetworkBehaviour
 					case PlayerCustom.PlayerPrimaryRolePower.Bomber:
 					case PlayerCustom.PlayerPrimaryRolePower.Ritualist:
 					case PlayerCustom.PlayerPrimaryRolePower.Host:
+					case PlayerCustom.PlayerPrimaryRolePower.Fartmaster:
 					case PlayerCustom.PlayerPrimaryRolePower.Exorcist:
 					case PlayerCustom.PlayerPrimaryRolePower.Investigator:
 					case PlayerCustom.PlayerPrimaryRolePower.Survivalist:

@@ -11,6 +11,7 @@ internal class MegaFartPatch
 	{
 		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
 		if (((SimulationBehaviour)__instance).HasStateAuthority)
 		{
 			TickTimer fartTimer = __instance.FartTimer;
@@ -19,7 +20,11 @@ internal class MegaFartPatch
 				PlayerController value = Traverse.Create((object)__instance).Field<PlayerController>("_playerController").Value;
 				if (!((Component)value).GetComponent<KnockbackComponent>().Knockback.HasValue && Random.value < 0.0035f)
 				{
-					PlayerCustom.Rpc_Effect_On_Player(((SimulationBehaviour)__instance).Runner, value.Index, 4);
+					PlayerCustom player = PlayerCustomRegistry.GetPlayer(value.Ref);
+					if (player.PrimaryRolePower != PlayerCustom.PlayerPrimaryRolePower.Fartmaster)
+					{
+						PlayerCustom.Rpc_Effect_On_Player(((SimulationBehaviour)__instance).Runner, value.Index, 4);
+					}
 				}
 			}
 		}

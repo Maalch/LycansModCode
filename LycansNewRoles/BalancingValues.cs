@@ -512,14 +512,6 @@ public static class BalancingValues
 
 	public const bool AcrobatCanJumpInHumanForm = false;
 
-	public const int TrackerTrackerMaximum = 2;
-
-	public const float TrackerTrackerInteractionRange = 3f;
-
-	public const float TrackerTrackerMinimapRadius = 15f;
-
-	public const float TrackerTrackerSpeechRadius = 15f;
-
 	public static Dictionary<int, List<AcrobatSpotData>> AcrobatSpotsByMapId = new Dictionary<int, List<AcrobatSpotData>>
 	{
 		{
@@ -643,6 +635,16 @@ public static class BalancingValues
 			}
 		}
 	};
+
+	public const int TrackerTrackerMaximum = 2;
+
+	public const float TrackerTrackerInteractionRange = 3f;
+
+	public const float TrackerTrackerMinimapRadius = 15f;
+
+	public const float TrackerTrackerSpeechRadius = 15f;
+
+	public const float FartmasterAppearanceChance = 0.25f;
 
 	public static Dictionary<PlayerCustom.PlayerSecondaryRole, int> SecondaryRoleMaxAmountInDraft = new Dictionary<PlayerCustom.PlayerSecondaryRole, int>
 	{
@@ -1731,7 +1733,7 @@ public static class BalancingValues
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
 				Duration = 600f,
-				Ponderation = 2000
+				Ponderation = 2
 			}
 		},
 		{
@@ -2576,6 +2578,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(30, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Fartmaster => new PowerMaterialsInfo(60, 2.5f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(80, 1.75f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => new PowerMaterialsInfo(100, 2f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
@@ -2753,6 +2756,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => 100, 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => 200, 
 			PlayerCustom.PlayerPrimaryRolePower.Host => 2, 
+			PlayerCustom.PlayerPrimaryRolePower.Fartmaster => 2, 
 			_ => 0, 
 		};
 	}

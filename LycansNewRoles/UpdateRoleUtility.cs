@@ -42,7 +42,7 @@ public static class UpdateRoleUtility
 		switch ((int)playerRole)
 		{
 		case 0:
-			result = (((uint)(primaryRolePower - 27) > 1u) ? GameUI.VillagerColor : PlayerCustom.GetPrimaryRolePowerColor(primaryRolePower));
+			result = (((uint)(primaryRolePower - 28) > 1u) ? GameUI.VillagerColor : PlayerCustom.GetPrimaryRolePowerColor(primaryRolePower));
 			break;
 		case 1:
 			result = GameUI.WolfColor;
@@ -138,14 +138,14 @@ public static class UpdateRoleUtility
 		//IL_0adb: Unknown result type (might be due to invalid IL or missing references)
 		//IL_096d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0972: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d55: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ff6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ffb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1336: Unknown result type (might be due to invalid IL or missing references)
-		//IL_133b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1516: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1cce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1d15: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d59: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ffa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_133a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_133f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_151a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1d89: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1dd0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0416: Unknown result type (might be due to invalid IL or missing references)
 		//IL_041b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0602: Unknown result type (might be due to invalid IL or missing references)
@@ -153,19 +153,19 @@ public static class UpdateRoleUtility
 		//IL_09ef: Unknown result type (might be due to invalid IL or missing references)
 		//IL_09f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e1a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e1f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eb9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ebe: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1023: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1364: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1377: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1387: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1bb8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1bc2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1b14: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1b1e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e1e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e23: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ebd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ec2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1368: Unknown result type (might be due to invalid IL or missing references)
+		//IL_137b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_138b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1c73: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1c7d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1bcf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1bd9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_046d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0472: Unknown result type (might be due to invalid IL or missing references)
 		//IL_051c: Unknown result type (might be due to invalid IL or missing references)
@@ -182,12 +182,12 @@ public static class UpdateRoleUtility
 		//IL_0a57: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0ba8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0bad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e44: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e49: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ee3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ee8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_110f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_104d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e48: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e4d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ee7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0eec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1113: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1051: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08ef: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0791: Unknown result type (might be due to invalid IL or missing references)
@@ -198,24 +198,24 @@ public static class UpdateRoleUtility
 		//IL_0c1f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_029b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1121: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1079: Unknown result type (might be due to invalid IL or missing references)
-		//IL_107e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1125: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_107d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1082: Unknown result type (might be due to invalid IL or missing references)
 		//IL_081f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0824: Unknown result type (might be due to invalid IL or missing references)
 		//IL_071d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0722: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02d0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_112f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1133: Unknown result type (might be due to invalid IL or missing references)
 		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0174: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11a7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1161: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1166: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11ab: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1165: Unknown result type (might be due to invalid IL or missing references)
+		//IL_116a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
 		TickTimer primaryRolePowerCooldownTimer;
@@ -396,13 +396,13 @@ public static class UpdateRoleUtility
 			{
 			case PlayerCustom.PlayerPrimaryRolePower.Necromancer:
 			{
-				int num2 = Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials));
+				int num = Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials));
 				if (!NetworkBool.op_Implicit(playerCustom.NewPrimaryRoleUniqueBool))
 				{
-					return TranslationManager.Instance.GetTranslation("NALES_ROLE_NECROMANCER_NO_TARGET").Replace("{0}", Mathf.FloorToInt((float)num2).ToString());
+					return TranslationManager.Instance.GetTranslation("NALES_ROLE_NECROMANCER_NO_TARGET").Replace("{0}", Mathf.FloorToInt((float)num).ToString());
 				}
 				string text3 = ((playerCustom.PrimaryRolePowerCurrentMaterials >= 10000) ? "<color=green>" : "<color=red>");
-				return TranslationManager.Instance.GetTranslation("NALES_ROLE_NECROMANCER_TARGET").Replace("{0}", text3 + Mathf.FloorToInt((float)num2) + "</color>");
+				return TranslationManager.Instance.GetTranslation("NALES_ROLE_NECROMANCER_TARGET").Replace("{0}", text3 + Mathf.FloorToInt((float)num) + "</color>");
 			}
 			case PlayerCustom.PlayerPrimaryRolePower.Deceiver:
 				if (playerCustom.PrimaryRolePowerRemainingUses > 0)
@@ -412,9 +412,9 @@ public static class UpdateRoleUtility
 				primaryRolePowerCooldownTimer = playerCustom.PrimaryRolePowerCooldownTimer;
 				if (((TickTimer)(ref primaryRolePowerCooldownTimer)).IsRunning)
 				{
-					string translation = TranslationManager.Instance.GetTranslation("NALES_ROLE_DECEIVER_AVAILABLE_IN");
+					string translation2 = TranslationManager.Instance.GetTranslation("NALES_ROLE_DECEIVER_AVAILABLE_IN");
 					primaryRolePowerCooldownTimer = playerCustom.PrimaryRolePowerCooldownTimer;
-					return translation.Replace("{0}", Mathf.CeilToInt(((TickTimer)(ref primaryRolePowerCooldownTimer)).RemainingTime(((SimulationBehaviour)playerCustom).Runner).Value).ToString());
+					return translation2.Replace("{0}", Mathf.CeilToInt(((TickTimer)(ref primaryRolePowerCooldownTimer)).RemainingTime(((SimulationBehaviour)playerCustom).Runner).Value).ToString());
 				}
 				return TranslationManager.Instance.GetTranslation("NALES_ROLE_DECEIVER_UNAVAILABLE");
 			case PlayerCustom.PlayerPrimaryRolePower.Warlock:
@@ -425,9 +425,9 @@ public static class UpdateRoleUtility
 				primaryRolePowerCooldownTimer = playerCustom.PrimaryRolePowerCooldownTimer;
 				if (((TickTimer)(ref primaryRolePowerCooldownTimer)).IsRunning)
 				{
-					string translation2 = TranslationManager.Instance.GetTranslation("NALES_ROLE_WARLOCK_AVAILABLE_IN");
+					string translation = TranslationManager.Instance.GetTranslation("NALES_ROLE_WARLOCK_AVAILABLE_IN");
 					primaryRolePowerCooldownTimer = playerCustom.PrimaryRolePowerCooldownTimer;
-					return translation2.Replace("{0}", Mathf.CeilToInt(((TickTimer)(ref primaryRolePowerCooldownTimer)).RemainingTime(((SimulationBehaviour)playerCustom).Runner).Value).ToString());
+					return translation.Replace("{0}", Mathf.CeilToInt(((TickTimer)(ref primaryRolePowerCooldownTimer)).RemainingTime(((SimulationBehaviour)playerCustom).Runner).Value).ToString());
 				}
 				return TranslationManager.Instance.GetTranslation("NALES_ROLE_WARLOCK_UNAVAILABLE");
 			case PlayerCustom.PlayerPrimaryRolePower.Saboteur:
@@ -477,8 +477,8 @@ public static class UpdateRoleUtility
 					return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_NO_TARGET");
 				}
 				PlayerController player = PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
-				int num = Mathf.RoundToInt(Vector3.Distance(((Component)player).transform.position, ((Component)playerCustom.PlayerController).transform.position));
-				return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_WITH_TARGET").Replace("{0}", num.ToString());
+				int num2 = Mathf.RoundToInt(Vector3.Distance(((Component)player).transform.position, ((Component)playerCustom.PlayerController).transform.position));
+				return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_WITH_TARGET").Replace("{0}", num2.ToString());
 			}
 			case PlayerCustom.PlayerPrimaryRolePower.Sneak:
 				if (LycansUtility.WolvesCanTransform)
@@ -502,6 +502,12 @@ public static class UpdateRoleUtility
 					return TranslationManager.Instance.GetTranslation("NALES_ROLE_TRACKER_ACTIVE").Replace("{0}", LycansUtility.GetInputDisplayCustom((InputActionName)5));
 				}
 				return TranslationManager.Instance.GetTranslation("NALES_ROLE_TRACKER_INACTIVE").Replace("{0}", LycansUtility.GetInputDisplayCustom((InputActionName)5));
+			case PlayerCustom.PlayerPrimaryRolePower.Fartmaster:
+				if (playerCustom.PrimaryRolePowerRemainingUses > 0)
+				{
+					return TranslationManager.Instance.GetTranslation("NALES_ROLE_FARTMASTER_DETAILS").Replace("{0}", "<color=green>" + Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)) + "%</color>");
+				}
+				return TranslationManager.Instance.GetTranslation("NALES_ROLE_FARTMASTER_DETAILS").Replace("{0}", "<color=red>" + Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)) + "%</color>");
 			case PlayerCustom.PlayerPrimaryRolePower.Exorcist:
 				if (playerCustom.PrimaryRolePowerRemainingUses > 0)
 				{
