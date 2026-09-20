@@ -679,7 +679,7 @@ public class GameManagerCustom : NetworkBehaviour
 					}
 					else if (NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf))
 					{
-						playerCustom.AddMaterials(150);
+						playerCustom.AddMaterials(175);
 					}
 					break;
 				}

@@ -857,7 +857,7 @@ internal class GiveNewRolesPatch
 		obj4.onEnter = (Action<EGameState>)Delegate.Combine(obj4.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
 			try
 			{
 				SabotageManager.Instance.Clean();

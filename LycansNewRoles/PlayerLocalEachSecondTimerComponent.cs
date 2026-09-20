@@ -40,33 +40,34 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 	private void Update()
 	{
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0509: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0702: Invalid comparison between Unknown and I4
+		//IL_0730: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0736: Invalid comparison between Unknown and I4
 		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_072b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0731: Invalid comparison between Unknown and I4
-		//IL_073e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_075f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0765: Invalid comparison between Unknown and I4
+		//IL_0772: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
-		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0363: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0366: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_059c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a4: Invalid comparison between Unknown and I4
-		//IL_031d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0392: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
+		//IL_039a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d8: Invalid comparison between Unknown and I4
+		//IL_0351: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07d5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_080d: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)_playerCustom != (Object)null && NetworkBool.op_Implicit(_playerCustom.Confused))
 		{
 			if (!_confusedWatch.IsRunning)
@@ -110,7 +111,7 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 						list.Add(item3.Ref);
 					}
 				}
-				if (povPlayerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Host)
+				if (povPlayerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Host || (povPlayerCustom.PlayerController.Item is SpyglassItem && NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsZooming)))
 				{
 					foreach (PlayerCustom item4 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != povPlayerCustom.Ref))
 					{

@@ -133,11 +133,9 @@ public static class BalancingValues
 
 	public const float NecromancerResurrectCastTime = 2f;
 
-	public const int NecromancerChargePerSecondInWolfForm = 150;
+	public const int NecromancerChargePerSecondInWolfForm = 175;
 
 	public const int NecromancerChargeLossPerSecondWhenResurrected = 300;
-
-	public const int NecromancerMinimumChargeToResurrect = 10000;
 
 	public const int WarlockShapeshiftCastTime = 1;
 
@@ -337,7 +335,7 @@ public static class BalancingValues
 
 	public const int CultistGoal = 10000;
 
-	public const float CultistSpiritMoveSpeed = 1.8f;
+	public const float CultistSpiritMoveSpeed = 2f;
 
 	public const float CultistSpiritCaptureCooldown = 2f;
 
@@ -351,9 +349,9 @@ public static class BalancingValues
 
 	public const float CultistInvokedSkullLifetime = 45f;
 
-	public const float CultistInvokedSkullMoveSpeed = 3f;
+	public const float CultistInvokedSkullMoveSpeed = 2.25f;
 
-	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 1f;
+	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 0.75f;
 
 	public const float CultistInvokedSkullSlowDuration = 2f;
 
@@ -414,7 +412,9 @@ public static class BalancingValues
 
 	public const float SaboteurTrappedGadgetHealthLossPercentage = 0.25f;
 
-	public const float SaboteurWoundedMoveSpeedMultiplier = 0.65f;
+	public const int SaboteurWoundedDurationOnSabotagedGadgetUse = 30;
+
+	public const float SaboteurWoundedMoveSpeedMultiplier = 0.8f;
 
 	public const float SaboteurItemLightIntensityNotHeld = 2f;
 
@@ -432,15 +432,15 @@ public static class BalancingValues
 
 	public const float BomberGiveBombRange = 2.5f;
 
-	public const float BomberBombDamagePercentageOnHuman = 0.35f;
+	public const float BomberBombDamagePercentageOnHuman = 0.25f;
 
-	public const float BomberBombDamagePercentageOnWolf = 0.35f;
+	public const float BomberBombDamagePercentageOnWolf = 0.25f;
 
 	public const float BomberBombDamagePercentageOnBeast = 0.15f;
 
-	public const float BomberBombGlowingDuration = 180f;
+	public const float BomberBombDetectedDuration = 600f;
 
-	public const float BomberBombWoundedDurationOnHuman = 180f;
+	public const float BomberBombWoundedDurationOnHuman = 600f;
 
 	public const float BomberBombWoundedDurationOnWolf = 30f;
 
@@ -1660,7 +1660,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Illusion,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 30f,
+				Duration = 600f,
 				Ponderation = 2
 			}
 		},
@@ -1996,6 +1996,8 @@ public static class BalancingValues
 
 	public const float TrapDisarmTimeInWolfForm = 5f;
 
+	public const float SpyglassMinimumDistanceForSeethrough = 40f;
+
 	public const int SmokeBoostedRadius = 4000;
 
 	public const float MaxSpeedBase = 1.5f;
@@ -2014,7 +2016,7 @@ public static class BalancingValues
 
 	public const float WolfTenacityMovementSpeedMultiplier = 1.2f;
 
-	public const float WolfTenacityHungerMultiplier = 0.7f;
+	public const float WolfTenacityHungerMultiplier = 0.5f;
 
 	public const float WolfTenacityRecuperateEffectivenessMultiplier = 2f;
 
@@ -2572,7 +2574,7 @@ public static class BalancingValues
 	{
 		return power switch
 		{
-			PlayerCustom.PlayerPrimaryRolePower.Necromancer => new PowerMaterialsInfo(10000, 2f, 1.006f, gainsMaterialsOnCollect: false, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Necromancer => new PowerMaterialsInfo(10000, 2f, 0.906f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Possessor => new PowerMaterialsInfo(10000, 1f, 0f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Bomber => new PowerMaterialsInfo(70, 2.5f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 

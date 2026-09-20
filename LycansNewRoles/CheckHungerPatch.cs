@@ -324,7 +324,7 @@ internal class CheckHungerPatch
 					}
 					if (NetworkBool.op_Implicit(player.Tenacity))
 					{
-						num3 *= 0.7f;
+						num3 *= 0.5f;
 					}
 					if (NetworkBool.op_Implicit(player.Hubris))
 					{

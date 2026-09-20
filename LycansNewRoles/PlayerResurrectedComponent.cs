@@ -38,8 +38,8 @@ public class PlayerResurrectedComponent : MonoBehaviour
 	public void UpdateState()
 	{
 		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(_playerController.Ref);
 		player.UpdateModelIfNeeded();
 		_active = !NetworkBool.op_Implicit(_playerController.IsDead) && (NetworkBool.op_Implicit(player.ResurrectedByNecromancer) || player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);

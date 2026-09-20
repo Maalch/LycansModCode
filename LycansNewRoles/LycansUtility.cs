@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using BepInEx.Logging;
 using Fusion;
 using HarmonyLib;
@@ -151,12 +150,11 @@ public static class LycansUtility
 
 	public static SkinnedMeshRenderer UpdateVillagerSkin(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, PlayerController playerController)
 	{
-		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
-			Plugin.Logger.LogInfo((object)("Update villager skin with skin index " + skinIndex + " with stacktrace " + new StackTrace()));
 			if ((Object)(object)playerController != (Object)null)
 			{
 				ManualLogSource logger = Plugin.Logger;
@@ -289,7 +287,7 @@ public static class LycansUtility
 			.Find("HatsContainer")
 			.Find("Hats");
 		int childCount = ((Component)val).transform.childCount;
-		foreach (object item in ((Component)val).transform)
+		foreach (object? item in ((Component)val).transform)
 		{
 			((Component)(Transform)item).gameObject.SetActive(false);
 		}

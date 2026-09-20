@@ -23,7 +23,7 @@ internal class OnPlayerDataChangedColorPatch
 	private static void Postfix(Changed<PlayerController> changed)
 	{
 		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController behaviour = changed.Behaviour;
