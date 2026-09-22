@@ -233,6 +233,14 @@
       "translationKey": "NALES_ROLE_DESCRIPTION_SABOTEUR"
     },
     {
+      "id": "traqueur",
+      "name": "Traqueur",
+      "emoji": "📍",
+      "description": "Peut placer jusqu'à 2 traqueurs sur des joueurs hors meeting. Ils lui permettent d'entendre les joueurs proches de chaque cible et, en forme humaine, de voir leur position ainsi que celle des joueurs proches sur la minimap. L'écoute peut être désactivée. Une fois par meeting, peut tenter de tuer un Villageois en devinant correctement son pouvoir.",
+      "descriptionShort": "Place des traqueurs pour écouter et localiser des joueurs, et peut deviner un pouvoir en meeting",
+      "translationKey": "NALES_ROLE_DESCRIPTION_TRACKER"
+    },
+    {
       "id": "sorcier",
       "name": "Sorcier",
       "emoji": "🧙",
@@ -1208,7 +1216,7 @@
       "Nécromancien": { "category": "wolfPowers", "id": "necromancien" },
       "Dupeur": { "category": "wolfPowers", "id": "dupeur" },
       "Saboteur": { "category": "wolfPowers", "id": "saboteur" },
-      "Traqueur": { "category": "wolfPowers", "id": "traqueur", "legacy": true, "replacedBy": "hote" },
+      "Traqueur": { "category": "wolfPowers", "id": "traqueur" },
       "Sorcier": { "category": "wolfPowers", "id": "sorcier" },
       "Possesseur": { "category": "wolfPowers", "id": "possesseur" },
       "Artificier": { "category": "wolfPowers", "id": "artificier" },
