@@ -140,8 +140,8 @@
       "camp": "solo",
       "emoji": "💕",
       "type": "duo",
-      "description": "Rôle duo composé d'un Amoureux Villageois et d'un Amoureux Loup. Ils gagnent en survivant ensemble jusqu'à ce qu'il ne reste que 4 joueurs en meeting. Si un des deux joueurs meurt, l'autre meurt également. Peuvent communiquer par télépathie (canal privé). Le Villageois perd de la vie la nuit si le Loup n'est pas transformé, et seuls les kills du Loup le nourrissent (excepté les Zombies). La nourriture récupérée par l'Amoureux Villageois soigne l'Amoureux Loup s'il est en forme de loup. Les autres Loups voient la nuit teintée en rose quand les Amoureux sont dans la partie.",
-      "descriptionShort": "Villageois + Loup. Gagnent en survivant ensemble",
+      "description": "Rôle duo composé d'un Amoureux Villageois et d'un Amoureux Loup. Ils gagnent en survivant ensemble jusqu'à ce qu'il ne reste que 4 joueurs en meeting. Si un des deux joueurs meurt, l'autre meurt également. Si un des deux joueurs meurt, l'autre meurt également. Peuvent communiquer par télépathie (canal privé). Le Villageois perd de la vie la nuit si le Loup n'est pas transformé, et seuls les kills du Loup le nourrissent (excepté les Zombies). La nourriture récupérée par l'Amoureux Villageois soigne l'Amoureux Loup s'il est en forme de loup. Les autres Loups voient la nuit teintée en rose quand les Amoureux sont dans la partie.",
+      "descriptionShort": "Couple de joueurs Villageois + Loup. Gagnent en survivant ensemble",
       "subRoles": [
         {
           "id": "amoureux-villageois",
