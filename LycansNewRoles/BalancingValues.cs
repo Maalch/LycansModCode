@@ -1496,6 +1496,8 @@ public static class BalancingValues
 
 	public const float MolotovBurnHealthDecreaseWolfForm = 1.5f;
 
+	public const float MolotovBurnHealthDecreaseBeast = 0.75f;
+
 	public static Color MolotovBurnFogColor = Color.red;
 
 	public const float MolotovBurnFogMaximumDistance = 30f;

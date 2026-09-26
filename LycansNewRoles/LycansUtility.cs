@@ -287,7 +287,7 @@ public static class LycansUtility
 			.Find("HatsContainer")
 			.Find("Hats");
 		int childCount = ((Component)val).transform.childCount;
-		foreach (object? item in ((Component)val).transform)
+		foreach (object item in ((Component)val).transform)
 		{
 			((Component)(Transform)item).gameObject.SetActive(false);
 		}

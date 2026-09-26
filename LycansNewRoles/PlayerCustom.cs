@@ -6173,11 +6173,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.357", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.358", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.357", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.358", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -15277,6 +15277,9 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
 		PlayerController playerController = PlayerController;
 		if (!NetworkBool.op_Implicit(playerController.IsDead))
 		{
@@ -15289,6 +15292,8 @@ public class PlayerCustom : NetworkBehaviour
 				((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.SetColor("_SkinTexture", color);
 			}
 			((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = color;
+			NetworkString<_32> username = PlayerController.PlayerData.Username;
+			LycansUtility.AddLogOnlyForMe("Player " + ((object)username/*cast due to constrained. prefix*/).ToString() + ": FlashPlayer now");
 			FlashingTimer.Restart();
 		}
 	}
@@ -16597,7 +16602,7 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0a6d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b05: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b0b: Invalid comparison between Unknown and I4
-		//IL_0bd9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0be6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b2e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b46: Unknown result type (might be due to invalid IL or missing references)
@@ -16850,6 +16855,7 @@ public class PlayerCustom : NetworkBehaviour
 			((Component)PlayerController).GetComponent<PlayerHeartSeethroughComponent>().SetVisible(povPlayerCustom.Ref != Ref && !NetworkBool.op_Implicit(PlayerController.IsDead), NetworkBool.op_Implicit(PlayerController.IsWolf));
 			((Renderer)Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.shader = SeeThroughShaderHuman;
 			((Renderer)Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.shader = SeeThroughShaderWolf;
+			UpdateModelIfNeeded(false);
 		}
 		else
 		{

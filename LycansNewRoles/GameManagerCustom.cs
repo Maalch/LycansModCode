@@ -382,29 +382,29 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-		//IL_135d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_137a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1689: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15c5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15dd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_15fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1617: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_161c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1622: Invalid comparison between Unknown and I4
+		//IL_1639: Unknown result type (might be due to invalid IL or missing references)
+		//IL_163f: Invalid comparison between Unknown and I4
 		//IL_0b2d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b32: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c79: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c7e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c96: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c9b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05b0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05f0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0178: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0189: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13f9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1416: Unknown result type (might be due to invalid IL or missing references)
+		//IL_141b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b49: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b53: Unknown result type (might be due to invalid IL or missing references)
 		//IL_070f: Unknown result type (might be due to invalid IL or missing references)
@@ -413,45 +413,46 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1414: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1419: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1431: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1436: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e8: Invalid comparison between Unknown and I4
-		//IL_0c3f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f58: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ccc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cf5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d06: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c5c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f75: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ce9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d12: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d23: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0770: Unknown result type (might be due to invalid IL or missing references)
 		//IL_077c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_146b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1470: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1488: Unknown result type (might be due to invalid IL or missing references)
 		//IL_148d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_14aa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0421: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0434: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bc3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0db4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d2e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e19: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e2a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bc0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0dd1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d4b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e36: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e47: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a76: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a87: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a9e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0ac6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_084f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1073: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1079: Invalid comparison between Unknown and I4
-		//IL_0d97: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1090: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1096: Invalid comparison between Unknown and I4
+		//IL_0db4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c1e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0be0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10ae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1273: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_111b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_112c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c3b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1290: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1138: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1149: Unknown result type (might be due to invalid IL or missing references)
 		if (!((SimulationBehaviour)this).Runner.IsServer)
 		{
 			return;
@@ -653,12 +654,12 @@ public class GameManagerCustom : NetworkBehaviour
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
 				{
-					float num23 = 45f;
+					float num24 = 45f;
 					if (PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead) && o.Ref != player.Ref && NetworkBool.op_Implicit(o.IsWolf) && Vector3.Distance(((Component)player).transform.position, ((Component)o).transform.position) <= 30f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))))
 					{
-						num23 += 225f;
+						num24 += 225f;
 					}
-					playerCustom.AddMaterials(Mathf.RoundToInt(num23));
+					playerCustom.AddMaterials(Mathf.RoundToInt(num24));
 					break;
 				}
 				case PlayerCustom.PlayerPrimaryRolePower.Necromancer:
@@ -667,7 +668,7 @@ public class GameManagerCustom : NetworkBehaviour
 					if (!((PlayerRef)(ref primaryRoleTargetRef)).IsNone && !NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef).IsDead))
 					{
 						playerCustom.PrimaryRolePowerCurrentMaterials = Mathf.Max(0, playerCustom.PrimaryRolePowerCurrentMaterials - 300);
-						if (playerCustom.PrimaryRolePowerCurrentMaterials == 0)
+						if (playerCustom.PrimaryRolePowerCurrentMaterials == 0 || NetworkBool.op_Implicit(playerCustom.PlayerController.IsDead))
 						{
 							PlayerController player4 = PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
 							Effect val5 = player4.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is ResurrectedEffect);
@@ -690,8 +691,8 @@ public class GameManagerCustom : NetworkBehaviour
 						break;
 					}
 					PlayerCustom player3 = PlayerCustomRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
-					float num24 = BalancingValues.PossessorMaximumRangeByMap(GameManager.Instance.MapID);
-					if (Vector3.Distance(((Component)player).transform.position, ((Component)player3.PlayerController).transform.position) <= num24)
+					float num23 = BalancingValues.PossessorMaximumRangeByMap(GameManager.Instance.MapID);
+					if (Vector3.Distance(((Component)player).transform.position, ((Component)player3.PlayerController).transform.position) <= num23)
 					{
 						playerCustom.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(true);
 						playerCustom.PrimaryRolePowerCurrentMaterials += 400;
