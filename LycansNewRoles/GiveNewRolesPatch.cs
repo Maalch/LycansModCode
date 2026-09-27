@@ -31,24 +31,24 @@ internal class GiveNewRolesPatch
 			//IL_0003: Invalid comparison between Unknown and I4
 			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 			//IL_002a: Invalid comparison between Unknown and I4
-			//IL_1226: Unknown result type (might be due to invalid IL or missing references)
-			//IL_12de: Unknown result type (might be due to invalid IL or missing references)
-			//IL_12e0: Invalid comparison between Unknown and I4
+			//IL_124c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1304: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1306: Invalid comparison between Unknown and I4
 			//IL_0069: Unknown result type (might be due to invalid IL or missing references)
 			//IL_006e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_12f9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_131f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01dd: Unknown result type (might be due to invalid IL or missing references)
-			//IL_14c9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_14e1: Unknown result type (might be due to invalid IL or missing references)
-			//IL_14e6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_14fd: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1502: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1532: Unknown result type (might be due to invalid IL or missing references)
+			//IL_14ef: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1507: Unknown result type (might be due to invalid IL or missing references)
+			//IL_150c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1523: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1528: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1558: Unknown result type (might be due to invalid IL or missing references)
 			//IL_036a: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0553: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03bb: Unknown result type (might be due to invalid IL or missing references)
@@ -57,20 +57,20 @@ internal class GiveNewRolesPatch
 			//IL_0432: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0613: Unknown result type (might be due to invalid IL or missing references)
 			//IL_062b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0797: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0e72: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0e80: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0d6e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0de8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_10c0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_10c5: Unknown result type (might be due to invalid IL or missing references)
-			//IL_10ca: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0e98: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0ea6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0d94: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0e0e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_10e6: Unknown result type (might be due to invalid IL or missing references)
 			//IL_10eb: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1107: Unknown result type (might be due to invalid IL or missing references)
+			//IL_10f0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_110c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1190: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1195: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1111: Unknown result type (might be due to invalid IL or missing references)
+			//IL_112d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1132: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11b6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11bb: Unknown result type (might be due to invalid IL or missing references)
 			if ((int)state == 1)
 			{
 				GameManagerCustom.Instance.NewGame();
@@ -188,7 +188,14 @@ internal class GiveNewRolesPatch
 						List<PlayerCustom.PlayerPrimaryRolePower> list6 = (from o in Plugin.CustomConfig.PrimaryRolePowerActive
 							where o.Value && PlayerCustom.IsPrimaryRolePowerForWolves(o.Key) && !PlayerCustom.IsPrimaryRolePowerDisabled(o.Key) && PlayerCustom.IsPrimaryRolePowerAvailableForCurrentMap(o.Key)
 							select o.Key).ToList();
-						if (Random.value > 0.25f)
+						if (Random.value < 0.25f)
+						{
+							if (!list6.Contains(PlayerCustom.PlayerPrimaryRolePower.Fartmaster))
+							{
+								list6.Add(PlayerCustom.PlayerPrimaryRolePower.Fartmaster);
+							}
+						}
+						else
 						{
 							list6.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => o == PlayerCustom.PlayerPrimaryRolePower.Fartmaster);
 						}
@@ -857,7 +864,7 @@ internal class GiveNewRolesPatch
 		obj4.onEnter = (Action<EGameState>)Delegate.Combine(obj4.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
 			try
 			{
 				SabotageManager.Instance.Clean();

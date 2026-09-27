@@ -203,18 +203,18 @@ public static class LycansUtility
 
 	public static void UpdateVillagerSkinColor(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, int skinColorIndex, int playerColorIndex, PlayerCustom playerCustom)
 	{
-		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0273: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0094: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0353: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0322: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0369: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0338: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
@@ -251,6 +251,7 @@ public static class LycansUtility
 		((Renderer)villagerMeshRenderer).material.SetTexture("_SkinTexture", Plugin.Skins[skinIndex].SkinTextures[skinColorIndex]);
 		int index = Mathf.Min(playerColorIndex, Plugin.Skins[skinIndex].TopTextures.Count - 1);
 		((Renderer)villagerMeshRenderer).material.SetTexture("_TopTexture", Plugin.Skins[skinIndex].TopTextures[index]);
+		((Renderer)villagerMeshRenderer).material.SetFloat("_IntensityColorEffect", 0f);
 		if ((Object)(object)playerCustom != (Object)null)
 		{
 			if (NetworkBool.op_Implicit(playerCustom.Petrified))
@@ -275,6 +276,19 @@ public static class LycansUtility
 		}
 	}
 
+	public static void ResetSkinColor(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex)
+	{
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		if (skinIndex == 0)
+		{
+			((Renderer)villagerMeshRenderer).material.color = Color.white;
+		}
+		else
+		{
+			((Renderer)villagerMeshRenderer).material.SetFloat("_IntensityColorEffect", 0f);
+		}
+	}
+
 	public static void UpdateVillagerHat(SkinnedMeshRenderer villagerMeshRenderer, int hatIndex)
 	{
 		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
@@ -287,7 +301,7 @@ public static class LycansUtility
 			.Find("HatsContainer")
 			.Find("Hats");
 		int childCount = ((Component)val).transform.childCount;
-		foreach (object item in ((Component)val).transform)
+		foreach (object? item in ((Component)val).transform)
 		{
 			((Component)(Transform)item).gameObject.SetActive(false);
 		}

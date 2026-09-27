@@ -1481,7 +1481,7 @@ public class PlayerCustom : NetworkBehaviour
 
 	public bool HasSpecialSkinColor = false;
 
-	public bool HasCamouflage = false;
+	public bool HasSpecialShader = false;
 
 	public PlayerNewAnimationsComponent PlayerAnimations;
 
@@ -6173,11 +6173,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.358", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.359", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.358", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.359", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -7488,32 +7488,18 @@ public class PlayerCustom : NetworkBehaviour
 		}
 	}
 
-	public void UpdateModelIfNeeded(bool? hasCamouflage = null)
+	public void UpdateModelIfNeeded(bool? hasCamouflage = null, bool? hasSpecialShader = null)
 	{
-		//IL_014b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0160: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0209: Unknown result type (might be due to invalid IL or missing references)
-		//IL_020e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0213: Unknown result type (might be due to invalid IL or missing references)
-		if (hasCamouflage.HasValue)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0103: Unknown result type (might be due to invalid IL or missing references)
+		if (hasSpecialShader.HasValue)
 		{
-			HasCamouflage = hasCamouflage.Value;
+			HasSpecialShader = hasSpecialShader.Value;
 		}
 		PlayerCustom playerCustom = PlayerVisualToShowForPovPlayer();
-		int num = ((!HasCamouflage) ? playerCustom.SkinIndex : 0);
+		int num = ((!hasCamouflage.HasValue || !hasCamouflage.Value) ? playerCustom.SkinIndex : 0);
 		if (num != CurrentSkinIndex)
 		{
-			string[] obj = new string[6] { "Player ", null, null, null, null, null };
-			NetworkString<_32> username = PlayerController.PlayerData.Username;
-			obj[1] = ((object)username/*cast due to constrained. prefix*/).ToString();
-			obj[2] = ": update skin with skin index ";
-			obj[3] = num.ToString();
-			obj[4] = " and skin color index ";
-			obj[5] = SkinColorIndex.ToString();
-			LycansUtility.AddLogOnlyForMe(string.Concat(obj));
 			SkinnedMeshRenderer value = Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value;
 			SkinnedMeshRenderer villagerMeshRenderer = LycansUtility.UpdateVillagerSkin(value, num, PlayerController);
 			CurrentSkinIndex = num;
@@ -7526,14 +7512,6 @@ public class PlayerCustom : NetworkBehaviour
 		bool flag = NetworkBool.op_Implicit(Petrified) || HasZombieColor || NetworkBool.op_Implicit(Poison);
 		if (!CurrentSkinColorIndex.HasValue || !CurrentColorIndex.HasValue || playerCustom.SkinColorIndex != CurrentSkinColorIndex || playerCustom.ColorIndex != CurrentColorIndex || FlashingTimer.ElapsedMilliseconds >= 100 || flag != HasSpecialSkinColor)
 		{
-			string[] obj2 = new string[6] { "Player ", null, null, null, null, null };
-			NetworkString<_32> username = PlayerController.PlayerData.Username;
-			obj2[1] = ((object)username/*cast due to constrained. prefix*/).ToString();
-			obj2[2] = ": update colors with player color ";
-			obj2[3] = playerCustom.ColorIndex.ToString();
-			obj2[4] = " and skin color ";
-			obj2[5] = playerCustom.SkinColorIndex.ToString();
-			LycansUtility.AddLogOnlyForMe(string.Concat(obj2));
 			LycansUtility.UpdateVillagerSkinColor(Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value, playerCustom.SkinIndex, playerCustom.SkinColorIndex, playerCustom.ColorIndex, this);
 			CurrentSkinColorIndex = playerCustom.SkinColorIndex;
 			CurrentColorIndex = playerCustom.ColorIndex;
@@ -11164,18 +11142,18 @@ public class PlayerCustom : NetworkBehaviour
 
 	public void UpdateIllusion(bool forceUpdatePet = false)
 	{
-		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
 		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0127: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0134: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0113: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0136: Unknown result type (might be due to invalid IL or missing references)
-		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0177: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018f: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerController playerController = PlayerController;
@@ -11631,7 +11609,7 @@ public class PlayerCustom : NetworkBehaviour
 	{
 		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0024: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0049: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom behaviour = changed.Behaviour;
@@ -15276,10 +15254,7 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
 		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0091: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bb: Unknown result type (might be due to invalid IL or missing references)
 		PlayerController playerController = PlayerController;
 		if (!NetworkBool.op_Implicit(playerController.IsDead))
 		{
@@ -15289,11 +15264,10 @@ public class PlayerCustom : NetworkBehaviour
 			}
 			else
 			{
-				((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.SetColor("_SkinTexture", color);
+				((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.SetColor("_ColorEffect", color);
+				((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.SetFloat("_IntensityColorEffect", 1f);
 			}
 			((Renderer)Traverse.Create((object)playerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.color = color;
-			NetworkString<_32> username = PlayerController.PlayerData.Username;
-			LycansUtility.AddLogOnlyForMe("Player " + ((object)username/*cast due to constrained. prefix*/).ToString() + ": FlashPlayer now");
 			FlashingTimer.Restart();
 		}
 	}
@@ -16582,39 +16556,45 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_07e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0809: Unknown result type (might be due to invalid IL or missing references)
 		//IL_07f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0938: Unknown result type (might be due to invalid IL or missing references)
+		//IL_094c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0835: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0820: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0891: Unknown result type (might be due to invalid IL or missing references)
-		//IL_098f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08f0: Invalid comparison between Unknown and I4
+		//IL_0979: Unknown result type (might be due to invalid IL or missing references)
+		//IL_097e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0983: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09ad: Unknown result type (might be due to invalid IL or missing references)
 		//IL_09bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0902: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0912: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a09: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a25: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a35: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a6d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b05: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b0b: Invalid comparison between Unknown and I4
-		//IL_0be6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_088d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09f9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08b9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08ec: Invalid comparison between Unknown and I4
+		//IL_08fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_090e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a50: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a7e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a8e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ae6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0af6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b2e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b46: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b5c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bc6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bcc: Invalid comparison between Unknown and I4
+		//IL_0cd3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bf5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c07: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c1d: Unknown result type (might be due to invalid IL or missing references)
 		Visible = visible;
 		PlayerCustom povPlayerCustom = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
 		CamouflageLevelForPovPlayer = 0;
 		if (NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsWolf) && !NetworkBool.op_Implicit(povPlayerCustom.PlayerController.PlayerEffectManager.NightVision))
 		{
-			foreach (PlayerCustom item2 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && NetworkBool.op_Implicit(o.NewPrimaryRoleUniqueBool)))
+			foreach (PlayerCustom item in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerPrimaryRolePower.Shadow && NetworkBool.op_Implicit(o.NewPrimaryRoleUniqueBool)))
 			{
-				if (Vector3.Distance(((Component)item2.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))
+				if (Vector3.Distance(((Component)item.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))
 				{
 					float num = Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position);
 					if (num > 40f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID))
@@ -16812,21 +16792,18 @@ public class PlayerCustom : NetworkBehaviour
 		{
 			return;
 		}
-		int num11;
-		if (!NetworkBool.op_Implicit(Detected) && (!NetworkBool.op_Implicit(povPlayerCustom.Spotter) || !NetworkBool.op_Implicit(PlayerController.IsWolf)) && (!NetworkBool.op_Implicit(PlayerController.IsWolf) || !NetworkBool.op_Implicit(PlayerController.PlayerEffectManager.Glowing)) && (!NetworkBool.op_Implicit(PlayerController.IsWolf) || povPlayerCustom.PrimaryRolePower != PlayerPrimaryRolePower.Scout || !ScoutRadar.AssociatedRadars.Any((ScoutRadar o) => o.CreatorRef == povPlayerCustom.Ref && o.WolvesInRange.Any((PlayerRef j) => j == Ref))))
+		bool flag2 = NetworkBool.op_Implicit(Detected) || (NetworkBool.op_Implicit(povPlayerCustom.Spotter) && NetworkBool.op_Implicit(PlayerController.IsWolf)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && NetworkBool.op_Implicit(PlayerController.PlayerEffectManager.Glowing)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Scout && ScoutRadar.AssociatedRadars.Any((ScoutRadar o) => o.CreatorRef == povPlayerCustom.Ref && o.WolvesInRange.Any((PlayerRef j) => j == Ref))) || (povPlayerCustom.PlayerController.Item is SpyglassItem && NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsZooming) && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) >= 40f) || (povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(Parasite) && (int)GameManager.LocalGameState != 4 && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f);
+		if (povPlayerCustom.PlayerController.Item is SpyglassItem && NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsZooming))
 		{
-			Item item = povPlayerCustom.PlayerController.Item;
-			SpyglassItem val10 = (SpyglassItem)(object)((item is SpyglassItem) ? item : null);
-			if (val10 == null || !NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsZooming) || !(Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) >= 40f))
-			{
-				num11 = ((povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(Parasite) && (int)GameManager.LocalGameState != 4 && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f) ? 1 : 0);
-				goto IL_092c;
-			}
+			string[] obj = new string[6] { "Spyglass: player ", null, null, null, null, null };
+			NetworkString<_32> username = PlayerController.PlayerData.Username;
+			obj[1] = ((object)username/*cast due to constrained. prefix*/).ToString();
+			obj[2] = ", distance is ";
+			obj[3] = Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position).ToString();
+			obj[4] = ", seethrough: ";
+			obj[5] = flag2.ToString();
+			LycansUtility.AddLogOnlyForMe(string.Concat(obj));
 		}
-		num11 = 1;
-		goto IL_092c;
-		IL_092c:
-		bool flag2 = (byte)num11 != 0;
 		if (!flag2 && NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Runemaster && povPlayerCustom.AssociatedRunes.Any((RunemasterRune o) => Vector3.Distance(((Component)o).transform.position, ((Component)PlayerController).transform.position) <= 10f))
 		{
 			flag2 = true;
@@ -16853,9 +16830,10 @@ public class PlayerCustom : NetworkBehaviour
 		if (flag2 && (int)GameManager.LocalGameState != 4)
 		{
 			((Component)PlayerController).GetComponent<PlayerHeartSeethroughComponent>().SetVisible(povPlayerCustom.Ref != Ref && !NetworkBool.op_Implicit(PlayerController.IsDead), NetworkBool.op_Implicit(PlayerController.IsWolf));
+			LycansUtility.ResetSkinColor(Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value, SkinIndex);
 			((Renderer)Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.shader = SeeThroughShaderHuman;
 			((Renderer)Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).material.shader = SeeThroughShaderWolf;
-			UpdateModelIfNeeded(false);
+			UpdateModelIfNeeded(false, true);
 		}
 		else
 		{
@@ -16878,13 +16856,24 @@ public class PlayerCustom : NetworkBehaviour
 				shader2 = CamouflageLevel3Shader;
 				break;
 			}
-			UpdateModelIfNeeded(CamouflageLevelForPovPlayer > 0);
+			if (CamouflageLevelForPovPlayer > 0)
+			{
+				LycansUtility.ResetSkinColor(Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value, SkinIndex);
+			}
 			((Renderer)Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("villagerMeshRenderer").Value).material.shader = shader;
+			if (CamouflageLevelForPovPlayer > 0)
+			{
+				UpdateModelIfNeeded(true, true);
+			}
+			else
+			{
+				UpdateModelIfNeeded(false, false);
+			}
 			Material[] materials = ((Renderer)Traverse.Create((object)PlayerController).Field<SkinnedMeshRenderer>("wolfMeshRenderer").Value).materials;
 			Material[] array10 = materials;
-			foreach (Material val11 in array10)
+			foreach (Material val10 in array10)
 			{
-				val11.shader = shader2;
+				val10.shader = shader2;
 			}
 			if (visible && CamouflageLevelForPovPlayer > 0)
 			{
@@ -16923,9 +16912,12 @@ public class PlayerCustom : NetworkBehaviour
 
 	public void UpdateModelCustom()
 	{
-		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
-		PlayerController.UpdateModel(NetworkBool.op_Implicit(PlayerController.IsWolf) || NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.PlayerEffectManager.Paranoia));
+		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0047: Unknown result type (might be due to invalid IL or missing references)
+		if ((Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer != (Object)null)
+		{
+			PlayerController.UpdateModel(NetworkBool.op_Implicit(PlayerController.IsWolf) || NetworkBool.op_Implicit(PlayerController.Local.LocalCameraHandler.PovPlayer.PlayerEffectManager.Paranoia));
+		}
 	}
 
 	public void ClearAllParticleEffects()
