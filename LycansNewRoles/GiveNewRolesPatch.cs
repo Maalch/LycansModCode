@@ -865,7 +865,7 @@ internal class GiveNewRolesPatch
 		obj4.onEnter = (Action<EGameState>)Delegate.Combine(obj4.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
 			try
 			{
 				SabotageManager.Instance.Clean();
@@ -936,28 +936,35 @@ internal class GiveNewRolesPatch
 		obj6.onEnter = (Action<EGameState>)Delegate.Combine(obj6.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0017: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0084: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00e1: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01d1: Unknown result type (might be due to invalid IL or missing references)
-			//IL_012c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0141: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0146: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0154: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0156: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0160: Unknown result type (might be due to invalid IL or missing references)
-			//IL_017c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0192: Expected O, but got Unknown
-			//IL_01a3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
+			//IL_011e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0139: Unknown result type (might be due to invalid IL or missing references)
+			//IL_020e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0169: Unknown result type (might be due to invalid IL or missing references)
+			//IL_017e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0191: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0193: Unknown result type (might be due to invalid IL or missing references)
+			//IL_019d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_03b5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01cf: Expected O, but got Unknown
+			//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01f6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03f2: Unknown result type (might be due to invalid IL or missing references)
 			LycansUtility.AddLogOnlyForMe("Transition Enter");
 			UIManager.HideAllExtraUI();
-			if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Tournament && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Vengeance)
+			if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 			{
-				GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)gameState).Runner, 0);
+				if (GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Tournament && GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.Vengeance)
+				{
+					GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)gameState).Runner, 0);
+				}
+				foreach (PlayerCustom allPlayer10 in PlayerCustomRegistry.AllPlayers)
+				{
+					allPlayer10.UpdateVisibility();
+				}
 			}
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 			{
@@ -1188,6 +1195,7 @@ internal class GiveNewRolesPatch
 				item18.UpdateVisibility();
 				item18.SoloRoleHalfDayProgress = 0f;
 			}
+			HostParasite.UpdateVisibilityForAllParasites();
 		});
 	}
 

@@ -194,25 +194,25 @@ public class AccessorySpellbook : Accessory
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0087: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03eb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0406: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0416: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04f8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_050c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0511: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0412: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0422: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0504: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0509: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0518: Unknown result type (might be due to invalid IL or missing references)
 		//IL_051d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0521: Unknown result type (might be due to invalid IL or missing references)
-		//IL_052b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0547: Unknown result type (might be due to invalid IL or missing references)
-		//IL_055d: Expected O, but got Unknown
-		//IL_0568: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0589: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0529: Unknown result type (might be due to invalid IL or missing references)
+		//IL_052d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0537: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0553: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0569: Expected O, but got Unknown
+		//IL_0574: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0595: Unknown result type (might be due to invalid IL or missing references)
 		Dictionary<PossibleEffects, SpellbookEffectDetails> dictionary = (NetworkBool.op_Implicit(targetPlayer.IsWolf) ? BalancingValues.SpellbookPossibleEffectsAndDurationsOnWolves : BalancingValues.SpellbookPossibleEffectsAndDurationsOnHumans);
 		List<PossibleEffects> list = new List<PossibleEffects>();
 		foreach (KeyValuePair<PossibleEffects, SpellbookEffectDetails> item in dictionary)
@@ -222,7 +222,7 @@ public class AccessorySpellbook : Accessory
 				list.Add(item.Key);
 			}
 		}
-		if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
+		if (!NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) || targetPlayerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie)
 		{
 			list.RemoveAll((PossibleEffects o) => o == PossibleEffects.TransformWolf);
 		}

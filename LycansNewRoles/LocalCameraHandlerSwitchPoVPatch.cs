@@ -83,6 +83,7 @@ internal class LocalCameraHandlerSwitchPoVPatch
 			SurvivalistHint.UpdateVisibilityForAllHints();
 			DiscipleAnchor.UpdateVisibilityForAllAnchors();
 			HermitHideout.UpdateVisibilityForAllHideouts();
+			HostParasite.UpdateVisibilityForAllParasites();
 			RunemasterRune.UpdateVisibilityForAllRunes();
 			AcrobatSpot.UpdateVisibilityForAllSpots();
 			InventorScrap.UpdateVisibilityForAllScrap();

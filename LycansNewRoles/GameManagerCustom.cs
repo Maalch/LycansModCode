@@ -223,6 +223,7 @@ public class GameManagerCustom : NetworkBehaviour
 		InvestigatorHint.AllHints.Clear();
 		SurvivalistHint.AllHints.Clear();
 		HermitHideout.AllHideouts.Clear();
+		HostParasite.AllParasites.Clear();
 		InventorScrap.AllScraps.Clear();
 	}
 

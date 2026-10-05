@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Fusion;
@@ -20,7 +21,11 @@ public class HostParasite : NetworkBehaviour
 
 	private Shader _initialShader;
 
-	public static Shader CamouflageShader;
+	public static Shader CamouflageShaderDay;
+
+	public static Shader CamouflageShaderNight;
+
+	public static List<HostParasite> AllParasites = new List<HostParasite>();
 
 	[Networked(OnChanged = "CreatorRefChanged")]
 	[NetworkedWeaved(0, 1)]
@@ -107,6 +112,7 @@ public class HostParasite : NetworkBehaviour
 		try
 		{
 			changed.Behaviour._creatorCustom = PlayerCustomRegistry.GetPlayer(changed.Behaviour.CreatorRef);
+			AllParasites.Add(changed.Behaviour);
 			if (changed.Behaviour._creatorCustom.IsCurrentlyPlayedOrObserved)
 			{
 				Plugin.Minimap.AddHostParasiteIcon(changed.Behaviour);
@@ -130,6 +136,7 @@ public class HostParasite : NetworkBehaviour
 		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0082: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0088: Invalid comparison between Unknown and I4
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
 		if (!NetworkBool.op_Implicit(Appeared))
 		{
 			_visual.SetActive(false);
@@ -147,7 +154,15 @@ public class HostParasite : NetworkBehaviour
 		}
 		else
 		{
-			((Renderer)_visual.GetComponent<MeshRenderer>()).material.shader = CamouflageShader;
+			((Renderer)_visual.GetComponent<MeshRenderer>()).material.shader = (NetworkBool.op_Implicit(GameManager.LightingManager.IsNight) ? CamouflageShaderNight : CamouflageShaderDay);
+		}
+	}
+
+	public static void UpdateVisibilityForAllParasites()
+	{
+		foreach (HostParasite allParasite in AllParasites)
+		{
+			allParasite.UpdateVisibility();
 		}
 	}
 
@@ -193,6 +208,7 @@ public class HostParasite : NetworkBehaviour
 	public override void Despawned(NetworkRunner runner, bool hasState)
 	{
 		((NetworkBehaviour)this).Despawned(runner, hasState);
+		AllParasites.Remove(this);
 		Object.Destroy((Object)(object)((Component)this).gameObject);
 	}
 

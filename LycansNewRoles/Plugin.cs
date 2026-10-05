@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.360")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.361")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -198,31 +198,25 @@ public class Plugin : BaseUnityPlugin
 			List<string> source = Directory.EnumerateFiles(path).ToList();
 			int num = 3;
 			NewMapPathById.Clear();
-			foreach (string item4 in source.Where((string o) => !o.Contains(".json")))
+			foreach (string item3 in source.Where((string o) => !o.Contains(".json")))
 			{
-				string text3 = item4.Split('/').Last();
+				string text3 = item3.Split('/').Last();
 				if (text3.ToLower().StartsWith("map_"))
 				{
 					NewMapPathById.Add(num, text3.ToLower());
 					num++;
 				}
-				else if (item4.ToLower().Contains("/hats_"))
+				else if (item3.ToLower().Contains("/hats_"))
 				{
-					Logger.LogInfo((object)("Adding hats bundle: " + item4));
+					Logger.LogInfo((object)("Adding hats bundle: " + item3));
 					AssetBundle item = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
 					NewHatsBundles.Add(item);
 				}
-				else if (item4.ToLower().Contains("/pets_"))
+				else if (item3.ToLower().Contains("/pets_"))
 				{
-					Logger.LogInfo((object)("Adding pets bundle: " + item4));
+					Logger.LogInfo((object)("Adding pets bundle: " + item3));
 					AssetBundle item2 = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
 					PetBundles.Add(item2);
-				}
-				else if (item4.ToLower().Contains("/skins_"))
-				{
-					Logger.LogInfo((object)("Adding skins bundle: " + item4));
-					AssetBundle item3 = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
-					SkinBundles.Add(item3);
 				}
 			}
 		}
@@ -262,10 +256,10 @@ public class Plugin : BaseUnityPlugin
 		//IL_20e2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_2110: Unknown result type (might be due to invalid IL or missing references)
 		//IL_212c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_30cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_310d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_379b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3821: Unknown result type (might be due to invalid IL or missing references)
+		//IL_30df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3121: Unknown result type (might be due to invalid IL or missing references)
+		//IL_37af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3835: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -916,7 +910,8 @@ public class Plugin : BaseUnityPlugin
 			PlayerCustom.CamouflageLevel1Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel1Shader");
 			PlayerCustom.CamouflageLevel2Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel2Shader");
 			PlayerCustom.CamouflageLevel3Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel3Shader");
-			HostParasite.CamouflageShader = NewRolesCoreBundle.LoadAsset<Shader>("HostParasiteCamouflageShader");
+			HostParasite.CamouflageShaderDay = NewRolesCoreBundle.LoadAsset<Shader>("HostParasiteCamouflageShaderDay");
+			HostParasite.CamouflageShaderNight = NewRolesCoreBundle.LoadAsset<Shader>("HostParasiteCamouflageShaderNight");
 			AddSoundIfNeeded("SurvivalistDying");
 			AddSoundIfNeeded("BombTicking");
 			AddSoundIfNeeded("BombExplosion");

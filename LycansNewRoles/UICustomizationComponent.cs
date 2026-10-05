@@ -23,14 +23,7 @@ public class UICustomizationComponent : MonoBehaviour
 
 	private CustomizationOptionComponent _choiceSkinColor;
 
-	private List<CustomizationOptionComponent.CustomizationOptionType> _types = new List<CustomizationOptionComponent.CustomizationOptionType>
-	{
-		CustomizationOptionComponent.CustomizationOptionType.Hat,
-		CustomizationOptionComponent.CustomizationOptionType.Color,
-		CustomizationOptionComponent.CustomizationOptionType.Pet,
-		CustomizationOptionComponent.CustomizationOptionType.Skin,
-		CustomizationOptionComponent.CustomizationOptionType.SkinColor
-	};
+	private List<CustomizationOptionComponent.CustomizationOptionType> _types = new List<CustomizationOptionComponent.CustomizationOptionType>();
 
 	private int _currentTypeIndex;
 
@@ -49,6 +42,21 @@ public class UICustomizationComponent : MonoBehaviour
 		_choicePet.Init("NALES_UI_CUSTOMIZATION_PET", CustomizationOptionComponent.CustomizationOptionType.Pet);
 		_choiceSkin.Init("NALES_UI_CUSTOMIZATION_SKIN", CustomizationOptionComponent.CustomizationOptionType.Skin);
 		_choiceSkinColor.Init("NALES_UI_CUSTOMIZATION_SKIN_COLOR", CustomizationOptionComponent.CustomizationOptionType.SkinColor);
+		_types.Add(CustomizationOptionComponent.CustomizationOptionType.Hat);
+		_types.Add(CustomizationOptionComponent.CustomizationOptionType.Color);
+		_types.Add(CustomizationOptionComponent.CustomizationOptionType.Pet);
+		if (Plugin.Skins.Count > 1)
+		{
+			_types.Add(CustomizationOptionComponent.CustomizationOptionType.Skin);
+			_types.Add(CustomizationOptionComponent.CustomizationOptionType.SkinColor);
+			((Component)_choiceSkin).gameObject.SetActive(true);
+			((Component)_choiceSkinColor).gameObject.SetActive(true);
+		}
+		else
+		{
+			((Component)_choiceSkin).gameObject.SetActive(false);
+			((Component)_choiceSkinColor).gameObject.SetActive(false);
+		}
 		Hide();
 	}
 

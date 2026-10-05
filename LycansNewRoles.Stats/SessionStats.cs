@@ -9,9 +9,10 @@ public class SessionStats
 {
 	public static SessionStats Stats = new SessionStats
 	{
-		ModVersion = "0.360",
+		ModVersion = "0.361",
 		Filename = ((object)PlayerController.Local.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "-" + LycansUtility.GetCurrentDateTimeUtcForId,
-		Key = "N8W0_QJ7Z5"
+		Key = "N8W0_QJ7Z5",
+		Type = "SessionStats"
 	};
 
 	[NonSerialized]
@@ -22,6 +23,8 @@ public class SessionStats
 	public string Filename;
 
 	public string Key;
+
+	public string Type;
 
 	public List<GameStats> GameStats = new List<GameStats>();
 

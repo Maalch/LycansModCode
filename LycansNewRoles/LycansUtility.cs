@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using BepInEx.Logging;
 using Fusion;
 using HarmonyLib;
 using Managers;
@@ -150,22 +149,6 @@ public static class LycansUtility
 
 	public static SkinnedMeshRenderer UpdateVillagerSkin(SkinnedMeshRenderer villagerMeshRenderer, int skinIndex, PlayerController playerController)
 	{
-		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
-		try
-		{
-			if ((Object)(object)playerController != (Object)null)
-			{
-				ManualLogSource logger = Plugin.Logger;
-				NetworkString<_32> username = playerController.PlayerData.Username;
-				logger.LogInfo((object)("For player: " + ((object)username/*cast due to constrained. prefix*/).ToString()));
-			}
-		}
-		catch (Exception ex)
-		{
-			Plugin.Logger.LogInfo((object)("Error logging skin update: " + ex));
-		}
 		bool activeSelf = ((Component)villagerMeshRenderer).gameObject.activeSelf;
 		GameObject gameObject = ((Component)((Component)villagerMeshRenderer).transform.parent.Find("metarig")).gameObject;
 		CharacterSkin characterSkin = Plugin.Skins[skinIndex];
@@ -197,7 +180,6 @@ public static class LycansUtility
 			Traverse.Create((object)playerController.PlayerEffectManager).Field<SkinnedMeshRenderer>("skinnedMeshRenderer").Value = val.GetComponent<SkinnedMeshRenderer>();
 			playerController.ShowThirdPersonModels(activeSelf);
 		}
-		Plugin.Logger.LogInfo((object)("Skin updated, returning SkinnedMeshRenderer: " + (object)val));
 		return val.GetComponent<SkinnedMeshRenderer>();
 	}
 
