@@ -596,6 +596,7 @@ internal class GiveNewRolesPatch
 				UIManager.MayorPanelForOthers.UpdateDestitutionCount(0, required);
 				UIManager.MayorPanelForOthers.UpdateDifferentCount(0, required, PlayerRef.None);
 			}
+			UIManager.SoloRolesProgressPanel.UpdateSoloRoles();
 			LycansUtility.AddLogOnlyForMe("Player stuff");
 			foreach (PlayerCustom allPlayer5 in PlayerCustomRegistry.AllPlayers)
 			{

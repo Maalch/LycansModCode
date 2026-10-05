@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.359")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.360")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;

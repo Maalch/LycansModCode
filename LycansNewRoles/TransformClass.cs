@@ -142,12 +142,12 @@ public class TransformClass
 		//IL_003f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_004c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_030b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0308: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0219: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0335: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0385: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0332: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0337: Unknown result type (might be due to invalid IL or missing references)
+		//IL_033c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0382: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0237: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0242: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
@@ -208,7 +208,7 @@ public class TransformClass
 				{
 					float num = Vector3.Distance(((Component)playerController).transform.position, ((Component)__instance).transform.position);
 					float num2 = 40f * BalancingValues.DistanceMultiplierByMap(GameManager.Instance.MapID);
-					if (num <= 40f)
+					if (num <= num2)
 					{
 						float num3 = ScientistUtility.GetBasePower(specificNewPrimaryRole, __instance, num, num2) * 5f;
 						if (LycansUtility.CanPlayerSeeOtherPlayer(specificNewPrimaryRole, player, num2))

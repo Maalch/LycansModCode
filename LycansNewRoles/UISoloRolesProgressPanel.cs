@@ -26,6 +26,8 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 
 	public bool Active = false;
 
+	private List<PlayerCustom> _playersToShow = new List<PlayerCustom>();
+
 	private Stopwatch _blinkStopwatch = new Stopwatch();
 
 	private Stopwatch _blinkEndStopwatch = new Stopwatch();
@@ -48,21 +50,25 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 		_panel.SetActive(false);
 	}
 
+	public void UpdateSoloRoles()
+	{
+		_playersToShow = PlayerCustomRegistry.Where((PlayerCustom o) => (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Spy && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.SpyGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Scientist && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.ScientistGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead))).ToList();
+	}
+
 	private void Update()
 	{
 		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0007: Invalid comparison between Unknown and I4
-		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004b: Invalid comparison between Unknown and I4
-		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0026: Invalid comparison between Unknown and I4
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
 		if ((int)GameManager.LocalGameState == 0)
 		{
 			return;
 		}
-		IEnumerable<PlayerCustom> source = PlayerCustomRegistry.Where((PlayerCustom o) => (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Spy && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.SpyGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Scientist && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.ScientistGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && PlayerCustomRegistry.CountWhere((PlayerCustom playerCustom) => NetworkBool.op_Implicit(playerCustom.BeastMark)) >= 3));
-		if ((Object)(object)Plugin.CustomConfig == (Object)null || (int)GameManager.LocalGameState != 4 || !source.Any() || GameManager.Instance.gameUI.IsSettingMenuOpen || GameManager.Instance.gameUI.IsGameSettingMenuOpen)
+		if ((Object)(object)Plugin.CustomConfig == (Object)null || (int)GameManager.LocalGameState != 4 || !_playersToShow.Any() || GameManager.Instance.gameUI.IsSettingMenuOpen || GameManager.Instance.gameUI.IsGameSettingMenuOpen)
 		{
 			if (Active)
 			{
@@ -92,9 +98,8 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 
 	public void UpdateSoloRolesProgress()
 	{
-		IEnumerable<PlayerCustom> source = PlayerCustomRegistry.Where((PlayerCustom o) => (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Spy && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.SpyGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Scientist && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.ScientistGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && PlayerCustomRegistry.CountWhere((PlayerCustom playerCustom) => NetworkBool.op_Implicit(playerCustom.BeastMark)) >= 3));
 		PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
-		if ((Object)(object)specificNewPrimaryRole != (Object)null && source.Contains(specificNewPrimaryRole) && specificNewPrimaryRole.SoloRoleObjectiveCount < BalancingValues.SpyGoal(PlayerRegistry.Count))
+		if ((Object)(object)specificNewPrimaryRole != (Object)null && _playersToShow.Contains(specificNewPrimaryRole) && specificNewPrimaryRole.SoloRoleObjectiveCount < BalancingValues.SpyGoal(PlayerRegistry.Count))
 		{
 			((Component)_textSpy).gameObject.SetActive(true);
 			string text = Mathf.FloorToInt((float)(specificNewPrimaryRole.SoloRoleObjectiveCount * 100 / BalancingValues.SpyGoal(PlayerRegistry.Count))).ToString();
@@ -105,7 +110,7 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 			((Component)_textSpy).gameObject.SetActive(false);
 		}
 		PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Scientist);
-		if ((Object)(object)specificNewPrimaryRole2 != (Object)null && source.Contains(specificNewPrimaryRole2) && specificNewPrimaryRole2.SoloRoleObjectiveCount < BalancingValues.ScientistGoal(PlayerRegistry.Count))
+		if ((Object)(object)specificNewPrimaryRole2 != (Object)null && _playersToShow.Contains(specificNewPrimaryRole2) && specificNewPrimaryRole2.SoloRoleObjectiveCount < BalancingValues.ScientistGoal(PlayerRegistry.Count))
 		{
 			((Component)_textScientist).gameObject.SetActive(true);
 			string text2 = Mathf.FloorToInt((float)(specificNewPrimaryRole2.SoloRoleObjectiveCount * 100 / BalancingValues.ScientistGoal(PlayerRegistry.Count))).ToString();
@@ -116,7 +121,7 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 			((Component)_textScientist).gameObject.SetActive(false);
 		}
 		PlayerCustom specificNewPrimaryRole3 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Beast);
-		if ((Object)(object)specificNewPrimaryRole3 != (Object)null && source.Contains(specificNewPrimaryRole3))
+		if ((Object)(object)specificNewPrimaryRole3 != (Object)null && _playersToShow.Contains(specificNewPrimaryRole3))
 		{
 			((Component)_textBeast).gameObject.SetActive(true);
 			((TMP_Text)_textBeast).text = TranslationManager.Instance.GetTranslation("NALES_ROLE_BEAST") + " : ? / " + PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead));

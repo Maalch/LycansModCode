@@ -16,7 +16,7 @@ internal class EffectDespawnedPatch
 			return;
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.EffectPlayer);
-		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is ResistanceEffect) && !(__instance is SneakyEffect) && !(__instance is DetectedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect))
+		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is ResistanceEffect) && !(__instance is SneakyEffect) && !(__instance is DetectedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect) && !(__instance is NightVision))
 		{
 			if (!(__instance is CapturedEffect) && !(__instance is BanishedEffect))
 			{
