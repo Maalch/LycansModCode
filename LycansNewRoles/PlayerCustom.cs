@@ -471,10 +471,6 @@ public class PlayerCustom : NetworkBehaviour
 
 		public static Predicate<PlayerController> _003C_003E9__759_16;
 
-		public static Predicate<PlayerController> _003C_003E9__759_17;
-
-		public static Predicate<PlayerController> _003C_003E9__759_18;
-
 		internal bool _003Cget_AllVillagerJobs_003Eb__89_0(PlayerPrimaryRolePower o)
 		{
 			return IsPrimaryRolePowerForNormalVillagers(o);
@@ -1246,19 +1242,6 @@ public class PlayerCustom : NetworkBehaviour
 			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 			return o.PlayerData.ID == "76561199060053791";
-		}
-
-		internal bool _003CRpc_End_Game_003Eb__759_17(PlayerController o)
-		{
-			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0006: Unknown result type (might be due to invalid IL or missing references)
-			return o.PlayerData.ID == "76561197973106144";
-		}
-
-		internal bool _003CRpc_End_Game_003Eb__759_18(PlayerController o)
-		{
-			//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-			return PlayerRef.op_Implicit(o.Ref) >= 1000;
 		}
 	}
 
@@ -6224,11 +6207,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.361", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.362", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.361", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.362", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -17969,22 +17952,22 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_13b0: Invalid comparison between Unknown and I4
 		//IL_1373: Unknown result type (might be due to invalid IL or missing references)
 		//IL_1379: Invalid comparison between Unknown and I4
-		//IL_16b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16b8: Invalid comparison between Unknown and I4
-		//IL_16cb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16d1: Invalid comparison between Unknown and I4
-		//IL_1760: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1766: Invalid comparison between Unknown and I4
-		//IL_164e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1655: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1799: Unknown result type (might be due to invalid IL or missing references)
-		//IL_177c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_17f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1739: Unknown result type (might be due to invalid IL or missing references)
-		//IL_171c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1698: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1650: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1656: Invalid comparison between Unknown and I4
+		//IL_1669: Unknown result type (might be due to invalid IL or missing references)
+		//IL_166f: Invalid comparison between Unknown and I4
+		//IL_16fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1704: Invalid comparison between Unknown and I4
+		//IL_15ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1737: Unknown result type (might be due to invalid IL or missing references)
+		//IL_171a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_168c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_178d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1792: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1636: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -18392,7 +18375,7 @@ public class PlayerCustom : NetworkBehaviour
 					StringContent content = new StringContent(JsonConvert.SerializeObject((object)SessionStats.Stats));
 					httpClient.PostAsync("https://mjconxaygsuwux4lsilhzwauhi0yigbp.lambda-url.eu-west-1.on.aws/", content);
 				}
-				if (!PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561198034021995")) && !PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561198045789440")) && !PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561199060053791")) && (!PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561197973106144")) || PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => PlayerRef.op_Implicit(o.Ref) >= 1000)) || PlayerRegistry.Count < 8))
+				if (!PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561198034021995")) && !PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561198045789440")) && !PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => o.PlayerData.ID == "76561199060053791")))
 				{
 					return;
 				}

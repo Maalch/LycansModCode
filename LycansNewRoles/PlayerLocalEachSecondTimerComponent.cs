@@ -49,8 +49,7 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		//IL_0736: Invalid comparison between Unknown and I4
 		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_075f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0765: Invalid comparison between Unknown and I4
-		//IL_0772: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0776: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
@@ -65,9 +64,9 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		//IL_03d2: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03d8: Invalid comparison between Unknown and I4
 		//IL_0351: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_080d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07dc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0803: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0814: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)_playerCustom != (Object)null && NetworkBool.op_Implicit(_playerCustom.Confused))
 		{
 			if (!_confusedWatch.IsRunning)
@@ -180,7 +179,7 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		{
 			_playerCustom.InventorDeviceInfo.CheckAlert();
 		}
-		if ((int)_playerCustom.PlayerController.Role == 1 && NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf))
+		if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead))
 		{
 			foreach (PlayerCustom item8 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost))
 			{
