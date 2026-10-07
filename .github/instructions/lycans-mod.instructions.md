@@ -20,6 +20,10 @@ applyTo: "**/*.cs"
 | `LycansNewRoles.Sabotages/` | Sabotage logic |
 | `LycansNewRoles.Stats/` | Stats tracking |
 
+## Build Limitation
+
+This repository is an ILSpy extract of the LycansNewRoles code, not the complete original source project. The extracted code cannot be built as a standalone project. Do not use `dotnet build` or try to restore/recreate missing original game or project dependencies. Validate edits with focused source inspection and any standalone tests that exist; report a full build as unavailable.
+
 ## Game Design Reference
 
 Full gameplay descriptions, translation keys, and balancing context live in `gameReference.json` (project root). It is hand-maintained, **not auto-generated from code** — cross-check its `legacy`/`replacedBy` claims and treat gaps as suspect (see caveats below) rather than assuming it's authoritative.
