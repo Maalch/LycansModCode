@@ -2038,6 +2038,8 @@ public static class BalancingValues
 
 	public const float WolfCamouflageLevel3DetectionMultiplier = 0.7f;
 
+	public const float WolfForcedTransformationTimer = 20f;
+
 	public const int ItemChanceTrap = 10;
 
 	public const int ItemChanceSmoke = 10;

@@ -75,7 +75,8 @@ public class UISpectatorChoicePlayer : MonoBehaviour
 		//IL_01ec: Invalid comparison between Unknown and I4
 		//IL_0239: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0290: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b1: Unknown result type (might be due to invalid IL or missing references)
 		if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead))
 		{
 			((TMP_Text)_textPlayer).text = "<s>" + ((object)_playerCustom.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "</s>";
@@ -106,7 +107,7 @@ public class UISpectatorChoicePlayer : MonoBehaviour
 			((Component)_icon).gameObject.SetActive(true);
 			_icon.sprite = UIManager.KidnappedPlayerIcon;
 		}
-		else if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead))
+		else if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead) || _playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie || NetworkBool.op_Implicit(_playerCustom.ResurrectedByNecromancer))
 		{
 			((Component)_soloRoleProgress).gameObject.SetActive(false);
 			((Component)_icon).gameObject.SetActive(true);

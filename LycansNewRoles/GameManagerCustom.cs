@@ -1145,9 +1145,9 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
 		//IL_003c: Invalid comparison between Unknown and I4
 		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0136: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00df: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
 		if (NetworkBehaviourUtils.InvokeRpc)
 		{
 			NetworkBehaviourUtils.InvokeRpc = false;
@@ -1176,9 +1176,9 @@ public class GameManagerCustom : NetworkBehaviour
 			}
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerIndex);
-		if (!player.AskForSpeechActive && !player.AskForSpeechUsedThisMeeting && !(Instance.CurrentMayor == player.Ref))
+		if (!player.AskForSpeechTimer.IsRunning && !player.AskForSpeechUsedThisMeeting && !(Instance.CurrentMayor == player.Ref))
 		{
-			player.AskForSpeechActive = true;
+			player.AskForSpeechTimer.Restart();
 			player.AskForSpeechUsedThisMeeting = true;
 			player.UpdateIconAbovePlayer(visible: true);
 			if (player.IsCurrentlyPlayedOrObserved)

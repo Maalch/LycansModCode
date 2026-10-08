@@ -32,10 +32,14 @@ internal class GiveNewRolesPatch
 			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 			//IL_002a: Invalid comparison between Unknown and I4
 			//IL_124c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1631: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1633: Invalid comparison between Unknown and I4
 			//IL_1304: Unknown result type (might be due to invalid IL or missing references)
 			//IL_1306: Invalid comparison between Unknown and I4
 			//IL_0069: Unknown result type (might be due to invalid IL or missing references)
 			//IL_006e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1635: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1637: Invalid comparison between Unknown and I4
 			//IL_131f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
@@ -456,6 +460,13 @@ internal class GiveNewRolesPatch
 					UIManager.LastGameSummaryPanel.Clear();
 					Plugin.CreatePlayerIllusionIfNeeded();
 				}
+				if ((int)state == 1 || (int)state == 4)
+				{
+					foreach (PlayerCustom item11 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (int)o.PlayerController.Role == 1 && !NetworkBool.op_Implicit(o.IsWolfPup)))
+					{
+						item11.WolfDaysWithoutTransformation++;
+					}
+				}
 			}
 			if (((SimulationBehaviour)__instance).Runner.IsServer)
 			{
@@ -571,7 +582,7 @@ internal class GiveNewRolesPatch
 						{
 							PlayerCustom.ApplyEffectToPlayer(playerCustom3.PlayerController, "LycansNewRoles.EffectTournamentLoser", ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 							PlayerCustom.ApplyEffectToPlayer(playerCustom3.PlayerController, EffectManager.GetEffects().First((Effect o) => o is GlowingEffect), ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
-							playerCustom2.Stats.AddAction(new PlayerStats.PlayerAction
+							playerCustom3.Stats.AddAction(new PlayerStats.PlayerAction
 							{
 								ActionType = "TournamentLost"
 							}, ((Component)playerCustom2.PlayerController).transform.position);
@@ -671,6 +682,7 @@ internal class GiveNewRolesPatch
 						//IL_06a2: Unknown result type (might be due to invalid IL or missing references)
 						//IL_071e: Unknown result type (might be due to invalid IL or missing references)
 						//IL_0761: Unknown result type (might be due to invalid IL or missing references)
+						//IL_077c: Unknown result type (might be due to invalid IL or missing references)
 						//IL_0743: Unknown result type (might be due to invalid IL or missing references)
 						//IL_0754: Unknown result type (might be due to invalid IL or missing references)
 						if ((Object)(object)player != (Object)null)
@@ -827,6 +839,7 @@ internal class GiveNewRolesPatch
 							player2.MayorVoteTarget = PlayerRef.None;
 							player2.LootCollectedTodayDuringDay = 0;
 							player2.RecuperateDisabled = false;
+							player2.ForcedTransformation = NetworkBool.op_Implicit(false);
 						}
 					});
 					if ((int)state == 2)
@@ -849,7 +862,7 @@ internal class GiveNewRolesPatch
 			{
 				foreach (PlayerCustom allPlayer6 in PlayerCustomRegistry.AllPlayers)
 				{
-					allPlayer6.AskForSpeechActive = false;
+					allPlayer6.AskForSpeechTimer.Reset();
 					allPlayer6.AskForSpeechUsedThisMeeting = false;
 					allPlayer6.UpdateIconAbovePlayer(visible: true);
 				}
@@ -865,7 +878,7 @@ internal class GiveNewRolesPatch
 		obj4.onEnter = (Action<EGameState>)Delegate.Combine(obj4.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00f5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0101: Unknown result type (might be due to invalid IL or missing references)
 			try
 			{
 				SabotageManager.Instance.Clean();
@@ -880,14 +893,15 @@ internal class GiveNewRolesPatch
 					allPlayer7.UpdateModelIfNeeded();
 					allPlayer7.UpdateVisibility();
 					allPlayer7.UpdateScaleAndPitch();
+					allPlayer7.CustomAudio.UpdateVolume();
 				}
 				if (((SimulationBehaviour)gameState).Runner.IsServer)
 				{
 					List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.None).ToList();
 					{
-						foreach (PlayerCustom item11 in list)
+						foreach (PlayerCustom item12 in list)
 						{
-							item11.PrimaryRoleTargetRef = PlayerRef.None;
+							item12.PrimaryRoleTargetRef = PlayerRef.None;
 						}
 						return;
 					}
@@ -969,11 +983,11 @@ internal class GiveNewRolesPatch
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.LightingManager.IsNight))
 			{
 				List<PlayerCustom> specificSecondaryRoles = PlayerCustomRegistry.GetSpecificSecondaryRoles(PlayerCustom.PlayerSecondaryRole.BothPolitician);
-				foreach (PlayerCustom item12 in specificSecondaryRoles)
+				foreach (PlayerCustom item13 in specificSecondaryRoles)
 				{
-					if (item12.SecondaryRoleTargetRef != PlayerRef.None)
+					if (item13.SecondaryRoleTargetRef != PlayerRef.None)
 					{
-						PlayerCustom politicianTargetCustom = PlayerCustomRegistry.GetPlayer(item12.SecondaryRoleTargetRef);
+						PlayerCustom politicianTargetCustom = PlayerCustomRegistry.GetPlayer(item13.SecondaryRoleTargetRef);
 						if (!NetworkBool.op_Implicit(politicianTargetCustom.PlayerController.IsDead) && !politicianTargetCustom.IsOutOfTheWorld)
 						{
 							politicianTargetCustom.PoliticianVictimAlltime = NetworkBool.op_Implicit(true);
@@ -984,24 +998,24 @@ internal class GiveNewRolesPatch
 							}, (NetworkObjectPredictionKey?)null, true, (NetworkObject)null);
 							GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)gameState).Runner, NetworkString<_16>.op_Implicit("PUNCH"), ((Component)politicianTargetCustom.PlayerController).transform.position, 30f, 1f);
 						}
-						item12.SecondaryRoleTargetRef = PlayerRef.None;
+						item13.SecondaryRoleTargetRef = PlayerRef.None;
 					}
 				}
-				foreach (PlayerCustom item13 in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.DeceiverTrickThisMeeting) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
+				foreach (PlayerCustom item14 in PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.DeceiverTrickThisMeeting) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
 				{
 					List<string> list = new List<string> { "LycansNewRoles.EffectConfused", "Paranoia", "Mute" };
 					string text = CollectionsUtil.Grab<string>(list, 1).First();
 					switch (text)
 					{
 					case "LycansNewRoles.EffectConfused":
-						PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, text, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+						PlayerCustom.ApplyEffectToPlayer(item14.PlayerController, text, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						break;
 					case "Paranoia":
 					{
 						Effect val2 = EffectManager.GetEffects().FirstOrDefault((Effect o) => o is ParanoiaEffect);
 						if ((Object)(object)val2 != (Object)null)
 						{
-							PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, val2, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+							PlayerCustom.ApplyEffectToPlayer(item14.PlayerController, val2, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
 						break;
 					}
@@ -1010,7 +1024,7 @@ internal class GiveNewRolesPatch
 						Effect val = EffectManager.GetEffects().FirstOrDefault((Effect o) => o is MuteEffect);
 						if ((Object)(object)val != (Object)null)
 						{
-							PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, val, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+							PlayerCustom.ApplyEffectToPlayer(item14.PlayerController, val, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
 						break;
 					}
@@ -1020,7 +1034,7 @@ internal class GiveNewRolesPatch
 						Effect val3 = EffectManager.GetEffects().FirstOrDefault((Effect o) => o is FlatulenceEffect);
 						if ((Object)(object)val3 != (Object)null)
 						{
-							PlayerCustom.ApplyEffectToPlayer(item13.PlayerController, val3, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
+							PlayerCustom.ApplyEffectToPlayer(item14.PlayerController, val3, ((SimulationBehaviour)gameState).Runner, 1f, 3600f);
 						}
 					}
 				}
@@ -1030,20 +1044,20 @@ internal class GiveNewRolesPatch
 		obj7.onExit = (Action<EGameState>)Delegate.Combine(obj7.onExit, (Action<EGameState>)delegate
 		{
 			//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0552: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0563: Unknown result type (might be due to invalid IL or missing references)
+			//IL_060e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_061f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_007d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0582: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0731: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0746: Unknown result type (might be due to invalid IL or missing references)
+			//IL_063e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07ed: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0802: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06e3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_079f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0165: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
 			//IL_034c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0680: Unknown result type (might be due to invalid IL or missing references)
+			//IL_073c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03c0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_037c: Unknown result type (might be due to invalid IL or missing references)
@@ -1053,12 +1067,15 @@ internal class GiveNewRolesPatch
 			//IL_0453: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03e4: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0216: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0546: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0557: Unknown result type (might be due to invalid IL or missing references)
 			//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
 			//IL_04c5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_04d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02d9: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02de: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05ac: Unknown result type (might be due to invalid IL or missing references)
 			LycansUtility.AddLogOnlyForMe("Transition Exit, players count: " + GameManager.Instance.PlayerCount);
 			if (((SimulationBehaviour)gameState).Runner.IsServer)
 			{
@@ -1071,9 +1088,9 @@ internal class GiveNewRolesPatch
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, specificNewPrimaryRole.Index);
 						return;
 					}
-					foreach (PlayerController item14 in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).ToList())
+					foreach (PlayerController item15 in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).ToList())
 					{
-						PlayerCustom player = PlayerCustomRegistry.GetPlayer(item14.Ref);
+						PlayerCustom player = PlayerCustomRegistry.GetPlayer(item15.Ref);
 						LycansUtility.AddLogOnlyForMe("Starvation effect");
 						if (player.StarvationDormant)
 						{
@@ -1129,17 +1146,25 @@ internal class GiveNewRolesPatch
 					PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
 					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
 					{
-						foreach (PlayerCustom item15 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
+						foreach (PlayerCustom item16 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
 						{
-							item15.PlayerController.IsDead = NetworkBool.op_Implicit(false);
-							item15.PlayerController.IsAiming = NetworkBool.op_Implicit(false);
-							item15.PlayerController.IsDeadChannel = NetworkBool.op_Implicit(false);
-							item15.PlayerController.Hunger = GameManager.Instance.MaxHunger;
+							item16.PlayerController.IsDead = NetworkBool.op_Implicit(false);
+							item16.PlayerController.IsAiming = NetworkBool.op_Implicit(false);
+							item16.PlayerController.IsDeadChannel = NetworkBool.op_Implicit(false);
+							item16.PlayerController.Hunger = GameManager.Instance.MaxHunger;
 						}
 					}
 					if (GameManagerCustom.Instance.EventsManager.CurrentEvent != EventsManager.EventType.None)
 					{
 						GameManagerCustom.Instance.EventsManager.OnNightStarted();
+					}
+					if (!NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
+					{
+						foreach (PlayerCustom item17 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (int)o.PlayerController.Role == 1 && o.WolfDaysWithoutTransformation >= 3))
+						{
+							item17.ForcedTransformation = NetworkBool.op_Implicit(true);
+							PlayerCustom.ApplyEffectToPlayer(item17.PlayerController, "LycansNewRoles.EffectTransformation", ((SimulationBehaviour)gameState).Runner, 1f, 20f);
+						}
 					}
 				}
 				LycansUtility.AddLogOnlyForMe("Sabotages");
@@ -1149,22 +1174,22 @@ internal class GiveNewRolesPatch
 					{
 						List<SabotageSingle> list = SabotageManager.Instance.Sabotages.Values.Where((SabotageSingle o) => o.CanActivate || o.Completed).ToList();
 						List<SabotageSingle> list2 = new List<SabotageSingle>();
-						foreach (SabotageSingle item16 in list)
+						foreach (SabotageSingle item18 in list)
 						{
-							if (item16.Completed)
+							if (item18.Completed)
 							{
-								list2.Add(item16);
+								list2.Add(item18);
 							}
 							else
 							{
-								float num = (float)item16.AmountCurrent / (float)item16.AmountRequired;
+								float num = (float)item18.AmountCurrent / (float)item18.AmountRequired;
 								if (Random.value < num)
 								{
-									list2.Add(item16);
+									list2.Add(item18);
 								}
 								else
 								{
-									item16.CanActivate = false;
+									item18.CanActivate = false;
 								}
 							}
 						}
@@ -1177,9 +1202,9 @@ internal class GiveNewRolesPatch
 					else
 					{
 						List<SabotageSingle> list3 = SabotageManager.Instance.Sabotages.Values.Where((SabotageSingle o) => NetworkBool.op_Implicit(o.Active)).ToList();
-						foreach (SabotageSingle item17 in list3)
+						foreach (SabotageSingle item19 in list3)
 						{
-							item17.Active = NetworkBool.op_Implicit(false);
+							item19.Active = NetworkBool.op_Implicit(false);
 						}
 					}
 				}
@@ -1190,10 +1215,10 @@ internal class GiveNewRolesPatch
 					specificNewPrimaryRole3.PrimaryRoleTargetRef = PlayerRef.None;
 				}
 			}
-			foreach (PlayerCustom item18 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
+			foreach (PlayerCustom item20 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead)))
 			{
-				item18.UpdateVisibility();
-				item18.SoloRoleHalfDayProgress = 0f;
+				item20.UpdateVisibility();
+				item20.SoloRoleHalfDayProgress = 0f;
 			}
 			HostParasite.UpdateVisibilityForAllParasites();
 		});

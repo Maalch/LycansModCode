@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace LycansNewRoles;
 
@@ -164,5 +166,38 @@ public static class ComponentExtensions
 	{
 		particleSystem.Clear();
 		particleSystem.Stop();
+	}
+
+	public static void PlayAndFollowWithPitch(this AudioManager audioManager, string clip, Transform target, MixerTarget mixerTarget, float maxDistance = 5f, float volume = 1f, float pitch = 1f)
+	{
+		//IL_003c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0042: Expected O, but got Unknown
+		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f5: Expected O, but got Unknown
+		AudioBank value = Traverse.Create((object)audioManager).Field<AudioBank>("soundBank").Value;
+		AudioClip clip2 = default(AudioClip);
+		if (value.TryGetAudio(clip, ref clip2))
+		{
+			GameObject val = new GameObject(clip, new Type[1] { typeof(AudioDestroyer) });
+			AudioSource val2 = val.AddComponent<AudioSource>();
+			FollowTarget val3 = val.AddComponent<FollowTarget>();
+			val2.rolloffMode = (AudioRolloffMode)1;
+			val2.volume = volume;
+			val2.pitch = pitch;
+			val2.spatialBlend = 1f;
+			val2.minDistance = 0f;
+			val2.maxDistance = maxDistance;
+			val2.dopplerLevel = 0f;
+			val2.clip = clip2;
+			AudioMixerGroup outputAudioMixerGroup = (AudioMixerGroup)Traverse.Create((object)audioManager).Method("GetMixerGroup", new List<Type> { typeof(MixerTarget) }.ToArray(), (object[])null).GetValue(new object[1] { mixerTarget });
+			val2.outputAudioMixerGroup = outputAudioMixerGroup;
+			val3.target = target;
+			val2.Play();
+		}
+		else
+		{
+			Plugin.Logger.LogWarning((object)("AudioClip '" + clip + "' not present in audio bank"));
+		}
 	}
 }

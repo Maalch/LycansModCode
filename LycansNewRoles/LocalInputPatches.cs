@@ -31,32 +31,31 @@ internal class LocalInputPatches
 		//IL_021b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0243: Unknown result type (might be due to invalid IL or missing references)
 		//IL_025a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0466: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0472: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0478: Invalid comparison between Unknown and I4
+		//IL_0463: Unknown result type (might be due to invalid IL or missing references)
+		//IL_046f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0475: Invalid comparison between Unknown and I4
 		//IL_026c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0502: Invalid comparison between Unknown and I4
-		//IL_076c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0772: Invalid comparison between Unknown and I4
-		//IL_051b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0521: Invalid comparison between Unknown and I4
-		//IL_049f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04a5: Invalid comparison between Unknown and I4
-		//IL_07b8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_064a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0650: Invalid comparison between Unknown and I4
-		//IL_0665: Unknown result type (might be due to invalid IL or missing references)
-		//IL_066a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06c2: Invalid comparison between Unknown and I4
+		//IL_04ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f2: Invalid comparison between Unknown and I4
+		//IL_075c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0762: Invalid comparison between Unknown and I4
+		//IL_050b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0511: Invalid comparison between Unknown and I4
+		//IL_049c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04a2: Invalid comparison between Unknown and I4
+		//IL_07a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_063a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0640: Invalid comparison between Unknown and I4
+		//IL_0655: Unknown result type (might be due to invalid IL or missing references)
+		//IL_065a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06b2: Invalid comparison between Unknown and I4
 		//IL_0319: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0326: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0609: Expected O, but got Unknown
-		//IL_06f9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_05f9: Expected O, but got Unknown
+		//IL_06e9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06ee: Unknown result type (might be due to invalid IL or missing references)
 		if (InputManager.Instance.CrouchJustPressed)
 		{
 			CrouchHoldTimer.Restart();
@@ -138,7 +137,7 @@ internal class LocalInputPatches
 			{
 				PlayerCustom.Rpc_Activate_Item_Secondary(((SimulationBehaviour)playerController).Runner, playerCustom.Index);
 			}
-			if ((int)GameManager.LocalGameState == 4 && !playerCustom.AskForSpeechActive && !playerCustom.AskForSpeechUsedThisMeeting && !NetworkBool.op_Implicit(playerCustom.PlayerController.IsTalking))
+			if ((int)GameManager.LocalGameState == 4 && !playerCustom.AskForSpeechTimer.IsRunning && !playerCustom.AskForSpeechUsedThisMeeting)
 			{
 				GameManagerCustom.Rpc_Ask_For_Speech(((SimulationBehaviour)playerController).Runner, playerCustom.Index);
 			}

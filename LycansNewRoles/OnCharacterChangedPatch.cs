@@ -69,6 +69,7 @@ internal class OnCharacterChangedPatch
 			if (NetworkBool.op_Implicit(behaviour.IsWolf))
 			{
 				player.TransformationTimer.Restart();
+				player.WolfDaysWithoutTransformation = 0;
 			}
 			else
 			{

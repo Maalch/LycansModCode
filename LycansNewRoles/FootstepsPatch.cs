@@ -42,6 +42,7 @@ internal class FootstepsPatch
 		//IL_0154: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02fe: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d3: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((int)GameManager.LocalGameState != 2)
@@ -128,7 +129,15 @@ internal class FootstepsPatch
 							text += "_WOOD";
 						}
 						text = ((!val3.Value) ? (text + "_2") : (text + "_1"));
-						AudioManager.PlayAndFollow(text, ((Component)__instance).transform, (MixerTarget)2, num5, num6);
+						if (NetworkBool.op_Implicit(__instance.IsWolf))
+						{
+							num6 = Mathf.Min(1f, num6 * 1.3f);
+							AudioManager.Instance.PlayAndFollowWithPitch(text, ((Component)__instance).transform, (MixerTarget)2, num5, num6, 0.7f);
+						}
+						else
+						{
+							AudioManager.PlayAndFollow(text, ((Component)__instance).transform, (MixerTarget)2, num5, num6);
+						}
 						val.Value = true;
 						val3.Value = !val3.Value;
 						((MonoBehaviour)__instance).StartCoroutine("ResetFootstepStatus", (object)num7);

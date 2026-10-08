@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 namespace LycansNewRoles;
 
-[NetworkBehaviourWeaved(20)]
+[NetworkBehaviourWeaved(22)]
 public class GameConfig : NetworkBehaviour
 {
 	public enum ConfigTypeEnum
@@ -141,6 +141,8 @@ public class GameConfig : NetworkBehaviour
 	public static Toggle AllowMayorToggle;
 
 	public static Toggle TenacityHubrisToggle;
+
+	public static Toggle ForceWolfTransformationToggle;
 
 	public static Toggle TrapsModifiedToggle;
 
@@ -711,6 +713,33 @@ public class GameConfig : NetworkBehaviour
 		}
 	}
 
+	[Networked]
+	[NetworkedWeaved(21, 1)]
+	public unsafe NetworkBool ForceWolfTransformation
+	{
+		get
+		{
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
+			if (base.Ptr == null)
+			{
+				throw new InvalidOperationException("Error when accessing GameConfig.ForceWolfTransformation. Networked properties can only be accessed when Spawned() has been called.");
+			}
+			return (NetworkBool)base.Ptr[21];
+		}
+		private set
+		{
+			//IL_0027: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+			if (base.Ptr == null)
+			{
+				throw new InvalidOperationException("Error when accessing GameConfig.ForceWolfTransformation. Networked properties can only be accessed when Spawned() has been called.");
+			}
+			Unsafe.Write(base.Ptr + 21, value);
+		}
+	}
+
 	private void Start()
 	{
 		FillTrapsModifiedToggle();
@@ -726,6 +755,7 @@ public class GameConfig : NetworkBehaviour
 		FillLoverWolfReplacesVillagerToggle();
 		FillAllowMayorToggle();
 		FillTenacityHubrisToggle();
+		FillForceWolfTransformationToggle();
 	}
 
 	public override void Spawned()
@@ -734,6 +764,7 @@ public class GameConfig : NetworkBehaviour
 		//IL_0668: Unknown result type (might be due to invalid IL or missing references)
 		//IL_067e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0694: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06aa: Unknown result type (might be due to invalid IL or missing references)
 		if (((SimulationBehaviour)this).Runner.IsClient)
 		{
 			Plugin.NetworkObject = ((Component)this).GetComponent<NetworkObject>();
@@ -791,6 +822,7 @@ public class GameConfig : NetworkBehaviour
 			LoverWolfReplacesVillager = NetworkBool.op_Implicit(LoverWolfReplacesVillagerToggle.isOn);
 			AllowMayor = NetworkBool.op_Implicit(AllowMayorToggle.isOn);
 			TenacityHubris = NetworkBool.op_Implicit(TenacityHubrisToggle.isOn);
+			ForceWolfTransformation = NetworkBool.op_Implicit(ForceWolfTransformationToggle.isOn);
 		}
 		catch (Exception ex)
 		{
@@ -1816,6 +1848,38 @@ public class GameConfig : NetworkBehaviour
 		}
 	}
 
+	public void FillForceWolfTransformationToggle()
+	{
+		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
+		if (!PlayerPrefs.HasKey("GAME_SETTINGS_FORCE_WOLF_TRANSFORMATION"))
+		{
+			PlayerPrefs.SetInt("GAME_SETTINGS_FORCE_WOLF_TRANSFORMATION", 1);
+		}
+		if (PlayerPrefs.HasKey("GAME_SETTINGS_FORCE_WOLF_TRANSFORMATION") && PlayerPrefs.GetInt("GAME_SETTINGS_FORCE_WOLF_TRANSFORMATION") == 1)
+		{
+			ForceWolfTransformation = NetworkBool.op_Implicit(true);
+			ForceWolfTransformationToggle.SetIsOnWithoutNotify(true);
+		}
+	}
+
+	public static void UpdateForceWolfTransformation(bool value)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		Plugin.CustomConfig.ForceWolfTransformation = NetworkBool.op_Implicit(value);
+		PlayerPrefs.SetInt("GAME_SETTINGS_FORCE_WOLF_TRANSFORMATION", value ? 1 : 0);
+	}
+
+	public void UpdateForceWolfTransformationSetting(bool value)
+	{
+		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0019: Invalid comparison between Unknown and I4
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		if (((SimulationBehaviour)this).Runner.IsServer && (int)GameManager.State.Current == 1)
+		{
+			ForceWolfTransformation = NetworkBool.op_Implicit(value);
+		}
+	}
+
 	public static void FillPotionToggle(Toggle potionToggle, Effect effect)
 	{
 		string playerPref = "GAME_SETTINGS_NALES_POTION_" + effect.GetTranslateKey();
@@ -1887,10 +1951,11 @@ public class GameConfig : NetworkBehaviour
 		//IL_03d8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03fd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0422: Unknown result type (might be due to invalid IL or missing references)
-		//IL_045f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0447: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0484: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04ce: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04f3: Unknown result type (might be due to invalid IL or missing references)
 		SoloRolesCountConfig.value = 2;
 		TraitorsCountConfig.value = 0;
 		WolfPupsCountConfig.value = 0;
@@ -1953,6 +2018,9 @@ public class GameConfig : NetworkBehaviour
 		TenacityHubrisToggle.SetIsOnWithoutNotify(true);
 		PlayerPrefs.SetInt("GAME_SETTINGS_TENACITY_HUBRIS", 1);
 		TenacityHubris = NetworkBool.op_Implicit(true);
+		ForceWolfTransformationToggle.SetIsOnWithoutNotify(true);
+		PlayerPrefs.SetInt("GAME_SETTINGS_FORCE_WOLF_TRANSFORMATION", 1);
+		ForceWolfTransformation = NetworkBool.op_Implicit(true);
 		TrapsModifiedToggle.SetIsOnWithoutNotify(true);
 		PlayerPrefs.SetInt("GAME_SETTINGS_TRAPS_MODIFIED", 1);
 		TrapsModified = NetworkBool.op_Implicit(true);

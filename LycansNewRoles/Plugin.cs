@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.362")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.363")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -252,14 +252,14 @@ public class Plugin : BaseUnityPlugin
 		//IL_01ba: Expected O, but got Unknown
 		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01eb: Expected O, but got Unknown
-		//IL_20c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_20e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_2110: Unknown result type (might be due to invalid IL or missing references)
-		//IL_212c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_30df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3121: Unknown result type (might be due to invalid IL or missing references)
-		//IL_37af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3835: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_212a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2146: Unknown result type (might be due to invalid IL or missing references)
+		//IL_311e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3160: Unknown result type (might be due to invalid IL or missing references)
+		//IL_37ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3874: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -356,6 +356,7 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectResilience", typeof(ResilienceEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectEndurance", typeof(EnduranceEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectEscaping", typeof(EscapingEffect), 3600f);
+			AddEffectToList("LycansNewRoles.EffectTransformation", typeof(TransformationEffect), 20f);
 			AddEffectToList("LycansNewRoles.EffectBanished", typeof(BanishedEffect), 8f);
 			AddEffectToList("LycansNewRoles.EffectRecuperating", typeof(RecuperatingEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectBurning", typeof(BurningEffect), 8f);
@@ -757,6 +758,8 @@ public class Plugin : BaseUnityPlugin
 			UISpectatorChoicePanel.SpectatorChoiceButtonPrefab.SetActive(false);
 			PlayerAskForSpeechIconComponent.AskForSpeechIconPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("AskForSpeechIcon"));
 			PlayerAskForSpeechIconComponent.AskForSpeechIconPrefab.SetActive(false);
+			PlayerCustom.ForcedTransformParticleSystemPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("ForcedTransformParticleSystem"));
+			PlayerCustom.ForcedTransformParticleSystemPrefab.SetActive(false);
 			MinimapPlayerComponent.MinimapPlayerPrefab = Object.Instantiate<GameObject>(NewMapsCoreBundle.LoadAsset<GameObject>("MinimapPlayer"));
 			MinimapPlayerComponent.MinimapPlayerPrefab.AddComponent<MinimapPlayerComponent>();
 			MinimapPlayerComponent.MinimapPlayerPrefab.SetActive(false);

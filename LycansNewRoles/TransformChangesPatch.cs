@@ -21,8 +21,9 @@ internal class TransformChangesPatch
 		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
 		//IL_004a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0067: Invalid comparison between Unknown and I4
+		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0080: Invalid comparison between Unknown and I4
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
@@ -37,6 +38,10 @@ internal class TransformChangesPatch
 				{
 					return false;
 				}
+			}
+			if (NetworkBool.op_Implicit(player.ForcedTransformation))
+			{
+				return false;
 			}
 			if ((int)__instance.Role != 1)
 			{

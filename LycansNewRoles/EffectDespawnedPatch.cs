@@ -11,6 +11,7 @@ internal class EffectDespawnedPatch
 	private static void Postfix(Effect __instance)
 	{
 		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e9: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)PlayerCustomRegistry.Instance == (Object)null)
 		{
 			return;
@@ -24,7 +25,14 @@ internal class EffectDespawnedPatch
 				{
 					if (!(__instance is JumpEffect))
 					{
-						if (__instance is BlindEffect && player.IsCurrentlyPlayedOrObserved)
+						if (!(__instance is BlindEffect))
+						{
+							if (__instance is TransformationEffect && ((SimulationBehaviour)GameManager.Instance).Runner.IsServer && !NetworkBool.op_Implicit(player.PlayerController.IsWolf))
+							{
+								PlayerCustom.Rpc_Forced_Transform(((SimulationBehaviour)GameManager.Instance).Runner, player.Index, 2);
+							}
+						}
+						else if (player.IsCurrentlyPlayedOrObserved)
 						{
 							ColorAdjustmentManager.UpdateColorAdjustment();
 						}

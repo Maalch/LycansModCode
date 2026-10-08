@@ -13,24 +13,24 @@ internal class EffectSpawnedPatch
 	private static void Postfix(Effect __instance)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		//IL_047b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0485: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0176: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0186: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03f9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0403: Unknown result type (might be due to invalid IL or missing references)
-		//IL_043c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0184: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0194: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0427: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0441: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0445: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0446: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0450: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0489: Unknown result type (might be due to invalid IL or missing references)
+		//IL_048e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0492: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049d: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.EffectPlayer);
 		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is DetectedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is SneakyEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect) && !(__instance is NightVision))
 		{
@@ -46,7 +46,15 @@ internal class EffectSpawnedPatch
 							{
 								if (!(__instance is JumpEffect))
 								{
-									if (__instance is BlindEffect && player.IsCurrentlyPlayedOrObserved)
+									if (!(__instance is BlindEffect))
+									{
+										if (__instance is TransformationEffect && player.IsCurrentlyPlayedOrObserved)
+										{
+											AudioManager.Play("ScoutAlert", (MixerTarget)2, 0.7f, 1f);
+											UIManager.ShowRedCenterMessage("NALES_UI_FORCED_TRANSFORMATION", 0.5f, 4f);
+										}
+									}
+									else if (player.IsCurrentlyPlayedOrObserved)
 									{
 										ColorAdjustmentManager.UpdateColorAdjustment();
 									}

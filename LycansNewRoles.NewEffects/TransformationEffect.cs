@@ -14,19 +14,9 @@ public class TransformationEffect : CustomEffect
 
 	public override EffectType CustomEffectType => (EffectType)2;
 
-	public override bool DurationAffectedByModifiers => false;
-
 	public override bool CanBeDispelled => false;
 
-	public override void Spawned()
-	{
-		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
-		((Effect)this).Spawned();
-		if (((Effect)this).EffectPlayer == PlayerController.Local.LocalCameraHandler.PovPlayer.Ref)
-		{
-			ColorAdjustmentManager.FlashScreen(Color.white);
-		}
-	}
+	public override bool DurationAffectedByModifiers => false;
+
+	public override bool ReducedByResilience => false;
 }
