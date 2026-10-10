@@ -585,7 +585,7 @@ internal class GiveNewRolesPatch
 							playerCustom3.Stats.AddAction(new PlayerStats.PlayerAction
 							{
 								ActionType = "TournamentLost"
-							}, ((Component)playerCustom2.PlayerController).transform.position);
+							}, ((Component)playerCustom3.PlayerController).transform.position);
 						}
 						GameManagerCustom.Rpc_New_Event(((SimulationBehaviour)__instance).Runner, 0);
 					}
@@ -1044,20 +1044,20 @@ internal class GiveNewRolesPatch
 		obj7.onExit = (Action<EGameState>)Delegate.Combine(obj7.onExit, (Action<EGameState>)delegate
 		{
 			//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-			//IL_060e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_061f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0630: Unknown result type (might be due to invalid IL or missing references)
 			//IL_007d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_063e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_07ed: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0802: Unknown result type (might be due to invalid IL or missing references)
+			//IL_064f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07fe: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0813: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_079f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07b0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0165: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
 			//IL_034c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_073c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_074d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03c0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_037c: Unknown result type (might be due to invalid IL or missing references)
@@ -1069,13 +1069,14 @@ internal class GiveNewRolesPatch
 			//IL_0216: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0546: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0557: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0568: Unknown result type (might be due to invalid IL or missing references)
 			//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
 			//IL_04c5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_04d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02d9: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02de: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05ac: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05bd: Unknown result type (might be due to invalid IL or missing references)
 			LycansUtility.AddLogOnlyForMe("Transition Exit, players count: " + GameManager.Instance.PlayerCount);
 			if (((SimulationBehaviour)gameState).Runner.IsServer)
 			{
@@ -1158,7 +1159,7 @@ internal class GiveNewRolesPatch
 					{
 						GameManagerCustom.Instance.EventsManager.OnNightStarted();
 					}
-					if (!NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
+					if (NetworkBool.op_Implicit(Plugin.CustomConfig.ForceWolfTransformation) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
 					{
 						foreach (PlayerCustom item17 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (int)o.PlayerController.Role == 1 && o.WolfDaysWithoutTransformation >= 3))
 						{

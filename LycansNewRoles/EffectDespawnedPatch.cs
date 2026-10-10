@@ -27,7 +27,7 @@ internal class EffectDespawnedPatch
 					{
 						if (!(__instance is BlindEffect))
 						{
-							if (__instance is TransformationEffect && ((SimulationBehaviour)GameManager.Instance).Runner.IsServer && !NetworkBool.op_Implicit(player.PlayerController.IsWolf))
+							if (__instance is TransformationEffect && ((SimulationBehaviour)GameManager.Instance).Runner.IsServer && !NetworkBool.op_Implicit(player.PlayerController.IsWolf) && !player.IsOutOfTheWorld)
 							{
 								PlayerCustom.Rpc_Forced_Transform(((SimulationBehaviour)GameManager.Instance).Runner, player.Index, 2);
 							}

@@ -12,20 +12,20 @@ public class ItemStatsPatch
 {
 	private static bool Prefix(Item __instance)
 	{
-		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0044: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0064: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_007f: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
-			if (!(__instance is Potion) && !(__instance is CustomItem) && !(__instance is LockItem) && !(__instance is KeyItem))
+			if (!(__instance is Potion) && !(__instance is CustomItem) && !(__instance is LockItem) && !(__instance is KeyItem) && !(__instance is SpyglassItem))
 			{
 				PlayerRef owner = __instance.Owner;
 				if (!((PlayerRef)(ref owner)).IsNone && PlayerCustomRegistry.HasPlayer(__instance.Owner) && __instance.ItemQuantity > 0)
