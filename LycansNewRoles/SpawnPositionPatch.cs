@@ -20,7 +20,7 @@ internal class SpawnPositionPatch
 		//IL_0071: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
-			float num = 24f;
+			float num = 22.5f;
 			float num2 = (float)(int)playerController.Index * num;
 			Vector3 val = Quaternion.Euler(0f, num2, 0f) * Vector3.forward * Traverse.Create((object)__instance).Field<float>("radius").Value;
 			__result = Traverse.Create((object)__instance).Field<Transform[]>("mapSpawns").Value[__instance.MapID - 1].position + val;

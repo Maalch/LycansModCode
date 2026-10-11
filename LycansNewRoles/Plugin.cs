@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.364")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.365")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -256,10 +256,10 @@ public class Plugin : BaseUnityPlugin
 		//IL_20fc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_212a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_2146: Unknown result type (might be due to invalid IL or missing references)
-		//IL_311e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3160: Unknown result type (might be due to invalid IL or missing references)
-		//IL_37ee: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3874: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3143: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3813: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3899: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -758,6 +758,8 @@ public class Plugin : BaseUnityPlugin
 			UISpectatorChoicePanel.SpectatorChoiceButtonPrefab.SetActive(false);
 			PlayerAskForSpeechIconComponent.AskForSpeechIconPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("AskForSpeechIcon"));
 			PlayerAskForSpeechIconComponent.AskForSpeechIconPrefab.SetActive(false);
+			UISpectatorsListPanel.SpectatorsListPlayerPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("SpectatorsListPanelPlayer"));
+			UISpectatorsListPanel.SpectatorsListPlayerPrefab.SetActive(false);
 			PlayerCustom.ForcedTransformParticleSystemPrefab = Object.Instantiate<GameObject>(NewRolesCoreBundle.LoadAsset<GameObject>("ForcedTransformParticleSystem"));
 			PlayerCustom.ForcedTransformParticleSystemPrefab.SetActive(false);
 			MinimapPlayerComponent.MinimapPlayerPrefab = Object.Instantiate<GameObject>(NewMapsCoreBundle.LoadAsset<GameObject>("MinimapPlayer"));

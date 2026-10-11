@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Fusion;
 using HarmonyLib;
+using LycansNewRoles.NewMaps;
 
 namespace LycansNewRoles;
 
@@ -14,22 +15,33 @@ internal class StartGameCheckVersionsPatch
 	{
 		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001a: Invalid comparison between Unknown and I4
-		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0169: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01f5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0223: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0043: Invalid comparison between Unknown and I4
+		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0224: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0235: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026e: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (((SimulationBehaviour)__instance).Runner.IsServer && (int)GameManager.State.Current == 1)
 			{
+				MapManager.UpdateMapByPlayersAmount();
+			}
+			if (((SimulationBehaviour)__instance).Runner.IsServer && (int)GameManager.State.Current == 1)
+			{
+				if (PlayerCustomRegistry.Count > 15)
+				{
+					UIManager.ShowRedCenterMessage("NALES_UI_TOO_MANY_PLAYERS", 0.5f, 4f);
+					return false;
+				}
 				List<PlayerCustom> list = PlayerCustomRegistry.Where((PlayerCustom o) => PlayerRef.op_Implicit(o.Ref) < 1000).ToList();
 				foreach (PlayerCustom item in list)
 				{
@@ -45,7 +57,7 @@ internal class StartGameCheckVersionsPatch
 						}
 						return false;
 					}
-					if (item.ModVersion.Value != float.Parse("0.364", CultureInfo.InvariantCulture.NumberFormat))
+					if (item.ModVersion.Value != float.Parse("0.365", CultureInfo.InvariantCulture.NumberFormat))
 					{
 						UIManager.ShowRedCenterMessage("NALES_UI_VERSION_CHECK_WRONG_VERSION", 0.5f, 5f, new List<object> { item.PlayerController.PlayerData.Username });
 						return false;
@@ -56,7 +68,6 @@ internal class StartGameCheckVersionsPatch
 				if (NetworkBool.op_Implicit(Plugin.CustomConfig.DraftMode) && !NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
 				{
 					GameManager.Instance.IsStarted = NetworkBool.op_Implicit(true);
-					((SimulationBehaviour)__instance).Runner.SessionInfo.IsOpen = false;
 					DraftManager.Instance.Init();
 					DraftManager.Instance.Active = NetworkBool.op_Implicit(true);
 					GameManager.State.Server_SetState((EGameState)2);

@@ -21,27 +21,23 @@ public class TransformClass
 		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0138: Unknown result type (might be due to invalid IL or missing references)
 		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0157: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02c0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0207: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0213: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0219: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0226: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0233: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0254: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0260: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0266: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0274: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03a4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03c6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_033f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_029b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0195: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ee: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0211: Unknown result type (might be due to invalid IL or missing references)
+		//IL_021d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0223: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0230: Unknown result type (might be due to invalid IL or missing references)
+		//IL_023d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0372: Unknown result type (might be due to invalid IL or missing references)
+		//IL_037f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0394: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_031a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c3: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.Ref);
 		if ((Object)(object)player != (Object)null && NetworkBool.op_Implicit(player.IsWolfPup))
 		{
@@ -80,8 +76,8 @@ public class TransformClass
 			PlayerRef primaryRoleTargetRef = player.PrimaryRoleTargetRef;
 			if (!((PlayerRef)(ref primaryRoleTargetRef)).IsNone && player.PrimaryRolePowerCurrentMaterials >= player.PowerMaterialsInfo.RequiredMaterials && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool))
 			{
-				PlayerController player2 = PlayerRegistry.GetPlayer(player.PrimaryRoleTargetRef);
-				if (NetworkBool.op_Implicit(player2.IsWolf) || NetworkBool.op_Implicit(player2.IsDead))
+				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(player.PrimaryRoleTargetRef);
+				if (NetworkBool.op_Implicit(player2.PlayerController.IsWolf) || NetworkBool.op_Implicit(player2.PlayerController.IsDead))
 				{
 					return false;
 				}
@@ -90,11 +86,10 @@ public class TransformClass
 				__instance.CharacterMovementHandler.TeleportData = new NetworkTeleportData(((Component)player2).transform.position, ((Component)player2).transform.rotation, true);
 				__instance.IsClimbing = NetworkBool.op_Implicit(false);
 				player.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(false);
-				player2.CharacterMovementHandler.TeleportData = new NetworkTeleportData(new Vector3(999f, 999f, 999f), ((Component)player2).transform.rotation, true);
-				player2.IsClimbing = NetworkBool.op_Implicit(false);
-				player2.PlayerEffectManager.ClearEffects();
-				PlayerCustom.ApplyEffectToPlayer(player2, "LycansNewRoles.EffectPossessed", ((SimulationBehaviour)__instance).Runner);
-				goto IL_037a;
+				player2.TeleportToVoid();
+				player2.PlayerController.PlayerEffectManager.ClearEffects();
+				PlayerCustom.ApplyEffectToPlayer(player2.PlayerController, "LycansNewRoles.EffectPossessed", ((SimulationBehaviour)__instance).Runner);
+				goto IL_0355;
 			}
 		}
 		bool flag = player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Sneak && NetworkBool.op_Implicit(player.NewPrimaryRoleUniqueBool);
@@ -115,8 +110,8 @@ public class TransformClass
 		{
 			AudioManager.PlayAndFollow("WOLF_TRANSFORM", ((Component)__instance).transform, (MixerTarget)2, 30f, 1f);
 		}
-		goto IL_037a;
-		IL_037a:
+		goto IL_0355;
+		IL_0355:
 		Traverse.Create((object)__instance).Field<ParticleSystem>("smokeParticleSystem").Value.Play();
 		__instance.TransformedNight = NetworkBool.op_Implicit(true);
 		__instance.IsWolf = NetworkBool.op_Implicit(true);
@@ -216,7 +211,7 @@ public class TransformClass
 							num3 *= 4f;
 						}
 						int amount = Mathf.RoundToInt(num3 * BalancingValues.SoloRoleDiminishingReturnsMultiplier(specificNewPrimaryRole.SoloRoleHalfDayProgress, 7f));
-						specificNewPrimaryRole.AddSoloRoleProgress(amount, BalancingValues.ScientistGoal(PlayerRegistry.Count));
+						specificNewPrimaryRole.AddSoloRoleProgress(amount, BalancingValues.ScientistGoal(PlayerCustomRegistry.Count));
 					}
 				}
 			}

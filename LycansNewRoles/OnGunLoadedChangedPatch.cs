@@ -11,8 +11,6 @@ internal class OnGunLoadedChangedPatch
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
-		//IL_007b: Invalid comparison between Unknown and I4
 		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
@@ -26,7 +24,7 @@ internal class OnGunLoadedChangedPatch
 					player.UpdateDescriptionStatusIfNeeded();
 				}
 			}
-			if ((int)player.PlayerController.Role == 2 && player.IsCurrentlyPlayedOrObserved)
+			if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Hunter && player.IsCurrentlyPlayedOrObserved)
 			{
 				player.UpdateDescriptionStatusIfNeeded();
 			}

@@ -21,7 +21,7 @@ public class PlayerCustomAudioComponent : MonoBehaviour
 
 	private void Start()
 	{
-		_audioSource = ((Component)this).GetComponent<AudioSource>();
+		_audioSource = ((Component)this).GetComponentInChildren<AudioSource>();
 		_reverbFilter = ((Component)_audioSource).gameObject.AddComponent<AudioReverbFilter>();
 		_reverbFilter.reverbPreset = (AudioReverbPreset)0;
 		_audioSource.bypassEffects = false;

@@ -16,11 +16,13 @@ public class PotionWithCustomEffectPatch
 	{
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_018e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0311: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02d3: Invalid comparison between Unknown and I4
 		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0202: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
@@ -31,6 +33,7 @@ public class PotionWithCustomEffectPatch
 		//IL_021a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_022d: Expected I4, but got Unknown
 		//IL_0164: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0363: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(((Item)__instance).Owner);
@@ -90,6 +93,10 @@ public class PotionWithCustomEffectPatch
 						select o).ToList(), 1).First();
 					break;
 				}
+			}
+			if (NetworkBool.op_Implicit(player.PlayerController.IsWolf) && player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Alchemist && (int)player.PlayerController.Role == 1)
+			{
+				PlayerCustom.ApplyEffectToPlayer(playerController, val, ((SimulationBehaviour)__instance).Runner, 0.5f);
 			}
 			if (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothBlueMage)
 			{

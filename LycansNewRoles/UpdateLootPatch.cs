@@ -22,7 +22,7 @@ internal class UpdateLootPatch
 			int num = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => !NetworkBool.op_Implicit(p.IsDead))).Count();
 			int num2 = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController p) => (int)p.Role == 1 && !NetworkBool.op_Implicit(p.IsDead))).Count();
 			int num3 = PlayerCustomRegistry.CountWhere((PlayerCustom p) => p.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Traitor);
-			int num4 = PlayerRegistry.Count - num + num2 * 4 + num3 * 2;
+			int num4 = PlayerCustomRegistry.Count - num + num2 * 4 + num3 * 2;
 			if (num4 < 0)
 			{
 				num4 = 0;

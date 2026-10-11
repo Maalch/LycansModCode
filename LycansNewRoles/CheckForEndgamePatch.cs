@@ -104,7 +104,7 @@ internal class CheckForEndgamePatch
 					}
 				}
 				LycansUtility.AddLogOnlyForMe("CheckForEndGame: agent");
-				if ((int)GameManager.LocalGameState == 4 && PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) <= BalancingValues.AgentMaxSurvivorsToWin(PlayerRegistry.Count))
+				if ((int)GameManager.LocalGameState == 4 && PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => !NetworkBool.op_Implicit(o.IsDead))) <= BalancingValues.AgentMaxSurvivorsToWin(PlayerCustomRegistry.Count))
 				{
 					IEnumerable<PlayerCustom> enumerable = PlayerCustomRegistry.Where((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Agent);
 					if (enumerable.Any())
@@ -132,7 +132,7 @@ internal class CheckForEndgamePatch
 				bool flag = false;
 				LycansUtility.AddLogOnlyForMe("CheckForEndGame: spy");
 				PlayerCustom specificNewPrimaryRole3 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
-				if ((Object)(object)specificNewPrimaryRole3 != (Object)null && specificNewPrimaryRole3.SoloRoleObjectiveCount >= BalancingValues.SpyGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.Kidnapped))
+				if ((Object)(object)specificNewPrimaryRole3 != (Object)null && specificNewPrimaryRole3.SoloRoleObjectiveCount >= BalancingValues.SpyGoal(PlayerCustomRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole3.Kidnapped))
 				{
 					flag = true;
 					if ((int)GameManager.LocalGameState == 4)
@@ -143,7 +143,7 @@ internal class CheckForEndgamePatch
 				}
 				LycansUtility.AddLogOnlyForMe("CheckForEndGame: scientist");
 				PlayerCustom specificNewPrimaryRole4 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Scientist);
-				if ((Object)(object)specificNewPrimaryRole4 != (Object)null && specificNewPrimaryRole4.SoloRoleObjectiveCount >= BalancingValues.ScientistGoal(PlayerRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.Kidnapped))
+				if ((Object)(object)specificNewPrimaryRole4 != (Object)null && specificNewPrimaryRole4.SoloRoleObjectiveCount >= BalancingValues.ScientistGoal(PlayerCustomRegistry.Count) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.PlayerController.IsDead) && !NetworkBool.op_Implicit(specificNewPrimaryRole4.Kidnapped))
 				{
 					flag = true;
 					if ((int)GameManager.LocalGameState == 4)
@@ -166,10 +166,10 @@ internal class CheckForEndgamePatch
 						PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
 						return false;
 					}
-					if (kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerRegistry.Count))
+					if (kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerCustomRegistry.Count))
 					{
 						flag = true;
-						if ((int)GameManager.LocalGameState == 4 && kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerRegistry.Count))
+						if ((int)GameManager.LocalGameState == 4 && kidnapper.SoloRoleObjectiveCount >= BalancingValues.KidnapperTargetAmount(PlayerCustomRegistry.Count))
 						{
 							PlayerCustom.Rpc_End_Game(((SimulationBehaviour)__instance).Runner, kidnapper.Index);
 							return false;

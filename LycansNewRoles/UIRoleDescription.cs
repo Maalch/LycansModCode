@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusion;
@@ -62,10 +61,10 @@ public class UIRoleDescription : MonoBehaviour
 		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d15: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d1a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d89: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d8e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f9: Invalid comparison between Unknown and I4
+		//IL_0d79: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d7e: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -85,7 +84,12 @@ public class UIRoleDescription : MonoBehaviour
 			List<string> list = new List<string>();
 			if (playerCustom.PrimaryRolePower != PlayerCustom.PlayerPrimaryRolePower.None)
 			{
-				text = TranslationManager.Instance.GetTranslation("NALES_ROLE_DESCRIPTION_" + PlayerCustom.GetPrimaryRolePowerString(playerCustom.PrimaryRolePower));
+				string text3 = "NALES_ROLE_DESCRIPTION_" + PlayerCustom.GetPrimaryRolePowerString(playerCustom.PrimaryRolePower);
+				if (PlayerCustom.IsPrimaryRolePowerForEliteVillagers(playerCustom.PrimaryRolePower) && (int)playerCustom.PlayerController.Role == 1)
+				{
+					text3 += "_IMPOSTOR";
+				}
+				text = TranslationManager.Instance.GetTranslation(text3);
 				switch (playerCustom.PrimaryRolePower)
 				{
 				case PlayerCustom.PlayerPrimaryRolePower.Necromancer:
@@ -161,6 +165,9 @@ public class UIRoleDescription : MonoBehaviour
 					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Fartmaster:
+					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
+					break;
+				case PlayerCustom.PlayerPrimaryRolePower.Impostor:
 					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Exorcist:
@@ -265,7 +272,7 @@ public class UIRoleDescription : MonoBehaviour
 				case PlayerCustom.PlayerNewPrimaryRole.Agent:
 					list = new List<string>
 					{
-						BalancingValues.AgentMaxSurvivorsToWin(PlayerRegistry.Count).ToString(),
+						BalancingValues.AgentMaxSurvivorsToWin(PlayerCustomRegistry.Count).ToString(),
 						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", "")
 					};
 					break;
@@ -299,7 +306,7 @@ public class UIRoleDescription : MonoBehaviour
 				case PlayerCustom.PlayerNewPrimaryRole.Kidnapper:
 					list = new List<string>
 					{
-						BalancingValues.KidnapperTargetAmount(PlayerRegistry.Count).ToString(),
+						BalancingValues.KidnapperTargetAmount(PlayerCustomRegistry.Count).ToString(),
 						LycansUtility.GetInputDisplayCustom((InputActionName)4).Replace(" -", ""),
 						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "")
 					};
@@ -347,11 +354,6 @@ public class UIRoleDescription : MonoBehaviour
 				PlayerController playerController = playerCustom2.PlayerController;
 				text2 = text2.Replace("#PARTNER", ((object)playerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
 			}
-			if (text2.Contains("#HUNTER"))
-			{
-				PlayerController val = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => (int)o.Role == 2)).FirstOrDefault();
-				text2 = ((!((Object)(object)val != (Object)null)) ? text2.Replace("#HUNTER", "---") : text2.Replace("#HUNTER", ((object)val.PlayerData.Username/*cast due to constrained. prefix*/).ToString()));
-			}
 			PlayerCustom.PlayerSecondaryRole secondaryRole = playerCustom.SecondaryRole;
 			PlayerCustom.PlayerSecondaryRole playerSecondaryRole = secondaryRole;
 			if (playerSecondaryRole == PlayerCustom.PlayerSecondaryRole.BothMerchant)
@@ -361,17 +363,17 @@ public class UIRoleDescription : MonoBehaviour
 		}
 		if ((Object)(object)playerCustom.Accessory != (Object)null)
 		{
-			string text3 = TranslationManager.Instance.GetTranslation(playerCustom.Accessory.DescriptionTranslateKey);
+			string text4 = TranslationManager.Instance.GetTranslation(playerCustom.Accessory.DescriptionTranslateKey);
 			if (playerCustom.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothTinkerer)
 			{
-				text3 = text3 + " " + TranslationManager.Instance.GetTranslation(playerCustom.Accessory.TinkererDescriptionTranslateKey).Replace("#COOLDOWN", playerCustom.Accessory.TinkererPowerCooldown.ToString());
+				text4 = text4 + " " + TranslationManager.Instance.GetTranslation(playerCustom.Accessory.TinkererDescriptionTranslateKey).Replace("#COOLDOWN", playerCustom.Accessory.TinkererPowerCooldown.ToString());
 			}
-			text3 = LycansUtility.ReplaceWithActionNameText(text3, "#SECONDARYROLEPOWER", InputManagerExtra.Instance.Actions["SECONDARYROLEPOWER"]);
-			text3 = LycansUtility.ReplaceWithActionNameText(text3, "#ITEMSECONDARY", InputManagerExtra.Instance.Actions["ITEMSECONDARY"]);
-			text3 = LycansUtility.ReplaceWithActionNameText(text3, "#ACCESSORYACTION", InputManagerExtra.Instance.Actions["ACCESSORYACTION"]);
-			text3 = text3.Replace("#COOLDOWN", playerCustom.Accessory.CooldownAfterUse + "s");
+			text4 = LycansUtility.ReplaceWithActionNameText(text4, "#SECONDARYROLEPOWER", InputManagerExtra.Instance.Actions["SECONDARYROLEPOWER"]);
+			text4 = LycansUtility.ReplaceWithActionNameText(text4, "#ITEMSECONDARY", InputManagerExtra.Instance.Actions["ITEMSECONDARY"]);
+			text4 = LycansUtility.ReplaceWithActionNameText(text4, "#ACCESSORYACTION", InputManagerExtra.Instance.Actions["ACCESSORYACTION"]);
+			text4 = text4.Replace("#COOLDOWN", playerCustom.Accessory.CooldownAfterUse + "s");
 			_panelAccessory.SetActive(true);
-			((TMP_Text)_descriptionAccessory).text = text3;
+			((TMP_Text)_descriptionAccessory).text = text4;
 			_imageAccessory.sprite = Traverse.Create((object)playerCustom.Accessory).Field<Sprite>("sprite").Value;
 		}
 		else
@@ -380,16 +382,16 @@ public class UIRoleDescription : MonoBehaviour
 		}
 		if ((Object)(object)playerCustom.PlayerController.Item != (Object)null)
 		{
-			string text4 = TranslationManager.Instance.GetTranslation(ItemUtility.ItemToTranslateKey(playerCustom.PlayerController.Item)) + " - " + TranslationManager.Instance.GetTranslation(ItemUtility.ItemDescriptionToTranslateKey(playerCustom.PlayerController.Item));
+			string text5 = TranslationManager.Instance.GetTranslation(ItemUtility.ItemToTranslateKey(playerCustom.PlayerController.Item)) + " - " + TranslationManager.Instance.GetTranslation(ItemUtility.ItemDescriptionToTranslateKey(playerCustom.PlayerController.Item));
 			_panelItem.SetActive(true);
-			((TMP_Text)_descriptionItem).text = text4;
+			((TMP_Text)_descriptionItem).text = text5;
 			Item item = playerCustom.PlayerController.Item;
-			Potion val2 = (Potion)(object)((item is Potion) ? item : null);
-			if (val2 != null)
+			Potion val = (Potion)(object)((item is Potion) ? item : null);
+			if (val != null)
 			{
 				EffectManager value = Traverse.Create(typeof(EffectManager)).Field<EffectManager>("_instance").Value;
 				List<Sprite> list2 = Traverse.Create((object)value).Field<Sprite[]>("potionSprites").Value.ToList();
-				_imageItem.sprite = list2[val2.ColorIndex];
+				_imageItem.sprite = list2[val.ColorIndex];
 			}
 			else
 			{

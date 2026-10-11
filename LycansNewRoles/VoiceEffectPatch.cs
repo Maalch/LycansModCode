@@ -20,13 +20,14 @@ internal class VoiceEffectPatch
 			//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_003c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0049: Unknown result type (might be due to invalid IL or missing references)
-			//IL_005f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0065: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0085: Unknown result type (might be due to invalid IL or missing references)
-			//IL_009c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0092: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00a9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
-			//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_00de: Unknown result type (might be due to invalid IL or missing references)
 			if ((int)GameManager.LocalGameState == 0 || (int)GameManager.LocalGameState == 1)
 			{
 				return;
@@ -36,7 +37,7 @@ internal class VoiceEffectPatch
 			{
 				return;
 			}
-			if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Petrified))
+			if (NetworkBool.op_Implicit(player.Downed) || NetworkBool.op_Implicit(player.Mute) || NetworkBool.op_Implicit(player.Petrified) || NetworkBool.op_Implicit(player.Paralyzed))
 			{
 				talking = false;
 			}

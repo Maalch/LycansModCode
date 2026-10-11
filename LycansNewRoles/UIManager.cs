@@ -101,6 +101,8 @@ public static class UIManager
 
 	public static UISpectatorChoicePanel SpectatorChoicePanel;
 
+	public static UISpectatorsListPanel SpectatorsListPanel;
+
 	public static Sprite DefaultDeadPlayerIcon;
 
 	public static Sprite KidnappedPlayerIcon;

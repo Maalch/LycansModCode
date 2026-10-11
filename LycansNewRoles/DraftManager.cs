@@ -25,6 +25,8 @@ public class DraftManager : NetworkBehaviour
 
 	public class PlayerDraftData
 	{
+		public int Index;
+
 		public DraftPlayerMainRole MainRole;
 
 		public List<PlayerCustom.PlayerNewPrimaryRole> OfferedSoloRoles = new List<PlayerCustom.PlayerNewPrimaryRole>();
@@ -118,8 +120,10 @@ public class DraftManager : NetworkBehaviour
 
 	public void Init()
 	{
-		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e6b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_090c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0911: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f77: Unknown result type (might be due to invalid IL or missing references)
 		PlayersDraftDataByPlayerIndex.Clear();
 		List<PlayerCustom> allPlayers = PlayerCustomRegistry.AllPlayers;
 		allPlayers.Shuffle();
@@ -127,6 +131,7 @@ public class DraftManager : NetworkBehaviour
 		{
 			item.PlayerController.Role = (PlayerRole)0;
 		}
+		bool flag = Random.value * 100f < (float)Plugin.CustomConfig.ImpostorChance;
 		List<PlayerCustom.PlayerNewPrimaryRole> list = (from o in Plugin.CustomConfig.SoloRoleActive
 			where o.Key != PlayerCustom.PlayerNewPrimaryRole.None && o.Key != PlayerCustom.PlayerNewPrimaryRole.Traitor && o.Value && !PlayerCustom.IsNewPrimaryRoleDisabled(o.Key)
 			select o.Key).ToList();
@@ -187,27 +192,32 @@ public class DraftManager : NetworkBehaviour
 			}
 		}
 		List<DraftPlayerMainRole> list7 = new List<DraftPlayerMainRole>();
-		for (int num5 = 0; num5 < Math.Min(Plugin.CustomConfig.ElitesCount, list3.Count); num5++)
+		int num5 = Plugin.CustomConfig.ElitesCount;
+		if (flag)
+		{
+			num5--;
+		}
+		for (int num6 = 0; num6 < Math.Min(num5, list3.Count); num6++)
 		{
 			list7.Add(DraftPlayerMainRole.EliteVillager);
 		}
-		for (int num6 = 0; num6 < GameManager.Instance.WolvesCount; num6++)
+		for (int num7 = 0; num7 < GameManager.Instance.WolvesCount; num7++)
 		{
 			list7.Add(DraftPlayerMainRole.Wolf);
 		}
-		for (int num7 = 0; num7 < Plugin.CustomConfig.TraitorsCount; num7++)
+		for (int num8 = 0; num8 < Plugin.CustomConfig.TraitorsCount; num8++)
 		{
 			list7.Add(DraftPlayerMainRole.Traitor);
 		}
-		for (int num8 = 0; num8 < Plugin.CustomConfig.WolfPupsCount; num8++)
+		for (int num9 = 0; num9 < Plugin.CustomConfig.WolfPupsCount; num9++)
 		{
 			list7.Add(DraftPlayerMainRole.WolfPup);
 		}
-		for (int num9 = 0; num9 < Math.Min(Plugin.CustomConfig.SoloRolesCount, list.Count); num9++)
+		for (int num10 = 0; num10 < Math.Min(Plugin.CustomConfig.SoloRolesCount, list.Count); num10++)
 		{
 			list7.Add(DraftPlayerMainRole.Solo);
 		}
-		for (int num10 = list7.Count; num10 < PlayerRegistry.Count; num10++)
+		for (int num11 = list7.Count; num11 < PlayerCustomRegistry.Count; num11++)
 		{
 			list7.Add(DraftPlayerMainRole.NormalVillager);
 		}
@@ -216,6 +226,7 @@ public class DraftManager : NetworkBehaviour
 		foreach (PlayerCustom item4 in allPlayers)
 		{
 			PlayerDraftData playerDraftData = new PlayerDraftData();
+			playerDraftData.Index = item4.Index;
 			playerDraftData.MainRole = list7.First();
 			list7.RemoveAt(0);
 			switch (playerDraftData.MainRole)
@@ -254,7 +265,7 @@ public class DraftManager : NetworkBehaviour
 			}
 			PlayersDraftDataByPlayerIndex[item4.Index] = playerDraftData;
 		}
-		for (int num11 = 0; num11 < 3; num11++)
+		for (int num12 = 0; num12 < 3; num12++)
 		{
 			foreach (PlayerDraftData playerDraftData2 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.Solo))
 			{
@@ -271,7 +282,7 @@ public class DraftManager : NetworkBehaviour
 				}
 			}
 		}
-		for (int num12 = 0; num12 < 3; num12++)
+		for (int num13 = 0; num13 < 3; num13++)
 		{
 			foreach (PlayerDraftData playerDraftData3 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.NormalVillager && o.GetsPrimaryRolePower))
 			{
@@ -288,11 +299,16 @@ public class DraftManager : NetworkBehaviour
 				}
 			}
 		}
-		for (int num13 = 0; num13 < 3; num13++)
+		for (int num14 = 0; num14 < 3; num14++)
 		{
 			foreach (PlayerDraftData playerDraftData4 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.EliteVillager))
 			{
 				List<PlayerCustom.PlayerPrimaryRolePower> list10 = list3.Where((PlayerCustom.PlayerPrimaryRolePower o) => !playerDraftData4.OfferedPowers.Contains(o)).ToList();
+				PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerDraftData4.Index);
+				if (player.PlayerController.PlayerData.ID == "76561198085469315")
+				{
+					list10.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => o == PlayerCustom.PlayerPrimaryRolePower.Hunter);
+				}
 				if (list10.Count > 0)
 				{
 					PlayerCustom.PlayerPrimaryRolePower playerPrimaryRolePower2 = CollectionsUtil.Grab<PlayerCustom.PlayerPrimaryRolePower>(list10, 1).First();
@@ -305,7 +321,7 @@ public class DraftManager : NetworkBehaviour
 				}
 			}
 		}
-		for (int num14 = 0; num14 < 3; num14++)
+		for (int num15 = 0; num15 < 3; num15++)
 		{
 			foreach (PlayerDraftData playerDraftData5 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => (o.MainRole == DraftPlayerMainRole.Wolf || o.MainRole == DraftPlayerMainRole.Traitor || o.MainRole == DraftPlayerMainRole.WolfPup) && o.GetsPrimaryRolePower))
 			{
@@ -326,23 +342,30 @@ public class DraftManager : NetworkBehaviour
 				}
 			}
 		}
-		for (int num15 = 0; num15 < 3; num15++)
+		if (flag)
 		{
-			foreach (PlayerDraftData playerDraftData6 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.GetsSecondaryRole))
+			PlayerDraftData playerDraftData6 = CollectionsUtil.Grab<PlayerDraftData>(PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.Wolf || o.MainRole == DraftPlayerMainRole.WolfPup).ToList(), 1).First();
+			playerDraftData6.OfferedPowers.Clear();
+			playerDraftData6.OfferedPowers.Add(PlayerCustom.PlayerPrimaryRolePower.Impostor);
+			playerDraftData6.SelectedPower = PlayerCustom.PlayerPrimaryRolePower.Impostor;
+		}
+		for (int num16 = 0; num16 < 3; num16++)
+		{
+			foreach (PlayerDraftData playerDraftData7 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.GetsSecondaryRole))
 			{
-				List<PlayerCustom.PlayerSecondaryRole> list12 = list6.Where((PlayerCustom.PlayerSecondaryRole o) => !playerDraftData6.OfferedSecondaryRoles.Contains(o)).ToList();
-				if (playerDraftData6.MainRole == DraftPlayerMainRole.Traitor)
+				List<PlayerCustom.PlayerSecondaryRole> list12 = list6.Where((PlayerCustom.PlayerSecondaryRole o) => !playerDraftData7.OfferedSecondaryRoles.Contains(o)).ToList();
+				if (playerDraftData7.MainRole == DraftPlayerMainRole.Traitor)
 				{
 					list12.RemoveAll((PlayerCustom.PlayerSecondaryRole o) => PlayerCustom.IsSecondaryRoleDisabledForTraitor(o));
 				}
 				if (list12.Count > 0)
 				{
 					PlayerCustom.PlayerSecondaryRole playerSecondaryRole = CollectionsUtil.Grab<PlayerCustom.PlayerSecondaryRole>(list12, 1).First();
-					playerDraftData6.OfferedSecondaryRoles.Add(playerSecondaryRole);
+					playerDraftData7.OfferedSecondaryRoles.Add(playerSecondaryRole);
 					list6.Remove(playerSecondaryRole);
-					if (playerDraftData6.SelectedSecondaryRole == PlayerCustom.PlayerSecondaryRole.None)
+					if (playerDraftData7.SelectedSecondaryRole == PlayerCustom.PlayerSecondaryRole.None)
 					{
-						playerDraftData6.SelectedSecondaryRole = playerSecondaryRole;
+						playerDraftData7.SelectedSecondaryRole = playerSecondaryRole;
 					}
 				}
 			}
@@ -541,37 +564,43 @@ public class DraftManager : NetworkBehaviour
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0193: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0198: Unknown result type (might be due to invalid IL or missing references)
-		//IL_019d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01da: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01df: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0263: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0268: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0081: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0125: Unknown result type (might be due to invalid IL or missing references)
+		//IL_020b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0210: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0215: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0231: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0236: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0257: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02db: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e0: Unknown result type (might be due to invalid IL or missing references)
 		DraftTimer = TickTimer.None;
 		Active = NetworkBool.op_Implicit(false);
+		foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
+		{
+			allPlayer.PlayerController.Hunger = GameManager.Instance.MaxHunger;
+		}
+		foreach (PlayerCustom allSpectator in PlayerCustomRegistry.AllSpectators)
+		{
+			allSpectator.PlayerController.IsDead = NetworkBool.op_Implicit(true);
+			allSpectator.TeleportToVoid();
+		}
 		GameManager.Instance.ClearSpawnedItems();
 		GameManager.Instance.UpdatePotions();
 		GameManager.Instance.SpawnRandomItems();
-		PlayerRegistry.ForEach((Action<PlayerController>)delegate(PlayerController pObj)
-		{
-			pObj.Hunger = GameManager.Instance.MaxHunger;
-		});
 		CollectionsUtil.ForEach<Portal>(Object.FindObjectsOfType<Portal>(), (Action<Portal>)delegate(Portal p)
 		{
 			p.ResetPortal();
 		});
 		GameManager.Instance.TeleportAllPlayers();
-		foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
+		foreach (PlayerCustom allPlayer2 in PlayerCustomRegistry.AllPlayers)
 		{
-			allPlayer.PlayerController.CanMove = NetworkBool.op_Implicit(true);
-			allPlayer.InitForGameStart();
-			if (((SimulationBehaviour)allPlayer).Runner.IsServer)
+			allPlayer2.PlayerController.CanMove = NetworkBool.op_Implicit(true);
+			allPlayer2.InitForGameStart();
+			if (((SimulationBehaviour)allPlayer2).Runner.IsServer)
 			{
-				allPlayer.InitStats();
+				allPlayer2.InitStats();
 			}
 		}
 		SabotageManager.Instance.Init();
@@ -583,9 +612,9 @@ public class DraftManager : NetworkBehaviour
 		GameManagerCustom.Instance.NewDay();
 		GameManagerCustom.Instance.EventsManager.RollEvent();
 		Plugin.CreatePlayerIllusionIfNeeded();
-		foreach (PlayerCustom allPlayer2 in PlayerCustomRegistry.AllPlayers)
+		foreach (PlayerCustom allPlayer3 in PlayerCustomRegistry.AllPlayers)
 		{
-			PlayerController playerController = allPlayer2.PlayerController;
+			PlayerController playerController = allPlayer3.PlayerController;
 			string[] obj = new string[14]
 			{
 				"Player ", null, null, null, null, null, null, null, null, null,
@@ -598,13 +627,13 @@ public class DraftManager : NetworkBehaviour
 			obj[4] = " has base role ";
 			obj[5] = ((object)playerController.Role/*cast due to constrained. prefix*/).ToString();
 			obj[6] = ", primary role ";
-			obj[7] = allPlayer2.NewPrimaryRole.ToString();
+			obj[7] = allPlayer3.NewPrimaryRole.ToString();
 			obj[8] = ", secondary role ";
-			obj[9] = allPlayer2.SecondaryRole.ToString();
+			obj[9] = allPlayer3.SecondaryRole.ToString();
 			obj[10] = ", power ";
-			obj[11] = allPlayer2.PrimaryRolePower.ToString();
+			obj[11] = allPlayer3.PrimaryRolePower.ToString();
 			obj[12] = ", is wolf pup: ";
-			obj[13] = ((object)allPlayer2.IsWolfPup/*cast due to constrained. prefix*/).ToString();
+			obj[13] = ((object)allPlayer3.IsWolfPup/*cast due to constrained. prefix*/).ToString();
 			LycansUtility.DebugLog(string.Concat(obj));
 		}
 	}
@@ -613,21 +642,26 @@ public class DraftManager : NetworkBehaviour
 	public static void ActiveChanged(Changed<DraftManager> changed)
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0035: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003b: Invalid comparison between Unknown and I4
-		//IL_00fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0150: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0152: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0154: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0157: Invalid comparison between Unknown and I4
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Invalid comparison between Unknown and I4
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0178: Invalid comparison between Unknown and I4
 		try
 		{
 			if (NetworkBool.op_Implicit(changed.Behaviour.Active))
 			{
 				UIManager.DraftPanel.Show();
+				if (NetworkBool.op_Implicit(PlayerCustom.Local.IsSpectator))
+				{
+					UIManager.DraftPanel.HideDraftInfo();
+				}
 				return;
 			}
 			UIManager.DraftPanel.Hide();

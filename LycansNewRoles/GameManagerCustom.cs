@@ -258,8 +258,8 @@ public class GameManagerCustom : NetworkBehaviour
 
 	public void UpdateSoloRoleDifficulty()
 	{
-		int num = PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsDead)));
-		float num2 = 1f + (float)(CurrentDay - 1) * 0.2f - 1.5f * (float)num / (float)PlayerRegistry.Count;
+		int num = PlayerCustomRegistry.CountWhere((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsDead));
+		float num2 = 1f + (float)(CurrentDay - 1) * 0.2f - 1.5f * (float)num / (float)PlayerCustomRegistry.Count;
 		SoloRoleDifficulty = Mathf.Clamp(num2, 0.5f, 1.75f);
 		Plugin.Logger.LogInfo((object)("Difficulty is now " + SoloRoleDifficulty));
 	}
@@ -385,16 +385,16 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
 		//IL_137a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16a6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15e6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_15fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1617: Unknown result type (might be due to invalid IL or missing references)
+		//IL_15fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_161b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1639: Unknown result type (might be due to invalid IL or missing references)
-		//IL_163f: Invalid comparison between Unknown and I4
+		//IL_163d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1643: Invalid comparison between Unknown and I4
 		//IL_0b2d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b32: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c96: Unknown result type (might be due to invalid IL or missing references)
@@ -577,7 +577,7 @@ public class GameManagerCustom : NetworkBehaviour
 						num13 *= (float)Plugin.CustomConfig.SpyPercentage * 0.01f;
 						num13 /= Instance.SoloRoleDifficulty;
 						num13 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 12f);
-						playerCustom.AddSoloRoleProgress(Mathf.RoundToInt(num13), BalancingValues.SpyGoal(PlayerRegistry.Count));
+						playerCustom.AddSoloRoleProgress(Mathf.RoundToInt(num13), BalancingValues.SpyGoal(PlayerCustomRegistry.Count));
 					}
 					else
 					{
@@ -616,7 +616,7 @@ public class GameManagerCustom : NetworkBehaviour
 						num6 = Math.Max(num6, Mathf.RoundToInt(num10));
 					}
 					num6 = Mathf.RoundToInt((float)num6 * BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 7f));
-					int num11 = BalancingValues.ScientistGoal(PlayerRegistry.Count);
+					int num11 = BalancingValues.ScientistGoal(PlayerCustomRegistry.Count);
 					if (NetworkBool.op_Implicit(playerCustom.Possessed))
 					{
 						num6 = Mathf.Min(num6, num11 - playerCustom.SoloRoleObjectiveCount - 10);
@@ -733,7 +733,7 @@ public class GameManagerCustom : NetworkBehaviour
 				}
 				if ((Object)(object)playerCustom.Accessory != (Object)null && playerCustom.Accessory is AccessoryRing accessoryRing)
 				{
-					bool flag3 = NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) || PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && Vector3.Distance(((Component)playerCustom.PlayerController).transform.position, ((Component)o).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o })));
+					bool flag3 = NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) || PlayerCustomRegistry.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && Vector3.Distance(((Component)playerCustom.PlayerController).transform.position, ((Component)o.PlayerController).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o }));
 					if (accessoryRing.EffectActive != flag3)
 					{
 						accessoryRing.EffectActive = flag3;
@@ -1147,7 +1147,7 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_0085: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0140: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
 		if (NetworkBehaviourUtils.InvokeRpc)
 		{
 			NetworkBehaviourUtils.InvokeRpc = false;
@@ -1176,7 +1176,7 @@ public class GameManagerCustom : NetworkBehaviour
 			}
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerIndex);
-		if (!player.AskForSpeechTimer.IsRunning && !player.AskForSpeechUsedThisMeeting && !(Instance.CurrentMayor == player.Ref))
+		if (!player.AskForSpeechTimer.IsRunning && !player.AskForSpeechUsedThisMeeting && !(Instance.CurrentMayor == player.Ref) && !PlayerCustomRegistry.Any((PlayerCustom o) => o.AskForSpeechTimer.IsRunning))
 		{
 			player.AskForSpeechTimer.Restart();
 			player.AskForSpeechUsedThisMeeting = true;

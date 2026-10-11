@@ -33,10 +33,14 @@ internal class RifleChangesActionInputPatch
 		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014f: Invalid comparison between Unknown and I4
 		//IL_00f1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBool.op_Implicit(GameManager.LightingManager.IsTransition) || (int)GameManager.State.Current != 2 || NetworkBool.op_Implicit(__instance.IsDead))
@@ -50,20 +54,23 @@ internal class RifleChangesActionInputPatch
 			}
 			PlayerCustom.PlayerNewPrimaryRole newPrimaryRole = player.NewPrimaryRole;
 			PlayerCustom.PlayerNewPrimaryRole playerNewPrimaryRole = newPrimaryRole;
-			if (playerNewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Mercenary)
+			if (playerNewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Mercenary)
 			{
-				return;
-			}
-			__instance.IsAiming = NetworkBool.op_Implicit(!NetworkBool.op_Implicit(__instance.IsAiming));
-			if (((SimulationBehaviour)__instance).Runner.IsServer && NetworkBool.op_Implicit(__instance.IsAiming) && player.PrimaryRoleTargetRef != PlayerRef.None)
-			{
-				TickTimer primaryRolePowerCooldownTimer = player.PrimaryRolePowerCooldownTimer;
-				if (!((TickTimer)(ref primaryRolePowerCooldownTimer)).IsRunning)
+				__instance.IsAiming = NetworkBool.op_Implicit(!NetworkBool.op_Implicit(__instance.IsAiming));
+				if (((SimulationBehaviour)__instance).Runner.IsServer && NetworkBool.op_Implicit(__instance.IsAiming) && player.PrimaryRoleTargetRef != PlayerRef.None)
 				{
-					PlayerController player2 = PlayerRegistry.GetPlayer(player.PrimaryRoleTargetRef);
-					PlayerCustom.ApplyEffectToPlayer(player2, "LycansNewRoles.EffectParalyzed", ((SimulationBehaviour)__instance).Runner);
-					player.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 60f);
+					TickTimer primaryRolePowerCooldownTimer = player.PrimaryRolePowerCooldownTimer;
+					if (!((TickTimer)(ref primaryRolePowerCooldownTimer)).IsRunning)
+					{
+						PlayerController player2 = PlayerRegistry.GetPlayer(player.PrimaryRoleTargetRef);
+						PlayerCustom.ApplyEffectToPlayer(player2, "LycansNewRoles.EffectParalyzed", ((SimulationBehaviour)__instance).Runner);
+						player.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, 60f);
+					}
 				}
+			}
+			else if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Hunter && (int)player.PlayerController.Role == 1)
+			{
+				__instance.IsAiming = NetworkBool.op_Implicit(!NetworkBool.op_Implicit(__instance.IsAiming));
 			}
 		}
 		catch (Exception ex)

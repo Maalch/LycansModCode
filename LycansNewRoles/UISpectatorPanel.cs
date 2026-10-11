@@ -23,7 +23,8 @@ public class UISpectatorPanel : MonoBehaviour
 	private void Update()
 	{
 		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
-		if (LycansUtility.GameActuallyInPlay && NetworkBool.op_Implicit(PlayerController.Local.IsDead) && !GameManager.Instance.gameUI.IsSettingMenuOpen && !GameManager.Instance.gameUI.IsGameSettingMenuOpen && (Object)(object)PlayerCustom.Local.SummonedSpirit == (Object)null)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		if (LycansUtility.GameActuallyInPlay && (NetworkBool.op_Implicit(PlayerController.Local.IsDead) || NetworkBool.op_Implicit(PlayerCustom.Local.IsSpectator)) && !GameManager.Instance.gameUI.IsSettingMenuOpen && !GameManager.Instance.gameUI.IsGameSettingMenuOpen && (Object)(object)PlayerCustom.Local.SummonedSpirit == (Object)null)
 		{
 			if (!Active)
 			{

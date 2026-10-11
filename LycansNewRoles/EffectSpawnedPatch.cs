@@ -51,7 +51,7 @@ internal class EffectSpawnedPatch
 										if (__instance is TransformationEffect && player.IsCurrentlyPlayedOrObserved)
 										{
 											AudioManager.Play("ScoutAlert", (MixerTarget)2, 0.7f, 1f);
-											UIManager.ShowRedCenterMessage("NALES_UI_FORCED_TRANSFORMATION", 0.5f, 4f);
+											UIManager.ShowRedCenterMessage("NALES_UI_FORCED_TRANSFORMATION_WARNING", 0.5f, 4f);
 										}
 									}
 									else if (player.IsCurrentlyPlayedOrObserved)

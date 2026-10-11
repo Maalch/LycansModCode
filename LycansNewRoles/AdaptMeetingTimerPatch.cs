@@ -14,7 +14,7 @@ internal class AdaptMeetingTimerPatch
 		if (NetworkBool.op_Implicit(Plugin.CustomConfig.AdaptMeetingTimer) && !NetworkBool.op_Implicit(__instance.BattleRoyale))
 		{
 			float num = Traverse.Create((object)__instance).Property<int>("VoteTime", (object[])null).Value;
-			float num2 = BalancingValues.AdaptMeetingTimerMultiplier(PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld), PlayerRegistry.Count);
+			float num2 = BalancingValues.AdaptMeetingTimerMultiplier(PlayerCustomRegistry.CountWhere((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && !o.IsOutOfTheWorld), PlayerCustomRegistry.Count);
 			num *= num2;
 			__instance.VoteTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)__instance).Runner, num);
 			return false;

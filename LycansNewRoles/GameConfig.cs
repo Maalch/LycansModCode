@@ -60,6 +60,8 @@ public class GameConfig : NetworkBehaviour
 
 	public static TMP_Dropdown MoleChanceConfig;
 
+	public static TMP_Dropdown ImpostorChanceConfig;
+
 	public static TMP_Dropdown GuardianAngelsCountConfig;
 
 	public static TMP_Dropdown GhostsCountConfig;
@@ -99,6 +101,8 @@ public class GameConfig : NetworkBehaviour
 	public int AvatarChance;
 
 	public int MoleChance;
+
+	public int ImpostorChance;
 
 	public int GuardianAngelsCount;
 
@@ -760,11 +764,11 @@ public class GameConfig : NetworkBehaviour
 
 	public override void Spawned()
 	{
-		//IL_0652: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0668: Unknown result type (might be due to invalid IL or missing references)
-		//IL_067e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0694: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_068a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06e2: Unknown result type (might be due to invalid IL or missing references)
 		if (((SimulationBehaviour)this).Runner.IsClient)
 		{
 			Plugin.NetworkObject = ((Component)this).GetComponent<NetworkObject>();
@@ -779,6 +783,7 @@ public class GameConfig : NetworkBehaviour
 			ElitesCount = int.Parse(ElitesCountConfig.options[ElitesCountConfig.value].text.Replace("%", ""));
 			AvatarChance = int.Parse(AvatarChanceConfig.options[AvatarChanceConfig.value].text.Replace("%", ""));
 			MoleChance = int.Parse(MoleChanceConfig.options[MoleChanceConfig.value].text.Replace("%", ""));
+			ImpostorChance = int.Parse(ImpostorChanceConfig.options[ImpostorChanceConfig.value].text.Replace("%", ""));
 			GuardianAngelsCount = int.Parse(GuardianAngelsCountConfig.options[GuardianAngelsCountConfig.value].text.Replace("%", ""));
 			GhostsCount = int.Parse(GhostsCountConfig.options[GhostsCountConfig.value].text.Replace("%", ""));
 			SpectersCount = int.Parse(SpectersCountConfig.options[SpectersCountConfig.value].text.Replace("%", ""));
@@ -1093,6 +1098,30 @@ public class GameConfig : NetworkBehaviour
 		if (PlayerPrefs.HasKey("GAME_SETTINGS_PRIMARY_ROLE_MOLE_CHANCE"))
 		{
 			int num = PlayerPrefs.GetInt("GAME_SETTINGS_PRIMARY_ROLE_MOLE_CHANCE");
+			if (num < dropdown.options.Count)
+			{
+				dropdown.SetValueWithoutNotify(num);
+			}
+		}
+	}
+
+	public static void FillPrimaryRoleImpostorChanceDropdown()
+	{
+		TMP_Dropdown dropdown = ImpostorChanceConfig;
+		if (!PlayerPrefs.HasKey("GAME_SETTINGS_PRIMARY_ROLE_IMPOSTOR_CHANCE"))
+		{
+			PlayerPrefs.SetInt("GAME_SETTINGS_PRIMARY_ROLE_IMPOSTOR_CHANCE", 3);
+		}
+		((UnityEventBase)dropdown.onValueChanged).RemoveAllListeners();
+		((UnityEvent<int>)(object)dropdown.onValueChanged).AddListener((UnityAction<int>)delegate(int index)
+		{
+			Plugin.CustomConfig.ImpostorChance = int.Parse(dropdown.options[index].text.Replace("%", ""));
+			PlayerPrefs.SetInt("GAME_SETTINGS_PRIMARY_ROLE_IMPOSTOR_CHANCE", index);
+			UIOptionsDisplayPanel.SendRefreshToClients();
+		});
+		if (PlayerPrefs.HasKey("GAME_SETTINGS_PRIMARY_ROLE_IMPOSTOR_CHANCE"))
+		{
+			int num = PlayerPrefs.GetInt("GAME_SETTINGS_PRIMARY_ROLE_IMPOSTOR_CHANCE");
 			if (num < dropdown.options.Count)
 			{
 				dropdown.SetValueWithoutNotify(num);
@@ -1942,20 +1971,20 @@ public class GameConfig : NetworkBehaviour
 
 	public void ResetToDefault()
 	{
-		//IL_02fa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_031f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0344: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0369: Unknown result type (might be due to invalid IL or missing references)
-		//IL_038e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03fd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0422: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0447: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0484: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04a9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04f3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0312: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0337: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0381: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03cb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0415: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_045f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_049c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_050b: Unknown result type (might be due to invalid IL or missing references)
 		SoloRolesCountConfig.value = 2;
 		TraitorsCountConfig.value = 0;
 		WolfPupsCountConfig.value = 0;
@@ -1964,23 +1993,25 @@ public class GameConfig : NetworkBehaviour
 		ElitesCountConfig.value = 2;
 		AvatarChanceConfig.value = 3;
 		MoleChanceConfig.value = 5;
+		ImpostorChanceConfig.value = 3;
 		GuardianAngelsCountConfig.value = 1;
 		GhostsCountConfig.value = 1;
 		SpectersCountConfig.value = 1;
 		SecondaryRolesCountConfig.value = 15;
 		EventChanceConfig.value = 3;
-		PlayerPrefs.SetInt("GAME_SETTINGS_SOLO_ROLES_COUNT", 1);
+		PlayerPrefs.SetInt("GAME_SETTINGS_SOLO_ROLES_COUNT", 2);
 		PlayerPrefs.SetInt("GAME_SETTINGS_TRAITORS_COUNT", 0);
 		PlayerPrefs.SetInt("GAME_SETTINGS_WOLF_PUPS_COUNT", 0);
 		PlayerPrefs.SetInt("GAME_SETTINGS_PRIMARY_ROLE_POWERS_COUNT", 3);
 		PlayerPrefs.SetInt("GAME_SETTINGS_VILLAGER_PRIMARY_ROLE_POWERS_CHANCE", 10);
 		PlayerPrefs.SetInt("GAME_SETTINGS_AVATAR_CHANCE", 3);
 		PlayerPrefs.SetInt("GAME_SETTINGS_MOLE_CHANCE", 5);
+		PlayerPrefs.SetInt("GAME_SETTINGS_IMPOSTOR_CHANCE", 3);
 		PlayerPrefs.SetInt("GAME_SETTINGS_GUARDIAN_ANGELS_COUNT", 1);
 		PlayerPrefs.SetInt("GAME_SETTINGS_GHOSTS_COUNT", 1);
 		PlayerPrefs.SetInt("GAME_SETTINGS_SPECTERS_COUNT", 1);
 		PlayerPrefs.SetInt("GAME_SETTINGS_SECONDARY_ROLES_COUNT", 15);
-		PlayerPrefs.SetInt("GAME_SETTINGS_EVENT_CHANCE", 2);
+		PlayerPrefs.SetInt("GAME_SETTINGS_EVENT_CHANCE", 3);
 		foreach (KeyValuePair<PlayerCustom.PlayerNewPrimaryRole, Toggle> item in SoloRolesConfig)
 		{
 			item.Value.isOn = true;

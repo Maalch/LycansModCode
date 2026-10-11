@@ -76,7 +76,7 @@ internal class RemovePlayersFromPlayerPositions
 							{
 								Vector3 position = ((Component)player).transform.position;
 								Vector3 oldPosition = current.Value;
-								if (!PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController p) => Vector3.Distance(((Component)p).transform.position, oldPosition) < 0.5f)) && Vector3.Distance(position, oldPosition) >= 0.5f)
+								if (!PlayerCustomRegistry.Any((PlayerCustom playerCustom) => Vector3.Distance(((Component)playerCustom.PlayerController).transform.position, oldPosition) < 0.5f) && Vector3.Distance(position, oldPosition) >= 0.5f)
 								{
 									dictionary.Add(player, oldPosition);
 								}

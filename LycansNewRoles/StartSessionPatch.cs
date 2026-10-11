@@ -10,7 +10,7 @@ internal class StartSessionPatch
 	{
 		try
 		{
-			playerCount = 15;
+			playerCount = 16;
 		}
 		catch (Exception ex)
 		{

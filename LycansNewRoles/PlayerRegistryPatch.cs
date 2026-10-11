@@ -23,7 +23,7 @@ internal class PlayerRegistryPatch
 				__result = true;
 				return false;
 			}
-			if (value.Count == 15)
+			if (value.Count == 16)
 			{
 				index = 0;
 				__result = false;

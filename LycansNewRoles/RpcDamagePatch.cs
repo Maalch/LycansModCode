@@ -24,20 +24,24 @@ internal class RpcDamagePatch
 		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0407: Unknown result type (might be due to invalid IL or missing references)
-		//IL_040c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0424: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0439: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0372: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0280: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0287: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0308: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0361: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0453: Unknown result type (might be due to invalid IL or missing references)
+		//IL_047f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0484: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Invalid comparison between Unknown and I4
+		//IL_049c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_026c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02f8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_035a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0380: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03d9: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!((NetworkBehaviour)__instance).InvokeRpc)
@@ -83,6 +87,14 @@ internal class RpcDamagePatch
 			if (((SimulationBehaviour)__instance).Object.HasStateAuthority && !NetworkBool.op_Implicit(__instance.IsDead))
 			{
 				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(attacker);
+				if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Hunter && (int)player2.PlayerController.Role == 1 && !NetworkBool.op_Implicit(__instance.IsWolf))
+				{
+					if (NetworkBool.op_Implicit(player2.PlayerController.IsWolf))
+					{
+						PlayerCustom.ApplyEffectToPlayer(__instance, "LycansNewRoles.EffectParalyzed", ((SimulationBehaviour)__instance).Runner, 1f, 10f);
+					}
+					return false;
+				}
 				if (player.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Beast && NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
 				{
 					PlayerController playerController = player.PlayerController;

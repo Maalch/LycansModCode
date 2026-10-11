@@ -47,6 +47,10 @@ internal class LocalCameraHandlerSwitchPoVPatch
 		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((Object)(object)__instance.PovPlayer == (Object)null)
@@ -96,6 +100,10 @@ internal class LocalCameraHandlerSwitchPoVPatch
 			{
 				UIManager.SpectatorChoicePanel.Hide();
 				GameManager.Instance.gameUI.UpdateCursor(false);
+			}
+			if (NetworkBool.op_Implicit(PlayerCustom.Local.IsSpectator))
+			{
+				GameManager.Instance.gameUI.UpdateSpectatedUsername(((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString(), player.PlayerController.Role);
 			}
 		}
 		catch (Exception ex)

@@ -40,12 +40,14 @@ public class PlayerSpotterLightComponent : MonoBehaviour
 		//IL_002f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)PlayerController.Local.LocalCameraHandler.PovPlayer == (Object)null)
 		{
 			return;
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		_active = !NetworkBool.op_Implicit(_playerController.IsDead) && NetworkBool.op_Implicit(_playerController.IsWolf) && player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Spotter;
+		_active = !NetworkBool.op_Implicit(_playerController.IsDead) && NetworkBool.op_Implicit(_playerController.IsWolf) && player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Spotter && player.Ref != _playerController.Ref;
 		if (_active)
 		{
 			foreach (Light light in _lights)

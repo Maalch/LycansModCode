@@ -373,6 +373,40 @@ public class UIGenericChoicePanel : MonoBehaviour
 		Show(buttonsForMerchant, "NALES_UI_CHOICE_PANEL_HEADER_MERCHANT");
 	}
 
+	public static List<GameObject> GetButtonsForImpostor()
+	{
+		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		List<GameObject> list = new List<GameObject>();
+		List<PlayerCustom.PlayerPrimaryRolePower> list2 = new List<PlayerCustom.PlayerPrimaryRolePower>();
+		list2.Add(PlayerCustom.PlayerPrimaryRolePower.Hunter);
+		list2.Add(PlayerCustom.PlayerPrimaryRolePower.Alchemist);
+		list2.Add(PlayerCustom.PlayerPrimaryRolePower.Spotter);
+		list2.Add(PlayerCustom.PlayerPrimaryRolePower.Purifier);
+		foreach (PlayerCustom.PlayerPrimaryRolePower role in list2)
+		{
+			string text = TranslationManager.Instance.GetTranslation("NALES_ROLE_" + PlayerCustom.GetPrimaryRolePowerString(role));
+			GameObject val = Object.Instantiate<GameObject>(GenericChoiceButtonPrefab);
+			val.SetActive(true);
+			Button component = val.GetComponent<Button>();
+			if (PlayerCustomRegistry.Any((PlayerCustom o) => o.PrimaryRolePower == role))
+			{
+				text += TranslationManager.Instance.GetTranslation("NALES_UI_IMPOSTOR_ELITE_ALREADY_PRESENT");
+				((Selectable)component).interactable = false;
+				((Graphic)val.GetComponentInChildren<TextMeshProUGUI>()).color = Color.gray;
+			}
+			else
+			{
+				((Behaviour)component).enabled = true;
+				((Selectable)component).interactable = true;
+			}
+			((TMP_Text)val.GetComponentInChildren<TextMeshProUGUI>()).text = text;
+			UIGenericChoiceButtonImpostorRole uIGenericChoiceButtonImpostorRole = val.AddComponent<UIGenericChoiceButtonImpostorRole>();
+			uIGenericChoiceButtonImpostorRole.Role = role;
+			list.Add(val);
+		}
+		return list;
+	}
+
 	public void OnClickCrystalBallGuessTarget(PlayerRef target)
 	{
 		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
@@ -444,5 +478,12 @@ public class UIGenericChoicePanel : MonoBehaviour
 		{
 			PlayerCustom.Rpc_Activate_Secondary_Role_Power_Without_Target(((SimulationBehaviour)GameManager.Instance).Runner, PlayerController.Local.Index);
 		}
+	}
+
+	public void OnClickImpostorRole(PlayerCustom.PlayerPrimaryRolePower primaryRolePower)
+	{
+		Hide();
+		GameManager.Instance.gameUI.UpdateCursor(false);
+		PlayerCustom.Rpc_Activate_Primary_Role_Power_With_Target(((SimulationBehaviour)GameManager.Instance).Runner, PlayerController.Local.Index, (int)primaryRolePower);
 	}
 }

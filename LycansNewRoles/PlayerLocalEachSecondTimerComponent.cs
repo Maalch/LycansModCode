@@ -40,33 +40,40 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 	private void Update()
 	{
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04e6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0509: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0618: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0631: Unknown result type (might be due to invalid IL or missing references)
+		//IL_063b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0730: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0736: Invalid comparison between Unknown and I4
+		//IL_0862: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0868: Invalid comparison between Unknown and I4
 		//IL_024e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_075f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0776: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0891: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08a8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0170: Unknown result type (might be due to invalid IL or missing references)
+		//IL_038d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05c4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05e3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_05f4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0702: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0715: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0726: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0221: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0392: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0397: Unknown result type (might be due to invalid IL or missing references)
-		//IL_039a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_03d8: Invalid comparison between Unknown and I4
+		//IL_03bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_03c3: Invalid comparison between Unknown and I4
 		//IL_0351: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0803: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0814: Unknown result type (might be due to invalid IL or missing references)
+		//IL_090e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0451: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0456: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0459: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0491: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0497: Invalid comparison between Unknown and I4
+		//IL_0410: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0935: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0946: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0574: Unknown result type (might be due to invalid IL or missing references)
+		//IL_057a: Invalid comparison between Unknown and I4
 		if ((Object)(object)_playerCustom != (Object)null && NetworkBool.op_Implicit(_playerCustom.Confused))
 		{
 			if (!_confusedWatch.IsRunning)
@@ -117,10 +124,17 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 						list.Add(item4.Ref);
 					}
 				}
-				list = list.Distinct().ToList();
-				foreach (PlayerRef item5 in list)
+				if (povPlayerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Spotter && NetworkBool.op_Implicit(povPlayerCustom.Spotter) && NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsWolf) && (int)povPlayerCustom.PlayerController.Role == 1)
 				{
-					PlayerCustom player = PlayerCustomRegistry.GetPlayer(item5);
+					foreach (PlayerCustom item5 in PlayerCustomRegistry.Where((PlayerCustom o) => !NetworkBool.op_Implicit(o.PlayerController.IsDead) && o.Ref != povPlayerCustom.Ref))
+					{
+						list.Add(item5.Ref);
+					}
+				}
+				list = list.Distinct().ToList();
+				foreach (PlayerRef item6 in list)
+				{
+					PlayerCustom player = PlayerCustomRegistry.GetPlayer(item6);
 					player.UpdateVisibility();
 				}
 				if (((int)povPlayerCustom.PlayerController.Role == 1 || povPlayerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Traitor) && povPlayerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Lover && Plugin.CustomConfig.MoleChance > 0 && !povPlayerCustom.MoleWarningIssued && GameManagerCustom.Instance.CurrentDay == 1 && GameManager.LightingManager.TimeOfDay >= 10f)
@@ -135,6 +149,11 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 					}
 					povPlayerCustom.MoleWarningIssued = true;
 				}
+				if ((int)povPlayerCustom.PlayerController.Role == 1 && povPlayerCustom.WolfDaysWithoutTransformation >= 3 && !povPlayerCustom.WolfForcedTransformationWarningIssued && GameManager.LightingManager.TimeOfDay >= 10f)
+				{
+					povPlayerCustom.WolfForcedTransformationWarningIssued = true;
+					UIManager.ShowRedCenterMessage("NALES_UI_FORCED_TRANSFORMATION_TODAY", 0.5f, 5f);
+				}
 			}
 			_eachSecondWatch.Restart();
 		}
@@ -143,16 +162,16 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 			return;
 		}
 		PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Runemaster && player2.Ref == PlayerController.Local.Ref && player2.AssociatedRunes.Any() && PlayerRegistry.Any((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf))))
+		if (player2.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Runemaster && player2.Ref == PlayerController.Local.Ref && player2.AssociatedRunes.Any() && PlayerCustomRegistry.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf)))
 		{
 			RunemasterRune runemasterRune = null;
 			float num = 1000f;
 			List<PlayerController> list2 = PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && !NetworkBool.op_Implicit(o.IsDead))).ToList();
 			foreach (RunemasterRune associatedRune in player2.AssociatedRunes)
 			{
-				foreach (PlayerController item6 in list2)
+				foreach (PlayerController item7 in list2)
 				{
-					float num2 = Vector3.Distance(((Component)associatedRune).transform.position, ((Component)item6).transform.position);
+					float num2 = Vector3.Distance(((Component)associatedRune).transform.position, ((Component)item7).transform.position);
 					float num3 = Vector3.Distance(((Component)associatedRune).transform.position, ((Component)player2.PlayerController).transform.position);
 					if (num2 <= 10f && num3 < num)
 					{
@@ -170,9 +189,9 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 				}
 			}
 			List<PlayerCustom> list3 = PlayerCustomRegistry.Where((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)).ToList();
-			foreach (PlayerCustom item7 in list3)
+			foreach (PlayerCustom item8 in list3)
 			{
-				item7.UpdateVisibility();
+				item8.UpdateVisibility();
 			}
 		}
 		if (_playerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Inventor && (int)GameManager.LocalGameState == 2)
@@ -181,11 +200,11 @@ public class PlayerLocalEachSecondTimerComponent : MonoBehaviour
 		}
 		if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && !NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead))
 		{
-			foreach (PlayerCustom item8 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost))
+			foreach (PlayerCustom item9 in PlayerCustomRegistry.Where((PlayerCustom o) => o.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Ghost))
 			{
-				if ((Object)(object)item8.SummonedSpirit != (Object)null && !NetworkBool.op_Implicit(item8.NewPrimaryRoleUniqueBool) && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)item8.SummonedSpirit).transform.position) <= 2f)
+				if ((Object)(object)item9.SummonedSpirit != (Object)null && !NetworkBool.op_Implicit(item9.NewPrimaryRoleUniqueBool) && Vector3.Distance(((Component)_playerCustom.PlayerController).transform.position, ((Component)item9.SummonedSpirit).transform.position) <= 2f)
 				{
-					PlayerCustom.Rpc_Spirit_Attack(((SimulationBehaviour)item8).Runner, _playerCustom.Index, item8.Index);
+					PlayerCustom.Rpc_Spirit_Attack(((SimulationBehaviour)item9).Runner, _playerCustom.Index, item9.Index);
 				}
 			}
 		}

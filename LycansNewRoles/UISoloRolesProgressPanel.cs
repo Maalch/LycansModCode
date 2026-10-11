@@ -52,7 +52,7 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 
 	public void UpdateSoloRoles()
 	{
-		_playersToShow = PlayerCustomRegistry.Where((PlayerCustom o) => (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Spy && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.SpyGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Scientist && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.ScientistGoal(PlayerRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead))).ToList();
+		_playersToShow = PlayerCustomRegistry.Where((PlayerCustom o) => (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Spy && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.SpyGoal(PlayerCustomRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Scientist && !NetworkBool.op_Implicit(o.PlayerController.IsDead) && (float)o.SoloRoleObjectiveCount / (float)BalancingValues.ScientistGoal(PlayerCustomRegistry.Count) >= 0.25f) || (o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead))).ToList();
 	}
 
 	private void Update()
@@ -99,10 +99,10 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 	public void UpdateSoloRolesProgress()
 	{
 		PlayerCustom specificNewPrimaryRole = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Spy);
-		if ((Object)(object)specificNewPrimaryRole != (Object)null && _playersToShow.Contains(specificNewPrimaryRole) && specificNewPrimaryRole.SoloRoleObjectiveCount < BalancingValues.SpyGoal(PlayerRegistry.Count))
+		if ((Object)(object)specificNewPrimaryRole != (Object)null && _playersToShow.Contains(specificNewPrimaryRole) && specificNewPrimaryRole.SoloRoleObjectiveCount < BalancingValues.SpyGoal(PlayerCustomRegistry.Count))
 		{
 			((Component)_textSpy).gameObject.SetActive(true);
-			string text = Mathf.FloorToInt((float)(specificNewPrimaryRole.SoloRoleObjectiveCount * 100 / BalancingValues.SpyGoal(PlayerRegistry.Count))).ToString();
+			string text = Mathf.FloorToInt((float)(specificNewPrimaryRole.SoloRoleObjectiveCount * 100 / BalancingValues.SpyGoal(PlayerCustomRegistry.Count))).ToString();
 			((TMP_Text)_textSpy).text = TranslationManager.Instance.GetTranslation("NALES_ROLE_SPY") + " : " + text + "%";
 		}
 		else
@@ -110,10 +110,10 @@ public class UISoloRolesProgressPanel : MonoBehaviour
 			((Component)_textSpy).gameObject.SetActive(false);
 		}
 		PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Scientist);
-		if ((Object)(object)specificNewPrimaryRole2 != (Object)null && _playersToShow.Contains(specificNewPrimaryRole2) && specificNewPrimaryRole2.SoloRoleObjectiveCount < BalancingValues.ScientistGoal(PlayerRegistry.Count))
+		if ((Object)(object)specificNewPrimaryRole2 != (Object)null && _playersToShow.Contains(specificNewPrimaryRole2) && specificNewPrimaryRole2.SoloRoleObjectiveCount < BalancingValues.ScientistGoal(PlayerCustomRegistry.Count))
 		{
 			((Component)_textScientist).gameObject.SetActive(true);
-			string text2 = Mathf.FloorToInt((float)(specificNewPrimaryRole2.SoloRoleObjectiveCount * 100 / BalancingValues.ScientistGoal(PlayerRegistry.Count))).ToString();
+			string text2 = Mathf.FloorToInt((float)(specificNewPrimaryRole2.SoloRoleObjectiveCount * 100 / BalancingValues.ScientistGoal(PlayerCustomRegistry.Count))).ToString();
 			((TMP_Text)_textScientist).text = TranslationManager.Instance.GetTranslation("NALES_ROLE_SCIENTIST") + " : " + text2 + "%";
 		}
 		else

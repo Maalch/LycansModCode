@@ -120,10 +120,10 @@ public class UISpectatorChoicePlayer : MonoBehaviour
 			switch (_playerCustom.NewPrimaryRole)
 			{
 			case PlayerCustom.PlayerNewPrimaryRole.Spy:
-				text2 = Mathf.FloorToInt((float)(_playerCustom.SoloRoleObjectiveCount * 100 / BalancingValues.SpyGoal(PlayerRegistry.Count))) + "%";
+				text2 = Mathf.FloorToInt((float)(_playerCustom.SoloRoleObjectiveCount * 100 / BalancingValues.SpyGoal(PlayerCustomRegistry.Count))) + "%";
 				break;
 			case PlayerCustom.PlayerNewPrimaryRole.Scientist:
-				text2 = Mathf.FloorToInt((float)(_playerCustom.SoloRoleObjectiveCount * 100 / BalancingValues.ScientistGoal(PlayerRegistry.Count))) + "%";
+				text2 = Mathf.FloorToInt((float)(_playerCustom.SoloRoleObjectiveCount * 100 / BalancingValues.ScientistGoal(PlayerCustomRegistry.Count))) + "%";
 				break;
 			case PlayerCustom.PlayerNewPrimaryRole.Beast:
 				text2 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => NetworkBool.op_Implicit(o.BeastMark) && !NetworkBool.op_Implicit(o.PlayerController.IsDead)) + "/" + PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.Beast && !NetworkBool.op_Implicit(o.PlayerController.IsDead));

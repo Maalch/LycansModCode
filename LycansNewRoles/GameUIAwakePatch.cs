@@ -39,7 +39,7 @@ public class GameUIAwakePatch
 		try
 		{
 			TextMeshProUGUI value = Traverse.Create((object)__instance).Field<TextMeshProUGUI>("mmVersionText").Value;
-			((TMP_Text)value).text = ((TMP_Text)value).text + Environment.NewLine + "New Roles 0.364";
+			((TMP_Text)value).text = ((TMP_Text)value).text + Environment.NewLine + "New Roles 0.365";
 			GameObject value2 = Traverse.Create((object)__instance).Field<GameObject>("playersContainer").Value;
 			value2.transform.position = new Vector3(value2.transform.position.x, value2.transform.position.y + 250f, value2.transform.position.z);
 			GameObject val = Plugin.NewRolesCoreBundle.LoadAsset<GameObject>("Timer");
@@ -152,6 +152,12 @@ public class GameUIAwakePatch
 			val39.transform.SetAsLastSibling();
 			UISpectatorChoicePanel spectatorChoicePanel = val39.AddComponent<UISpectatorChoicePanel>();
 			UIManager.SpectatorChoicePanel = spectatorChoicePanel;
+			GameObject val40 = Plugin.NewRolesCoreBundle.LoadAsset<GameObject>("SpectatorsListPanel");
+			GameObject val41 = Object.Instantiate<GameObject>(val40, ((Component)__instance).transform.Find("Canvas"));
+			val41.transform.SetAsLastSibling();
+			val41.SetActive(true);
+			UISpectatorsListPanel spectatorsListPanel = val41.AddComponent<UISpectatorsListPanel>();
+			UIManager.SpectatorsListPanel = spectatorsListPanel;
 			UILastGameSummaryKill.DaySprite = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("TimingDay");
 			UILastGameSummaryKill.NightSprite = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("TimingNight");
 			UILastGameSummaryKill.MeetingSprite = Plugin.NewRolesCoreBundle.LoadAsset<Sprite>("TimingMeeting");

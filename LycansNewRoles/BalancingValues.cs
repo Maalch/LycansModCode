@@ -490,7 +490,7 @@ public static class BalancingValues
 
 	public const float HostParasiteDestroyRange = 0.1f;
 
-	public const float HostParasiteDetectRange = 20f;
+	public const float HostParasiteDetectRange = 30f;
 
 	public const float HostParasiteTargetDamagePercentage = 0.1f;
 
@@ -645,6 +645,14 @@ public static class BalancingValues
 	public const float TrackerTrackerSpeechRadius = 15f;
 
 	public const float FartmasterAppearanceChance = 0.25f;
+
+	public const float ImpostorHunterParalyzedDuration = 10f;
+
+	public const float ImpostorAlchemistPotionDurationMultiplierInWolfForm = 0.5f;
+
+	public const float ImpostorSpotterSeethroughRangeWithPowerActive = 12f;
+
+	public const float ImpostorPurifierBurnHealthIncreaseWolfForm = 8f;
 
 	public static Dictionary<PlayerCustom.PlayerSecondaryRole, int> SecondaryRoleMaxAmountInDraft = new Dictionary<PlayerCustom.PlayerSecondaryRole, int>
 	{
@@ -2102,7 +2110,7 @@ public static class BalancingValues
 
 	public const int FogBonusEndDistanceForWolfForm = 25;
 
-	public static int BeastMarkCooldown => Mathf.RoundToInt(63f - (float)PlayerRegistry.Count * 3f);
+	public static int BeastMarkCooldown => Mathf.RoundToInt(63f - (float)PlayerCustomRegistry.Count * 3f);
 
 	public static float CurrentLootProgress => (float)GameManager.Instance.Score / (float)GameManager.Instance.MaxScore;
 
@@ -2811,7 +2819,7 @@ public static class BalancingValues
 
 	public static int ScientistGoal(int totalPlayers)
 	{
-		return Mathf.RoundToInt((float)(PlayerRegistry.Count * 500));
+		return Mathf.RoundToInt((float)(PlayerCustomRegistry.Count * 500));
 	}
 
 	public static int VoodooReanimationCooldown(int zombiesCount, int totalPlayers)

@@ -254,7 +254,7 @@ public class UIDraftPanel : MonoBehaviour
 		}
 	}
 
-	private void HideDraftInfo()
+	public void HideDraftInfo()
 	{
 		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
 		((Component)_mainRoleTitle).gameObject.SetActive(false);

@@ -312,7 +312,7 @@ public class MinimapPlayerComponent : MonoBehaviour
 			{
 				flag = true;
 			}
-			else if (povPlayerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(AssociatedPlayerCustom.Parasite) && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)AssociatedPlayerCustom.PlayerController).transform.position) <= 20f)
+			else if (povPlayerCustom.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(AssociatedPlayerCustom.Parasite) && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)AssociatedPlayerCustom.PlayerController).transform.position) <= 30f)
 			{
 				flag = true;
 			}

@@ -29,7 +29,7 @@ internal class EffectDespawnedPatch
 						{
 							if (__instance is TransformationEffect && ((SimulationBehaviour)GameManager.Instance).Runner.IsServer && !NetworkBool.op_Implicit(player.PlayerController.IsWolf) && !player.IsOutOfTheWorld)
 							{
-								PlayerCustom.Rpc_Forced_Transform(((SimulationBehaviour)GameManager.Instance).Runner, player.Index, 2);
+								PlayerCustom.Rpc_Effect_On_Player(((SimulationBehaviour)GameManager.Instance).Runner, player.Index, 16);
 							}
 						}
 						else if (player.IsCurrentlyPlayedOrObserved)

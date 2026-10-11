@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[NetworkBehaviourWeaved(88)]
+[NetworkBehaviourWeaved(100)]
 public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, IElementReaderWriter<PlayerCustom>
 {
 	[DefaultForProperty("PlayersCustom", 0, 88)]
@@ -18,7 +18,7 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 	public static PlayerCustomRegistry Instance { get; private set; }
 
 	[Networked]
-	[Capacity(15)]
+	[Capacity(16)]
 	[NetworkedWeaved(0, 88)]
 	private unsafe NetworkDictionary<PlayerRef, PlayerCustom> PlayersCustom
 	{
@@ -35,7 +35,17 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 		}
 	}
 
-	public static List<PlayerCustom> AllPlayers => ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).Select((KeyValuePair<PlayerRef, PlayerCustom> o) => o.Value).ToList();
+	public static int Count => ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).Count((KeyValuePair<PlayerRef, PlayerCustom> o) => !NetworkBool.op_Implicit(o.Value.IsSpectator));
+
+	public static List<PlayerCustom> AllPlayersIncludingSpectators => ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).Select((KeyValuePair<PlayerRef, PlayerCustom> o) => o.Value).ToList();
+
+	public static List<PlayerCustom> AllPlayers => (from o in (IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom
+		where !NetworkBool.op_Implicit(o.Value.IsSpectator)
+		select o.Value).ToList();
+
+	public static List<PlayerCustom> AllSpectators => (from o in (IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom
+		where NetworkBool.op_Implicit(o.Value.IsSpectator)
+		select o.Value).ToList();
 
 	public override void Spawned()
 	{
@@ -65,7 +75,7 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 			index = 0;
 			return true;
 		}
-		if (PlayersCustom.Count == 15)
+		if (PlayersCustom.Count == 16)
 		{
 			index = 0;
 			return false;
@@ -160,7 +170,12 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 	public static PlayerCustom GetPlayer(int index)
 	{
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
-		return ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).First((KeyValuePair<PlayerRef, PlayerCustom> o) => o.Value.Index == index).Value;
+		PlayerCustom value = ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).FirstOrDefault((KeyValuePair<PlayerRef, PlayerCustom> o) => o.Value.Index == index).Value;
+		if ((Object)(object)value == (Object)null)
+		{
+			Plugin.Logger.LogError((object)("CustomRegistry: Could not GetPlayer with index " + index + " - " + new StackTrace()));
+		}
+		return value;
 	}
 
 	public static PlayerCustom GetPlayer(PlayerRef pRef)
@@ -179,7 +194,7 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 	public static PlayerCustom GetAnyVillager()
 	{
 		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
-		return ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).FirstOrDefault((KeyValuePair<PlayerRef, PlayerCustom> o) => (int)o.Value.PlayerController.Role != 1 && o.Value.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.None).Value;
+		return ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).FirstOrDefault((KeyValuePair<PlayerRef, PlayerCustom> o) => !NetworkBool.op_Implicit(o.Value.IsSpectator) && (int)o.Value.PlayerController.Role != 1 && o.Value.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.None).Value;
 	}
 
 	public static PlayerCustom GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole newPrimaryRole)
@@ -207,58 +222,25 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
 		return ((IEnumerable<KeyValuePair<PlayerRef, PlayerCustom>>)(object)Instance.PlayersCustom).Where(delegate(KeyValuePair<PlayerRef, PlayerCustom> kvp)
 		{
+			//IL_001f: Unknown result type (might be due to invalid IL or missing references)
 			Predicate<PlayerCustom> predicate = match;
 			KeyValuePair<PlayerRef, PlayerCustom> keyValuePair = kvp;
-			return predicate(keyValuePair.Value);
+			int result;
+			if (predicate(keyValuePair.Value))
+			{
+				keyValuePair = kvp;
+				result = ((!NetworkBool.op_Implicit(keyValuePair.Value.IsSpectator)) ? 1 : 0);
+			}
+			else
+			{
+				result = 0;
+			}
+			return (byte)result != 0;
 		}).Select(delegate(KeyValuePair<PlayerRef, PlayerCustom> kvp)
 		{
 			KeyValuePair<PlayerRef, PlayerCustom> keyValuePair = kvp;
 			return keyValuePair.Value;
 		});
-	}
-
-	public static void ForEach(Action<PlayerCustom> action)
-	{
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
-		Enumerator<PlayerRef, PlayerCustom> enumerator = Instance.PlayersCustom.GetEnumerator();
-		try
-		{
-			while (enumerator.MoveNext())
-			{
-				action(enumerator.Current.Value);
-			}
-		}
-		finally
-		{
-			((IDisposable)enumerator/*cast due to constrained. prefix*/).Dispose();
-		}
-	}
-
-	public static void ForEachWhere(Predicate<PlayerCustom> match, Action<PlayerCustom> action)
-	{
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
-		Enumerator<PlayerRef, PlayerCustom> enumerator = Instance.PlayersCustom.GetEnumerator();
-		try
-		{
-			while (enumerator.MoveNext())
-			{
-				KeyValuePair<PlayerRef, PlayerCustom> current = enumerator.Current;
-				if (match(current.Value))
-				{
-					action(current.Value);
-				}
-			}
-		}
-		finally
-		{
-			((IDisposable)enumerator/*cast due to constrained. prefix*/).Dispose();
-		}
 	}
 
 	public static int CountWhere(Predicate<PlayerCustom> match)
@@ -267,13 +249,15 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
 		int num = 0;
 		Enumerator<PlayerRef, PlayerCustom> enumerator = Instance.PlayersCustom.GetEnumerator();
 		try
 		{
 			while (enumerator.MoveNext())
 			{
-				if (match(enumerator.Current.Value))
+				KeyValuePair<PlayerRef, PlayerCustom> current = enumerator.Current;
+				if (match(current.Value) && !NetworkBool.op_Implicit(current.Value.IsSpectator))
 				{
 					num++;
 				}
@@ -292,12 +276,14 @@ public class PlayerCustomRegistry : NetworkBehaviour, INetworkRunnerCallbacks, I
 		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
 		Enumerator<PlayerRef, PlayerCustom> enumerator = Instance.PlayersCustom.GetEnumerator();
 		try
 		{
 			while (enumerator.MoveNext())
 			{
-				if (match(enumerator.Current.Value))
+				KeyValuePair<PlayerRef, PlayerCustom> current = enumerator.Current;
+				if (match(current.Value) && !NetworkBool.op_Implicit(current.Value.IsSpectator))
 				{
 					return true;
 				}
