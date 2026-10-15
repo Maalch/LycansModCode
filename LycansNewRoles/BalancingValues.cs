@@ -1678,7 +1678,7 @@ public static class BalancingValues
 			AccessorySpellbook.PossibleEffects.Asleep,
 			new AccessorySpellbook.SpellbookEffectDetails
 			{
-				Duration = 15f,
+				Duration = 8f,
 				Ponderation = 2
 			}
 		},

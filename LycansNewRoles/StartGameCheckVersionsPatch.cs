@@ -28,7 +28,7 @@ internal class StartGameCheckVersionsPatch
 		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0235: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0252: Unknown result type (might be due to invalid IL or missing references)
-		//IL_026e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0280: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (((SimulationBehaviour)__instance).Runner.IsServer && (int)GameManager.State.Current == 1)
@@ -57,7 +57,7 @@ internal class StartGameCheckVersionsPatch
 						}
 						return false;
 					}
-					if (item.ModVersion.Value != float.Parse("0.365", CultureInfo.InvariantCulture.NumberFormat))
+					if (item.ModVersion.Value != float.Parse("0.366", CultureInfo.InvariantCulture.NumberFormat))
 					{
 						UIManager.ShowRedCenterMessage("NALES_UI_VERSION_CHECK_WRONG_VERSION", 0.5f, 5f, new List<object> { item.PlayerController.PlayerData.Username });
 						return false;
@@ -68,6 +68,7 @@ internal class StartGameCheckVersionsPatch
 				if (NetworkBool.op_Implicit(Plugin.CustomConfig.DraftMode) && !NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
 				{
 					GameManager.Instance.IsStarted = NetworkBool.op_Implicit(true);
+					((SimulationBehaviour)__instance).Runner.SessionInfo.IsOpen = false;
 					DraftManager.Instance.Init();
 					DraftManager.Instance.Active = NetworkBool.op_Implicit(true);
 					GameManager.State.Server_SetState((EGameState)2);

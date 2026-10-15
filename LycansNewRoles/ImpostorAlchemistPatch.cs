@@ -9,14 +9,12 @@ namespace LycansNewRoles;
 [HarmonyPatch(typeof(GameManager), "Rpc_AlchemistEffects")]
 internal class ImpostorAlchemistPatch
 {
-	private unsafe static void Prefix(NetworkRunner runner, int[] effectIds)
+	private unsafe static bool Prefix(NetworkRunner runner, int[] effectIds)
 	{
 		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0037: Invalid comparison between Unknown and I4
-		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0103: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0109: Invalid comparison between Unknown and I4
-		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (NetworkBehaviourUtils.InvokeRpc)
@@ -31,7 +29,7 @@ internal class ImpostorAlchemistPatch
 				}
 				if ((int)runner.Stage == 4)
 				{
-					return;
+					return false;
 				}
 				if (runner.HasAnyActiveConnections())
 				{
@@ -49,7 +47,7 @@ internal class ImpostorAlchemistPatch
 				}
 			}
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-			if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Alchemist && (int)player.PlayerController.Role == 1)
+			if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Alchemist)
 			{
 				List<string> list = new List<string>();
 				foreach (int num3 in effectIds)
@@ -59,10 +57,12 @@ internal class ImpostorAlchemistPatch
 				GameManager.Instance.gameUI.UpdateAlchemistEffects(list);
 				GameManager.Instance.gameUI.ShowAlchemistEffects(true);
 			}
+			return false;
 		}
 		catch (Exception ex)
 		{
 			Plugin.Logger.LogError((object)("ImpostorAlchemistPatch error: " + ex));
+			return false;
 		}
 	}
 }

@@ -733,7 +733,7 @@ public class GameManagerCustom : NetworkBehaviour
 				}
 				if ((Object)(object)playerCustom.Accessory != (Object)null && playerCustom.Accessory is AccessoryRing accessoryRing)
 				{
-					bool flag3 = NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) || PlayerCustomRegistry.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && Vector3.Distance(((Component)playerCustom.PlayerController).transform.position, ((Component)o.PlayerController).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o }));
+					bool flag3 = NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) || PlayerCustomRegistry.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && Vector3.Distance(((Component)playerCustom.PlayerController).transform.position, ((Component)o.PlayerController).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o.PlayerController }));
 					if (accessoryRing.EffectActive != flag3)
 					{
 						accessoryRing.EffectActive = flag3;

@@ -9,7 +9,7 @@ public class SessionStats
 {
 	public static SessionStats Stats = new SessionStats
 	{
-		ModVersion = "0.365",
+		ModVersion = "0.366",
 		Filename = ((object)PlayerController.Local.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "-" + LycansUtility.GetCurrentDateTimeUtcForId,
 		Key = "N8W0_QJ7Z5",
 		Type = "SessionStats"

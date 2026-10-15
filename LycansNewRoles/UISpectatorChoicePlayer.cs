@@ -71,12 +71,12 @@ public class UISpectatorChoicePlayer : MonoBehaviour
 		//IL_0196: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01bd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ec: Invalid comparison between Unknown and I4
-		//IL_0239: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0290: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0261: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0267: Invalid comparison between Unknown and I4
 		//IL_04ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b4: Unknown result type (might be due to invalid IL or missing references)
 		if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead))
 		{
 			((TMP_Text)_textPlayer).text = "<s>" + ((object)_playerCustom.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString() + "</s>";
@@ -95,7 +95,13 @@ public class UISpectatorChoicePlayer : MonoBehaviour
 		((TMP_Text)_textRole).text = text;
 		Color color = ((_playerCustom.NewPrimaryRole != PlayerCustom.PlayerNewPrimaryRole.None) ? PlayerCustom.GetNewPrimaryRoleColor(_playerCustom.NewPrimaryRole) : (((int)_playerCustom.PlayerController.Role == 1) ? GameUI.WolfColor : ((!PlayerCustom.IsPrimaryRolePowerForEliteVillagers(_playerCustom.PrimaryRolePower)) ? GameUI.VillagerColor : PlayerCustom.EliteRoleColor)));
 		((Graphic)_textRole).color = color;
-		if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && (int)_playerCustom.PlayerController.Role == 1)
+		if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead) || _playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie || NetworkBool.op_Implicit(_playerCustom.ResurrectedByNecromancer))
+		{
+			((Component)_soloRoleProgress).gameObject.SetActive(false);
+			((Component)_icon).gameObject.SetActive(true);
+			_icon.sprite = UILastGameSummaryKill.DeathTypeSpriteSurvivalistNotSaved;
+		}
+		else if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsWolf) && (int)_playerCustom.PlayerController.Role == 1)
 		{
 			((Component)_soloRoleProgress).gameObject.SetActive(false);
 			((Component)_icon).gameObject.SetActive(true);
@@ -106,12 +112,6 @@ public class UISpectatorChoicePlayer : MonoBehaviour
 			((Component)_soloRoleProgress).gameObject.SetActive(false);
 			((Component)_icon).gameObject.SetActive(true);
 			_icon.sprite = UIManager.KidnappedPlayerIcon;
-		}
-		else if (NetworkBool.op_Implicit(_playerCustom.PlayerController.IsDead) || _playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie || NetworkBool.op_Implicit(_playerCustom.ResurrectedByNecromancer))
-		{
-			((Component)_soloRoleProgress).gameObject.SetActive(false);
-			((Component)_icon).gameObject.SetActive(true);
-			_icon.sprite = UILastGameSummaryKill.DeathTypeSpriteSurvivalistNotSaved;
 		}
 		else
 		{
