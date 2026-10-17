@@ -6244,11 +6244,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.366", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.367", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.366", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.367", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -10406,7 +10406,7 @@ public class PlayerCustom : NetworkBehaviour
 						return;
 					}
 					EffectManager effectManager = Traverse.Create(typeof(EffectManager)).Field<EffectManager>("_instance").Value;
-					if ((int)targetPlayer.Role != 1 && player.NewPrimaryRole == PlayerNewPrimaryRole.None && !player.AlreadyAngeledToday && !NetworkBool.op_Implicit(player.Dying) && (targetPlayer.Hunger <= (float)GameManager.Instance.MaxHunger * 0.25f || PlayerCustomRegistry.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && Vector3.Distance(((Component)targetPlayer).transform.position, ((Component)o.PlayerController).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o }))))
+					if ((int)targetPlayer.Role != 1 && player.NewPrimaryRole == PlayerNewPrimaryRole.None && !player.AlreadyAngeledToday && !NetworkBool.op_Implicit(player.Dying) && (targetPlayer.Hunger <= (float)GameManager.Instance.MaxHunger * 0.25f || PlayerCustomRegistry.Any((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && Vector3.Distance(((Component)targetPlayer).transform.position, ((Component)o.PlayerController).transform.position) < Traverse.Create((object)effectManager).Method("WolfMusicDistance", new List<Type> { typeof(PlayerController) }.ToArray(), (object[])null).GetValue<float>(new object[1] { o.PlayerController }))))
 					{
 						targetPlayer.Hunger = Mathf.Min((float)GameManager.Instance.MaxHunger, targetPlayer.Hunger + (float)GameManager.Instance.MaxHunger * 0.2f);
 						ApplyEffectToPlayer(targetPlayer, "LycansNewRoles.EffectAngel", ((SimulationBehaviour)targetPlayer).Runner);
