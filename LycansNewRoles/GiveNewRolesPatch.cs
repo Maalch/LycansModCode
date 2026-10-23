@@ -31,15 +31,15 @@ internal class GiveNewRolesPatch
 			//IL_0003: Invalid comparison between Unknown and I4
 			//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 			//IL_002a: Invalid comparison between Unknown and I4
-			//IL_12c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1303: Unknown result type (might be due to invalid IL or missing references)
 			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_16a0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_16a2: Invalid comparison between Unknown and I4
-			//IL_1373: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1375: Invalid comparison between Unknown and I4
-			//IL_16a4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_16a6: Invalid comparison between Unknown and I4
-			//IL_138e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_16e0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_16e2: Invalid comparison between Unknown and I4
+			//IL_13b3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_13b5: Invalid comparison between Unknown and I4
+			//IL_16e4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_16e6: Invalid comparison between Unknown and I4
+			//IL_13ce: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0081: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0086: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00be: Unknown result type (might be due to invalid IL or missing references)
@@ -48,29 +48,30 @@ internal class GiveNewRolesPatch
 			//IL_010b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_019a: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
-			//IL_155e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1576: Unknown result type (might be due to invalid IL or missing references)
-			//IL_157b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1592: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1597: Unknown result type (might be due to invalid IL or missing references)
-			//IL_15c7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_159e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15b6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15bb: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15d2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15d7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1607: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02d6: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0456: Unknown result type (might be due to invalid IL or missing references)
 			//IL_061c: Unknown result type (might be due to invalid IL or missing references)
 			//IL_07c6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0f0f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0f1d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0e0b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0e85: Unknown result type (might be due to invalid IL or missing references)
-			//IL_115d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1162: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1167: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1183: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1188: Unknown result type (might be due to invalid IL or missing references)
-			//IL_11a4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_11a9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_122d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1232: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0851: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0f4f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0f5d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0e4b: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0ec5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_119d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11a2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11a7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11c8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11e4: Unknown result type (might be due to invalid IL or missing references)
+			//IL_11e9: Unknown result type (might be due to invalid IL or missing references)
+			//IL_126d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_1272: Unknown result type (might be due to invalid IL or missing references)
 			if ((int)state == 1)
 			{
 				GameManagerCustom.Instance.NewGame();
@@ -215,6 +216,10 @@ internal class GiveNewRolesPatch
 							{
 								PlayerCustom customPlayer = CollectionsUtil.Grab<PlayerCustom>(list7, 1).First();
 								List<PlayerCustom.PlayerPrimaryRolePower> list8 = list6.Where((PlayerCustom.PlayerPrimaryRolePower o) => (int)customPlayer.PlayerController.Role == 1 || PlayerCustom.IsWolfPowerAvailableForTraitor(o)).ToList();
+								if (NetworkBool.op_Implicit(customPlayer.IsWolfPup))
+								{
+									list8.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForWolfPup(o));
+								}
 								if (list8.Any())
 								{
 									PlayerCustom.PlayerPrimaryRolePower playerPrimaryRolePower = CollectionsUtil.Grab<PlayerCustom.PlayerPrimaryRolePower>(list8, 1).First();

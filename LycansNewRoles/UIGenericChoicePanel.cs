@@ -375,7 +375,7 @@ public class UIGenericChoicePanel : MonoBehaviour
 
 	public static List<GameObject> GetButtonsForImpostor()
 	{
-		//IL_00d1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00eb: Unknown result type (might be due to invalid IL or missing references)
 		List<GameObject> list = new List<GameObject>();
 		List<PlayerCustom.PlayerPrimaryRolePower> list2 = new List<PlayerCustom.PlayerPrimaryRolePower>();
 		list2.Add(PlayerCustom.PlayerPrimaryRolePower.Hunter);
@@ -388,7 +388,7 @@ public class UIGenericChoicePanel : MonoBehaviour
 			GameObject val = Object.Instantiate<GameObject>(GenericChoiceButtonPrefab);
 			val.SetActive(true);
 			Button component = val.GetComponent<Button>();
-			if (PlayerCustomRegistry.Any((PlayerCustom o) => o.PrimaryRolePower == role))
+			if (PlayerCustomRegistry.Any((PlayerCustom o) => o.PrimaryRolePower == role) || DraftManager.Instance.ElitePowersOfferedInDraft.Contains(role))
 			{
 				text += TranslationManager.Instance.GetTranslation("NALES_UI_IMPOSTOR_ELITE_ALREADY_PRESENT");
 				((Selectable)component).interactable = false;

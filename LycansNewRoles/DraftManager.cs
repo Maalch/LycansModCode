@@ -62,6 +62,8 @@ public class DraftManager : NetworkBehaviour
 
 	public PlayerDraftData MyData = new PlayerDraftData();
 
+	public List<PlayerCustom.PlayerPrimaryRolePower> ElitePowersOfferedInDraft = new List<PlayerCustom.PlayerPrimaryRolePower>();
+
 	[Networked(OnChanged = "ActiveChanged")]
 	[NetworkedWeaved(0, 1)]
 	public unsafe NetworkBool Active
@@ -123,7 +125,7 @@ public class DraftManager : NetworkBehaviour
 		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
 		//IL_090c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0911: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f77: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fb5: Unknown result type (might be due to invalid IL or missing references)
 		PlayersDraftDataByPlayerIndex.Clear();
 		List<PlayerCustom> allPlayers = PlayerCustomRegistry.AllPlayers;
 		allPlayers.Shuffle();
@@ -329,6 +331,10 @@ public class DraftManager : NetworkBehaviour
 				if (playerDraftData5.MainRole == DraftPlayerMainRole.Traitor)
 				{
 					list11.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForTraitor(o));
+				}
+				if (playerDraftData5.MainRole == DraftPlayerMainRole.WolfPup)
+				{
+					list11.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForWolfPup(o));
 				}
 				if (list11.Count > 0)
 				{
@@ -642,21 +648,22 @@ public class DraftManager : NetworkBehaviour
 	public static void ActiveChanged(Changed<DraftManager> changed)
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005b: Invalid comparison between Unknown and I4
-		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0178: Invalid comparison between Unknown and I4
+		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006d: Invalid comparison between Unknown and I4
+		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018a: Invalid comparison between Unknown and I4
 		try
 		{
 			if (NetworkBool.op_Implicit(changed.Behaviour.Active))
 			{
+				changed.Behaviour.ElitePowersOfferedInDraft.Clear();
 				UIManager.DraftPanel.Show();
 				if (NetworkBool.op_Implicit(PlayerCustom.Local.IsSpectator))
 				{
@@ -827,6 +834,11 @@ public class DraftManager : NetworkBehaviour
 				Instance.MyData.OfferedPowers = list2;
 				Instance.MyData.OfferedSecondaryRoles = list3;
 				UIManager.DraftPanel.UpdateInfo();
+			}
+			if (mainRoleIndex == 5)
+			{
+				Instance.ElitePowersOfferedInDraft.AddRange(list2);
+				Plugin.Logger.LogInfo((object)("LSD add elite powers offered: " + list2.Count));
 			}
 		}
 		catch (Exception ex)
