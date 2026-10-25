@@ -646,7 +646,9 @@ public static class BalancingValues
 
 	public const float FartmasterAppearanceChance = 0.25f;
 
-	public const float ImpostorHunterParalyzedDuration = 10f;
+	public const float ImpostorHunterBulletParalyzedDuration = 10f;
+
+	public const float ImpostorHunterBulletHealthPercentage = 0.25f;
 
 	public const float ImpostorAlchemistPotionDurationMultiplierInWolfForm = 0.5f;
 
@@ -828,7 +830,7 @@ public static class BalancingValues
 
 	public const float AstralActiveExtraHungerPerDistance = 0.01f;
 
-	public const float AstralMoveSpeedHumanForm = 3f;
+	public const float AstralMoveSpeedHumanForm = 5f;
 
 	public const float AstralMoveSpeedWolfForm = 9f;
 

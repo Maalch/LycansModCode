@@ -123,9 +123,9 @@ public class DraftManager : NetworkBehaviour
 	public void Init()
 	{
 		//IL_00db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_090c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0911: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fb5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b02: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b07: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fd3: Unknown result type (might be due to invalid IL or missing references)
 		PlayersDraftDataByPlayerIndex.Clear();
 		List<PlayerCustom> allPlayers = PlayerCustomRegistry.AllPlayers;
 		allPlayers.Shuffle();
@@ -303,19 +303,22 @@ public class DraftManager : NetworkBehaviour
 		}
 		for (int num14 = 0; num14 < 3; num14++)
 		{
-			foreach (PlayerDraftData playerDraftData4 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.EliteVillager))
+			foreach (PlayerDraftData playerDraftData4 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => (o.MainRole == DraftPlayerMainRole.Wolf || o.MainRole == DraftPlayerMainRole.Traitor || o.MainRole == DraftPlayerMainRole.WolfPup) && o.GetsPrimaryRolePower))
 			{
-				List<PlayerCustom.PlayerPrimaryRolePower> list10 = list3.Where((PlayerCustom.PlayerPrimaryRolePower o) => !playerDraftData4.OfferedPowers.Contains(o)).ToList();
-				PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerDraftData4.Index);
-				if (player.PlayerController.PlayerData.ID == "76561198085469315")
+				List<PlayerCustom.PlayerPrimaryRolePower> list10 = list2.Where((PlayerCustom.PlayerPrimaryRolePower o) => !playerDraftData4.OfferedPowers.Contains(o)).ToList();
+				if (playerDraftData4.MainRole == DraftPlayerMainRole.Traitor)
 				{
-					list10.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => o == PlayerCustom.PlayerPrimaryRolePower.Hunter);
+					list10.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForTraitor(o));
+				}
+				if (playerDraftData4.MainRole == DraftPlayerMainRole.WolfPup)
+				{
+					list10.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForWolfPup(o));
 				}
 				if (list10.Count > 0)
 				{
 					PlayerCustom.PlayerPrimaryRolePower playerPrimaryRolePower2 = CollectionsUtil.Grab<PlayerCustom.PlayerPrimaryRolePower>(list10, 1).First();
 					playerDraftData4.OfferedPowers.Add(playerPrimaryRolePower2);
-					list3.Remove(playerPrimaryRolePower2);
+					list2.Remove(playerPrimaryRolePower2);
 					if (playerDraftData4.SelectedPower == PlayerCustom.PlayerPrimaryRolePower.None)
 					{
 						playerDraftData4.SelectedPower = playerPrimaryRolePower2;
@@ -323,37 +326,38 @@ public class DraftManager : NetworkBehaviour
 				}
 			}
 		}
+		if (flag)
+		{
+			PlayerDraftData playerDraftData5 = CollectionsUtil.Grab<PlayerDraftData>(PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.Wolf || o.MainRole == DraftPlayerMainRole.WolfPup).ToList(), 1).First();
+			playerDraftData5.OfferedPowers.Clear();
+			playerDraftData5.OfferedPowers.Add(PlayerCustom.PlayerPrimaryRolePower.Impostor);
+			playerDraftData5.SelectedPower = PlayerCustom.PlayerPrimaryRolePower.Impostor;
+		}
 		for (int num15 = 0; num15 < 3; num15++)
 		{
-			foreach (PlayerDraftData playerDraftData5 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => (o.MainRole == DraftPlayerMainRole.Wolf || o.MainRole == DraftPlayerMainRole.Traitor || o.MainRole == DraftPlayerMainRole.WolfPup) && o.GetsPrimaryRolePower))
+			foreach (PlayerDraftData playerDraftData6 in PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.EliteVillager || o.OfferedPowers.Contains(PlayerCustom.PlayerPrimaryRolePower.Impostor)))
 			{
-				List<PlayerCustom.PlayerPrimaryRolePower> list11 = list2.Where((PlayerCustom.PlayerPrimaryRolePower o) => !playerDraftData5.OfferedPowers.Contains(o)).ToList();
-				if (playerDraftData5.MainRole == DraftPlayerMainRole.Traitor)
+				List<PlayerCustom.PlayerPrimaryRolePower> list11 = list3.Where((PlayerCustom.PlayerPrimaryRolePower o) => !playerDraftData6.OfferedPowers.Contains(o)).ToList();
+				PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerDraftData6.Index);
+				if (player.PlayerController.PlayerData.ID == "76561198085469315")
 				{
-					list11.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForTraitor(o));
+					list11.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => o == PlayerCustom.PlayerPrimaryRolePower.Hunter);
 				}
-				if (playerDraftData5.MainRole == DraftPlayerMainRole.WolfPup)
+				if (list11.Count <= 0)
 				{
-					list11.RemoveAll((PlayerCustom.PlayerPrimaryRolePower o) => !PlayerCustom.IsWolfPowerAvailableForWolfPup(o));
+					continue;
 				}
-				if (list11.Count > 0)
+				PlayerCustom.PlayerPrimaryRolePower playerPrimaryRolePower3 = CollectionsUtil.Grab<PlayerCustom.PlayerPrimaryRolePower>(list11, 1).First();
+				list3.Remove(playerPrimaryRolePower3);
+				if (!playerDraftData6.OfferedPowers.Contains(PlayerCustom.PlayerPrimaryRolePower.Impostor))
 				{
-					PlayerCustom.PlayerPrimaryRolePower playerPrimaryRolePower3 = CollectionsUtil.Grab<PlayerCustom.PlayerPrimaryRolePower>(list11, 1).First();
-					playerDraftData5.OfferedPowers.Add(playerPrimaryRolePower3);
-					list2.Remove(playerPrimaryRolePower3);
-					if (playerDraftData5.SelectedPower == PlayerCustom.PlayerPrimaryRolePower.None)
+					playerDraftData6.OfferedPowers.Add(playerPrimaryRolePower3);
+					if (playerDraftData6.SelectedPower == PlayerCustom.PlayerPrimaryRolePower.None)
 					{
-						playerDraftData5.SelectedPower = playerPrimaryRolePower3;
+						playerDraftData6.SelectedPower = playerPrimaryRolePower3;
 					}
 				}
 			}
-		}
-		if (flag)
-		{
-			PlayerDraftData playerDraftData6 = CollectionsUtil.Grab<PlayerDraftData>(PlayersDraftDataByPlayerIndex.Values.Where((PlayerDraftData o) => o.MainRole == DraftPlayerMainRole.Wolf || o.MainRole == DraftPlayerMainRole.WolfPup).ToList(), 1).First();
-			playerDraftData6.OfferedPowers.Clear();
-			playerDraftData6.OfferedPowers.Add(PlayerCustom.PlayerPrimaryRolePower.Impostor);
-			playerDraftData6.SelectedPower = PlayerCustom.PlayerPrimaryRolePower.Impostor;
 		}
 		for (int num16 = 0; num16 < 3; num16++)
 		{
@@ -838,7 +842,6 @@ public class DraftManager : NetworkBehaviour
 			if (mainRoleIndex == 5)
 			{
 				Instance.ElitePowersOfferedInDraft.AddRange(list2);
-				Plugin.Logger.LogInfo((object)("LSD add elite powers offered: " + list2.Count));
 			}
 		}
 		catch (Exception ex)

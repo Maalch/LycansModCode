@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.368")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.369")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -256,10 +256,10 @@ public class Plugin : BaseUnityPlugin
 		//IL_20fc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_212a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_2146: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3143: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3185: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3813: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3899: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3157: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3199: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3827: Unknown result type (might be due to invalid IL or missing references)
+		//IL_38ad: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -915,6 +915,7 @@ public class Plugin : BaseUnityPlugin
 			PlayerCustom.CamouflageLevel1Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel1Shader");
 			PlayerCustom.CamouflageLevel2Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel2Shader");
 			PlayerCustom.CamouflageLevel3Shader = NewRolesCoreBundle.LoadAsset<Shader>("CamouflageLevel3Shader");
+			PlayerCustom.AstralShader = NewRolesCoreBundle.LoadAsset<Shader>("AstralShader");
 			HostParasite.CamouflageShaderDay = NewRolesCoreBundle.LoadAsset<Shader>("HostParasiteCamouflageShaderDay");
 			HostParasite.CamouflageShaderNight = NewRolesCoreBundle.LoadAsset<Shader>("HostParasiteCamouflageShaderNight");
 			AddSoundIfNeeded("SurvivalistDying");

@@ -391,7 +391,7 @@ internal class MovementSpeedChangesPatch
 					Quaternion rotation2 = ((Component)component).transform.rotation;
 					((Quaternion)(ref rotation2)).eulerAngles = new Vector3(0f, ((Quaternion)(ref rotation2)).eulerAngles.y, ((Quaternion)(ref rotation2)).eulerAngles.z);
 					((Component)component).transform.rotation = rotation2;
-					float num5 = (NetworkBool.op_Implicit(value.IsWolf) ? 9f : 3f);
+					float num5 = (NetworkBool.op_Implicit(value.IsWolf) ? 9f : 5f);
 					Vector3 val4 = ((Component)component).transform.forward * y + ((Component)component).transform.right * x;
 					((Vector3)(ref val4)).Normalize();
 					val.Value = Maths.Lerp(val.Value, x * ((NetworkCharacterControllerPrototypeCustom)component).maxSpeed * num5 * 8f, ((SimulationBehaviour)__instance).Runner.DeltaTime * 8.9f);

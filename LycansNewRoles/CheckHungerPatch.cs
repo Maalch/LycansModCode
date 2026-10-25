@@ -47,45 +47,43 @@ internal class CheckHungerPatch
 		//IL_0480: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04dc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_048d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_078d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04fa: Invalid comparison between Unknown and I4
-		//IL_0812: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a2f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08b8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_07cd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09ea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0873: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0528: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a44: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08d2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0884: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09ff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_088d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_083f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ae2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a5a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a9d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a15: Unknown result type (might be due to invalid IL or missing references)
 		//IL_055d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0af3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a82: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0956: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aae: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a3d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0911: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0619: Unknown result type (might be due to invalid IL or missing references)
 		//IL_056b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0973: Unknown result type (might be due to invalid IL or missing references)
-		//IL_091d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b2c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0990: Unknown result type (might be due to invalid IL or missing references)
+		//IL_092e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ae7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_094b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_069e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0968: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0664: Unknown result type (might be due to invalid IL or missing references)
-		//IL_07b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_076e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09d4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_098f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b96: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ba8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09f4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09fa: Invalid comparison between Unknown and I4
-		//IL_072f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_073f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bde: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0be4: Invalid comparison between Unknown and I4
-		//IL_0bfb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b51: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b63: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09b5: Invalid comparison between Unknown and I4
+		//IL_0b99: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b9f: Invalid comparison between Unknown and I4
+		//IL_0bb6: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!NetworkBool.op_Implicit(DraftManager.Instance.Active) && !NetworkBool.op_Implicit(GameManager.LightingManager.IsTransition) && !NetworkBool.op_Implicit(__instance.IsDead))
@@ -260,10 +258,6 @@ internal class CheckHungerPatch
 							if (NetworkBool.op_Implicit(player.Poison))
 							{
 								num2 += 1.2f;
-							}
-							if ((Object)(object)player.AstralSpirit != (Object)null)
-							{
-								num2 = num2 + 0.2f + 0.01f * Vector3.Distance(((Component)__instance).transform.position, ((Component)player.AstralSpirit).transform.position);
 							}
 						}
 						__instance.Hunger -= num2 * ((SimulationBehaviour)__instance).Runner.DeltaTime;
