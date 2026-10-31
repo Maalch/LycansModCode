@@ -1050,20 +1050,20 @@ internal class GiveNewRolesPatch
 		obj7.onExit = (Action<EGameState>)Delegate.Combine(obj7.onExit, (Action<EGameState>)delegate
 		{
 			//IL_0040: Unknown result type (might be due to invalid IL or missing references)
-			//IL_061f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0630: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0641: Unknown result type (might be due to invalid IL or missing references)
 			//IL_007d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_064f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_07fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0813: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0660: Unknown result type (might be due to invalid IL or missing references)
+			//IL_080f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0824: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_07b0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07c1: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0165: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
 			//IL_034c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_074d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_075e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03c0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_037c: Unknown result type (might be due to invalid IL or missing references)
@@ -1073,16 +1073,17 @@ internal class GiveNewRolesPatch
 			//IL_0453: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03e4: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0216: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0546: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0464: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0557: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0568: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04b2: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04c5: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04d8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0579: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04d6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04e9: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02d9: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02de: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02f9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05bd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05ce: Unknown result type (might be due to invalid IL or missing references)
 			LycansUtility.AddLogOnlyForMe("Transition Exit, players count: " + GameManager.Instance.PlayerCount);
 			if (((SimulationBehaviour)gameState).Runner.IsServer)
 			{
@@ -1151,7 +1152,7 @@ internal class GiveNewRolesPatch
 					}
 					LycansUtility.AddLogOnlyForMe("Zombie rez");
 					PlayerCustom specificNewPrimaryRole2 = PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo);
-					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive))
+					if ((Object)(object)specificNewPrimaryRole2 != (Object)null && !NetworkBool.op_Implicit(specificNewPrimaryRole2.PlayerController.IsDead) && !NetworkBool.op_Implicit(BeastManager.Instance.BeastActive) && !NetworkBool.op_Implicit(CultistManager.Instance.CultistActive))
 					{
 						foreach (PlayerCustom item14 in PlayerCustomRegistry.Where((PlayerCustom playerCustom) => playerCustom.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie).ToList())
 						{

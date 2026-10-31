@@ -6255,11 +6255,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.369", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.370", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.369", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.370", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -11186,6 +11186,7 @@ public class PlayerCustom : NetworkBehaviour
 			else
 			{
 				GameManager.Instance.gameUI.AddPlayerDisplay(behaviour.PlayerController);
+				behaviour.UpdateDisplayColor();
 			}
 			UIManager.SpectatorsListPanel.UpdateSpectators();
 			GameManager.Instance.gameUI.UpdatePlayerCount(PlayerCustomRegistry.AllPlayersIncludingSpectators.Count);
