@@ -30,6 +30,8 @@ public class PlayerInventorDeviceComponent : MonoBehaviour
 		{ 5, 0.5f }
 	};
 
+	public bool IsActive => _destructionWatch.IsRunning;
+
 	public void Init(PlayerCustom playerCustom)
 	{
 		//IL_001b: Unknown result type (might be due to invalid IL or missing references)

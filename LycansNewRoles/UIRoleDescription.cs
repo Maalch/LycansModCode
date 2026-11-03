@@ -109,7 +109,7 @@ public class UIRoleDescription : MonoBehaviour
 				case PlayerCustom.PlayerPrimaryRolePower.Deceiver:
 					list = new List<string>
 					{
-						LycansUtility.GetInputDisplayCustom((InputActionName)3).Replace(" -", ""),
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
 						playerCustom.PrimaryRolePowerCooldown.Value.ToString()
 					};
 					break;

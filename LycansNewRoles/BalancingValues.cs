@@ -2050,6 +2050,16 @@ public static class BalancingValues
 
 	public const float WolfForcedTransformationTimer = 20f;
 
+	public const float ChangeWolfHungerExtraLossWhenRunning = 2.5f;
+
+	public const float ChangeWolfHungerExtraGainWhenNotRunning = 3f;
+
+	public const float ChangeWolfHungerMissingHungerGainAfterKill = 0.4f;
+
+	public const float WolfTiredDurationWhenShot = 20f;
+
+	public const float WolfTiredDurationWhenAttackingLock = 8f;
+
 	public const int ItemChanceTrap = 10;
 
 	public const int ItemChanceSmoke = 10;
@@ -2576,7 +2586,7 @@ public static class BalancingValues
 		return role switch
 		{
 			PlayerCustom.PlayerPrimaryRolePower.Warlock => 5 * totalCycleTime, 
-			PlayerCustom.PlayerPrimaryRolePower.Deceiver => 5 * totalCycleTime, 
+			PlayerCustom.PlayerPrimaryRolePower.Deceiver => 6 * totalCycleTime, 
 			PlayerCustom.PlayerPrimaryRolePower.Investigator => 30, 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => 20, 
 			PlayerCustom.PlayerPrimaryRolePower.Angel => 6 * totalCycleTime, 

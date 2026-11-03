@@ -442,6 +442,15 @@ public class UIGenericChoicePanel : MonoBehaviour
 		PlayerCustom.PlaySuccessSound();
 	}
 
+	public void OnClickDeceiveTarget(PlayerRef target)
+	{
+		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
+		Hide();
+		GameManager.Instance.gameUI.UpdateCursor(false);
+		PlayerCustom.Rpc_Activate_Primary_Role_Power_With_Target(((SimulationBehaviour)GameManager.Instance).Runner, PlayerController.Local.Index, PlayerRegistry.GetPlayer(target).Index);
+		PlayerCustom.PlaySuccessSound();
+	}
+
 	public void OnClickRitualistEffect(Effect effect)
 	{
 		Hide();

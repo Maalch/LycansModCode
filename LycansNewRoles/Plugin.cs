@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.370")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.372")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -252,14 +252,14 @@ public class Plugin : BaseUnityPlugin
 		//IL_01ba: Expected O, but got Unknown
 		//IL_01e4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01eb: Expected O, but got Unknown
-		//IL_20e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_20fc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_212a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_2146: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3157: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3199: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3827: Unknown result type (might be due to invalid IL or missing references)
-		//IL_38ad: Unknown result type (might be due to invalid IL or missing references)
+		//IL_20fa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2160: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3171: Unknown result type (might be due to invalid IL or missing references)
+		//IL_31b3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_3841: Unknown result type (might be due to invalid IL or missing references)
+		//IL_38c7: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -374,6 +374,7 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectJump", typeof(JumpEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectStrengthened", typeof(StrenghtenedEffect), 30f);
 			AddEffectToList("LycansNewRoles.EffectSanctuary", typeof(SanctuaryEffect), 3600f);
+			AddEffectToList("LycansNewRoles.EffectTired", typeof(TiredEffect), 3600f);
 			GameObject val13 = AddEffectToList("LycansNewRoles.EffectDeafness", typeof(DeafnessEffect), 60f);
 			GameObject val14 = AddEffectToList("LycansNewRoles.EffectMidas", typeof(MidasEffect), 60f);
 			GameObject val15 = AddEffectToList("LycansNewRoles.EffectVampire", typeof(VampireEffect), 35f);

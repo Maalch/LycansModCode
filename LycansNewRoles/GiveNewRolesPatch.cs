@@ -641,14 +641,14 @@ internal class GiveNewRolesPatch
 		obj3.onExit = (Action<EGameState>)Delegate.Combine(obj3.onExit, (Action<EGameState>)delegate(EGameState state)
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0809: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0802: Unknown result type (might be due to invalid IL or missing references)
 			//IL_009f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0786: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0788: Invalid comparison between Unknown and I4
+			//IL_077f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0781: Invalid comparison between Unknown and I4
 			//IL_0124: Unknown result type (might be due to invalid IL or missing references)
 			//IL_010b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_079e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_07a4: Invalid comparison between Unknown and I4
+			//IL_0797: Unknown result type (might be due to invalid IL or missing references)
+			//IL_079d: Invalid comparison between Unknown and I4
 			//IL_0167: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0174: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0180: Unknown result type (might be due to invalid IL or missing references)
@@ -686,7 +686,7 @@ internal class GiveNewRolesPatch
 			//IL_068d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_06ff: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0742: Unknown result type (might be due to invalid IL or missing references)
-			//IL_075d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0756: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0724: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0735: Unknown result type (might be due to invalid IL or missing references)
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
@@ -844,7 +844,6 @@ internal class GiveNewRolesPatch
 						}
 						allPlayer6.MayorVoteTarget = PlayerRef.None;
 						allPlayer6.LootCollectedTodayDuringDay = 0;
-						allPlayer6.RecuperateDisabled = false;
 						allPlayer6.ForcedTransformation = NetworkBool.op_Implicit(false);
 					}
 					if ((int)state == 2)

@@ -22,27 +22,29 @@ internal class SecondaryRoleEngineerBetterDoorKickPatch
 		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001b: Invalid comparison between Unknown and I4
-		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0057: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0163: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0271: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_028d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01db: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0041: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0075: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0224: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0161: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02e0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0292: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0303: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!NetworkBehaviourUtils.InvokeRpc && (int)((SimulationBehaviour)__instance).Runner.Stage == 4)
@@ -83,12 +85,18 @@ internal class SecondaryRoleEngineerBetterDoorKickPatch
 					}
 				}
 			}
-			Effect val = player.PlayerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is RecuperatingEffect);
-			if ((Object)(object)val != (Object)null)
+			if (__state && NetworkBool.op_Implicit(player.PlayerController.IsWolf))
 			{
-				player.PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
+				Effect val = player.PlayerController.PlayerEffectManager.GetActiveEffects().FirstOrDefault((Effect o) => o is RecuperatingEffect);
+				if ((Object)(object)val != (Object)null)
+				{
+					player.PlayerController.PlayerEffectManager.RemoveEffect(((SimulationBehaviour)val).Object.Id);
+				}
+				if (NetworkBool.op_Implicit(Plugin.CustomConfig.ChangeWolfHunger))
+				{
+					PlayerCustom.ApplyEffectToPlayer(player.PlayerController, "LycansNewRoles.EffectTired", ((SimulationBehaviour)__instance).Runner, 1f, 8f);
+				}
 			}
-			player.WolfRecuperateStopwatch.Restart();
 			if (__state && !NetworkBool.op_Implicit(__instance.IsLocked))
 			{
 				InventorScrap.CreateNewScrapForRandomInventor(((SimulationBehaviour)__instance).Runner, ((Component)__instance).transform.position);

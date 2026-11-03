@@ -49,23 +49,25 @@ internal class GameConfigAddNewSettingsPatch
 
 		public static UnityAction<bool> _003C13_003E__UpdateForceWolfTransformation;
 
-		public static UnityAction _003C14_003E__OnClickConfigBase;
+		public static UnityAction<bool> _003C14_003E__UpdateChangeWolfHunger;
 
-		public static UnityAction _003C15_003E__OnClickConfigRolesVillagers;
+		public static UnityAction _003C15_003E__OnClickConfigBase;
 
-		public static UnityAction _003C16_003E__OnClickConfigRolesEnemies;
+		public static UnityAction _003C16_003E__OnClickConfigRolesVillagers;
 
-		public static UnityAction _003C17_003E__OnClickConfigRolesSecondary;
+		public static UnityAction _003C17_003E__OnClickConfigRolesEnemies;
 
-		public static UnityAction _003C18_003E__OnClickConfigRolesDetails;
+		public static UnityAction _003C18_003E__OnClickConfigRolesSecondary;
 
-		public static UnityAction _003C19_003E__OnClickConfigOthers;
+		public static UnityAction _003C19_003E__OnClickConfigRolesDetails;
 
-		public static UnityAction _003C20_003E__OnClickConfigPotions;
+		public static UnityAction _003C20_003E__OnClickConfigOthers;
 
-		public static UnityAction _003C21_003E__OnClickConfigGadgets;
+		public static UnityAction _003C21_003E__OnClickConfigPotions;
 
-		public static UnityAction _003C22_003E__OnClickConfigEvents;
+		public static UnityAction _003C22_003E__OnClickConfigGadgets;
+
+		public static UnityAction _003C23_003E__OnClickConfigEvents;
 	}
 
 	private static void Postfix(GameSettingsUI __instance)
@@ -105,102 +107,103 @@ internal class GameConfigAddNewSettingsPatch
 		//IL_0937: Unknown result type (might be due to invalid IL or missing references)
 		//IL_097d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_09c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a72: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a77: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a7b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a80: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a82: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a84: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a86: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a99: Expected I4, but got Unknown
-		//IL_0a9b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aa0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aa4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aa9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ab2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ac4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b6e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b78: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c69: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c73: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cb5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0cfc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0dda: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e53: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e5d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e6f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e74: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0e93: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ee3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f04: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f23: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eb2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0eb7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ebd: Expected O, but got Unknown
-		//IL_0f78: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f82: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f94: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f99: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fb8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f47: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f4c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0f52: Expected O, but got Unknown
-		//IL_100d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1017: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1029: Unknown result type (might be due to invalid IL or missing references)
-		//IL_102e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_104d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fdc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fe1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0fe7: Expected O, but got Unknown
-		//IL_10a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10be: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_10e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1071: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1076: Unknown result type (might be due to invalid IL or missing references)
-		//IL_107c: Expected O, but got Unknown
-		//IL_1137: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1141: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1153: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1158: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1177: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1106: Unknown result type (might be due to invalid IL or missing references)
-		//IL_110b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1111: Expected O, but got Unknown
-		//IL_11cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11d6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_120c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_119b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11a0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_11a6: Expected O, but got Unknown
-		//IL_1261: Unknown result type (might be due to invalid IL or missing references)
-		//IL_126b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_127d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1282: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12a1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1230: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1235: Unknown result type (might be due to invalid IL or missing references)
-		//IL_123b: Expected O, but got Unknown
-		//IL_12f6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1300: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1312: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1317: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1336: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12ca: Unknown result type (might be due to invalid IL or missing references)
-		//IL_12d0: Expected O, but got Unknown
-		//IL_14f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_135a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_135f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1365: Expected O, but got Unknown
+		//IL_0a09: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ab8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0abd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ac8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aca: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0acc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0adf: Expected I4, but got Unknown
+		//IL_0ae1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ae6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aea: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0af3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0af8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b0a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bb4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bbe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c14: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0caf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cb9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cfb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d42: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e20: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0e99: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ea3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0eb5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0eba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ed9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f29: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f33: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f45: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f4a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f69: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ef8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0efd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f03: Expected O, but got Unknown
+		//IL_0fbe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fc8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fda: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0fdf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ffe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f8d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f92: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0f98: Expected O, but got Unknown
+		//IL_1053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_105d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_106f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1074: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1093: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1022: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1027: Unknown result type (might be due to invalid IL or missing references)
+		//IL_102d: Expected O, but got Unknown
+		//IL_10e8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1109: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1128: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_10c2: Expected O, but got Unknown
+		//IL_117d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1187: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1199: Unknown result type (might be due to invalid IL or missing references)
+		//IL_119e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11bd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_114c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1151: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1157: Expected O, but got Unknown
+		//IL_1212: Unknown result type (might be due to invalid IL or missing references)
+		//IL_121c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_122e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1233: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1252: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11e1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_11ec: Expected O, but got Unknown
+		//IL_12a7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12b1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12c8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_12e7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1276: Unknown result type (might be due to invalid IL or missing references)
+		//IL_127b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1281: Expected O, but got Unknown
+		//IL_133c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1346: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1358: Unknown result type (might be due to invalid IL or missing references)
+		//IL_135d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_137c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_130b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1310: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1316: Expected O, but got Unknown
+		//IL_1539: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13a0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_13ab: Expected O, but got Unknown
 		try
 		{
 			GameConfig.SoloRolesConfig.Clear();
@@ -315,6 +318,8 @@ internal class GameConfigAddNewSettingsPatch
 			((UnityEvent<bool>)(object)GameConfig.AdaptMeetingTimerToggle.onValueChanged).AddListener((UnityAction<bool>)GameConfig.UpdateAdaptMeetingTimer);
 			GameConfig.ForceWolfTransformationToggle = GameConfig.CreateAndAttachConfigToggle(__instance, "NALES_CONFIG_ROLE_CONFIG_FORCE_WOLF_TRANSFORMATION", new List<object>(), GameConfig.ConfigTypeEnum.Others, Color.white);
 			((UnityEvent<bool>)(object)GameConfig.ForceWolfTransformationToggle.onValueChanged).AddListener((UnityAction<bool>)GameConfig.UpdateForceWolfTransformation);
+			GameConfig.ChangeWolfHungerToggle = GameConfig.CreateAndAttachConfigToggle(__instance, "NALES_CONFIG_CHANGE_WOLF_HUNGER", new List<object>(), GameConfig.ConfigTypeEnum.Others, Color.white);
+			((UnityEvent<bool>)(object)GameConfig.ChangeWolfHungerToggle.onValueChanged).AddListener((UnityAction<bool>)GameConfig.UpdateChangeWolfHunger);
 			EffectManager value = Traverse.Create(typeof(EffectManager)).Field<EffectManager>("_instance").Value;
 			Effect[] value2 = Traverse.Create((object)value).Field<Effect[]>("effects").Value;
 			foreach (Effect item7 in value2.OrderBy((Effect o) => o.GetEffectType()))
@@ -387,11 +392,11 @@ internal class GameConfigAddNewSettingsPatch
 			Button val10 = ((Component)val9).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick = val10.onClick;
-			object obj = _003C_003EO._003C14_003E__OnClickConfigBase;
+			object obj = _003C_003EO._003C15_003E__OnClickConfigBase;
 			if (obj == null)
 			{
 				UnityAction val11 = GameConfig.OnClickConfigBase;
-				_003C_003EO._003C14_003E__OnClickConfigBase = val11;
+				_003C_003EO._003C15_003E__OnClickConfigBase = val11;
 				obj = (object)val11;
 			}
 			((UnityEvent)onClick).AddListener((UnityAction)obj);
@@ -403,11 +408,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val12).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick2 = ((Component)val12).GetComponent<Button>().onClick;
-			object obj2 = _003C_003EO._003C15_003E__OnClickConfigRolesVillagers;
+			object obj2 = _003C_003EO._003C16_003E__OnClickConfigRolesVillagers;
 			if (obj2 == null)
 			{
 				UnityAction val13 = GameConfig.OnClickConfigRolesVillagers;
-				_003C_003EO._003C15_003E__OnClickConfigRolesVillagers = val13;
+				_003C_003EO._003C16_003E__OnClickConfigRolesVillagers = val13;
 				obj2 = (object)val13;
 			}
 			((UnityEvent)onClick2).AddListener((UnityAction)obj2);
@@ -419,11 +424,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val14).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick3 = ((Component)val14).GetComponent<Button>().onClick;
-			object obj3 = _003C_003EO._003C16_003E__OnClickConfigRolesEnemies;
+			object obj3 = _003C_003EO._003C17_003E__OnClickConfigRolesEnemies;
 			if (obj3 == null)
 			{
 				UnityAction val15 = GameConfig.OnClickConfigRolesEnemies;
-				_003C_003EO._003C16_003E__OnClickConfigRolesEnemies = val15;
+				_003C_003EO._003C17_003E__OnClickConfigRolesEnemies = val15;
 				obj3 = (object)val15;
 			}
 			((UnityEvent)onClick3).AddListener((UnityAction)obj3);
@@ -435,11 +440,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val16).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick4 = ((Component)val16).GetComponent<Button>().onClick;
-			object obj4 = _003C_003EO._003C17_003E__OnClickConfigRolesSecondary;
+			object obj4 = _003C_003EO._003C18_003E__OnClickConfigRolesSecondary;
 			if (obj4 == null)
 			{
 				UnityAction val17 = GameConfig.OnClickConfigRolesSecondary;
-				_003C_003EO._003C17_003E__OnClickConfigRolesSecondary = val17;
+				_003C_003EO._003C18_003E__OnClickConfigRolesSecondary = val17;
 				obj4 = (object)val17;
 			}
 			((UnityEvent)onClick4).AddListener((UnityAction)obj4);
@@ -451,11 +456,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val18).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick5 = ((Component)val18).GetComponent<Button>().onClick;
-			object obj5 = _003C_003EO._003C18_003E__OnClickConfigRolesDetails;
+			object obj5 = _003C_003EO._003C19_003E__OnClickConfigRolesDetails;
 			if (obj5 == null)
 			{
 				UnityAction val19 = GameConfig.OnClickConfigRolesDetails;
-				_003C_003EO._003C18_003E__OnClickConfigRolesDetails = val19;
+				_003C_003EO._003C19_003E__OnClickConfigRolesDetails = val19;
 				obj5 = (object)val19;
 			}
 			((UnityEvent)onClick5).AddListener((UnityAction)obj5);
@@ -467,11 +472,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val20).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick6 = ((Component)val20).GetComponent<Button>().onClick;
-			object obj6 = _003C_003EO._003C19_003E__OnClickConfigOthers;
+			object obj6 = _003C_003EO._003C20_003E__OnClickConfigOthers;
 			if (obj6 == null)
 			{
 				UnityAction val21 = GameConfig.OnClickConfigOthers;
-				_003C_003EO._003C19_003E__OnClickConfigOthers = val21;
+				_003C_003EO._003C20_003E__OnClickConfigOthers = val21;
 				obj6 = (object)val21;
 			}
 			((UnityEvent)onClick6).AddListener((UnityAction)obj6);
@@ -483,11 +488,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val22).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick7 = ((Component)val22).GetComponent<Button>().onClick;
-			object obj7 = _003C_003EO._003C20_003E__OnClickConfigPotions;
+			object obj7 = _003C_003EO._003C21_003E__OnClickConfigPotions;
 			if (obj7 == null)
 			{
 				UnityAction val23 = GameConfig.OnClickConfigPotions;
-				_003C_003EO._003C20_003E__OnClickConfigPotions = val23;
+				_003C_003EO._003C21_003E__OnClickConfigPotions = val23;
 				obj7 = (object)val23;
 			}
 			((UnityEvent)onClick7).AddListener((UnityAction)obj7);
@@ -499,11 +504,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val24).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick8 = ((Component)val24).GetComponent<Button>().onClick;
-			object obj8 = _003C_003EO._003C21_003E__OnClickConfigGadgets;
+			object obj8 = _003C_003EO._003C22_003E__OnClickConfigGadgets;
 			if (obj8 == null)
 			{
 				UnityAction val25 = GameConfig.OnClickConfigGadgets;
-				_003C_003EO._003C21_003E__OnClickConfigGadgets = val25;
+				_003C_003EO._003C22_003E__OnClickConfigGadgets = val25;
 				obj8 = (object)val25;
 			}
 			((UnityEvent)onClick8).AddListener((UnityAction)obj8);
@@ -515,11 +520,11 @@ internal class GameConfigAddNewSettingsPatch
 			val10 = ((Component)val26).gameObject.AddComponent<Button>();
 			((Selectable)val10).colors = colors;
 			ButtonClickedEvent onClick9 = ((Component)val26).GetComponent<Button>().onClick;
-			object obj9 = _003C_003EO._003C22_003E__OnClickConfigEvents;
+			object obj9 = _003C_003EO._003C23_003E__OnClickConfigEvents;
 			if (obj9 == null)
 			{
 				UnityAction val27 = GameConfig.OnClickConfigEvents;
-				_003C_003EO._003C22_003E__OnClickConfigEvents = val27;
+				_003C_003EO._003C23_003E__OnClickConfigEvents = val27;
 				obj9 = (object)val27;
 			}
 			((UnityEvent)onClick9).AddListener((UnityAction)obj9);

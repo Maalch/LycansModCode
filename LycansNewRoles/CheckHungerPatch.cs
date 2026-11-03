@@ -51,39 +51,44 @@ internal class CheckHungerPatch
 		//IL_04f4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_04fa: Invalid comparison between Unknown and I4
 		//IL_07cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0873: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0874: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a81: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0528: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ff: Unknown result type (might be due to invalid IL or missing references)
-		//IL_088d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a02: Invalid comparison between Unknown and I4
+		//IL_088e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_083f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a96: Unknown result type (might be due to invalid IL or missing references)
 		//IL_05e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a9d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a15: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aac: Unknown result type (might be due to invalid IL or missing references)
 		//IL_055d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0aae: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a3d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0911: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a0f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0912: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b45: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ad4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0619: Unknown result type (might be due to invalid IL or missing references)
 		//IL_056b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_092e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_08d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ae7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_094b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_092f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_08d9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_094c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b7e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_069e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0968: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a51: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0969: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0664: Unknown result type (might be due to invalid IL or missing references)
 		//IL_076e: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06d0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_098f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0990: Unknown result type (might be due to invalid IL or missing references)
 		//IL_06ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b51: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b63: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09af: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09b5: Invalid comparison between Unknown and I4
-		//IL_0b99: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b9f: Invalid comparison between Unknown and I4
-		//IL_0bb6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0be8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09b0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09b6: Invalid comparison between Unknown and I4
+		//IL_0bfa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c30: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c36: Invalid comparison between Unknown and I4
+		//IL_0c4d: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if (!NetworkBool.op_Implicit(DraftManager.Instance.Active) && !NetworkBool.op_Implicit(GameManager.LightingManager.IsTransition) && !NetworkBool.op_Implicit(__instance.IsDead))
@@ -288,58 +293,72 @@ internal class CheckHungerPatch
 						return false;
 					}
 				}
-				else if (!__instance.IsStarving())
+				else
 				{
-					float num3 = 0.5f;
-					if (NetworkBool.op_Implicit(__instance.IsTrapped))
+					if (!__instance.IsStarving())
 					{
-						num3 = 6f;
-					}
-					if (NetworkBool.op_Implicit(__instance.IsMoving))
-					{
-						num3 = 1f;
-						if (__instance.MovementAction == 2)
+						float num3 = 0.5f;
+						if (NetworkBool.op_Implicit(__instance.IsTrapped))
 						{
-							num3 = 2.5f;
+							num3 = 6f;
 						}
-						else if (__instance.MovementAction == 1)
+						if (NetworkBool.op_Implicit(__instance.IsMoving))
 						{
-							num3 = 0.5f;
+							num3 = 1f;
+							if (__instance.MovementAction == 2)
+							{
+								num3 = 2.5f;
+							}
+							else if (__instance.MovementAction == 1)
+							{
+								num3 = 0.5f;
+							}
+							if (NetworkBool.op_Implicit(__instance.IsClimbing))
+							{
+								num3 *= 1.5f;
+							}
 						}
-						if (NetworkBool.op_Implicit(__instance.IsClimbing))
+						if ((Object)(object)player.AstralSpirit != (Object)null)
 						{
-							num3 *= 1.5f;
+							num3 = 0f;
+						}
+						if (NetworkBool.op_Implicit(player.Empowered))
+						{
+							num3 *= 0.8f;
+						}
+						if (NetworkBool.op_Implicit(player.Endurance))
+						{
+							num3 *= 0.2f;
+						}
+						if (NetworkBool.op_Implicit(player.Tenacity))
+						{
+							num3 *= 0.5f;
+						}
+						if (NetworkBool.op_Implicit(player.Hubris))
+						{
+							num3 *= 1.08f;
+						}
+						if (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(player.SecondaryRolePowerActive))
+						{
+							num3 *= 0.25f;
+						}
+						if ((int)__instance.Role != 1)
+						{
+							num3 *= 0.05f;
+						}
+						__instance.Hunger -= num3 * ((SimulationBehaviour)__instance).Runner.DeltaTime;
+					}
+					if (NetworkBool.op_Implicit(Plugin.CustomConfig.ChangeWolfHunger) && (int)__instance.Role == 1)
+					{
+						if (NetworkBool.op_Implicit(__instance.IsMoving) && __instance.MovementAction == 2)
+						{
+							__instance.Hunger -= 2.5f * ((SimulationBehaviour)__instance).Runner.DeltaTime;
+						}
+						else if (!NetworkBool.op_Implicit(player.Tired))
+						{
+							player.IncreaseHealth(3f * ((SimulationBehaviour)__instance).Runner.DeltaTime);
 						}
 					}
-					if ((Object)(object)player.AstralSpirit != (Object)null)
-					{
-						num3 = 0f;
-					}
-					if (NetworkBool.op_Implicit(player.Empowered))
-					{
-						num3 *= 0.8f;
-					}
-					if (NetworkBool.op_Implicit(player.Endurance))
-					{
-						num3 *= 0.2f;
-					}
-					if (NetworkBool.op_Implicit(player.Tenacity))
-					{
-						num3 *= 0.5f;
-					}
-					if (NetworkBool.op_Implicit(player.Hubris))
-					{
-						num3 *= 1.08f;
-					}
-					if (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(player.SecondaryRolePowerActive))
-					{
-						num3 *= 0.25f;
-					}
-					if ((int)__instance.Role != 1)
-					{
-						num3 *= 0.05f;
-					}
-					__instance.Hunger -= num3 * ((SimulationBehaviour)__instance).Runner.DeltaTime;
 				}
 				if (NetworkBool.op_Implicit(player.Recuperating))
 				{
