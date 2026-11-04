@@ -33,12 +33,12 @@ internal class GiveNewRolesPatch
 			//IL_002a: Invalid comparison between Unknown and I4
 			//IL_1303: Unknown result type (might be due to invalid IL or missing references)
 			//IL_003d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_16e0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_16e2: Invalid comparison between Unknown and I4
+			//IL_16e8: Unknown result type (might be due to invalid IL or missing references)
+			//IL_16ea: Invalid comparison between Unknown and I4
 			//IL_13b3: Unknown result type (might be due to invalid IL or missing references)
 			//IL_13b5: Invalid comparison between Unknown and I4
-			//IL_16e4: Unknown result type (might be due to invalid IL or missing references)
-			//IL_16e6: Invalid comparison between Unknown and I4
+			//IL_16ec: Unknown result type (might be due to invalid IL or missing references)
+			//IL_16ee: Invalid comparison between Unknown and I4
 			//IL_13ce: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0081: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0086: Unknown result type (might be due to invalid IL or missing references)
@@ -48,12 +48,12 @@ internal class GiveNewRolesPatch
 			//IL_010b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_019a: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
-			//IL_159e: Unknown result type (might be due to invalid IL or missing references)
-			//IL_15b6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_15bb: Unknown result type (might be due to invalid IL or missing references)
-			//IL_15d2: Unknown result type (might be due to invalid IL or missing references)
-			//IL_15d7: Unknown result type (might be due to invalid IL or missing references)
-			//IL_1607: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15a6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15be: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15da: Unknown result type (might be due to invalid IL or missing references)
+			//IL_15df: Unknown result type (might be due to invalid IL or missing references)
+			//IL_160f: Unknown result type (might be due to invalid IL or missing references)
 			//IL_02d6: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0456: Unknown result type (might be due to invalid IL or missing references)
 			//IL_061c: Unknown result type (might be due to invalid IL or missing references)
@@ -96,7 +96,7 @@ internal class GiveNewRolesPatch
 					Plugin.Logger.LogInfo((object)"Game start: init");
 					foreach (PlayerCustom allPlayersIncludingSpectator in PlayerCustomRegistry.AllPlayersIncludingSpectators)
 					{
-						allPlayersIncludingSpectator.Reset();
+						allPlayersIncludingSpectator.ResetServerSide();
 					}
 					if (!NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale) && !NetworkBool.op_Implicit(Plugin.CustomConfig.DraftMode))
 					{
@@ -443,6 +443,7 @@ internal class GiveNewRolesPatch
 						allPlayer3.UpdateDisplayColor();
 						allPlayer3.UpdatePet();
 						allPlayer3.ResetGravity();
+						allPlayer3.ResetClientSide();
 						allPlayer3.PlacedSleepingGas = null;
 					}
 					Dictionary<PlayerRef, PlayerDisplay> value2 = Traverse.Create((object)GameManager.Instance.gameUI).Field<Dictionary<PlayerRef, PlayerDisplay>>("_playerDisplays").Value;
@@ -927,7 +928,7 @@ internal class GiveNewRolesPatch
 				{
 					foreach (PlayerCustom allPlayer9 in PlayerCustomRegistry.AllPlayers)
 					{
-						allPlayer9.Reset();
+						allPlayer9.ResetServerSide();
 					}
 					BeastManager.Instance.Reset();
 					CultistManager.Instance.Reset();
@@ -946,6 +947,7 @@ internal class GiveNewRolesPatch
 			}
 			foreach (PlayerCustom allPlayer10 in PlayerCustomRegistry.AllPlayers)
 			{
+				allPlayer10.ResetClientSide();
 				allPlayer10.UpdateVisibility();
 				((Component)allPlayer10.PlayerController).GetComponent<PlayerResurrectedComponent>()?.UpdateState();
 				((Component)allPlayer10.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();

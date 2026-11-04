@@ -81,7 +81,7 @@ internal class MapChangedPatch
 		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0293: Unknown result type (might be due to invalid IL or missing references)
 		//IL_032b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_261b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_2623: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0404: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0409: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0433: Unknown result type (might be due to invalid IL or missing references)
@@ -758,7 +758,8 @@ internal class MapChangedPatch
 			((Behaviour)Traverse.Create((object)GameManager.LightingManager).Field<Light>("directionalLight").Value).enabled = behaviour.MapID != MapManager.FindMapIdByName("map_dungeon");
 			foreach (PlayerCustom allPlayer in PlayerCustomRegistry.AllPlayers)
 			{
-				allPlayer.Reset();
+				allPlayer.ResetServerSide();
+				allPlayer.ResetClientSide();
 			}
 			SabotageManager.Instance.ClearCachedObjects();
 			DungeonMap.Lights.Clear();

@@ -449,12 +449,12 @@ public class DraftManager : NetworkBehaviour
 		//IL_01cd: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01d3: Invalid comparison between Unknown and I4
 		//IL_02cc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0981: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0986: Unknown result type (might be due to invalid IL or missing references)
-		//IL_06eb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0992: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0997: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09a5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_06fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09bb: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09fc: Unknown result type (might be due to invalid IL or missing references)
 		PlayerDraftData playerDraftData = PlayersDraftDataByPlayerIndex[playerIndex];
 		playerDraftData.SelectionDone = true;
 		PlayerCustom playerCustom = PlayerCustomRegistry.GetPlayer(playerIndex);
@@ -527,7 +527,8 @@ public class DraftManager : NetworkBehaviour
 			if (playerDraftData.SelectedSoloRole == PlayerCustom.PlayerNewPrimaryRole.Agent)
 			{
 				KeyValuePair<int, PlayerDraftData> keyValuePair = (PlayersDraftDataByPlayerIndex.Any((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent && !o.Value.SelectionDone) ? PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent && !o.Value.SelectionDone) : ((!PlayersDraftDataByPlayerIndex.Any((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent)) ? PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager) : PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == DraftPlayerMainRole.NormalVillager && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondAgent)));
-				PlayerCustomRegistry.GetPlayer(keyValuePair.Key).Reset();
+				PlayerCustomRegistry.GetPlayer(keyValuePair.Key).ResetServerSide();
+				PlayerCustomRegistry.GetPlayer(keyValuePair.Key).ResetClientSide();
 				keyValuePair.Value.SelectionDone = false;
 				keyValuePair.Value.MainRole = DraftPlayerMainRole.Solo;
 				keyValuePair.Value.OfferedSoloRoles = new List<PlayerCustom.PlayerNewPrimaryRole> { PlayerCustom.PlayerNewPrimaryRole.Agent };
@@ -542,7 +543,8 @@ public class DraftManager : NetworkBehaviour
 			{
 				DraftPlayerMainRole targetMainRole = ((!NetworkBool.op_Implicit(Plugin.CustomConfig.LoverWolfReplacesVillager)) ? DraftPlayerMainRole.Wolf : DraftPlayerMainRole.NormalVillager);
 				KeyValuePair<int, PlayerDraftData> keyValuePair2 = (PlayersDraftDataByPlayerIndex.Any((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == targetMainRole && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondLover && !o.Value.SelectionDone) ? PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == targetMainRole && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondLover && !o.Value.SelectionDone) : ((!PlayersDraftDataByPlayerIndex.Any((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == targetMainRole && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondLover)) ? PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == targetMainRole) : PlayersDraftDataByPlayerIndex.First((KeyValuePair<int, PlayerDraftData> o) => o.Value.MainRole == targetMainRole && PlayerCustomRegistry.GetPlayer(o.Key).DraftWantsSecondLover)));
-				PlayerCustomRegistry.GetPlayer(keyValuePair2.Key).Reset();
+				PlayerCustomRegistry.GetPlayer(keyValuePair2.Key).ResetServerSide();
+				PlayerCustomRegistry.GetPlayer(keyValuePair2.Key).ResetClientSide();
 				keyValuePair2.Value.SelectionDone = false;
 				keyValuePair2.Value.MainRole = DraftPlayerMainRole.Solo;
 				keyValuePair2.Value.OfferedSoloRoles = new List<PlayerCustom.PlayerNewPrimaryRole> { PlayerCustom.PlayerNewPrimaryRole.Lover };

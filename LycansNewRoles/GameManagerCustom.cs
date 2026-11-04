@@ -161,10 +161,10 @@ public class GameManagerCustom : NetworkBehaviour
 
 	public void NewGame()
 	{
-		//IL_0014: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004f: Unknown result type (might be due to invalid IL or missing references)
-		LycansUtility.AddLogOnlyForMe("Stats: New Game");
+		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0054: Unknown result type (might be due to invalid IL or missing references)
+		Plugin.Logger.LogInfo((object)"Stats: New Game");
 		Reset();
 		CurrentMayor = PlayerRef.None;
 		MayorActionCooldownTimer = TickTimer.None;
@@ -229,11 +229,11 @@ public class GameManagerCustom : NetworkBehaviour
 
 	public void NewDay()
 	{
-		//IL_0102: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0107: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
 		CurrentDay++;
-		LycansUtility.AddLogOnlyForMe("Stats: NewDay now -> " + CurrentDay);
+		Plugin.Logger.LogInfo((object)("Stats: NewDay now -> " + CurrentDay));
 		if (CurrentDay > 1)
 		{
 			UpdateSoloRoleDifficulty();

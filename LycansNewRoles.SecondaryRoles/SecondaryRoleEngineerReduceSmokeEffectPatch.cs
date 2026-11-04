@@ -27,7 +27,7 @@ internal class SecondaryRoleEngineerReduceSmokeEffectPatch
 			{
 				DynamicSmokeSystemController value2 = Traverse.Create((object)__instance).Field<DynamicSmokeSystemController>("_dynamicSmokeSystem").Value;
 				Traverse<int> val2 = Traverse.Create((object)value2).Field<int>("amount");
-				val2.Value = 4000;
+				val2.Value = 3000;
 				Traverse.Create((object)value2).Field<int>("amountMaxPerFrame").Value = 100;
 			}
 		}

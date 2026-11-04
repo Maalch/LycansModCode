@@ -2010,7 +2010,7 @@ public static class BalancingValues
 
 	public const float SpyglassMinimumDistanceForSeethrough = 40f;
 
-	public const int SmokeBoostedRadius = 4000;
+	public const int SmokeBoostedRadius = 3000;
 
 	public const float MaxSpeedBase = 1.5f;
 
