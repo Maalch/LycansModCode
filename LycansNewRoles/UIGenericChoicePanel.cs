@@ -170,22 +170,22 @@ public class UIGenericChoicePanel : MonoBehaviour
 		Effect val = value2.FirstOrDefault((Effect o) => o is MuteEffect);
 		if ((Object)(object)val != (Object)null)
 		{
-			list.Add(GetRitualistEffectButton(val, 55f));
+			list.Add(GetRitualistEffectButton(val, 45f));
 		}
 		Effect val2 = value2.FirstOrDefault((Effect o) => o is DeafnessEffect);
 		if ((Object)(object)val2 != (Object)null)
 		{
-			list.Add(GetRitualistEffectButton(val2, 20f));
+			list.Add(GetRitualistEffectButton(val2, 15f));
 		}
 		Effect val3 = value2.FirstOrDefault((Effect o) => o is ParanoiaEffect);
 		if ((Object)(object)val3 != (Object)null)
 		{
-			list.Add(GetRitualistEffectButton(val3, 12f));
+			list.Add(GetRitualistEffectButton(val3, 10f));
 		}
 		Effect val4 = value2.FirstOrDefault((Effect o) => o is FlatulenceEffect);
 		if ((Object)(object)val4 != (Object)null)
 		{
-			list.Add(GetRitualistEffectButton(val4, 20f));
+			list.Add(GetRitualistEffectButton(val4, 15f));
 		}
 		Effect val5 = value2.FirstOrDefault((Effect o) => o is NearsightedEffect);
 		if ((Object)(object)val5 != (Object)null)

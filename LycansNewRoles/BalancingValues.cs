@@ -133,9 +133,9 @@ public static class BalancingValues
 
 	public const float NecromancerResurrectCastTime = 2f;
 
-	public const int NecromancerChargePerSecondInWolfForm = 175;
+	public const int NecromancerChargePerSecondInWolfForm = 150;
 
-	public const int NecromancerChargeLossPerSecondWhenResurrected = 300;
+	public const int NecromancerChargeLossPerSecondWhenResurrected = 350;
 
 	public const int WarlockShapeshiftCastTime = 1;
 
@@ -197,11 +197,11 @@ public static class BalancingValues
 
 	public const float SpySpyingPerSecondWithTargetVisibleAndSpyImmobile = 110f;
 
-	public const float SpySpyingDiminishingReturnsValue = 12f;
+	public const float SpySpyingDiminishingReturnsValue = 10f;
 
-	public const float ScientistAnalysisPowerAtMinDistance = 80f;
+	public const float ScientistAnalysisPowerAtMinDistance = 90f;
 
-	public const float ScientistAnalysisPowerAtMaxDistance = 25f;
+	public const float ScientistAnalysisPowerAtMaxDistance = 30f;
 
 	public const float ScientistAnalysisMultiplierIfNotRealWolf = 0.2f;
 
@@ -265,7 +265,7 @@ public static class BalancingValues
 
 	public const float MercenaryParalysisCooldown = 60f;
 
-	public const int MercenaryBonusPointsOnSuccessfulShot = 200;
+	public const int MercenaryBonusPointsOnSuccessfulShot = 250;
 
 	public const int MercenaryCooldownBetweenTargets = 90;
 
@@ -349,9 +349,9 @@ public static class BalancingValues
 
 	public const float CultistInvokedSkullLifetime = 45f;
 
-	public const float CultistInvokedSkullMoveSpeed = 2.25f;
+	public const float CultistInvokedSkullMoveSpeed = 1.5f;
 
-	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 0.75f;
+	public const float CultistInvokedSkullMoveSpeedWhenSlowed = 0.5f;
 
 	public const float CultistInvokedSkullSlowDuration = 2f;
 
@@ -402,7 +402,7 @@ public static class BalancingValues
 
 	public const float PossessorMarkRange = 5f;
 
-	public const float SaboteurTrapHeldItemRange = 6f;
+	public const float SaboteurTrapHeldItemRange = 10f;
 
 	public const float SaboteurPoisonHealthDecrease = 1.2f;
 
@@ -424,7 +424,7 @@ public static class BalancingValues
 
 	public const float SaboteurItemLightRangeHeld = 0.15f;
 
-	public const int SaboteurChargesGainPerSecond = 160;
+	public const int SaboteurChargesGainPerSecond = 180;
 
 	public const float TraitorSabotageDelayMultiplier = 1f;
 
@@ -458,13 +458,13 @@ public static class BalancingValues
 
 	public const float RitualistChargePerSecondRange = 25f;
 
-	public const float RitualistMuteDuration = 55f;
+	public const float RitualistMuteDuration = 45f;
 
-	public const float RitualistDeafDuration = 20f;
+	public const float RitualistDeafDuration = 15f;
 
-	public const float RitualistParanoiaDuration = 12f;
+	public const float RitualistParanoiaDuration = 10f;
 
-	public const float RitualistFlatulenceDuration = 20f;
+	public const float RitualistFlatulenceDuration = 15f;
 
 	public const float RitualistNearsightedDuration = 25f;
 
@@ -484,7 +484,7 @@ public static class BalancingValues
 
 	public const float SneakySpeedMultiplier = 1.5f;
 
-	public const float SneakSilentTransformationDelayMultiplier = 2f;
+	public const float SneakSilentTransformationDelayMultiplier = 1.6f;
 
 	public const int HostEggHatchDuration = 15;
 
@@ -1046,37 +1046,31 @@ public static class BalancingValues
 
 	public const int HermitHideoutMinimumPlaceDistanceFromEachOther = 30;
 
-	public const int RunemasterMaximumRunes = 6;
+	public const int RunemasterMaximumRunes = 8;
 
-	public const float RunemasterCastTime = 2f;
+	public const float RunemasterCastTime = 1f;
 
-	public const float RunemasterTriggerTime = 2.5f;
+	public const int RunemasterTriggerTimeMinimumMilliseconds = 800;
+
+	public const int RunemasterTriggerTimeMaximumMilliseconds = 1400;
+
+	public const float RunemasterWolfDetectionRange = 4f;
 
 	public const float RunemasterRuneExplosionVisualAreaMultiplier = 4.5f;
 
-	public const float RunemasterRuneExplosionAreaWithOneWolf = 12f;
+	public const float RunemasterRuneExplosionArea = 8f;
 
-	public const float RunemasterRuneExplosionForcedRotationPowerWithOneWolf = 3000f;
+	public const float RunemasterRuneExplosionForcedRotationPower = 4000f;
 
 	public const float RunemasterRuneExplosionForcedRotationReductionPerSecond = 2000f;
 
-	public const float RunemasterRuneExplosionConfusionDurationWithOneWolf = 10f;
+	public const float RunemasterRuneExplosionCrouchedDisorientedDuration = 2f;
 
-	public const float RunemasterRuneExplosionMaximumConfusionDuration = 10f;
+	public const float RunemasterRuneExplosionNotCrouchedDisorientedDuration = 8f;
 
-	public const float RunemasterRuneExplosionEffectsPowerMultiplierAtMaximumRange = 0.35f;
+	public const float RunemasterRuneExplosionNotCrouchedResilienceDuration = 15f;
 
-	public const float RunemasterRuneExplosionMinimumPowerMultiplierForForcedRotation = 0.5f;
-
-	public const float RunemasterRuneExplosionAreaAdditionalMultiplierPerExtraWolf = 0.5f;
-
-	public const float RunemasterRuneExplosionForcedRotationAdditionalMultiplierPerExtraWolf = 0.25f;
-
-	public const float RunemasterRuneExplosionEffectDurationAdditionalMultiplierPerExtraWolf = 0.25f;
-
-	public const float RunemasterRuneExplosionBaseResilienceDurationWithOneWolf = 12f;
-
-	public const float RunemasterWolfDetectionRange = 10f;
+	public const float RunemasterRuneDetectionDuration = 5f;
 
 	public const float InventorPlaceDeviceRange = 2f;
 
@@ -1216,9 +1210,9 @@ public static class BalancingValues
 
 	public const float MegaFartKnockbackReductionPerSecondOnHuman = 10f;
 
-	public const float MegaFartKnockbackPowerOnWolf = 15f;
+	public const float MegaFartKnockbackPowerOnWolf = 18f;
 
-	public const float MegaFartKnockbackReductionPerSecondOnWolf = 8f;
+	public const float MegaFartKnockbackReductionPerSecondOnWolf = 9f;
 
 	public const float MidasEffectValueMultiplier = 2f;
 
@@ -1317,6 +1311,8 @@ public static class BalancingValues
 	public const float AssassinOnWolfKnockbackReductionPerSecond = 6f;
 
 	public const float AssassinResilienceDuration = 15f;
+
+	public const float AssassinPotionChanceToNotAppear = 0.4f;
 
 	public const float MidasPetrifyRange = 3f;
 
@@ -1888,9 +1884,11 @@ public static class BalancingValues
 
 	public const int AccessoryChanceSpellbook = 2;
 
+	public const float SabotageChanceMultiplierIfNotCompleted = 0.6f;
+
 	public const float SabotageObjectRaycastRange = 7f;
 
-	public const float SabotageSubtlyDurationMultiplier = 4f;
+	public const float SabotageSubtlyDurationMultiplier = 3f;
 
 	public const float DiseaseEffectHealthDecrease = 0.25f;
 
@@ -2050,15 +2048,15 @@ public static class BalancingValues
 
 	public const float WolfForcedTransformationTimer = 20f;
 
-	public const float ChangeWolfHungerExtraLossWhenRunning = 2.5f;
+	public const float ChangeWolfHungerExtraLossWhenRunning = 2f;
 
-	public const float ChangeWolfHungerExtraGainWhenNotRunning = 3f;
+	public const float ChangeWolfHungerExtraGainWhenNotRunning = 3.5f;
 
 	public const float ChangeWolfHungerMissingHungerGainAfterKill = 0.4f;
 
-	public const float WolfTiredDurationWhenShot = 20f;
+	public const float WolfTiredDurationWhenShot = 15f;
 
-	public const float WolfTiredDurationWhenAttackingLock = 8f;
+	public const float WolfTiredDurationWhenAttackingLock = 5f;
 
 	public const int ItemChanceTrap = 10;
 
@@ -2161,11 +2159,11 @@ public static class BalancingValues
 		return skullsCount switch
 		{
 			0 => 0f, 
-			1 => 20f, 
-			2 => 33f, 
-			3 => 42f, 
-			4 => 50f, 
-			_ => 56f, 
+			1 => 24f, 
+			2 => 38f, 
+			3 => 48f, 
+			4 => 57f, 
+			_ => 65f, 
 		};
 	}
 
@@ -2603,7 +2601,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Bomber => new PowerMaterialsInfo(70, 2.5f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(30, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(25, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Fartmaster => new PowerMaterialsInfo(60, 2.5f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Priest => new PowerMaterialsInfo(80, 1.75f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
@@ -2613,7 +2611,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Magician => new PowerMaterialsInfo(40, 4f, 2.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Shadow => new PowerMaterialsInfo(10000, 3f, 1.056f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Hermit => new PowerMaterialsInfo(200, 2f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
-			PlayerCustom.PlayerPrimaryRolePower.Runemaster => new PowerMaterialsInfo(80, 2.5f, 1.556f, gainsMaterialsOnCollect: true, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Runemaster => new PowerMaterialsInfo(50, 2.5f, 1.556f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Inventor => new PowerMaterialsInfo(100, 2.5f, 1.556f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Alchemist => new PowerMaterialsInfo(40, 5f, 2.006f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Spotter => new PowerMaterialsInfo(100, 3f, 1.5f, gainsMaterialsOnCollect: false, 0f), 
@@ -2873,7 +2871,7 @@ public static class BalancingValues
 
 	public static int MercenaryTotalObjective(int lootMultiplier, float configMultiplier, int totalCycleTime, float soloRoleDifficulty)
 	{
-		return Mathf.RoundToInt((float)(totalCycleTime * lootMultiplier) * configMultiplier * soloRoleDifficulty * 18f);
+		return Mathf.RoundToInt((float)(totalCycleTime * lootMultiplier) * configMultiplier * soloRoleDifficulty * 16f);
 	}
 
 	public static int KidnapperFinalCooldown(int abductsCount, int abductsObjective, int remainingLivingPlayers, int totalPlayers)

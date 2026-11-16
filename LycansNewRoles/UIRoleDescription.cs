@@ -63,8 +63,8 @@ public class UIRoleDescription : MonoBehaviour
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f9: Invalid comparison between Unknown and I4
-		//IL_0d79: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d7e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d5d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d62: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -220,8 +220,7 @@ public class UIRoleDescription : MonoBehaviour
 					list = new List<string>
 					{
 						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
-						6.ToString(),
-						LycansUtility.GetInputDisplayCustom((InputActionName)6).Replace(" -", "")
+						8.ToString()
 					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Inventor:

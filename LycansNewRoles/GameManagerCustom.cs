@@ -576,7 +576,7 @@ public class GameManagerCustom : NetworkBehaviour
 						}
 						num13 *= (float)Plugin.CustomConfig.SpyPercentage * 0.01f;
 						num13 /= Instance.SoloRoleDifficulty;
-						num13 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 12f);
+						num13 *= BalancingValues.SoloRoleDiminishingReturnsMultiplier(playerCustom.SoloRoleHalfDayProgress, 10f);
 						playerCustom.AddSoloRoleProgress(Mathf.RoundToInt(num13), BalancingValues.SpyGoal(PlayerCustomRegistry.Count));
 					}
 					else
@@ -668,7 +668,7 @@ public class GameManagerCustom : NetworkBehaviour
 					PlayerRef primaryRoleTargetRef = playerCustom.PrimaryRoleTargetRef;
 					if (!((PlayerRef)(ref primaryRoleTargetRef)).IsNone && !NetworkBool.op_Implicit(PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef).IsDead))
 					{
-						playerCustom.PrimaryRolePowerCurrentMaterials = Mathf.Max(0, playerCustom.PrimaryRolePowerCurrentMaterials - 300);
+						playerCustom.PrimaryRolePowerCurrentMaterials = Mathf.Max(0, playerCustom.PrimaryRolePowerCurrentMaterials - 350);
 						if (playerCustom.PrimaryRolePowerCurrentMaterials == 0 || NetworkBool.op_Implicit(playerCustom.PlayerController.IsDead))
 						{
 							PlayerController player4 = PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
@@ -681,7 +681,7 @@ public class GameManagerCustom : NetworkBehaviour
 					}
 					else if (NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf))
 					{
-						playerCustom.AddMaterials(175);
+						playerCustom.AddMaterials(150);
 					}
 					break;
 				}
@@ -728,7 +728,7 @@ public class GameManagerCustom : NetworkBehaviour
 					break;
 				}
 				case PlayerCustom.PlayerPrimaryRolePower.Saboteur:
-					playerCustom.AddMaterials(160);
+					playerCustom.AddMaterials(180);
 					break;
 				}
 				if ((Object)(object)playerCustom.Accessory != (Object)null && playerCustom.Accessory is AccessoryRing accessoryRing)

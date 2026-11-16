@@ -352,11 +352,11 @@ internal class CheckHungerPatch
 					{
 						if (NetworkBool.op_Implicit(__instance.IsMoving) && __instance.MovementAction == 2)
 						{
-							__instance.Hunger -= 2.5f * ((SimulationBehaviour)__instance).Runner.DeltaTime;
+							__instance.Hunger -= 2f * ((SimulationBehaviour)__instance).Runner.DeltaTime;
 						}
 						else if (!NetworkBool.op_Implicit(player.Tired))
 						{
-							player.IncreaseHealth(3f * ((SimulationBehaviour)__instance).Runner.DeltaTime);
+							player.IncreaseHealth(3.5f * ((SimulationBehaviour)__instance).Runner.DeltaTime);
 						}
 					}
 				}

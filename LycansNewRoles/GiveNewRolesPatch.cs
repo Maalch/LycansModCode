@@ -883,8 +883,8 @@ internal class GiveNewRolesPatch
 		StateHooks<EGameState> obj4 = value[(EGameState)5];
 		obj4.onEnter = (Action<EGameState>)Delegate.Combine(obj4.onEnter, (Action<EGameState>)delegate
 		{
-			//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0101: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0111: Unknown result type (might be due to invalid IL or missing references)
 			try
 			{
 				SabotageManager.Instance.Clean();
@@ -892,6 +892,7 @@ internal class GiveNewRolesPatch
 				CultistManager.Instance.Reset();
 				VoodooManager.Instance.Reset();
 				GameManagerCustom.Instance.Reset();
+				DraftManager.Instance.ElitePowersOfferedInDraft.Clear();
 				foreach (PlayerCustom allPlayer8 in PlayerCustomRegistry.AllPlayers)
 				{
 					allPlayer8.ResurrectedByNecromancer = NetworkBool.op_Implicit(false);
@@ -952,6 +953,7 @@ internal class GiveNewRolesPatch
 				((Component)allPlayer10.PlayerController).GetComponent<PlayerResurrectedComponent>()?.UpdateState();
 				((Component)allPlayer10.PlayerController).GetComponent<PlayerSpotterLightComponent>().UpdateState();
 			}
+			DraftManager.Instance.ElitePowersOfferedInDraft.Clear();
 		});
 		StateHooks<EGameState> obj6 = value[(EGameState)3];
 		obj6.onEnter = (Action<EGameState>)Delegate.Combine(obj6.onEnter, (Action<EGameState>)delegate
@@ -1056,15 +1058,15 @@ internal class GiveNewRolesPatch
 			//IL_007d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_008b: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0660: Unknown result type (might be due to invalid IL or missing references)
-			//IL_080f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0824: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0819: Unknown result type (might be due to invalid IL or missing references)
+			//IL_082e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
-			//IL_07c1: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07cb: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0165: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01ab: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0192: Unknown result type (might be due to invalid IL or missing references)
 			//IL_034c: Unknown result type (might be due to invalid IL or missing references)
-			//IL_075e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0768: Unknown result type (might be due to invalid IL or missing references)
 			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_03c0: Unknown result type (might be due to invalid IL or missing references)
 			//IL_037c: Unknown result type (might be due to invalid IL or missing references)
@@ -1192,7 +1194,8 @@ internal class GiveNewRolesPatch
 							else
 							{
 								float num = (float)item16.AmountCurrent / (float)item16.AmountRequired;
-								if (Random.value < num)
+								float num2 = num * 0.6f;
+								if (Random.value < num2)
 								{
 									list2.Add(item16);
 								}

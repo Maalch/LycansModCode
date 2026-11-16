@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.373")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.377")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -198,25 +198,31 @@ public class Plugin : BaseUnityPlugin
 			List<string> source = Directory.EnumerateFiles(path).ToList();
 			int num = 3;
 			NewMapPathById.Clear();
-			foreach (string item3 in source.Where((string o) => !o.Contains(".json")))
+			foreach (string item4 in source.Where((string o) => !o.Contains(".json")))
 			{
-				string text3 = item3.Split('/').Last();
+				string text3 = item4.Split('/').Last();
 				if (text3.ToLower().StartsWith("map_"))
 				{
 					NewMapPathById.Add(num, text3.ToLower());
 					num++;
 				}
-				else if (item3.ToLower().Contains("/hats_"))
+				else if (item4.ToLower().Contains("/hats_"))
 				{
-					Logger.LogInfo((object)("Adding hats bundle: " + item3));
+					Logger.LogInfo((object)("Adding hats bundle: " + item4));
 					AssetBundle item = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
 					NewHatsBundles.Add(item);
 				}
-				else if (item3.ToLower().Contains("/pets_"))
+				else if (item4.ToLower().Contains("/pets_"))
 				{
-					Logger.LogInfo((object)("Adding pets bundle: " + item3));
+					Logger.LogInfo((object)("Adding pets bundle: " + item4));
 					AssetBundle item2 = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
 					PetBundles.Add(item2);
+				}
+				else if (item4.ToLower().Contains("/skins_"))
+				{
+					Logger.LogInfo((object)("Adding skins bundle: " + item4));
+					AssetBundle item3 = AssetBundle.LoadFromFile(Path.GetDirectoryName(Location) + "/resources/" + text3);
+					SkinBundles.Add(item3);
 				}
 			}
 		}

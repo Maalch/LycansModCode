@@ -20,13 +20,13 @@ public class RunemasterRune : NetworkBehaviour
 
 	private GameObject _seethrough;
 
-	private Stopwatch _nextCheckWatch = new Stopwatch();
+	private int _triggerDelayMilliseconds = 1000;
+
+	private Stopwatch _checkWatch = new Stopwatch();
 
 	private Stopwatch _explosionWatch = new Stopwatch();
 
 	private int _runeIndex;
-
-	private bool _isSelected = false;
 
 	[Networked(OnChanged = "CreatorRefChanged")]
 	[NetworkedWeaved(0, 1)]
@@ -82,83 +82,97 @@ public class RunemasterRune : NetworkBehaviour
 		}
 	}
 
-	public bool IsSelected => _isSelected;
-
 	public void Awake()
 	{
 		_effect = ((Component)((Component)this).transform.Find("Visual")).gameObject;
 		_seethrough = ((Component)((Component)this).transform.Find("Icon")).gameObject;
+		_checkWatch.Start();
 		_explosionWatch.Stop();
 	}
 
 	private void Update()
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0147: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01e0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_024a: Unknown result type (might be due to invalid IL or missing references)
-		if (!NetworkBool.op_Implicit(Triggered) || !((float)_explosionWatch.ElapsedMilliseconds >= 2500f))
+		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0349: Unknown result type (might be due to invalid IL or missing references)
+		//IL_008e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0224: Unknown result type (might be due to invalid IL or missing references)
+		//IL_025d: Unknown result type (might be due to invalid IL or missing references)
+		if (NetworkBool.op_Implicit(Triggered))
 		{
-			return;
-		}
-		_explosionWatch.Reset();
-		int num = Mathf.Max(0, PlayerRegistry.CountWhere((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && !NetworkBool.op_Implicit(o.IsDead) && (int)o.Role == 1)) - 1);
-		float num2 = 1f + (float)num * 0.5f;
-		float num3 = 1f + (float)num * 0.25f;
-		float num4 = (float)(1 + num) + 0.25f;
-		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if (_creatorCustom.IsCurrentlyPlayedOrObserved || NetworkBool.op_Implicit(player.PlayerController.IsWolf))
-		{
-			GameObject val = Object.Instantiate<GameObject>(ActivationParticleSystemPrefab, new Vector3(((Component)this).transform.position.x, ((Component)this).transform.position.y + 0.5f, ((Component)this).transform.position.z), Quaternion.identity);
-			val.SetActive(true);
-			float num5 = 4.5f * num2;
-			val.transform.localScale = new Vector3(num5, num5, num5);
-			SelfDestroyingObjectComponent selfDestroyingObjectComponent = val.AddComponent<SelfDestroyingObjectComponent>();
-			selfDestroyingObjectComponent.Init(2.5f);
-			AudioManager.PlayPosition("RuneExplosion", ((Component)this).transform.position, (MixerTarget)2, 500f, 1f);
-		}
-		float num6 = 12f * num2;
-		foreach (PlayerController item in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && !NetworkBool.op_Implicit(o.IsDead))))
-		{
-			float num7 = Vector3.Distance(((Component)item).transform.position, ((Component)this).transform.position);
-			if (!(num7 > num6))
+			if (_explosionWatch.ElapsedMilliseconds < _triggerDelayMilliseconds)
 			{
-				float num8 = Mathf.InverseLerp(num6, 0f, num7);
-				float num9 = Mathf.Lerp(0.35f, 1f, num8);
-				if (num9 >= 0.5f)
+				return;
+			}
+			_explosionWatch.Reset();
+			PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
+			if (_creatorCustom.IsCurrentlyPlayedOrObserved || NetworkBool.op_Implicit(player.PlayerController.IsWolf))
+			{
+				GameObject val = Object.Instantiate<GameObject>(ActivationParticleSystemPrefab, new Vector3(((Component)this).transform.position.x, ((Component)this).transform.position.y + 0.5f, ((Component)this).transform.position.z), Quaternion.identity);
+				val.SetActive(true);
+				float num = 4.5f;
+				val.transform.localScale = new Vector3(num, num, num);
+				SelfDestroyingObjectComponent selfDestroyingObjectComponent = val.AddComponent<SelfDestroyingObjectComponent>();
+				selfDestroyingObjectComponent.Init(2.5f);
+				if (_creatorCustom.IsCurrentlyPlayedOrObserved)
 				{
-					((Component)item).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 3000f * num3 * num9, 2000f);
+					AudioManager.PlayPosition("RuneExplosion", ((Component)this).transform.position, (MixerTarget)2, 500f, 1f);
 				}
-				float num10 = 10f * num4 * num8;
-				num10 = Mathf.Min(num10, 10f);
-				PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectConfused", ((SimulationBehaviour)this).Runner, 1f, num10);
-				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(item.Ref);
-				player2.GrantResilience(12f * num4 * num8);
+				else
+				{
+					AudioManager.PlayPosition("RuneExplosion", ((Component)this).transform.position, (MixerTarget)2, 15f, 1f);
+				}
+			}
+			float num2 = 8f;
+			foreach (PlayerController item in PlayerRegistry.Where((Predicate<PlayerController>)((PlayerController o) => NetworkBool.op_Implicit(o.IsWolf) && !NetworkBool.op_Implicit(o.IsDead))))
+			{
+				float num3 = Vector3.Distance(((Component)item).transform.position, ((Component)this).transform.position);
+				if (!(num3 > num2))
+				{
+					if (item.MovementAction == 1)
+					{
+						PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectDisoriented", ((SimulationBehaviour)this).Runner, 1f, 2f);
+						continue;
+					}
+					((Component)item).GetComponent<ForcedRotationComponent>().Init(new Vector3(0f, 1f, 0f), 4000f, 2000f);
+					PlayerCustom.ApplyEffectToPlayer(item, "LycansNewRoles.EffectDisoriented", ((SimulationBehaviour)this).Runner, 1f, 8f);
+					PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(item.Ref);
+					player2.GrantResilience(15f);
+				}
+			}
+			((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
+		}
+		else if (((SimulationBehaviour)this).Runner.IsServer && _checkWatch.ElapsedMilliseconds >= 250 && _creatorCustom.PrimaryRolePowerCurrentMaterials >= _creatorCustom.PowerMaterialsInfo.RequiredMaterials)
+		{
+			PlayerCustom playerCustom = PlayerCustomRegistry.AllPlayers.FirstOrDefault((PlayerCustom o) => NetworkBool.op_Implicit(o.PlayerController.IsWolf) && Vector3.Distance(((Component)o.PlayerController).transform.position, ((Component)this).transform.position) <= 4f);
+			if ((Object)(object)playerCustom != (Object)null)
+			{
+				PlayerCustom.ApplyEffectToPlayer(playerCustom.PlayerController, "LycansNewRoles.EffectDetected", ((SimulationBehaviour)this).Runner, 1f, 5f);
+				Triggered = NetworkBool.op_Implicit(true);
+				_creatorCustom.ReduceMaterialAfterPowerUse();
+				_checkWatch.Stop();
+			}
+			else
+			{
+				_checkWatch.Restart();
 			}
 		}
-		((SimulationBehaviour)this).Runner.Despawn(((Component)this).GetComponent<NetworkObject>(), false);
 	}
 
 	public void SetCreatorRef(PlayerRef playerRef)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		CreatorRef = playerRef;
-	}
-
-	public void SetSelected(bool selected)
-	{
-		_isSelected = selected;
-		UpdateVisibility();
 	}
 
 	[Preserve]
@@ -177,7 +191,7 @@ public class RunemasterRune : NetworkBehaviour
 					where o.CreatorRef == changed.Behaviour.CreatorRef
 					select o).ToList();
 				changed.Behaviour._runeIndex = ((!list.Any()) ? 1 : (list.Max((RunemasterRune o) => o._runeIndex) + 1));
-				if (list.Count > 6)
+				if (list.Count > 8)
 				{
 					int minRuneIndex = list.Min((RunemasterRune o) => o._runeIndex);
 					RunemasterRune runemasterRune = list.First((RunemasterRune o) => o._runeIndex == minRuneIndex);
@@ -191,7 +205,6 @@ public class RunemasterRune : NetworkBehaviour
 			}
 			changed.Behaviour._creatorCustom.AssociatedRunes.Add(changed.Behaviour);
 			changed.Behaviour._creatorCustom.UpdateDescriptionStatusIfNeeded();
-			changed.Behaviour._nextCheckWatch.Restart();
 			changed.Behaviour.UpdateVisibility();
 		}
 		catch (Exception ex)
@@ -204,21 +217,23 @@ public class RunemasterRune : NetworkBehaviour
 	public static void TriggeredChanged(Changed<RunemasterRune> changed)
 	{
 		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0061: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0066: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
 		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0104: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0145: Unknown result type (might be due to invalid IL or missing references)
 		changed.Behaviour.UpdateVisibility();
 		if (!NetworkBool.op_Implicit(changed.Behaviour.Triggered))
 		{
 			return;
 		}
+		changed.Behaviour._triggerDelayMilliseconds = Random.RandomRangeInt(800, 1400);
 		ParticleSystem[] componentsInChildren = changed.Behaviour._effect.GetComponentsInChildren<ParticleSystem>();
 		foreach (ParticleSystem val in componentsInChildren)
 		{
@@ -232,7 +247,11 @@ public class RunemasterRune : NetworkBehaviour
 			}
 		}
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
-		if (changed.Behaviour._creatorCustom.IsCurrentlyPlayedOrObserved || NetworkBool.op_Implicit(player.PlayerController.IsWolf))
+		if (changed.Behaviour._creatorCustom.IsCurrentlyPlayedOrObserved)
+		{
+			AudioManager.PlayPosition("RuneTrigger", ((Component)changed.Behaviour).transform.position, (MixerTarget)2, 500f, 0.8f);
+		}
+		else if (NetworkBool.op_Implicit(player.PlayerController.IsWolf))
 		{
 			AudioManager.PlayPosition("RuneTrigger", ((Component)changed.Behaviour).transform.position, (MixerTarget)2, 15f, 0.8f);
 		}
@@ -247,10 +266,6 @@ public class RunemasterRune : NetworkBehaviour
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
 		_effect.SetActive(_creatorCustom.IsCurrentlyPlayedOrObserved || (NetworkBool.op_Implicit(Triggered) && NetworkBool.op_Implicit(player.PlayerController.IsWolf)));
 		_seethrough.SetActive(_creatorCustom.IsCurrentlyPlayedOrObserved);
-		if (_seethrough.activeSelf)
-		{
-			((Renderer)_seethrough.GetComponent<MeshRenderer>()).material.shader = (_isSelected ? PlayerCustom.SeeThroughShaderWolf : PlayerCustom.SeeThroughShaderHuman);
-		}
 	}
 
 	public static void UpdateVisibilityForAllRunes()
@@ -310,155 +325,5 @@ public class RunemasterRune : NetworkBehaviour
 			PlayerCustom.Local.UpdateDescriptionStatusIfNeeded();
 		}
 		Object.Destroy((Object)(object)((Component)this).gameObject);
-	}
-
-	[Rpc]
-	public unsafe static void Rpc_Request_Activate_Rune(NetworkRunner runner, int playerIndex, NetworkId runeId)
-	{
-		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003d: Invalid comparison between Unknown and I4
-		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f7: Unknown result type (might be due to invalid IL or missing references)
-		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
-		try
-		{
-			if (NetworkBehaviourUtils.InvokeRpc)
-			{
-				NetworkBehaviourUtils.InvokeRpc = false;
-			}
-			else
-			{
-				if ((Object)(object)runner == (Object)null)
-				{
-					throw new ArgumentNullException("runner");
-				}
-				if ((int)runner.Stage == 4)
-				{
-					return;
-				}
-				if (runner.HasAnyActiveConnections())
-				{
-					int num = 24;
-					SimulationMessage* ptr = SimulationMessage.Allocate(runner.Simulation, num);
-					byte* data = SimulationMessage.GetData(ptr);
-					int num2 = RpcHeader.Write(RpcHeader.Create(NetworkBehaviourUtils.GetRpcStaticIndexOrThrow("System.Void LycansNewRoles.RunemasterRune::Rpc_Request_Activate_Rune(Fusion.NetworkRunner,System.Int32,Fusion.NetworkId)")), data);
-					*(int*)(data + num2) = playerIndex;
-					num2 += 4;
-					Unsafe.Write(data + num2, runeId);
-					num2 += 4;
-					((SimulationMessage)ptr).Offset = num2 * 8;
-					((SimulationMessage)ptr).SetStatic();
-					runner.SendRpc(ptr);
-				}
-			}
-			if (!runner.IsServer)
-			{
-				return;
-			}
-			PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerIndex);
-			if (player.PrimaryRolePowerRemainingUses != 0)
-			{
-				RunemasterRune component = ((Component)runner.FindObject(runeId)).GetComponent<RunemasterRune>();
-				if ((Object)(object)component != (Object)null)
-				{
-					Rpc_Activate_Rune(runner, playerIndex, ((SimulationBehaviour)component).Object.Id);
-					player.PrimaryRolePowerRemainingUses--;
-					player.ReduceMaterialAfterPowerUse();
-				}
-			}
-		}
-		catch (Exception ex)
-		{
-			Plugin.Logger.LogError((object)("Rpc_Request_Activate_Rune error: " + ex));
-		}
-	}
-
-	[NetworkRpcStaticWeavedInvoker("System.Void LycansNewRoles.RunemasterRune::Rpc_Request_Activate_Rune(Fusion.NetworkRunner,System.Int32,Fusion.NetworkId)")]
-	[Preserve]
-	protected unsafe static void Rpc_Request_Activate_Rune_0040Invoker(NetworkRunner runner, SimulationMessage* message)
-	{
-		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
-		byte* data = SimulationMessage.GetData(message);
-		int num = (RpcHeader.ReadSize(data) + 3) & -4;
-		int playerIndex = *(int*)(data + num);
-		num += 4;
-		NetworkId runeId = (NetworkId)data[num];
-		num += 4;
-		NetworkBehaviourUtils.InvokeRpc = true;
-		Rpc_Request_Activate_Rune(runner, playerIndex, runeId);
-	}
-
-	[Rpc]
-	public unsafe static void Rpc_Activate_Rune(NetworkRunner runner, int playerIndex, NetworkId runeId)
-	{
-		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003d: Invalid comparison between Unknown and I4
-		//IL_00dc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
-		try
-		{
-			if (NetworkBehaviourUtils.InvokeRpc)
-			{
-				NetworkBehaviourUtils.InvokeRpc = false;
-			}
-			else
-			{
-				if ((Object)(object)runner == (Object)null)
-				{
-					throw new ArgumentNullException("runner");
-				}
-				if ((int)runner.Stage == 4)
-				{
-					return;
-				}
-				if (runner.HasAnyActiveConnections())
-				{
-					int num = 24;
-					SimulationMessage* ptr = SimulationMessage.Allocate(runner.Simulation, num);
-					byte* data = SimulationMessage.GetData(ptr);
-					int num2 = RpcHeader.Write(RpcHeader.Create(NetworkBehaviourUtils.GetRpcStaticIndexOrThrow("System.Void LycansNewRoles.RunemasterRune::Rpc_Activate_Rune(Fusion.NetworkRunner,System.Int32,Fusion.NetworkId)")), data);
-					*(int*)(data + num2) = playerIndex;
-					num2 += 4;
-					Unsafe.Write(data + num2, runeId);
-					num2 += 4;
-					((SimulationMessage)ptr).Offset = num2 * 8;
-					((SimulationMessage)ptr).SetStatic();
-					runner.SendRpc(ptr);
-				}
-			}
-			if (runner.IsServer)
-			{
-				RunemasterRune component = ((Component)runner.FindObject(runeId)).GetComponent<RunemasterRune>();
-				component.Triggered = NetworkBool.op_Implicit(true);
-			}
-		}
-		catch (Exception ex)
-		{
-			Plugin.Logger.LogError((object)("Rpc_Activate_Rune error: " + ex));
-		}
-	}
-
-	[NetworkRpcStaticWeavedInvoker("System.Void LycansNewRoles.RunemasterRune::Rpc_Activate_Rune(Fusion.NetworkRunner,System.Int32,Fusion.NetworkId)")]
-	[Preserve]
-	protected unsafe static void Rpc_Activate_Rune_0040Invoker(NetworkRunner runner, SimulationMessage* message)
-	{
-		//IL_0020: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
-		byte* data = SimulationMessage.GetData(message);
-		int num = (RpcHeader.ReadSize(data) + 3) & -4;
-		int playerIndex = *(int*)(data + num);
-		num += 4;
-		NetworkId runeId = (NetworkId)data[num];
-		num += 4;
-		NetworkBehaviourUtils.InvokeRpc = true;
-		Rpc_Activate_Rune(runner, playerIndex, runeId);
 	}
 }

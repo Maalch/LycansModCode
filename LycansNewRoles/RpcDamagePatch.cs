@@ -134,7 +134,7 @@ internal class RpcDamagePatch
 				if (NetworkBool.op_Implicit(__instance.IsWolf))
 				{
 					player.GrantResilience(10f);
-					PlayerCustom.ApplyEffectToPlayer(player.PlayerController, "LycansNewRoles.EffectTired", ((SimulationBehaviour)__instance).Runner, 1f, 20f);
+					PlayerCustom.ApplyEffectToPlayer(player.PlayerController, "LycansNewRoles.EffectTired", ((SimulationBehaviour)__instance).Runner, 1f, 15f);
 				}
 			}
 			if (((SimulationBehaviour)__instance).Object.HasInputAuthority)

@@ -31,38 +31,51 @@ public class KnockbackComponent : MonoBehaviour
 
 	public void Init(Vector3 direction, float power, Vector3 reductionPerSecond, int animationIndex = 9, bool heavyGravity = true)
 	{
-		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0037: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0039: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0051: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0065: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
 		//IL_007c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0084: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0095: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009a: Unknown result type (might be due to invalid IL or missing references)
-		if (!_knockback.HasValue)
+		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00d5: Unknown result type (might be due to invalid IL or missing references)
+		if (_knockback.HasValue)
 		{
-			Vector3 val = direction * power;
-			_knockback = val;
-			float num = Mathf.Abs(val.x) + Mathf.Abs(val.y) + Mathf.Abs(val.z);
-			float num2 = Mathf.Abs(val.x) / num;
-			float num3 = Mathf.Abs(val.y) / num;
-			float num4 = Mathf.Abs(val.z) / num;
-			_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
-			if (animationIndex > -1)
+			return;
+		}
+		PlayerCustom player = PlayerCustomRegistry.GetPlayer(_playerController.Ref);
+		if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Acrobat)
+		{
+			TickTimer primaryRoleActionTimer = player.PrimaryRoleActionTimer;
+			if (((TickTimer)(ref primaryRoleActionTimer)).IsRunning)
 			{
-				PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)_playerController).Runner, _playerController.Index, animationIndex);
+				return;
 			}
-			if (heavyGravity)
-			{
-				Traverse.Create((object)_playerController.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.gravity = -400f * BalancingValues.GravityMultiplier(GameManager.Instance.MapID);
-			}
+		}
+		Vector3 val = direction * power;
+		_knockback = val;
+		float num = Mathf.Abs(val.x) + Mathf.Abs(val.y) + Mathf.Abs(val.z);
+		float num2 = Mathf.Abs(val.x) / num;
+		float num3 = Mathf.Abs(val.y) / num;
+		float num4 = Mathf.Abs(val.z) / num;
+		_knockbackReductionPerSecond = new Vector3(reductionPerSecond.x * num2, reductionPerSecond.y * num3, reductionPerSecond.z * num4);
+		if (animationIndex > -1)
+		{
+			PlayerCustom.Rpc_Play_Animation(((SimulationBehaviour)_playerController).Runner, _playerController.Index, animationIndex);
+		}
+		if (heavyGravity)
+		{
+			Traverse.Create((object)_playerController.CharacterMovementHandler).Field<NetworkCharacterControllerPrototypeCustom>("_networkCharacterControllerPrototypeCustom").Value.gravity = -400f * BalancingValues.GravityMultiplier(GameManager.Instance.MapID);
 		}
 	}
 

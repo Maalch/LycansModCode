@@ -321,7 +321,7 @@ public class CultistSkullSpirit : NetworkBehaviour
 		}
 		if (((SimulationBehaviour)this).Runner.IsServer)
 		{
-			float num = (_slowedByWall ? 0.75f : 2.25f);
+			float num = (_slowedByWall ? 0.5f : 1.5f);
 			((Component)this).transform.position = Vector3.MoveTowards(((Component)this).transform.position, ((Component)player.PlayerController).transform.position, num * ((SimulationBehaviour)this).Runner.DeltaTime);
 		}
 		((Component)this).transform.LookAt(((Component)player.PlayerController).transform.position);

@@ -6282,11 +6282,11 @@ public class PlayerCustom : NetworkBehaviour
 			{
 				if (((SimulationBehaviour)this).Runner.IsServer)
 				{
-					ModVersion = float.Parse("0.373", CultureInfo.InvariantCulture.NumberFormat);
+					ModVersion = float.Parse("0.377", CultureInfo.InvariantCulture.NumberFormat);
 				}
 				else
 				{
-					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.373", CultureInfo.InvariantCulture.NumberFormat));
+					Rpc_Set_Validation(((SimulationBehaviour)this).Runner, Index, float.Parse("0.377", CultureInfo.InvariantCulture.NumberFormat));
 				}
 			}
 			GameObject val = Object.Instantiate<GameObject>(MinimapPlayerComponent.MinimapPlayerPrefab);
@@ -9736,7 +9736,7 @@ public class PlayerCustom : NetworkBehaviour
 						{
 							return;
 						}
-						customPlayer.PrimaryRoleActionTimer = TickTimer.CreateFromSeconds(runner, 2f);
+						customPlayer.PrimaryRoleActionTimer = TickTimer.CreateFromSeconds(runner, 1f);
 						playerController.CanMoveAnimation = NetworkBool.op_Implicit(false);
 						break;
 					}
@@ -13136,7 +13136,7 @@ public class PlayerCustom : NetworkBehaviour
 				Rpc_ShowShot_Custom(runner, playerController.Index);
 				if (targetPlayer.Ref == player.PrimaryRoleTargetRef)
 				{
-					player.AddSoloRoleProgress(200, player.SoloRoleObjectiveTarget);
+					player.AddSoloRoleProgress(250, player.SoloRoleObjectiveTarget);
 					player.PrimaryRoleTargetRef = PlayerRef.None;
 					player.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(runner, 90f);
 					player.MercenaryTargetsAlreadyHit.Add(targetPlayer.Ref);
@@ -13397,19 +13397,19 @@ public class PlayerCustom : NetworkBehaviour
 			float value = 0f;
 			if (effect is MuteEffect)
 			{
-				value = 55f;
+				value = 45f;
 			}
 			if (effect is DeafnessEffect)
 			{
-				value = 20f;
+				value = 15f;
 			}
 			if (effect is ParanoiaEffect)
 			{
-				value = 12f;
+				value = 10f;
 			}
 			if (effect is FlatulenceEffect)
 			{
-				value = 20f;
+				value = 15f;
 			}
 			if (effect is NearsightedEffect)
 			{
@@ -15161,7 +15161,7 @@ public class PlayerCustom : NetworkBehaviour
 				{
 					if (NetworkBool.op_Implicit(playerController.IsWolf))
 					{
-						((Component)playerController).GetComponent<KnockbackComponent>().Init(((Component)playerController).transform.forward, 15f, 8f);
+						((Component)playerController).GetComponent<KnockbackComponent>().Init(((Component)playerController).transform.forward, 18f, 9f);
 					}
 					else
 					{
@@ -16827,43 +16827,45 @@ public class PlayerCustom : NetworkBehaviour
 		//IL_0890: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08b7: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a1c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08e3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_08ce: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a04: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a1b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a21: Invalid comparison between Unknown and I4
-		//IL_093b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a87: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0a33: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0a43: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0988: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a4a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a50: Invalid comparison between Unknown and I4
+		//IL_093b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ab6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a62: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0a72: Unknown result type (might be due to invalid IL or missing references)
+		//IL_098b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0957: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0967: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0994: Unknown result type (might be due to invalid IL or missing references)
-		//IL_099a: Invalid comparison between Unknown and I4
-		//IL_0ab4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0ab9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0abe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09e4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0997: Unknown result type (might be due to invalid IL or missing references)
+		//IL_099d: Invalid comparison between Unknown and I4
+		//IL_0ae3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0ae8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0af8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09ac: Unknown result type (might be due to invalid IL or missing references)
-		//IL_09bc: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b34: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0b8b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bb9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0bc9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c05: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c21: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c31: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0c69: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d01: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d07: Invalid comparison between Unknown and I4
-		//IL_0e08: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d2a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0aed: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b17: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b27: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09f1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09af: Unknown result type (might be due to invalid IL or missing references)
+		//IL_09bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b63: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0b91: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0ba1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bdd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0bf9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c09: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0c41: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cd9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0cdf: Invalid comparison between Unknown and I4
+		//IL_0de0: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d02: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d08: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d1a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0d30: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d42: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d58: Unknown result type (might be due to invalid IL or missing references)
 		Visible = visible;
 		PlayerCustom povPlayerCustom = PlayerCustomRegistry.GetPlayer(PlayerController.Local.LocalCameraHandler.PovPlayer.Ref);
 		CamouflageLevelForPovPlayer = 0;
@@ -17086,7 +17088,24 @@ public class PlayerCustom : NetworkBehaviour
 		{
 			return;
 		}
-		bool flag2 = NetworkBool.op_Implicit(Detected) || (NetworkBool.op_Implicit(povPlayerCustom.Spotter) && NetworkBool.op_Implicit(PlayerController.IsWolf)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && NetworkBool.op_Implicit(PlayerController.PlayerEffectManager.Glowing)) || (NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Scout && ScoutRadar.AssociatedRadars.Any((ScoutRadar o) => o.CreatorRef == povPlayerCustom.Ref && o.WolvesInRange.Any((PlayerRef j) => j == Ref))) || (povPlayerCustom.PlayerController.Item is SpyglassItem && NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsZooming) && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) >= 40f) || (povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Host && NetworkBool.op_Implicit(Parasite) && (int)GameManager.LocalGameState != 4 && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 30f);
+		int num11;
+		if (!NetworkBool.op_Implicit(Detected) && (!NetworkBool.op_Implicit(povPlayerCustom.Spotter) || !NetworkBool.op_Implicit(PlayerController.IsWolf)) && (!NetworkBool.op_Implicit(PlayerController.IsWolf) || !NetworkBool.op_Implicit(PlayerController.PlayerEffectManager.Glowing)) && (!NetworkBool.op_Implicit(PlayerController.IsWolf) || povPlayerCustom.PrimaryRolePower != PlayerPrimaryRolePower.Scout || !ScoutRadar.AssociatedRadars.Any((ScoutRadar o) => o.CreatorRef == povPlayerCustom.Ref && o.WolvesInRange.Any((PlayerRef j) => j == Ref))) && (!(povPlayerCustom.PlayerController.Item is SpyglassItem) || !NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsZooming) || !(Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) >= 40f)) && (povPlayerCustom.PrimaryRolePower != PlayerPrimaryRolePower.Host || !NetworkBool.op_Implicit(Parasite) || (int)GameManager.LocalGameState == 4 || !(Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 30f)))
+		{
+			if (povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Warlock && NetworkBool.op_Implicit(PlayerController.IsWolf))
+			{
+				TickTimer curseTimer = CurseTimer;
+				num11 = (((TickTimer)(ref curseTimer)).IsRunning ? 1 : 0);
+			}
+			else
+			{
+				num11 = 0;
+			}
+		}
+		else
+		{
+			num11 = 1;
+		}
+		bool flag2 = (byte)num11 != 0;
 		if (povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Spotter && NetworkBool.op_Implicit(povPlayerCustom.Spotter) && NetworkBool.op_Implicit(povPlayerCustom.PlayerController.IsWolf) && (int)povPlayerCustom.PlayerController.Role == 1 && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 12f)
 		{
 			flag2 = true;
@@ -17101,10 +17120,6 @@ public class PlayerCustom : NetworkBehaviour
 			obj[4] = ", seethrough: ";
 			obj[5] = flag2.ToString();
 			LycansUtility.AddLogOnlyForMe(string.Concat(obj));
-		}
-		if (!flag2 && NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.PrimaryRolePower == PlayerPrimaryRolePower.Runemaster && povPlayerCustom.AssociatedRunes.Any((RunemasterRune o) => Vector3.Distance(((Component)o).transform.position, ((Component)PlayerController).transform.position) <= 10f))
-		{
-			flag2 = true;
 		}
 		if (!flag2 && NetworkBool.op_Implicit(PlayerController.IsWolf) && povPlayerCustom.Accessory is AccessoryCrystalBall && Vector3.Distance(((Component)povPlayerCustom.PlayerController).transform.position, ((Component)PlayerController).transform.position) <= 20f * BalancingValues.ScoutRadarRadiusMultiplierByMap(GameManager.Instance.MapID))
 		{

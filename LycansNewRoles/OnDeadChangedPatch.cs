@@ -95,7 +95,7 @@ internal class OnDeadChangedPatch
 				{
 					if (specificNewPrimaryRole.Ref == deadPlayerController.Killer)
 					{
-						specificNewPrimaryRole.AddSoloRoleProgress(200, specificNewPrimaryRole.SoloRoleObjectiveTarget);
+						specificNewPrimaryRole.AddSoloRoleProgress(250, specificNewPrimaryRole.SoloRoleObjectiveTarget);
 						specificNewPrimaryRole.PrimaryRoleTargetRef = PlayerRef.None;
 						specificNewPrimaryRole.PrimaryRolePowerCooldownTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)deadPlayerController).Runner, 90f);
 					}

@@ -1151,7 +1151,7 @@ public class SabotageManager : NetworkBehaviour
 				float num3 = sabotageObject.ActivationDuration;
 				if (sabotageType == 1)
 				{
-					num3 *= 4f;
+					num3 *= 3f;
 				}
 				player.StartSabotage(sabotageObject.SabotageObjectIndex, num3, sabotageType == 1);
 			}

@@ -14,12 +14,12 @@ internal class DraftUpdatePotionsPatch
 	private static bool Prefix(GameManager __instance)
 	{
 		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0131: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0138: Expected O, but got Unknown
-		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0167: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0198: Expected O, but got Unknown
+		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Expected O, but got Unknown
+		//IL_0174: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b6: Expected O, but got Unknown
 		if (NetworkBool.op_Implicit(DraftManager.Instance.Active))
 		{
 			return false;
@@ -38,7 +38,7 @@ internal class DraftUpdatePotionsPatch
 				{
 					int randomEffectIndex = Random.Range(0, __instance.PotionsCount);
 					Effect randomEffect = value[randomEffectIndex];
-					if (randomEffect is AssassinEffect && GameManagerCustom.Instance.CurrentDay <= 1)
+					if (randomEffect is AssassinEffect && (GameManagerCustom.Instance.CurrentDay <= 1 || Random.value < 0.4f))
 					{
 						continue;
 					}
@@ -55,6 +55,6 @@ internal class DraftUpdatePotionsPatch
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 }

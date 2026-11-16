@@ -98,7 +98,7 @@ public class TransformClass
 			float num = GameManager.Instance.TransformationTime;
 			if (flag)
 			{
-				num *= 2f;
+				num *= 1.6f;
 			}
 			if (GameManagerCustom.Instance.EventsManager.CurrentEvent == EventsManager.EventType.Eclipse)
 			{

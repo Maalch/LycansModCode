@@ -654,22 +654,21 @@ public class DraftManager : NetworkBehaviour
 	public static void ActiveChanged(Changed<DraftManager> changed)
 	{
 		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0067: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006d: Invalid comparison between Unknown and I4
-		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0141: Unknown result type (might be due to invalid IL or missing references)
-		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0181: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0183: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0185: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0187: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018a: Invalid comparison between Unknown and I4
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_005b: Invalid comparison between Unknown and I4
+		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_016f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0171: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0173: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0175: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0178: Invalid comparison between Unknown and I4
 		try
 		{
 			if (NetworkBool.op_Implicit(changed.Behaviour.Active))
 			{
-				changed.Behaviour.ElitePowersOfferedInDraft.Clear();
 				UIManager.DraftPanel.Show();
 				if (NetworkBool.op_Implicit(PlayerCustom.Local.IsSpectator))
 				{

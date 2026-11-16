@@ -94,7 +94,7 @@ internal class SecondaryRoleEngineerBetterDoorKickPatch
 				}
 				if (NetworkBool.op_Implicit(Plugin.CustomConfig.ChangeWolfHunger))
 				{
-					PlayerCustom.ApplyEffectToPlayer(player.PlayerController, "LycansNewRoles.EffectTired", ((SimulationBehaviour)__instance).Runner, 1f, 8f);
+					PlayerCustom.ApplyEffectToPlayer(player.PlayerController, "LycansNewRoles.EffectTired", ((SimulationBehaviour)__instance).Runner, 1f, 5f);
 				}
 			}
 			if (__state && !NetworkBool.op_Implicit(__instance.IsLocked))

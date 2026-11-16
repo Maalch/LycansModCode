@@ -16,9 +16,9 @@ internal class DraftPreventShowMenuPatch
 		//IL_004d: Invalid comparison between Unknown and I4
 		//IL_0073: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0078: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0133: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013c: Unknown result type (might be due to invalid IL or missing references)
 		if ((Object)(object)DraftManager.Instance != (Object)null && NetworkBool.op_Implicit(DraftManager.Instance.Active))
 		{
 			Traverse.Create((object)__instance).Method("UpdateTalkingUI", Array.Empty<object>()).GetValue();
@@ -47,7 +47,6 @@ internal class DraftPreventShowMenuPatch
 				case PlayerCustom.PlayerPrimaryRolePower.Survivalist:
 				case PlayerCustom.PlayerPrimaryRolePower.Scout:
 				case PlayerCustom.PlayerPrimaryRolePower.Shadow:
-				case PlayerCustom.PlayerPrimaryRolePower.Runemaster:
 					PlayerCustom.Rpc_Cancel_Current_Action(((SimulationBehaviour)local).Runner, local.Index);
 					return false;
 				}
