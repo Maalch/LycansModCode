@@ -1,9 +1,9 @@
 {
   "_meta": {
     "description": "Reference file for Lycans v2 game mechanics: camps, roles, powers, accessories, gadgets, effects, events, and game rules. Extracted from in-game translations and gameLog data.",
-    "version": "0.372",
-    "lastUpdated": "2026-11-03",
-    "sourceTranslationsFile": "ExternalData/translations.json",
+    "version": "0.378",
+    "lastUpdated": "2026-11-17",
+    "sourceTranslationsFile": "LycansNewRoles.resources.translations.json",
     "notes": "French names match gameLog.json values. Descriptions are cleaned from in-game markup (<color> tags, {0} placeholders). This file can be manually edited to adjust or enrich descriptions. potionEffects = drinkable effects from potions/scrolls. statusEffects = in-game states applied by role abilities, environmental events, or other mechanics (many overlap with potionEffects but represent the broader set of all possible player states)."
   },
 
@@ -201,7 +201,7 @@
       "camp": "solo",
       "emoji": "☠️",
       "type": "solo",
-      "description": "Place des crânes (que les autres joueurs peuvent détruire) qui chargent son objectif : la charge est plus rapide avec peu de crânes placés et plus lente avec beaucoup. À 100% après un meeting, une phase de chasse (journée un peu plus courte que la normale) commence : des esprits, plus lents, sont relâchés et peuvent capturer des joueurs, et le Cultiste peut aussi les capturer directement. Le Cultiste-fantôme est visible en jaune à travers les murs. Les joueurs libres peuvent libérer les joueurs capturés (3 secondes nécessaires).",
+      "description": "Place des crânes (que les autres joueurs peuvent détruire) qui chargent son objectif : plus il y a de crânes, plus la charge totale est rapide, avec un gain décroissant par crâne supplémentaire. À 100% après un meeting, une phase de traque (journée un peu plus courte que la normale) commence : des esprits lents sont relâchés et peuvent capturer des joueurs, et le Cultiste peut aussi les capturer directement. Pendant cette traque, le Cultiste-fantôme et les crânes qui poursuivent les joueurs sont visibles en jaune à travers les murs. Les joueurs libres peuvent libérer les joueurs capturés (3 secondes nécessaires).",
       "descriptionShort": "Gagne en cachant des crânes puis en capturant des joueurs",
       "translationKey": "NALES_ROLE_DESCRIPTION_CULTIST"
     }
@@ -242,7 +242,7 @@
       "id": "saboteur",
       "name": "Saboteur",
       "emoji": "💣",
-      "description": "Peut piéger les gadgets et potions au sol ou possédés par un autre joueur. Les objets sont aussi plus visibles pour lui.",
+      "description": "Peut piéger les gadgets et potions au sol, ainsi que l'objet possédé par un autre joueur à moins de 10 mètres. Chaque piège consomme 100% de sa charge, qui se régénère automatiquement. Les objets sont aussi plus visibles pour lui.",
       "descriptionShort": "Peut piéger les objets au sol ou directement possédés par d'autres joueurs",
       "translationKey": "NALES_ROLE_DESCRIPTION_SABOTEUR"
     },
@@ -258,7 +258,7 @@
       "id": "sorcier",
       "name": "Sorcier",
       "emoji": "🧙",
-      "description": "Peut choisir un joueur dont sa forme humaine prend l'apparence (noté en rouge dans la liste). Peut aussi maudire secrètement une cible, qui se transformera temporairement en loup inoffensif durant la nuit suivante, visible sur la minimap.",
+      "description": "Peut choisir un joueur dont sa forme humaine prend l'apparence (noté en rouge dans la liste). Peut aussi maudire secrètement une cible, qui se transformera temporairement en loup inoffensif durant la nuit suivante. Pendant cette transformation, le Sorcier la voit à travers les murs et sur sa minimap.",
       "descriptionShort": "Peut changer sa forme humaine et forcer un autre joueur à se transformer en faux loup la nuit suivante",
       "translationKey": "NALES_ROLE_DESCRIPTION_WARLOCK"
     },
@@ -302,10 +302,10 @@
       "descriptionShort": "Charge son pouvoir en étant proche d'autres joueurs, peut l'utiliser pour maudire tout le monde",
       "translationKey": "NALES_ROLE_DESCRIPTION_RITUALIST",
       "availableEffects": [
-        { "effect": "Muet", "duration": 55 },
-        { "effect": "Sourd", "duration": 20 },
-        { "effect": "Paranoia", "duration": 12 },
-        { "effect": "Flatulences", "duration": 20 },
+        { "effect": "Muet", "duration": 45 },
+        { "effect": "Sourd", "duration": 15 },
+        { "effect": "Paranoia", "duration": 10 },
+        { "effect": "Flatulences", "duration": 15 },
         { "effect": "Myope", "duration": 25 }
       ]
     },
@@ -321,7 +321,7 @@
       "id": "acrobate",
       "name": "Acrobate",
       "emoji": "🤸",
-      "description": "Peut effectuer de grands sauts à certains emplacements spécifiques des maps (indiqués sur la minimap et par des flèches). Chaque saut nécessite quelques secondes de préparation et il émet un grognement au moment du saut. Est immunisé aux dégâts de chute.",
+      "description": "Peut effectuer de grands sauts à certains emplacements spécifiques des maps (indiqués sur la minimap et par des flèches). Chaque saut nécessite quelques secondes de préparation et il émet un grognement au moment du saut. Ne peut pas être repoussé pendant la préparation du saut. Est immunisé aux dégâts de chute.",
       "descriptionShort": "Peut faire de puissants sauts à certains emplacements de la carte",
       "translationKey": "NALES_ROLE_DESCRIPTION_ACROBAT"
     },
@@ -404,8 +404,8 @@
       "id": "runiste",
       "name": "Runiste",
       "emoji": "🪨",
-      "description": "Peut gratuitement placer jusqu'à 6 runes invisibles (visibles uniquement par lui, et à travers les murs). Toutes les runes détectent automatiquement les loups proches ; la rune qui en détecte un est automatiquement sélectionnée (si plusieurs, la plus proche du Runiste). La nuit, peut dépenser sa charge pour activer la rune sélectionnée à n'importe quelle distance : elle avertit les loups transformés puis explose après un délai, les étourdissant et leur infligeant Confusion. Plus il y a de loups transformés, plus l'explosion est large et puissante.",
-      "descriptionShort": "Peut placer des runes invisibles qui détectent et font exploser les loups",
+      "description": "Récolte pour charger son pouvoir. Peut gratuitement placer jusqu'à 8 runes invisibles (visibles uniquement par lui, et à travers les murs), avec 1 seconde de préparation par rune. Lorsqu'un loup transformé s'approche, une rune s'active automatiquement si le Runiste dispose d'au moins 100% de charge, et en consomme 100%. Le loup déclencheur est Détecté pendant 5 secondes. La rune avertit les loups puis explose après un court délai, étourdissant et ralentissant les loups proches. S'accroupir réduit fortement les effets de l'explosion. Les runes ne détectent les loups qu'à leur activation.",
+      "descriptionShort": "Place des runes invisibles qui s'activent automatiquement pour détecter, étourdir et ralentir les loups",
       "translationKey": "NALES_ROLE_DESCRIPTION_RUNEMASTER"
     },
     {
@@ -909,7 +909,7 @@
     { "id": "foncer", "name": "Foncer", "translationKey": "NALES_EFFECT_CHASE", "tutorial": "Augmente fortement votre vitesse de déplacement pendant la poursuite" },
     { "id": "course", "name": "Course", "translationKey": "NALES_EFFECT_SPRINT", "tutorial": "Augmente votre vitesse de déplacement tant que vous sprintez" },
     { "id": "detransfo", "name": "Détransfo!", "translationKey": "NALES_EFFECT_REVERTING", "tutorial": "Indique que votre retour de la forme de loup à la forme humaine est en cours" },
-    { "id": "desoriente", "name": "Désorienté", "translationKey": "NALES_EFFECT_DISORIENTED", "tutorial": "Perturbe votre orientation et votre perception" },
+    { "id": "desoriente", "name": "Désorienté", "translationKey": "NALES_EFFECT_DISORIENTED", "tutorial": "Perturbe votre orientation et votre perception et ralentit vos déplacements" },
     { "id": "infecte", "name": "Infecté!", "translationKey": "NALES_EFFECT_INFECTED" },
     { "id": "sourd", "name": "Sourd", "translationKey": "NALES_EFFECT_DEAFNESS", "tutorial": "Coupe les voix des joueurs et les sons du jeu" },
     { "id": "camoufle", "name": "Camouflé", "translationKey": "NALES_EFFECT_CAMOUFLAGE", "tutorial": "Vous rend moins visible pour les autres joueurs, en particulier les loups transformés" },
@@ -972,7 +972,7 @@
     { "id": "paresse", "name": "Paresse", "translationKey": "NALES_EFFECT_HUBRIS", "tutorial": "Indique que votre participation insuffisante vous impose un handicap temporaire" },
     { "id": "guetteur", "name": "Guetteur", "translationKey": "NALES_EFFECT_SPOTTER", "tutorial": "Améliore temporairement votre détection et votre visibilité des loups transformés" },
     { "id": "purification", "name": "Purification", "translationKey": "NALES_EFFECT_PURIFIER_BURN", "tutorial": "Brûle et désoriente les loups, mais soigne et accélère les humains" },
-    { "id": "detecte", "name": "Détecté !", "translationKey": "NALES_EFFECT_DETECTED", "tutorial": "Révèle temporairement votre position aux joueurs capables de vous détecter" },
+    { "id": "detecte", "name": "Détecté !", "translationKey": "NALES_EFFECT_DETECTED", "tutorial": "Révèle temporairement votre position à travers les murs" },
     { "id": "silence", "name": "Silence !", "translationKey": "NALES_EFFECT_KIDNAPPER_SILENCE", "tutorial": "Vous empêche de parler pendant l'action du Kidnappeur" },
     { "id": "capture", "name": "Capturé", "translationKey": "NALES_EFFECT_CAPTURED", "tutorial": "Vous retient prisonnier jusqu'à ce qu'un joueur vous libère ou que le Cultiste soit vaincu" },
     { "id": "cache", "name": "Caché", "translationKey": "NALES_EFFECT_HIDDEN", "tutorial": "Vous dissimule temporairement aux joueurs qui pourraient vous repérer" },
@@ -1128,10 +1128,10 @@
         "Courir fait diminuer la barre de faim plus rapidement.",
         "Les Loups en forme humaine ne perdent pas de faim. Sous forme de loup, la perte et la régénération dépendent du système de faim choisi.",
         "Certaines actions (balles de Chasseur, pièges) font baisser la faim des Loups transformés.",
-        "Un loup transformé qui reste immobile régénère sa santé après 3 secondes s'il n'est pas Fatigué. Un tir de Chasseur lui inflige Fatigué pendant 20 secondes et interrompt cette régénération.",
+        "Un loup transformé qui reste immobile régénère sa santé après 3 secondes s'il n'est pas Fatigué. Un tir de Chasseur lui inflige Fatigué pendant 15 secondes et interrompt cette régénération.",
         "Avec le système de faim habituel, tuer un Villageois en tant que Loup remplit la barre de faim à 100 %.",
-        "Avec l'option de faim modifiée, un loup transformé perd davantage de santé en courant et en régénère lorsqu'il est immobile, marche ou est accroupi, s'il n'est pas Fatigué. Être accroupi réduit aussi sa portée de détection.",
-        "Avec cette option, tuer un joueur restaure 40 % de la santé manquante et frapper un cadenas inflige Fatigué pendant 8 secondes."
+        "Avec l'option de faim modifiée, un loup transformé perd 2 points de santé supplémentaires par seconde en courant. Sans courir, il récupère 3,5 points de santé supplémentaires par seconde s'il n'est pas Fatigué. Être accroupi réduit aussi sa portée de détection.",
+        "Avec cette option, tuer un joueur restaure 40 % de la santé manquante et frapper un cadenas inflige Fatigué pendant 5 secondes."
       ]
     },
     {
@@ -1168,6 +1168,7 @@
       "description": "Les joueurs trouvent et utilisent divers objets pendant la partie. Chaque joueur ne peut porter qu'un seul objet et un seul accessoire à la fois.",
       "details": [
         "Potions : l'effet s'applique au joueur qui la boit. Les effets des différentes couleurs des potions sont aléatoires à chaque partie.",
+        "Les potions Assassin n'apparaissent pas naturellement le premier jour et sont plus rares que les autres potions.",
         "Parchemins : même effet que les potions, mais utilisable uniquement sur un autre joueur (pas sur soi).",
         "Gadgets : objets actifs (pièges, fumigènes, grenades, diamants, etc.) utilisables stratégiquement.",
         "Accessoires : équipements passifs qui confèrent un bonus permanent tant qu'ils sont portés.",
@@ -1195,8 +1196,10 @@
       "name": "Sabotage",
       "emoji": "💀",
       "campSpecific": "loup",
-      "description": "Les Loups peuvent saboter différents éléments de la carte pour gêner les Villageois. Plus il y a de Sabotage d'un même type, plus grandes sont les chances d'activation de l'effet (100% si tout est saboté).",
+      "description": "Les Loups peuvent saboter différents éléments de la carte pour gêner les Villageois. Plus il y a de lieux sabotés pour un même effet, plus celui-ci a de chances d'être retenu pour la nuit.",
       "details": [
+        "Si tous les lieux associés sont sabotés, l'effet est systématiquement candidat à l'activation. Sinon, sa chance d'être retenu vaut 60 % de la proportion de lieux sabotés. Lorsqu'il y a des candidats, un seul sabotage est activé pour la nuit.",
+        "Saboter discrètement prend trois fois le temps d'un sabotage rapide.",
         "Sabotage de puits (Village) : affecte tous les joueurs la nuit suivante — santé diminue plus vite et léger ralentissement.",
         "Sabotage de portails : empêche les Villageois d'utiliser les portails pour se déplacer rapidement.",
         "Rituels : les Loups peuvent effectuer des rituels à certains emplacements pour obtenir un bonus de vitesse."
