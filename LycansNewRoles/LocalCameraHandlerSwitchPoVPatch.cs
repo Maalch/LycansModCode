@@ -47,10 +47,10 @@ internal class LocalCameraHandlerSwitchPoVPatch
 		//IL_00a4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00a5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
-		//IL_018c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01ad: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01b2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_01cc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bd: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			if ((Object)(object)__instance.PovPlayer == (Object)null)
@@ -73,10 +73,8 @@ internal class LocalCameraHandlerSwitchPoVPatch
 			if (__state != PlayerRef.None)
 			{
 				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(__state);
-				player2.UpdatePredatorComponent();
 				player2.UpdateTargetArrowComponent();
 			}
-			player.UpdatePredatorComponent();
 			player.UpdateTargetArrowComponent();
 			ItemCustom.UpdateAllItems();
 			ExorcistDetector.UpdateVisibilityForAllDetectors();

@@ -491,8 +491,8 @@ internal class GiveNewRolesPatch
 		obj2.onEnter = (Action<EGameState>)Delegate.Combine(obj2.onEnter, (Action<EGameState>)delegate
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04e7: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0552: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_053d: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0072: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0077: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00c1: Unknown result type (might be due to invalid IL or missing references)
@@ -503,24 +503,23 @@ internal class GiveNewRolesPatch
 			//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
 			//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0105: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0432: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0135: Unknown result type (might be due to invalid IL or missing references)
-			//IL_048a: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0494: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0443: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0448: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0459: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0143: Unknown result type (might be due to invalid IL or missing references)
-			//IL_046a: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0479: Unknown result type (might be due to invalid IL or missing references)
-			//IL_02a2: Unknown result type (might be due to invalid IL or missing references)
-			//IL_02fc: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01f8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_019d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01c8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_01ea: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0408: Unknown result type (might be due to invalid IL or missing references)
+			//IL_041d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_012e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0475: Unknown result type (might be due to invalid IL or missing references)
+			//IL_047f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_042e: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0433: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0444: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0455: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0464: Unknown result type (might be due to invalid IL or missing references)
+			//IL_028d: Unknown result type (might be due to invalid IL or missing references)
+			//IL_02e7: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01e3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0188: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01b3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01c3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_01d5: Unknown result type (might be due to invalid IL or missing references)
+			//IL_03f3: Unknown result type (might be due to invalid IL or missing references)
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
 			{
 				try
@@ -548,9 +547,6 @@ internal class GiveNewRolesPatch
 						{
 						case PlayerCustom.PlayerPrimaryRolePower.Warlock:
 							allPlayer4.PrimaryRoleTargetRef = allPlayer4.Ref;
-							break;
-						case PlayerCustom.PlayerPrimaryRolePower.Predator:
-							allPlayer4.PrimaryRoleTargetRef = PlayerRef.None;
 							break;
 						case PlayerCustom.PlayerPrimaryRolePower.Tracker:
 							allPlayer4.PrimaryRolePowerRemainingUses = 1;
@@ -642,14 +638,14 @@ internal class GiveNewRolesPatch
 		obj3.onExit = (Action<EGameState>)Delegate.Combine(obj3.onExit, (Action<EGameState>)delegate(EGameState state)
 		{
 			//IL_0018: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0802: Unknown result type (might be due to invalid IL or missing references)
+			//IL_07e5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_009f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_077f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0781: Invalid comparison between Unknown and I4
+			//IL_0762: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0764: Invalid comparison between Unknown and I4
 			//IL_0124: Unknown result type (might be due to invalid IL or missing references)
 			//IL_010b: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0797: Unknown result type (might be due to invalid IL or missing references)
-			//IL_079d: Invalid comparison between Unknown and I4
+			//IL_077a: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0780: Invalid comparison between Unknown and I4
 			//IL_0167: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0174: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0180: Unknown result type (might be due to invalid IL or missing references)
@@ -662,34 +658,34 @@ internal class GiveNewRolesPatch
 			//IL_01e5: Unknown result type (might be due to invalid IL or missing references)
 			//IL_021e: Unknown result type (might be due to invalid IL or missing references)
 			//IL_0258: Unknown result type (might be due to invalid IL or missing references)
-			//IL_052f: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0531: Invalid comparison between Unknown and I4
-			//IL_0539: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0571: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05a2: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04e6: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04e8: Invalid comparison between Unknown and I4
-			//IL_05bc: Unknown result type (might be due to invalid IL or missing references)
-			//IL_04f0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05d7: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05e7: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05ec: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05f8: Unknown result type (might be due to invalid IL or missing references)
-			//IL_05fd: Unknown result type (might be due to invalid IL or missing references)
-			//IL_051a: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06b9: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06bb: Invalid comparison between Unknown and I4
-			//IL_06c3: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0683: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0685: Invalid comparison between Unknown and I4
-			//IL_0650: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06d0: Unknown result type (might be due to invalid IL or missing references)
-			//IL_068d: Unknown result type (might be due to invalid IL or missing references)
-			//IL_06ff: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0742: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0756: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0724: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0735: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04d3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_04d5: Invalid comparison between Unknown and I4
+			//IL_04dd: Unknown result type (might be due to invalid IL or missing references)
+			//IL_051c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_051e: Invalid comparison between Unknown and I4
+			//IL_0507: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0526: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0554: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0585: Unknown result type (might be due to invalid IL or missing references)
+			//IL_059f: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05ba: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05ca: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05cf: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05db: Unknown result type (might be due to invalid IL or missing references)
+			//IL_05e0: Unknown result type (might be due to invalid IL or missing references)
+			//IL_069c: Unknown result type (might be due to invalid IL or missing references)
+			//IL_069e: Invalid comparison between Unknown and I4
+			//IL_06a6: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0666: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0668: Invalid comparison between Unknown and I4
+			//IL_0633: Unknown result type (might be due to invalid IL or missing references)
+			//IL_06b3: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0670: Unknown result type (might be due to invalid IL or missing references)
+			//IL_06e2: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0725: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0739: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0707: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0718: Unknown result type (might be due to invalid IL or missing references)
 			if (((SimulationBehaviour)gameState).Runner.IsServer && !NetworkBool.op_Implicit(GameManager.Instance.BattleRoyale))
 			{
 				try
@@ -790,9 +786,6 @@ internal class GiveNewRolesPatch
 							{
 								HermitHideout.CreateHideoutsOnNewDay(((SimulationBehaviour)gameState).Runner, allPlayer6);
 							}
-							break;
-						case PlayerCustom.PlayerPrimaryRolePower.Predator:
-							allPlayer6.PrimaryRolePowerRemainingUses = 1;
 							break;
 						case PlayerCustom.PlayerPrimaryRolePower.Ghost:
 							allPlayer6.NewPrimaryRoleUniqueBool = NetworkBool.op_Implicit(false);

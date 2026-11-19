@@ -468,19 +468,11 @@ public static class BalancingValues
 
 	public const float RitualistNearsightedDuration = 25f;
 
-	public const float PredatorScaryEffectRangeNotCrouched = 30f;
+	public const float PredatorScaryEffectRangeNotCrouched = 40f;
 
-	public const float PredatorScaryEffectRangeCrouched = 5f;
+	public const float PredatorScaryEffectRangeCrouched = 7f;
 
-	public const float PredatorHeartbeatRange = 20f;
-
-	public const float PredatorEmpoweredDurationOnKill = 45f;
-
-	public const float PredatorEffectMovementSpeed = 1.15f;
-
-	public const float PredatorEffectScaryEffectRangeMultiplier = 0.75f;
-
-	public const float PredatorHealthAfterBeingShotIfPrey = 0.5f;
+	public const float PredatorStealthDuration = 10f;
 
 	public const float SneakySpeedMultiplier = 1.5f;
 
@@ -492,19 +484,19 @@ public static class BalancingValues
 
 	public const float HostParasiteDetectRange = 30f;
 
-	public const float HostParasiteTargetDamagePercentage = 0.1f;
+	public const float HostParasiteTargetDamagePercentage = 0.15f;
 
 	public const float HostParasiteTargetPoisonDuration = 20f;
 
-	public const float HostParasiteTargetDisorientedDuration = 5f;
+	public const float HostParasiteTargetDisorientedDuration = 8f;
 
 	public const float HostParasiteNearbyPlayerRange = 15f;
 
-	public const float HostParasiteNearbyPlayerMaximumDamagePercentage = 0.1f;
+	public const float HostParasiteNearbyPlayerMinimumDamagePercentage = 0.25f;
 
 	public const float HostParasiteNearbyPlayerMaximumPoisonDuration = 20f;
 
-	public const float HostParasiteNearbyPlayerMaximumDisorientedDuration = 5f;
+	public const float HostParasiteNearbyPlayerMaximumDisorientedDuration = 8f;
 
 	public const float AcrobatCastTime = 2f;
 
@@ -1304,9 +1296,9 @@ public static class BalancingValues
 
 	public const float AssassinRange = 3.5f;
 
-	public const float AssassinOnWolfDownedDuration = 6f;
+	public const float AssassinOnWolfDownedDuration = 7f;
 
-	public const float AssassinOnWolfKnockbackPower = 6f;
+	public const float AssassinOnWolfKnockbackPower = 7f;
 
 	public const float AssassinOnWolfKnockbackReductionPerSecond = 6f;
 
@@ -2601,6 +2593,7 @@ public static class BalancingValues
 			PlayerCustom.PlayerPrimaryRolePower.Bomber => new PowerMaterialsInfo(70, 2.5f, 0.506f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Ritualist => new PowerMaterialsInfo(10000, 1.5f, 0.256f, gainsMaterialsOnCollect: false, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Saboteur => new PowerMaterialsInfo(10000, 3f, 0.506f, gainsMaterialsOnCollect: false, 0f), 
+			PlayerCustom.PlayerPrimaryRolePower.Predator => new PowerMaterialsInfo(150, 1.5f, 0.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Host => new PowerMaterialsInfo(25, 4f, 2.006f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Fartmaster => new PowerMaterialsInfo(60, 2.5f, 1.256f, gainsMaterialsOnCollect: true, 0f), 
 			PlayerCustom.PlayerPrimaryRolePower.Exorcist => new PowerMaterialsInfo(80, 1.5f, 1.056f, gainsMaterialsOnCollect: true, 0f), 

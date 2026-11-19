@@ -14,31 +14,20 @@ internal class SecondaryRoleStealtherWolfCloserDistancePatch
 		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0098: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			PlayerCustom player = PlayerCustomRegistry.GetPlayer(wolfPlayer.Ref);
-			if (NetworkBool.op_Implicit(player.Undetected) || NetworkBool.op_Implicit(player.Phasing) || (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(player.SecondaryRolePowerActive)))
+			if (NetworkBool.op_Implicit(player.Undetected) || NetworkBool.op_Implicit(player.Phasing) || NetworkBool.op_Implicit(player.Predator) || (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothActor && NetworkBool.op_Implicit(player.SecondaryRolePowerActive)))
 			{
 				__result = 0f;
 				return;
 			}
-			if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Predator)
+			if (player.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Predator && player.PlayerController.MovementAction == 1)
 			{
-				if (player.PlayerController.MovementAction == 1)
-				{
-					__result = 5f;
-				}
-				else
-				{
-					__result = 30f;
-				}
-				if (NetworkBool.op_Implicit(player.Predator))
-				{
-					__result *= 0.75f;
-				}
+				__result = 7f;
 			}
 			if (player.SecondaryRole == PlayerCustom.PlayerSecondaryRole.BothAstral && NetworkBool.op_Implicit(player.SecondaryRolePowerActive))
 			{

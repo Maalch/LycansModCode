@@ -63,8 +63,8 @@ public class UIRoleDescription : MonoBehaviour
 		//IL_0042: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f9: Invalid comparison between Unknown and I4
-		//IL_0d5d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0d62: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d72: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0d77: Unknown result type (might be due to invalid IL or missing references)
 		if (PlayerCustom.Local.PrimaryRolePower == PlayerCustom.PlayerPrimaryRolePower.Possessor)
 		{
 			PlayerRef primaryRoleTargetRef = PlayerCustom.Local.PrimaryRoleTargetRef;
@@ -136,7 +136,11 @@ public class UIRoleDescription : MonoBehaviour
 					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Predator:
-					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };
+					list = new List<string>
+					{
+						LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", ""),
+						10f.ToString()
+					};
 					break;
 				case PlayerCustom.PlayerPrimaryRolePower.Sneak:
 					list = new List<string> { LycansUtility.GetInputDisplayCustom((InputActionName)5).Replace(" -", "") };

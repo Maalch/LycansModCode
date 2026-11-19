@@ -142,11 +142,9 @@ public static class UpdateRoleUtility
 		//IL_0972: Unknown result type (might be due to invalid IL or missing references)
 		//IL_1019: Unknown result type (might be due to invalid IL or missing references)
 		//IL_101e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1359: Unknown result type (might be due to invalid IL or missing references)
-		//IL_135e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1539: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1ddb: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1e22: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1573: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1e15: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1e5c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0416: Unknown result type (might be due to invalid IL or missing references)
 		//IL_041b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0602: Unknown result type (might be due to invalid IL or missing references)
@@ -159,14 +157,11 @@ public static class UpdateRoleUtility
 		//IL_0edc: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0ee1: Unknown result type (might be due to invalid IL or missing references)
 		//IL_1046: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1387: Unknown result type (might be due to invalid IL or missing references)
-		//IL_139a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13aa: Unknown result type (might be due to invalid IL or missing references)
-		//IL_13ef: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1cc5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1ccf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1c21: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1c2b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1429: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1cff: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1d09: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1c5b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1c65: Unknown result type (might be due to invalid IL or missing references)
 		//IL_046d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0472: Unknown result type (might be due to invalid IL or missing references)
 		//IL_051c: Unknown result type (might be due to invalid IL or missing references)
@@ -347,19 +342,19 @@ public static class UpdateRoleUtility
 		}
 		case PlayerCustom.PlayerNewPrimaryRole.Voodoo:
 		{
-			int num2 = PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);
+			int num = PlayerCustomRegistry.CountWhere((PlayerCustom o) => o.NewPrimaryRole == PlayerCustom.PlayerNewPrimaryRole.Zombie);
 			if (playerCustom.PrimaryRolePowerRemainingUses > 0)
 			{
-				return TranslationManager.Instance.GetTranslation("NALES_ROLE_VOODOO_AVAILABLE").Replace("{0}", num2.ToString());
+				return TranslationManager.Instance.GetTranslation("NALES_ROLE_VOODOO_AVAILABLE").Replace("{0}", num.ToString());
 			}
 			primaryRolePowerCooldownTimer = playerCustom.PrimaryRolePowerCooldownTimer;
 			if (((TickTimer)(ref primaryRolePowerCooldownTimer)).IsRunning)
 			{
-				string text7 = TranslationManager.Instance.GetTranslation("NALES_ROLE_VOODOO_AVAILABLE_IN").Replace("{0}", num2.ToString());
+				string text7 = TranslationManager.Instance.GetTranslation("NALES_ROLE_VOODOO_AVAILABLE_IN").Replace("{0}", num.ToString());
 				primaryRolePowerCooldownTimer = playerCustom.PrimaryRolePowerCooldownTimer;
 				return text7.Replace("{1}", Mathf.CeilToInt(((TickTimer)(ref primaryRolePowerCooldownTimer)).RemainingTime(((SimulationBehaviour)playerCustom).Runner).Value).ToString());
 			}
-			return TranslationManager.Instance.GetTranslation("NALES_ROLE_VOODOO_UNAVAILABLE").Replace("{0}", num2.ToString());
+			return TranslationManager.Instance.GetTranslation("NALES_ROLE_VOODOO_UNAVAILABLE").Replace("{0}", num.ToString());
 		}
 		case PlayerCustom.PlayerNewPrimaryRole.Zombie:
 			return TranslationManager.Instance.GetTranslation("NALES_ROLE_ZOMBIE_DETAILS").Replace("{0}", ((object)PlayerCustomRegistry.GetSpecificNewPrimaryRole(PlayerCustom.PlayerNewPrimaryRole.Voodoo).PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
@@ -444,20 +439,20 @@ public static class UpdateRoleUtility
 				{
 					return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_NO_TARGET");
 				}
-				PlayerCustom player2 = PlayerCustomRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
+				PlayerCustom player = PlayerCustomRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
 				if (playerCustom.PrimaryRolePowerCurrentMaterials < playerCustom.PowerMaterialsInfo.RequiredMaterials)
 				{
 					if (NetworkBool.op_Implicit(playerCustom.NewPrimaryRoleUniqueBool))
 					{
-						return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_TARGET_VISIBLE").Replace("{0}", ((object)player2.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString()).Replace("{1}", Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)).ToString());
+						return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_TARGET_VISIBLE").Replace("{0}", ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString()).Replace("{1}", Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)).ToString());
 					}
-					return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_TARGET_NOT_VISIBLE").Replace("{0}", ((object)player2.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
+					return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_TARGET_NOT_VISIBLE").Replace("{0}", ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
 				}
-				if (NetworkBool.op_Implicit(playerCustom.NewPrimaryRoleUniqueBool) || (NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) && NetworkBool.op_Implicit(player2.Possessed)))
+				if (NetworkBool.op_Implicit(playerCustom.NewPrimaryRoleUniqueBool) || (NetworkBool.op_Implicit(playerCustom.PlayerController.IsWolf) && NetworkBool.op_Implicit(player.Possessed)))
 				{
-					return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_POSSESSING").Replace("{0}", ((object)player2.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
+					return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_POSSESSING").Replace("{0}", ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
 				}
-				return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_AVAILABLE").Replace("{0}", ((object)player2.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
+				return TranslationManager.Instance.GetTranslation("NALES_ROLE_POSSESSOR_AVAILABLE").Replace("{0}", ((object)player.PlayerController.PlayerData.Username/*cast due to constrained. prefix*/).ToString());
 			}
 			case PlayerCustom.PlayerPrimaryRolePower.Bomber:
 				if (playerCustom.PrimaryRolePowerRemainingUses > 0)
@@ -472,15 +467,11 @@ public static class UpdateRoleUtility
 				}
 				return TranslationManager.Instance.GetTranslation("NALES_ROLE_RITUALIST_DETAILS").Replace("{0}", "<color=red>" + Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)) + "%</color>");
 			case PlayerCustom.PlayerPrimaryRolePower.Predator:
-			{
-				if (playerCustom.PrimaryRoleTargetRef == PlayerRef.None)
+				if (playerCustom.PrimaryRolePowerCurrentMaterials >= playerCustom.PowerMaterialsInfo.RequiredMaterials)
 				{
-					return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_NO_TARGET");
+					return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_DETAILS").Replace("{0}", "<color=green>" + Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)) + "%</color>");
 				}
-				PlayerController player = PlayerRegistry.GetPlayer(playerCustom.PrimaryRoleTargetRef);
-				int num = Mathf.RoundToInt(Vector3.Distance(((Component)player).transform.position, ((Component)playerCustom.PlayerController).transform.position));
-				return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_WITH_TARGET").Replace("{0}", num.ToString());
-			}
+				return TranslationManager.Instance.GetTranslation("NALES_ROLE_PREDATOR_DETAILS").Replace("{0}", "<color=red>" + Mathf.FloorToInt((float)(playerCustom.PrimaryRolePowerCurrentMaterials * 100 / playerCustom.PowerMaterialsInfo.RequiredMaterials)) + "%</color>");
 			case PlayerCustom.PlayerPrimaryRolePower.Sneak:
 				if (LycansUtility.WolvesCanTransform)
 				{

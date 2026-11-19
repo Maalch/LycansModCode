@@ -385,7 +385,7 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_0040: Unknown result type (might be due to invalid IL or missing references)
 		//IL_137a: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_16aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16e8: Unknown result type (might be due to invalid IL or missing references)
 		//IL_15e6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_027c: Unknown result type (might be due to invalid IL or missing references)
 		//IL_15fe: Unknown result type (might be due to invalid IL or missing references)
@@ -393,8 +393,8 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_03a9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_058b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0590: Unknown result type (might be due to invalid IL or missing references)
-		//IL_163d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_1643: Invalid comparison between Unknown and I4
+		//IL_1640: Unknown result type (might be due to invalid IL or missing references)
+		//IL_1646: Invalid comparison between Unknown and I4
 		//IL_0b2d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0b32: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0c96: Unknown result type (might be due to invalid IL or missing references)
@@ -414,6 +414,8 @@ public class GameManagerCustom : NetworkBehaviour
 		//IL_02ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02df: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_168f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_16aa: Unknown result type (might be due to invalid IL or missing references)
 		//IL_1431: Unknown result type (might be due to invalid IL or missing references)
 		//IL_1436: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01e2: Unknown result type (might be due to invalid IL or missing references)
@@ -881,6 +883,7 @@ public class GameManagerCustom : NetworkBehaviour
 			{
 				float value = (((int)GameManager.LocalGameState == 4) ? 8f : 2f);
 				PlayerCustom.ApplyEffectToPlayer(playerCustom.PlayerController, "LycansNewRoles.EffectDowned", ((SimulationBehaviour)this).Runner, 1f, value);
+				GameManager.Rpc_BroadcastFollowSound(((SimulationBehaviour)this).Runner, NetworkString<_16>.op_Implicit("ConfusionStun"), ((Component)playerCustom.PlayerController).transform.position, 20f, 0.5f);
 			}
 		}
 		EachSecondGlobalTimer = TickTimer.CreateFromSeconds(((SimulationBehaviour)this).Runner, 1f);

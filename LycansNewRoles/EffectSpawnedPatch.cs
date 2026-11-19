@@ -13,8 +13,8 @@ internal class EffectSpawnedPatch
 	private static void Postfix(Effect __instance)
 	{
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04c8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04d2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04bc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04c6: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0118: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0153: Unknown result type (might be due to invalid IL or missing references)
@@ -23,14 +23,14 @@ internal class EffectSpawnedPatch
 		//IL_0194: Unknown result type (might be due to invalid IL or missing references)
 		//IL_01b0: Unknown result type (might be due to invalid IL or missing references)
 		//IL_02b1: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0427: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0441: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0446: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0450: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0489: Unknown result type (might be due to invalid IL or missing references)
-		//IL_048e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0492: Unknown result type (might be due to invalid IL or missing references)
-		//IL_049d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_041b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0435: Unknown result type (might be due to invalid IL or missing references)
+		//IL_043a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0444: Unknown result type (might be due to invalid IL or missing references)
+		//IL_047d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0482: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0486: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0491: Unknown result type (might be due to invalid IL or missing references)
 		PlayerCustom player = PlayerCustomRegistry.GetPlayer(__instance.EffectPlayer);
 		if (!(__instance is MidasEffect) && !(__instance is VampireEffect) && !(__instance is SpeedEffect) && !(__instance is HauntedEffect) && !(__instance is AsleepEffect) && !(__instance is SpiritResistanceEffect) && !(__instance is DetectedEffect) && !(__instance is ClairvoyanceEffect) && !(__instance is SneakyEffect) && !(__instance is PoisonEffect) && !(__instance is ConfusedEffect) && !(__instance is NightVision))
 		{
@@ -115,7 +115,7 @@ internal class EffectSpawnedPatch
 		{
 			player.UpdateVisibility();
 		}
-		if (!(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PredatorEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
+		if (!(__instance is SprintEffect) && !(__instance is DisorientedEffect) && !(__instance is DiseasedEffect) && !(__instance is WoundedEffect) && !(__instance is EmpoweredEffect) && !(__instance is NauseatedEffect) && !(__instance is PanicEffect) && !(__instance is FleeingEffect) && !(__instance is SleepyEffect) && !(__instance is PortalEffect) && !(__instance is EscapingEffect) && !(__instance is TenacityEffect) && !(__instance is HubrisEffect) && !(__instance is SneakyEffect) && !(__instance is StrenghtenedEffect))
 		{
 			if (!(__instance is BurningEffect) && !(__instance is PurifierBurnEffect) && !(__instance is SanctuaryEffect))
 			{

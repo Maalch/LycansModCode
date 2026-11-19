@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace LycansNewRoles;
 
-[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.378")]
+[BepInPlugin("LycansNewRoles", "Lycans New Roles", "0.379")]
 public class Plugin : BaseUnityPlugin
 {
 	public static NetworkObject NetworkObject;
@@ -139,6 +139,8 @@ public class Plugin : BaseUnityPlugin
 	public const string SoundBurp = "Burp";
 
 	public const string SoundTinyCrush = "TinyCrush";
+
+	public const string SoundConfusionStun = "ConfusionStun";
 
 	public static bool PlayerIllusionCreated = false;
 
@@ -262,10 +264,10 @@ public class Plugin : BaseUnityPlugin
 		//IL_2116: Unknown result type (might be due to invalid IL or missing references)
 		//IL_2144: Unknown result type (might be due to invalid IL or missing references)
 		//IL_2160: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3171: Unknown result type (might be due to invalid IL or missing references)
-		//IL_31b3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_3841: Unknown result type (might be due to invalid IL or missing references)
-		//IL_38c7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_317c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_31be: Unknown result type (might be due to invalid IL or missing references)
+		//IL_384c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_38d2: Unknown result type (might be due to invalid IL or missing references)
 		try
 		{
 			NewEffects.Clear();
@@ -348,7 +350,7 @@ public class Plugin : BaseUnityPlugin
 			AddEffectToList("LycansNewRoles.EffectTracking", typeof(TrackingEffect), 3600f);
 			AddEffectToList("LycansNewRoles.EffectParalyzed", typeof(ParalyzedEffect), 4f);
 			AddEffectToList("LycansNewRoles.EffectResistance", typeof(ResistanceEffect), 10f);
-			AddEffectToList("LycansNewRoles.EffectPredator", typeof(PredatorEffect), 45f);
+			AddEffectToList("LycansNewRoles.EffectPredator", typeof(PredatorEffect), 10f);
 			AddEffectToList("LycansNewRoles.EffectResurrected", typeof(ResurrectedEffect), 300f);
 			AddEffectToList("LycansNewRoles.EffectPetrified", typeof(PetrifiedEffect), 60f);
 			AddEffectToList("LycansNewRoles.EffectPortal", typeof(PortalEffect), 8f);
@@ -970,6 +972,7 @@ public class Plugin : BaseUnityPlugin
 			AddSoundIfNeeded("AcrobatJump");
 			AddSoundIfNeeded("Burp");
 			AddSoundIfNeeded("TinyCrush");
+			AddSoundIfNeeded("ConfusionStun");
 			foreach (GameObject newHat in NewHats)
 			{
 				Object.Destroy((Object)(object)newHat);
@@ -1147,7 +1150,6 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val);
 		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val);
 		DestroyComponentIfExists<PlayerHeldItemComponent>(val);
-		DestroyComponentIfExists<PlayerPredatorComponent>(val);
 		DestroyComponentIfExists<PlayerAngelIconComponent>(val);
 		DestroyComponentIfExists<PlayerResurrectedComponent>(val);
 		DestroyComponentIfExists<PlayerSpotterLightComponent>(val);
@@ -1219,7 +1221,6 @@ public class Plugin : BaseUnityPlugin
 		DestroyComponentIfExists<PlayerSurvivalistHeartbeatComponent>(val5);
 		DestroyComponentIfExists<PlayerMercenaryTargetIconComponent>(val5);
 		DestroyComponentIfExists<PlayerHeldItemComponent>(val5);
-		DestroyComponentIfExists<PlayerPredatorComponent>(val5);
 		DestroyComponentIfExists<PlayerAngelIconComponent>(val5);
 		DestroyComponentIfExists<PlayerResurrectedComponent>(val5);
 		DestroyComponentIfExists<PlayerSpotterLightComponent>(val5);
